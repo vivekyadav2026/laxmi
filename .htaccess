@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Prevent direct browser access to sensitive files and folders
+    RedirectMatch 404 /\.(git|env|editorconfig|gitattributes|gitignore|example)
+    RedirectMatch 404 /(app|bootstrap|config|database|resources|routes|storage|tests|vendor)/
+
+    # 2. Redirect root directory requests to the public directory
+    RewriteRule ^$ public/ [L]
+
+    # 3. Redirect all other requests (excluding those already in public/) to public/
+    RewriteRule ^((?!public/).*)$ public/$1 [L]
+</IfModule>
