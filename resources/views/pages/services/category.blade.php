@@ -11,7 +11,7 @@
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
                     <a href="/" class="flex flex-col text-gray-300 hover:text-[#f5a623] transition">
-                        <span class="font-bold leading-tight">à¤¹à¥‹à¤®</span>
+                        <span class="font-bold leading-tight">ङोम</span>
                         <span class="text-[10px] uppercase">Home</span>
                     </a>
                 </li>
@@ -19,7 +19,7 @@
                     <div class="flex items-center">
                         <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         <a href="/services" class="flex flex-col text-gray-300 hover:text-[#f5a623] ml-1 md:ml-2 transition">
-                            <span class="font-bold leading-tight">à¤¸à¤­à¥€ à¤¸à¥‡à¤µà¤¾à¤ à¤‚</span>
+                            <span class="font-bold leading-tight">सभी सेवाएं</span>
                             <span class="text-[10px] uppercase">Services</span>
                         </a>
                     </div>

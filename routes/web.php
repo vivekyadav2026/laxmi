@@ -717,3 +717,32 @@ Route::get('/funding', function () {
 Route::get('/live-session', function () {
     return view('pages.live-session');
 });
+
+// =========================================
+// ADMIN PANEL ROUTES
+// =========================================
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return redirect('/admin/dashboard');
+    });
+
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    });
+
+    Route::get('/users', function () {
+        return view('admin.users');
+    });
+
+    Route::get('/services', function () {
+        return view('admin.services');
+    });
+
+    Route::get('/funding', function () {
+        return view('admin.funding');
+    });
+
+    Route::get('/settings', function () {
+        return view('admin.settings');
+    });
+});

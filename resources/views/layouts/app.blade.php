@@ -233,9 +233,9 @@
 
                 <!-- Desktop-only actions -->
                 <div class="hidden lg:flex items-center space-x-[12px] xl:space-x-[16px]">
-                    <a href="tel:+918069029400" class="hidden xl:flex text-[#1a237e] text-[14px] font-bold items-center whitespace-nowrap hover:text-[#f57c00] transition-colors">
-                        <svg class="w-4 h-4 mr-1 text-[#f57c00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                        080-6902-9400
+                    <a href="tel:+918750530252" class="hidden xl:flex text-[#1a237e] text-[14px] font-bold items-center whitespace-nowrap hover:text-[#f57c00] transition-colors">
+                        <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
+                        +91 87505 30252
                     </a>
                     
                     <div class="hidden xl:block h-[20px] w-[1px] bg-[#E2E0D8]"></div>
@@ -325,9 +325,9 @@
                     <a href="/blog" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Blog</a>
                     <a href="/contact" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Contact</a>
                     <hr class="border-[#E2E0D8] my-2">
-                    <a href="tel:+918069029400" class="text-[#1a237e] text-[14px] font-semibold mb-2 flex items-center hover:text-[#f57c00] transition-colors">
-                        <svg class="w-4 h-4 mr-1 text-[#f57c00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                        080-6902-9400
+                    <a href="tel:+918750530252" class="text-[#1a237e] text-[14px] font-semibold mb-2 flex items-center hover:text-[#f57c00] transition-colors">
+                        <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
+                        +91 87505 30252
                     </a>
                     <div class="flex items-center space-x-2 mt-2 mb-4">
                         <button @click="changeLang('en')" :class="currentLang === 'en' ? 'bg-[#f57c00]/10 text-[#f57c00] font-bold' : 'border border-[#E2E0D8] text-[#5C6370] font-medium'" class="px-[12px] py-[6px] rounded text-[12px] transition-colors duration-200">English</button>
@@ -412,7 +412,7 @@
                 <!-- Col 4 (Contact & Badges) -->
                 <div>
                     <div class="text-[#f57c00] text-[12px] font-bold uppercase tracking-[0.15em] mb-[16px]">CONTACT US</div>
-                    <a href="tel:+918069029400" class="block text-white text-[18px] font-bold hover:text-[#f5a623] transition-colors">080-6902-9400</a>
+                    <a href="tel:+918750530252" class="block text-white text-[18px] font-bold hover:text-[#f5a623] transition-colors">+91 87505 30252</a>
                     <a href="mailto:hello@foundida.com" class="block text-[#E2E0D8] text-[13px] mt-[4px] hover:text-[#f5a623] transition-colors">hello@foundida.com</a>
                     
                     <div class="mt-[32px] space-y-[12px]">
