@@ -38,20 +38,22 @@
 </div>
 
 <!-- HERO SECTION -->
-<div class="bg-navy relative overflow-hidden py-16 md:py-20">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center text-center">
-        <div class="flex flex-col mb-4">
-            <h1 class="font-serif text-[36px] md:text-[52px] font-bold text-gold leading-tight">GST की हर समस्या का हल</h1>
-            <p class="text-sm font-bold text-gray-300 uppercase tracking-widest mt-2">One-Stop Solution for all GST Problems</p>
+<x-inner-hero>
+    <div class="flex flex-col items-center justify-center text-center">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                ONE-STOP SOLUTION FOR ALL GST PROBLEMS
+            </span>
         </div>
-        <div class="mt-4 flex flex-col bg-navy-800 border border-gold/30 px-6 py-3 rounded-full shadow-lg items-center">
-            <span class="text-white text-xl font-bold">₹499 से शुरू</span>
-            <span class="text-gray-400 text-[10px] uppercase tracking-wider">Starting at ₹499</span>
+        <h1 class="font-serif text-[36px] md:text-[52px] font-bold text-white leading-tight mb-4">
+            <span class="text-[#f5a623]">GST</span> की हर समस्या का समाधान
+        </h1>
+        <div class="mt-4 flex flex-col bg-white/10 border border-white/20 px-6 py-3 rounded-xl shadow-lg items-center">
+            <span class="text-[#f5a623] text-xl font-extrabold leading-none">₹499 से शुरू</span>
+            <span class="text-gray-400 text-[10px] uppercase tracking-wider font-bold mt-1">Starting at ₹499</span>
         </div>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- SERVICE CARDS GRID -->
 <div class="bg-offwhite py-20 relative z-20">

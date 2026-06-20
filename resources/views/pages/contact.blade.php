@@ -28,15 +28,21 @@
     </div>
 </div>
 
-<!-- HERO SECTION -->
-<div class="bg-navy relative py-12 md:py-16 overflow-hidden">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
-        <h1 class="font-serif text-[32px] md:text-[48px] font-bold text-gold leading-tight mb-1">हम यहाँ हैं आपकी मदद के लिए</h1>
-        <span class="text-xs md:text-sm font-bold text-gray-300 uppercase tracking-widest">We are here to help you</span>
+<x-inner-hero>
+    <div class="flex flex-col items-center justify-center text-center">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                CONTACT SUPPORT
+            </span>
+        </div>
+        <h1 class="font-serif text-[32px] md:text-[48px] font-bold text-white leading-tight mb-4">
+            हम से <span class="text-[#f5a623]">संपर्क</span> करें
+        </h1>
+        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed max-w-[600px] mx-auto">
+            We are here to help you
+        </p>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- MAIN CONTENT SECTION -->
 <div class="bg-offwhite py-16">

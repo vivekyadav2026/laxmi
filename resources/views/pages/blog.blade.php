@@ -3,15 +3,21 @@
 
 @section('content')
 
-<!-- HERO -->
-<div class="bg-navy relative overflow-hidden py-16 md:py-24">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
-        <h1 class="font-serif text-[36px] md:text-[52px] font-bold text-gold leading-tight mb-3">जानें, समझें, आगे बढ़ें</h1>
-        <p class="text-[12px] font-bold text-gray-300 uppercase tracking-[0.2em] mb-6">Legal & Tech Tips for Indian Startups</p>
-        <p class="text-gray-400 text-base max-w-2xl">Simple articles in Hindi & English on company law, GST, trademarks, and digital business — written by experts, not bots.</p>
+<x-inner-hero>
+    <div class="flex flex-col items-center justify-center text-center">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                LEGAL & TECH TIPS FOR INDIAN STARTUPS
+            </span>
+        </div>
+        <h1 class="font-serif text-[36px] md:text-[52px] font-bold text-white leading-tight mb-4">
+            <span class="text-[#f5a623]">ज्ञान</span>, विचार, और सफलता
+        </h1>
+        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed max-w-[600px] mx-auto">
+            Simple articles in Hindi & English on company law, GST, trademarks, and digital business — written by experts, not bots.
+        </p>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- FILTER TABS -->
 <div class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">

@@ -344,6 +344,77 @@
     </div>
 </section>
 
+<!-- FUNDING PROMO SECTION -->
+<section class="py-16 md:py-[80px] bg-[#0d1b3e] relative overflow-hidden border-t border-[#f5a623]/20">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-12">
+        <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
+            <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 select-none">
+                <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest"><i class="fas fa-rocket mr-1"></i> GROW FASTER</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold font-serif text-white leading-tight mb-4">
+                Funding & Mentorship <span class="text-[#f5a623]">Subscription</span>
+            </h2>
+            <p class="text-gray-300 mb-6 max-w-lg text-sm md:text-base">
+                Stop worrying about capital. Connect directly with VCs, apply for government grants effortlessly, and get expert help preparing your pitch deck.
+            </p>
+            <ul class="space-y-3 mb-8 text-left inline-block">
+                <li class="flex items-center text-gray-300 text-sm md:text-base"><i class="fas fa-check-circle text-[#f5a623] mr-3"></i> Direct VC & Angel Introductions</li>
+                <li class="flex items-center text-gray-300 text-sm md:text-base"><i class="fas fa-check-circle text-[#f5a623] mr-3"></i> Startup India Grants Support</li>
+                <li class="flex items-center text-gray-300 text-sm md:text-base"><i class="fas fa-check-circle text-[#f5a623] mr-3"></i> Priority Business Loan Assistance</li>
+            </ul>
+            <a href="/funding" class="bg-[#f5a623] text-[#0d1b3e] px-8 py-3 md:py-4 rounded-xl font-bold hover:bg-[#c09435] transition-all shadow-[0_0_20px_rgba(245,166,35,0.3)] hover:-translate-y-1 inline-flex items-center gap-2">
+                Explore Funding Plans <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+        </div>
+        <div class="w-full md:w-1/2 relative mt-6 md:mt-0">
+            <div class="absolute inset-0 bg-[#f5a623]/20 blur-3xl rounded-full"></div>
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 md:p-8 rounded-2xl relative shadow-2xl">
+                <div class="flex items-center gap-4 mb-6 pb-6 border-b border-white/10">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center text-green-400 shrink-0">
+                        <i class="fas fa-hand-holding-usd text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-lg md:text-xl">₹50L+ Raised</div>
+                        <div class="text-gray-400 text-xs md:text-sm">For Early Stage Startups</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-[#f5a623]/20 rounded-full flex items-center justify-center text-[#f5a623] shrink-0">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-lg md:text-xl">100+ Investors</div>
+                        <div class="text-gray-400 text-xs md:text-sm">In our active network</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LIVE SESSION PROMO -->
+<section class="py-12 md:py-16 bg-[#f5a623] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-8 text-[#0d1b3e]">
+        <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-6 md:w-2/3">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center shadow-lg shrink-0 text-[#0d1b3e] text-2xl md:text-3xl">
+                <i class="fas fa-headset animate-pulse"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl md:text-3xl font-bold font-serif mb-3 leading-tight">Complete Business Guide in 30 Mins</h2>
+                <p class="text-[#0d1b3e]/80 font-medium font-sans text-sm md:text-base">Confused about GST, PVT vs LLP, or Compliances? Talk live 1-on-1 with an expert.</p>
+            </div>
+        </div>
+        <div class="w-full md:w-1/3 flex flex-col items-center md:items-end text-center md:text-right">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-widest mb-1 md:mb-2 opacity-80">Only</span>
+            <span class="text-4xl md:text-5xl font-extrabold mb-5 md:mb-4">₹99</span>
+            <a href="/live-session" class="bg-[#0d1b3e] text-white px-8 py-3 md:py-4 rounded-xl font-bold hover:bg-[#1a2b5e] transition-all shadow-lg hover:-translate-y-1 w-full md:w-auto text-center inline-block">
+                Book Live Session
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- 3. LEGAL SERVICES SECTION -->
 <section class="py-10 md:py-[100px] bg-white border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

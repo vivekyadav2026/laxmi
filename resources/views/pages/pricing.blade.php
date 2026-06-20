@@ -3,21 +3,21 @@
 @section('title', 'कीमत | Pricing - Foundida')
 
 @section('content')
-<!-- HERO SECTION -->
-<div class="bg-navy relative overflow-hidden py-16 md:py-24">
-    <!-- Subtle Pattern -->
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center text-center">
-        <div class="flex flex-col mb-4">
-            <h1 class="font-serif text-[36px] md:text-[48px] font-bold text-gold leading-tight">पारदर्शी कीमत, कोई छुपा शुल्क नहीं</h1>
-            <p class="text-sm font-bold text-gray-300 uppercase tracking-widest mt-2">Transparent Pricing — No Hidden Charges</p>
+<x-inner-hero>
+    <div class="flex flex-col items-center justify-center text-center">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                TRANSPARENT PRICING
+            </span>
         </div>
-        <p class="text-gray-400 text-sm md:text-base max-w-2xl mt-4">
-            हम छोटे व्यवसायों के लिए उच्च गुणवत्ता वाली कानूनी सेवाएं वहनीय कीमतों पर प्रदान करते हैं। केवल उसी के लिए भुगतान करें जिसकी आपको आवश्यकता है।
+        <h1 class="font-serif text-[36px] md:text-[48px] font-bold text-white leading-tight">
+            कीमतें, जो <span class="text-[#f5a623]">पारदर्शी</span> हैं
+        </h1>
+        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed mt-4 max-w-[600px] mx-auto">
+            हम मानते हैं कि गुणवत्तापूर्ण कानूनी सेवाएं सभी के लिए सुलभ होनी चाहिए। इसलिए हम स्पष्ट और उचित कीमतें प्रदान करते हैं।
         </p>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- PRICING SECTION -->
 <div class="bg-offwhite py-16 -mt-8 relative z-20" x-data="{ billing: 'one-time' }">

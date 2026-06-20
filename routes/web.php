@@ -440,6 +440,21 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard', compact('kpis', 'recentOrders', 'verifications', 'lineChart', 'pieChart'));
 });
 
+Route::get('/services', function () {
+    $categories = config('services_data.categories');
+    return view('pages.services.index', compact('categories'));
+});
+
+Route::get('/services/{category_slug}', function ($category_slug) {
+    $categories = config('services_data.categories');
+    $category = collect($categories)->firstWhere('slug', $category_slug);
+    if (!$category) abort(404);
+    
+    // Check if we need to show a custom category page or just a generic category list.
+    // Right now, all category pages will route to pages.services.category
+    return view('pages.services.category', compact('category'));
+});
+
 Route::get('/services/{category_slug}/{service_slug}', function ($category_slug, $service_slug) {
     $categories = config('services_data.categories');
     
@@ -693,3 +708,12 @@ Route::get('/blog/{slug}', function ($slug) {
     return view('pages.blog-single', compact('post', 'related'));
 });
 
+// Funding & Mentor Subscription
+Route::get('/funding', function () {
+    return view('pages.funding');
+});
+
+// Live Session Guide
+Route::get('/live-session', function () {
+    return view('pages.live-session');
+});

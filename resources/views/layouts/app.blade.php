@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Scripts & Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -127,16 +130,9 @@
     },
     changeLang(lang) {
         this.currentLang = lang;
-        const select = document.querySelector('.goog-te-combo');
-        
-        // Update translate cookie directly for persistent sync
         const cookieValue = lang === 'en' ? '/en/en' : `/en/${lang}`;
         document.cookie = `googtrans=${cookieValue}; path=/;`;
-        
-        if (select) {
-            select.value = lang === 'en' ? '' : lang;
-            select.dispatchEvent(new Event('change'));
-        }
+        window.location.reload();
     }
 }" x-init="initLanguage()">
 
@@ -170,14 +166,14 @@
                     <span class="text-[13px] text-[#1A1A2E] font-medium group-hover:text-[#f57c00] transition-colors flex items-center whitespace-nowrap">
                         Legal Services <span class="ml-1 text-[10px]">▼</span>
                     </span>
-                    <div class="absolute top-[68px] left-[-200px] xl:left-0 w-[580px] bg-white border border-[#E2E0D8] shadow-xl rounded-b-[8px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[200] py-[16px] px-[20px] grid grid-cols-2 gap-x-6 gap-y-4">
+                    <div class="absolute top-[68px] left-[-200px] xl:left-0 w-[580px] bg-white border border-[#E2E0D8] shadow-xl rounded-b-[8px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[200] py-[12px] px-[16px] grid grid-cols-2 gap-x-4 gap-y-2">
                         @if(config('services_data.categories'))
                             @foreach(array_slice(config('services_data.categories'), 0, 7) as $cat)
                                 <div>
                                     <div class="text-[#D4A843] text-[11px] font-bold uppercase tracking-[0.1em] mb-[4px] border-b border-[#E2E0D8] pb-[2px]">{{ $cat['name'] }}</div>
-                                    <div class="flex flex-col space-y-[3px]">
+                                    <div class="flex flex-col space-y-[2px]">
                                         @foreach(array_slice($cat['services'], 0, 4) as $svc)
-                                            <a href="{{ route('service.generic', ['category_slug' => $cat['slug'], 'service_slug' => $svc['slug']]) }}" class="text-[13px] text-[#1A1A2E] hover:text-[#f57c00] transition-colors">{{ $svc['name_en'] }}</a>
+                                            <a href="{{ route('service.generic', ['category_slug' => $cat['slug'], 'service_slug' => $svc['slug']]) }}" class="text-[12px] text-[#1A1A2E] hover:text-[#f57c00] transition-colors">{{ $svc['name_en'] }}</a>
                                         @endforeach
                                         <a href="/services/{{ $cat['slug'] }}" class="text-[11px] text-[#5C6370] hover:text-[#1a237e] mt-1 font-semibold">View all &rarr;</a>
                                     </div>
@@ -209,6 +205,9 @@
                 </div>
 
                 <a href="/packages" class="text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Packages</a>
+                <a href="/funding" class="text-[13px] text-[#1A1A2E] font-bold hover:text-[#f57c00] transition-colors flex items-center h-[68px]">
+                    Funding <span class="bg-red-500 text-white text-[8px] font-bold px-1 ml-1 rounded animate-pulse">NEW</span>
+                </a>
                 <a href="/blog" class="text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Blog</a>
                 <a href="/contact" class="text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Contact</a>
             </nav>
@@ -241,6 +240,9 @@
                     
                     <div class="hidden xl:block h-[20px] w-[1px] bg-[#E2E0D8]"></div>
 
+                    <a href="/live-session" class="bg-[#0B1F3A] text-[#D4A843] text-[13px] font-bold px-[16px] py-[10px] rounded-[4px] hover:bg-[#1a2b5e] transition-colors whitespace-nowrap flex items-center shadow-sm border border-[#D4A843]/30">
+                        <i class="fas fa-video mr-1"></i> ₹99 Live Guide
+                    </a>
                     <a href="#consultation" class="bg-[#f57c00] text-white text-[13px] font-semibold px-[20px] py-[10px] rounded-[4px] hover:bg-[#ef6c00] transition-colors whitespace-nowrap flex items-center shadow-sm">
                         Free Consultation
                     </a>

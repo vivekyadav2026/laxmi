@@ -27,7 +27,22 @@
         <!-- TOP SECTION: COVER & PROFILE SUMMARY -->
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8 hover:-translate-y-1 transition-transform duration-300">
             <!-- Cover Banner -->
-            <div class="h-32 md:h-48 bg-gradient-to-r from-navy-800 to-navy relative" style="background-image: radial-gradient(rgba(201,147,58,0.15) 1px, transparent 1px); background-size: 20px 20px;">
+            <div class="h-32 md:h-48 bg-[#0d1b3e] relative overflow-hidden">
+                <!-- Subtle diagonal golden gradient overlay on the right side -->
+                <div class="absolute inset-y-0 right-0 w-full lg:w-1/2 bg-gradient-to-tr from-transparent to-[#f5a623]/15 pointer-events-none z-0"></div>
+
+                <!-- Faint circuit board / legal document pattern as background texture -->
+                <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
+                    <svg class="absolute right-0 top-0 w-[600px] h-[600px] text-white/5" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.35">
+                        <path d="M10,20 L30,20 L40,30 L70,30 L80,40 L90,40" />
+                        <path d="M20,50 L40,50 L50,60 L80,60" />
+                        <path d="M60,10 L70,20 L90,20" />
+                        <circle cx="30" cy="20" r="1" fill="currentColor" />
+                        <circle cx="70" cy="30" r="1" fill="currentColor" />
+                        <circle cx="40" cy="50" r="1" fill="currentColor" />
+                        <circle cx="80" cy="60" r="1" fill="currentColor" />
+                    </svg>
+                </div>
             </div>
             
             <div class="px-6 sm:px-8 pb-8 relative">

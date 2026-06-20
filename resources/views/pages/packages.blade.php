@@ -3,15 +3,21 @@
 
 @section('content')
 
-<!-- HERO SECTION -->
-<div class="bg-navy relative overflow-hidden py-16 md:py-24">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
-        <h1 class="font-serif text-[36px] md:text-[52px] font-bold text-gold leading-tight mb-3">बेस्ट वैल्यू पैकेज</h1>
-        <p class="text-[12px] font-bold text-gray-300 uppercase tracking-[0.2em] mb-6">Best Value Combo Packages</p>
-        <p class="text-gray-400 text-base max-w-2xl">Get Legal + Tech services bundled together and save up to 40%. Everything a new business needs — one place, one price.</p>
+<x-inner-hero>
+    <div class="flex flex-col items-center justify-center text-center">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                BEST VALUE COMBO PACKAGES
+            </span>
+        </div>
+        <h1 class="font-serif text-[36px] md:text-[52px] font-bold text-white leading-tight mb-4">
+            सबसे <span class="text-[#f5a623]">बेहतरीन</span> पैकेज
+        </h1>
+        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed max-w-[600px] mx-auto">
+            Get Legal + Tech services bundled together and save up to 40%. Everything a new business needs — one place, one price.
+        </p>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- TRUST STRIP -->
 <div class="bg-gold py-5 border-y border-gold">

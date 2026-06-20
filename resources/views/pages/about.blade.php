@@ -28,17 +28,21 @@
     </div>
 </div>
 
-<!-- HERO SECTION -->
-<div class="bg-navy relative overflow-hidden py-16 md:py-24">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center text-center">
-        <div class="flex flex-col">
-            <h1 class="font-serif text-[36px] md:text-[56px] font-bold text-gold leading-tight">भारत का सबसे भरोसेमंद कानूनी प्लेटफॉर्म</h1>
-            <span class="text-sm md:text-base font-bold text-gray-300 uppercase tracking-widest mt-2">India's Most Trusted Legal Platform</span>
+<x-inner-hero>
+    <div class="flex flex-col items-center justify-center text-center">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                ABOUT FOUNDIDA
+            </span>
         </div>
+        <h1 class="font-serif text-[36px] md:text-[56px] font-bold text-white leading-tight">
+            <span class="text-[#f5a623]">भारत</span> का सबसे भरोसेमंद लीगल प्लेटफॉर्म
+        </h1>
+        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed mt-4 max-w-[600px] mx-auto">
+            India's Most Trusted Legal Platform
+        </p>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- STATS ROW -->
 <div class="bg-gold py-12 relative z-20 shadow-lg border-y border-gold-dark">

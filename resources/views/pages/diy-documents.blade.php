@@ -3,23 +3,21 @@
 @section('title', 'दस्तावेज़ बनाएं | DIY Documents - Foundida')
 
 @section('content')
-<!-- HERO SECTION -->
-<div class="bg-navy relative overflow-hidden">
-    <!-- Subtle Pattern -->
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 md:py-20 flex flex-col items-center justify-center text-center min-h-[300px]">
-        <div class="flex flex-col mb-4">
-            <h1 class="font-serif text-[36px] md:text-[48px] font-bold text-gold leading-tight">खुद बनाएं अपने कानूनी दस्तावेज़</h1>
-            <p class="text-sm font-bold text-gray-300 uppercase tracking-widest mt-2">Create Your Legal Documents</p>
+<x-inner-hero>
+    <div class="flex flex-col items-center justify-center text-center">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                CREATE YOUR LEGAL DOCUMENTS
+            </span>
         </div>
-        
-        <div class="flex flex-col items-center">
-            <p class="text-white text-lg md:text-xl font-medium">5 मिनट में तैयार | वकील से सस्ता | तुरंत डाउनलोड</p>
-            <p class="text-gray-400 text-xs mt-1">Ready in 5 mins | Cheaper than a Lawyer | Instant Download</p>
-        </div>
+        <h1 class="font-serif text-[36px] md:text-[48px] font-bold text-white leading-tight">
+            खुद बनाएं अपने <span class="text-[#f5a623]">दस्तावेज़</span>
+        </h1>
+        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed mt-4 max-w-[600px] mx-auto">
+            5 मिनट में तैयार | वकील से सस्ता | तुरंत डाउनलोड
+        </p>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- HOW IT WORKS (3 Steps) -->
 <div class="bg-gold border-b border-gold-dark shadow-sm">

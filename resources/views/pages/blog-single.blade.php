@@ -18,25 +18,27 @@
     </div>
 </div>
 
-<!-- ARTICLE HEADER -->
-<div class="bg-navy relative overflow-hidden py-16">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <span class="bg-gold/20 text-gold text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full inline-block mb-4">{{ $post['category_label'] }}</span>
+<x-inner-hero>
+    <div class="max-w-4xl mx-auto text-left">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                {{ $post['category_label'] }}
+            </span>
+        </div>
         <h1 class="font-serif text-[28px] md:text-[42px] font-bold text-white leading-tight mb-3">{{ $post['title_hi'] }}</h1>
         <p class="text-[12px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-6">{{ $post['title_en'] }}</p>
         <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400">
             <div class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold font-bold text-xs">{{ $post['author_initial'] }}</div>
+                <div class="w-8 h-8 rounded-full bg-[#f5a623]/20 flex items-center justify-center text-[#f5a623] font-bold text-xs">{{ $post['author_initial'] }}</div>
                 <span class="text-white font-semibold">{{ $post['author'] }}</span>
             </div>
-            <span>·</span>
+            <span>•</span>
             <span>{{ $post['date'] }}</span>
-            <span>·</span>
+            <span>•</span>
             <span>{{ $post['read_time'] }}</span>
         </div>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- ARTICLE BODY -->
 <div class="bg-white py-16">

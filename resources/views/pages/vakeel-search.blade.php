@@ -3,6 +3,23 @@
 @section('title', 'वकील खोजें | Find Lawyer - Foundida')
 
 @section('content')
+
+<x-inner-hero>
+    <div class="flex flex-col items-center justify-center text-center">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                FIND A LAWYER
+            </span>
+        </div>
+        <h1 class="font-serif text-[36px] md:text-[48px] font-bold text-white leading-tight">
+            <span class="text-[#f5a623]">वकील</span> खोजें
+        </h1>
+        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed mt-4 max-w-[600px] mx-auto">
+            Find the right legal expert for your needs.
+        </p>
+    </div>
+</x-inner-hero>
+
 <div class="bg-offwhite py-8 min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         

@@ -38,31 +38,33 @@
 </div>
 
 <!-- HERO SECTION -->
-<div class="bg-navy relative overflow-hidden py-16 md:py-24">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center text-center">
-        <div class="flex flex-col mb-6">
-            <h1 class="font-serif text-[36px] md:text-[56px] font-bold text-gold leading-tight">अपना ब्रांड सुरक्षित करें</h1>
-            <p class="text-sm font-bold text-gray-300 uppercase tracking-widest mt-2">Protect Your Brand with Trademark Registration</p>
+<x-inner-hero>
+    <div class="flex flex-col items-center justify-center text-center">
+        <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+            <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
+                PROTECT YOUR BRAND WITH TRADEMARK REGISTRATION
+            </span>
         </div>
+        <h1 class="font-serif text-[36px] md:text-[56px] font-bold text-white leading-tight mb-4">
+            अपना <span class="text-[#f5a623]">ब्रांड</span> सुरक्षित करें
+        </h1>
         
         <div class="flex flex-wrap justify-center gap-4 mt-2">
-            <div class="flex flex-col items-center bg-navy-800 border border-gold/30 px-5 py-2 rounded-full">
-                <span class="text-white font-bold">₹2,999 में</span>
-                <span class="text-[9px] text-gray-400 uppercase tracking-wider">Starting Price</span>
+            <div class="flex flex-col items-center bg-white/10 border border-white/20 px-5 py-2 rounded-xl">
+                <span class="text-[#f5a623] font-bold text-lg">₹2,999 से शुरू</span>
+                <span class="text-[9px] text-gray-400 uppercase tracking-wider font-bold">Starting Price</span>
             </div>
-            <div class="flex flex-col items-center bg-navy-800 border border-gold/30 px-5 py-2 rounded-full">
-                <span class="text-white font-bold">45 दिन में फाइलिंग</span>
-                <span class="text-[9px] text-gray-400 uppercase tracking-wider">Filing in 45 Days</span>
+            <div class="flex flex-col items-center bg-white/10 border border-white/20 px-5 py-2 rounded-xl">
+                <span class="text-white font-bold text-lg">45 दिनों में फाइलिंग</span>
+                <span class="text-[9px] text-gray-400 uppercase tracking-wider font-bold">Filing in 45 Days</span>
             </div>
-            <div class="flex flex-col items-center bg-navy-800 border border-gold/30 px-5 py-2 rounded-full">
-                <span class="text-white font-bold">विशेषज्ञ सहायता</span>
-                <span class="text-[9px] text-gray-400 uppercase tracking-wider">Expert Help</span>
+            <div class="flex flex-col items-center bg-white/10 border border-white/20 px-5 py-2 rounded-xl">
+                <span class="text-white font-bold text-lg">विशेषज्ञ की मदद</span>
+                <span class="text-[9px] text-gray-400 uppercase tracking-wider font-bold">Expert Help</span>
             </div>
         </div>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- TRADEMARK SEARCH TOOL -->
 <div class="bg-gold py-12 relative z-20 shadow-lg border-y border-gold-dark" x-data="{ searchQuery: '', searching: false, searched: false, resultAvailable: false }">
