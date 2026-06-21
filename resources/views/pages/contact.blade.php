@@ -134,7 +134,7 @@
             <div class="w-full lg:w-2/5 space-y-6">
                 
                 <!-- WhatsApp -->
-                <a href="https://wa.me/918069029400" target="_blank" rel="noopener noreferrer" class="block bg-[#25D366] text-white p-6 rounded-2xl shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-[#1DA851] group">
+                <a href="https://wa.me/918750530252" target="_blank" rel="noopener noreferrer" class="block bg-[#25D366] text-white p-6 rounded-2xl shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-[#1DA851] group">
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
                             <span class="text-2xl font-bold font-serif mb-1 group-hover:scale-105 transition-transform origin-left">अभी WhatsApp करें</span>

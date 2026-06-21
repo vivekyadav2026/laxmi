@@ -379,7 +379,7 @@
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.528 3.545 12 3.545 12 3.545s-7.528 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.022 0 12 0 12s0 3.978.502 5.837a3.003 3.003 0 002.11 2.11c1.86.508 9.388.508 9.388.508s7.528 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.978 24 12 24 12s0-3.978-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                         </a>
                         <!-- WhatsApp -->
-                        <a href="https://wa.me/918069029400" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="WhatsApp">
+                        <a href="https://wa.me/918750530252" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="WhatsApp">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.666.988 3.31 1.489 5.355 1.49 5.511 0 9.993-4.474 9.997-9.986.002-2.67-1.035-5.18-2.919-7.066C17.135 1.706 14.634.666 12.01.666 6.5.666 2.017 5.148 2.013 10.66c-.001 2.045.507 3.7 1.499 5.373L2.52 20.8l4.127-1.646zm11.233-7.514c-.33-.165-1.951-.963-2.251-1.073-.3-.11-.519-.165-.738.165-.219.33-.848 1.073-1.039 1.293-.19.22-.382.247-.711.082-.33-.165-1.393-.513-2.653-1.638-.98-.874-1.641-1.953-1.833-2.282-.19-.33-.02-.508.145-.671.149-.148.33-.385.495-.578.165-.192.219-.33.329-.55.11-.22.055-.412-.028-.577-.082-.165-.738-1.786-1.011-2.446-.266-.64-.537-.552-.738-.562-.19-.01-.41-.01-.628-.01-.219 0-.575.082-.876.412-.3.33-1.148 1.127-1.148 2.747 0 1.62 1.177 3.184 1.341 3.404.165.22 2.316 3.537 5.61 4.96.783.338 1.395.54 1.872.69.787.25 1.5.215 2.065.13.63-.095 1.951-.798 2.224-1.54.273-.742.273-1.375.191-1.513-.082-.137-.3-.22-.63-.385z"/></svg>
                         </a>
                     </div>
@@ -443,7 +443,7 @@
     </footer>
 
     <!-- WHATSAPP FLOATING BUTTON -->
-    <a href="https://wa.me/918069029400" target="_blank" rel="noopener noreferrer" class="fixed bottom-[84px] lg:bottom-[24px] right-[16px] lg:right-[24px] z-[90] bg-[#25D366] text-white w-[48px] h-[48px] rounded-full flex items-center justify-center shadow-xl hover:bg-[#20bd5a] transition-all hover:scale-110 focus:outline-none" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/918750530252" target="_blank" rel="noopener noreferrer" class="fixed bottom-[84px] lg:bottom-[24px] right-[16px] lg:right-[24px] z-[90] bg-[#25D366] text-white w-[48px] h-[48px] rounded-full flex items-center justify-center shadow-xl hover:bg-[#20bd5a] transition-all hover:scale-110 focus:outline-none" aria-label="Chat on WhatsApp">
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
     </a>
 
