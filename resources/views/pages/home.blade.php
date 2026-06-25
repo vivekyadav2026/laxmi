@@ -394,21 +394,22 @@
 </section>
 
 <!-- LIVE SESSION PROMO -->
-<section class="py-12 md:py-16 bg-[#f5a623] relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-8 text-[#0d1b3e]">
+<section class="py-12 md:py-16 bg-navy relative border-t border-white/10 overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#D4A843 1px, transparent 1px); background-size: 20px 20px;"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-8 text-white">
         <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-6 md:w-2/3">
-            <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center shadow-lg shrink-0 text-[#0d1b3e] text-2xl md:text-3xl">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-gold/10 rounded-full flex items-center justify-center shadow-lg shrink-0 text-gold text-2xl md:text-3xl border border-gold/20">
                 <i class="fas fa-headset animate-pulse"></i>
             </div>
             <div>
-                <h2 class="text-2xl md:text-3xl font-bold font-serif mb-3 leading-tight">Complete Business Guide in 30 Mins</h2>
-                <p class="text-[#0d1b3e]/80 font-medium font-sans text-sm md:text-base">Confused about GST, PVT vs LLP, or Compliances? Talk live 1-on-1 with an expert.</p>
+                <h2 class="text-2xl md:text-3xl font-bold font-serif mb-2 leading-tight">Complete Business Guide in 30 Mins</h2>
+                <p class="text-gray-300 font-medium font-sans text-sm md:text-base">Confused about GST, PVT vs LLP, or Compliances? Talk live 1-on-1 with an expert.</p>
             </div>
         </div>
         <div class="w-full md:w-1/3 flex flex-col items-center md:items-end text-center md:text-right">
-            <span class="text-xs md:text-sm font-bold uppercase tracking-widest mb-1 md:mb-2 opacity-80">Only</span>
-            <span class="text-4xl md:text-5xl font-extrabold mb-5 md:mb-4">₹99</span>
-            <a href="/live-session" class="bg-[#0d1b3e] text-white px-8 py-3 md:py-4 rounded-xl font-bold hover:bg-[#1a2b5e] transition-all shadow-lg hover:-translate-y-1 w-full md:w-auto text-center inline-block">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-widest mb-1 text-gold">Only</span>
+            <span class="text-4xl md:text-5xl font-extrabold mb-4 text-white">₹99</span>
+            <a href="/live-session" class="bg-gold text-navy px-8 py-3.5 rounded-xl font-bold hover:bg-[#e2b54d] active:scale-[0.98] transition-all shadow-lg hover:shadow-gold/20 w-full md:w-auto text-center inline-block">
                 Book Live Session
             </a>
         </div>
