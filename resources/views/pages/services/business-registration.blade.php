@@ -51,7 +51,7 @@
             Fast, Affordable, Legal — Register your company in India completely online with full expert guidance.
         </p>
     </div>
-</div>
+</x-inner-hero>
 
 <!-- BUSINESS TYPE SELECTOR (2x3 Grid) -->
 <div class="bg-offwhite py-20 relative z-20">
@@ -109,10 +109,10 @@
                     <span class="text-3xl font-extrabold text-navy">₹{{ $type['price'] }}</span>
                 </div>
 
-                <button class="w-full border-2 border-gold text-gold hover:bg-gold hover:text-navy min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
+                <a href="/services/business-registration/{{ $type['slug'] }}" class="w-full border-2 border-gold text-gold hover:bg-gold hover:text-navy min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
                     <span class="text-[15px]">और जानें</span>
                     <span class="text-[10px] uppercase tracking-wider mt-0.5">Know More</span>
-                </button>
+                </a>
             </div>
             @endforeach
         </div>

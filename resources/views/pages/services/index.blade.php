@@ -11,7 +11,7 @@
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
                     <a href="/" class="flex flex-col text-gray-300 hover:text-[#f5a623] transition">
-                        <span class="font-bold leading-tight">ङोम</span>
+                        <span class="font-bold leading-tight">होम</span>
                         <span class="text-[10px] uppercase">Home</span>
                     </a>
                 </li>
@@ -43,7 +43,7 @@
         </div>
 
         <h1 class="font-serif text-[36px] md:text-[56px] font-bold text-white leading-[1.15] mb-4">
-            <span class="text-[#f5a623]">à¤•à¤¾à¤¨à¥‚à¤¨à¥€</span> à¤”à¤° <span class="text-[#f5a623]">à¤Ÿà¥‡à¤•</span> à¤¸à¤®à¤¾à¤§à¤¾à¤¨
+            <span class="text-[#f5a623]">कानूनी</span> और <span class="text-[#f5a623]">टेक</span> समाधान
         </h1>
         <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed max-w-[600px]">
             Comprehensive legal, tax, and technology services designed to help you start, manage, and grow your business with 100% compliance.
@@ -57,23 +57,28 @@
             @foreach($categories as $cat)
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all">
                 <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-[20px] font-bold text-[#0d1b3e]">{{ $cat['name'] }}</h3>
-                    <span class="bg-gray-100 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-full uppercase">{{ $cat['count'] }}</span>
+                    <h3 class="text-[20px] font-bold text-[#0d1b3e]">{{ $cat->name }}</h3>
+                    <span class="bg-gray-100 text-gray-500 text-[10px] font-bold px-2 py-1 rounded-full uppercase">{{ $cat->count }}</span>
                 </div>
                 
                 <ul class="space-y-3 mb-6">
-                    @foreach(array_slice($cat['services'], 0, 5) as $service)
+                    @foreach($cat->services->take(5) as $service)
                     <li>
-                        <a href="/services/{{ $cat['slug'] }}/{{ $service['slug'] }}" class="text-[14px] text-gray-600 hover:text-[#f5a623] transition-colors flex items-center gap-2">
-                            <svg class="w-4 h-4 text-[#f5a623]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            {{ $service['name_en'] }}
+                        <a href="/services/{{ $cat->slug }}/{{ $service->slug }}" class="text-[14px] text-gray-600 hover:text-[#f5a623] transition-colors flex items-start gap-2 group/item">
+                            <svg class="w-4 h-4 text-[#f5a623] mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <div class="flex flex-col">
+                                <span class="font-semibold text-[#0d1b3e] group-hover/item:text-[#f5a623] transition-colors leading-tight">{{ $service->name_en }}</span>
+                                @if($service->name_hi)
+                                    <span class="text-[11px] text-gray-400 font-normal leading-normal">{{ $service->name_hi }}</span>
+                                @endif
+                            </div>
                         </a>
                     </li>
                     @endforeach
                 </ul>
 
-                <a href="/services/{{ $cat['slug'] }}" class="inline-flex items-center justify-center w-full gap-2 bg-[#f5a623]/10 text-[#f5a623] text-[13px] font-extrabold px-4 py-3 rounded-xl hover:bg-[#f5a623] hover:text-[#0d1b3e] transition-all">
-                    View All {{ $cat['name'] }}
+                <a href="/services/{{ $cat->slug }}" class="inline-flex items-center justify-center w-full gap-2 bg-[#f5a623]/10 text-[#f5a623] text-[13px] font-extrabold px-4 py-3 rounded-xl hover:bg-[#f5a623] hover:text-[#0d1b3e] transition-all">
+                    View All {{ $cat->name }}
                 </a>
             </div>
             @endforeach

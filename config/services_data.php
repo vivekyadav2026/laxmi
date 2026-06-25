@@ -136,7 +136,7 @@ return [
         [
             'name' => 'Tech Services',
             'slug' => 'tech-services',
-            'count' => '6 services',
+            'count' => '8 services',
             'services' => [
                 ['name_en' => 'Website Development', 'name_hi' => 'वेबसाइट निर्माण', 'price' => '₹2,999', 'time' => '7-10 days', 'slug' => 'website-development'],
                 ['name_en' => 'Mobile App Development', 'name_hi' => 'मोबाइल ऐप', 'price' => '₹9,999', 'time' => '20-30 days', 'slug' => 'mobile-app-development'],
@@ -144,6 +144,8 @@ return [
                 ['name_en' => 'Logo & Brand Identity', 'name_hi' => 'लोगो और ब्रांडिंग', 'price' => '₹1,499', 'time' => '3-5 days', 'slug' => 'logo-brand-identity'],
                 ['name_en' => 'Social Media Setup', 'name_hi' => 'सोशल मीडिया', 'price' => '₹799', 'time' => '2 days', 'slug' => 'social-media-setup'],
                 ['name_en' => 'E-commerce Store', 'name_hi' => 'ई-कॉमर्स स्टोर', 'price' => '₹4,999', 'time' => '15 days', 'slug' => 'e-commerce-store'],
+                ['name_en' => 'Digital Marketing', 'name_hi' => 'डिजिटल मार्केटिंग', 'price' => '₹2,499', 'time' => 'Monthly', 'slug' => 'digital-marketing'],
+                ['name_en' => 'CRM / ERP Setup', 'name_hi' => 'CRM / ERP सेटअप', 'price' => '₹5,999', 'time' => '10-15 days', 'slug' => 'crm-erp-setup'],
             ]
         ],
     ]

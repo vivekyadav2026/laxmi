@@ -32,7 +32,14 @@
 </div>
 
 <!-- PACKAGES GRID -->
-<div class="bg-offwhite py-20">
+<div class="bg-offwhite py-20"
+     x-data="{ 
+         showInquiryModal: {{ (session('package_inquiry_success') || $errors->has('name') || $errors->has('phone') || $errors->has('email') || $errors->has('package_slug')) ? 'true' : 'false' }},
+         selectedPkgNameHi: '{{ old('package_slug') ? (\App\Models\Package::where('slug', old('package_slug'))->first()->name_hi ?? '') : '' }}',
+         selectedPkgNameEn: '{{ old('package_slug') ? (\App\Models\Package::where('slug', old('package_slug'))->first()->name_en ?? '') : '' }}',
+         selectedPkgSlug: '{{ old('package_slug') ?? '' }}',
+         selectedPkgPrice: '{{ old('package_slug') ? number_format(\App\Models\Package::where('slug', old('package_slug'))->first()->price ?? 0) : '' }}'
+     }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- LEGAL PACKAGES -->
@@ -42,77 +49,75 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center mb-20">
-            <!-- STARTER -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
-                <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                    <h3 class="text-2xl font-bold text-navy mb-1">स्टार्टर</h3>
-                    <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">Legal Starter</span>
-                    <div class="mt-6 flex items-end gap-2">
-                        <span class="text-4xl font-bold text-navy">₹2,499</span>
-                        <span class="text-sm text-green-600 font-bold mb-1">Save ₹500</span>
+            @foreach($legalPackages as $pkg)
+                @if($pkg->is_popular)
+                    <!-- Popular Card -->
+                    <div class="bg-white rounded-2xl shadow-xl border-2 border-gold p-8 flex flex-col relative md:-my-4 hover:-translate-y-1 transition-transform duration-300 z-10">
+                        @if($pkg->badge_hi)
+                            <div class="absolute -top-4 inset-x-0 flex justify-center">
+                                <div class="bg-gold text-navy px-4 py-1.5 rounded-full text-xs font-bold shadow-md flex flex-col items-center leading-tight">
+                                    <span>{{ $pkg->badge_hi }}</span>
+                                    @if($pkg->badge_en)
+                                        <span class="text-[8px] uppercase tracking-widest">{{ $pkg->badge_en }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
+                        <div class="flex flex-col mb-6 pb-6 border-b border-gray-100 mt-2">
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
+                            <div class="mt-6 flex items-end gap-2">
+                                <span class="text-4xl font-bold text-gold">₹{{ number_format($pkg->price) }}</span>
+                                @if($pkg->old_price && $pkg->old_price > $pkg->price)
+                                    <span class="text-sm text-green-600 font-bold mb-1">Save ₹{{ number_format($pkg->old_price - $pkg->price) }}</span>
+                                @endif
+                            </div>
+                            @if($pkg->description_en)
+                                <p class="text-xs text-gray-400 mt-2">{{ $pkg->description_en }}</p>
+                            @endif
+                        </div>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            @foreach($pkg->features as $f)
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
+                            @endforeach
+                        </ul>
+                        <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
+                                type="button" 
+                                class="w-full bg-gold text-navy hover:bg-yellow-500 min-h-[56px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center">
+                            <span class="text-[16px] font-extrabold">शुरू करें</span>
+                            <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
+                        </button>
                     </div>
-                    <p class="text-xs text-gray-400 mt-2">For early-stage founders testing an idea.</p>
-                </div>
-                <ul class="space-y-3 mb-8 flex-grow">
-                    @foreach(['Company Registration (Sole Prop)','GST Registration','Business Email (1 User)','Custom Logo Design','1 Legal Document Draft'] as $f)
-                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
-                    @endforeach
-                </ul>
-                <a href="/contact" class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
-                    <span class="text-[15px]">शुरू करें</span>
-                    <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
-                </a>
-            </div>
-
-            <!-- GROWTH (Highlighted) -->
-            <div class="bg-white rounded-2xl shadow-xl border-2 border-gold p-8 flex flex-col relative md:-my-4 hover:-translate-y-1 transition-transform duration-300 z-10">
-                <div class="absolute -top-4 inset-x-0 flex justify-center">
-                    <div class="bg-gold text-navy px-4 py-1.5 rounded-full text-xs font-bold shadow-md flex flex-col items-center leading-tight">
-                        <span>सबसे लोकप्रिय</span>
-                        <span class="text-[8px] uppercase tracking-widest">Most Popular</span>
+                @else
+                    <!-- Regular Card -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
+                            <div class="mt-6 flex items-end gap-2">
+                                <span class="text-4xl font-bold text-navy">₹{{ number_format($pkg->price) }}</span>
+                                @if($pkg->old_price && $pkg->old_price > $pkg->price)
+                                    <span class="text-sm text-green-600 font-bold mb-1">Save ₹{{ number_format($pkg->old_price - $pkg->price) }}</span>
+                                @endif
+                            </div>
+                            @if($pkg->description_en)
+                                <p class="text-xs text-gray-400 mt-2">{{ $pkg->description_en }}</p>
+                            @endif
+                        </div>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            @foreach($pkg->features as $f)
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
+                            @endforeach
+                        </ul>
+                        <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
+                                type="button" 
+                                class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
+                            <span class="text-[15px]">शुरू करें</span>
+                            <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
+                        </button>
                     </div>
-                </div>
-                <div class="flex flex-col mb-6 pb-6 border-b border-gray-100 mt-2">
-                    <h3 class="text-2xl font-bold text-navy mb-1">ग्रोथ</h3>
-                    <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">Legal Growth</span>
-                    <div class="mt-6 flex items-end gap-2">
-                        <span class="text-4xl font-bold text-gold">₹6,999</span>
-                        <span class="text-sm text-green-600 font-bold mb-1">Save ₹2,000</span>
-                    </div>
-                    <p class="text-xs text-gray-400 mt-2">Everything you need to go live legally.</p>
-                </div>
-                <ul class="space-y-3 mb-8 flex-grow">
-                    @foreach(['Private Limited Registration','GST Registration & 3 Returns','Trademark Filing (1 Class)','Business Website (5 Pages)','Social Media Profiles Setup','Priority Support'] as $f)
-                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
-                    @endforeach
-                </ul>
-                <a href="/contact" class="w-full bg-gold text-navy hover:bg-yellow-500 min-h-[56px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center">
-                    <span class="text-[16px] font-extrabold">शुरू करें</span>
-                    <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
-                </a>
-            </div>
-
-            <!-- COMPLETE -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
-                <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                    <h3 class="text-2xl font-bold text-navy mb-1">कम्पलीट</h3>
-                    <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">Legal Complete</span>
-                    <div class="mt-6 flex items-end gap-2">
-                        <span class="text-4xl font-bold text-navy">₹14,999</span>
-                        <span class="text-sm text-green-600 font-bold mb-1">Save ₹5,000</span>
-                    </div>
-                    <p class="text-xs text-gray-400 mt-2">Full legal protection + tech capability.</p>
-                </div>
-                <ul class="space-y-3 mb-8 flex-grow">
-                    @foreach(['All Growth features','Trademark + Copyright','Mobile App (Android)','E-commerce Store Setup','FSSAI / IEC Registration','1 Year Free Support & Compliance'] as $f)
-                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
-                    @endforeach
-                </ul>
-                <a href="/contact" class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
-                    <span class="text-[15px]">शुरू करें</span>
-                    <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
-                </a>
-            </div>
+                @endif
+            @endforeach
         </div>
 
         <!-- TECH PACKAGES -->
@@ -122,79 +127,185 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-            <!-- BASIC WEB -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
-                <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                    <h3 class="text-2xl font-bold text-navy mb-1">वेब बेसिक</h3>
-                    <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">Web Basic</span>
-                    <div class="mt-6 flex items-end gap-2">
-                        <span class="text-4xl font-bold text-navy">₹3,999</span>
-                        <span class="text-sm text-green-600 font-bold mb-1">Save ₹1,000</span>
+            @foreach($techPackages as $pkg)
+                @if($pkg->is_popular)
+                    <!-- Popular Card -->
+                    <div class="bg-white rounded-2xl shadow-xl border-2 border-gold p-8 flex flex-col relative md:-my-4 hover:-translate-y-1 transition-transform duration-300 z-10">
+                        @if($pkg->badge_hi)
+                            <div class="absolute -top-4 inset-x-0 flex justify-center">
+                                <div class="bg-gold text-navy px-4 py-1.5 rounded-full text-xs font-bold shadow-md flex flex-col items-center leading-tight">
+                                    <span>{{ $pkg->badge_hi }}</span>
+                                    @if($pkg->badge_en)
+                                        <span class="text-[8px] uppercase tracking-widest">{{ $pkg->badge_en }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
+                        <div class="flex flex-col mb-6 pb-6 border-b border-gray-100 mt-2">
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
+                            <div class="mt-6 flex items-end gap-2">
+                                <span class="text-4xl font-bold text-gold">₹{{ number_format($pkg->price) }}</span>
+                                @if($pkg->old_price && $pkg->old_price > $pkg->price)
+                                    <span class="text-sm text-green-600 font-bold mb-1">Save ₹{{ number_format($pkg->old_price - $pkg->price) }}</span>
+                                @endif
+                            </div>
+                            @if($pkg->description_en)
+                                <p class="text-xs text-gray-400 mt-2">{{ $pkg->description_en }}</p>
+                            @endif
+                        </div>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            @foreach($pkg->features as $f)
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
+                            @endforeach
+                        </ul>
+                        <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
+                                type="button" 
+                                class="w-full bg-gold text-navy hover:bg-yellow-500 min-h-[56px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center">
+                            <span class="text-[16px] font-extrabold">शुरू करें</span>
+                            <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
+                        </button>
                     </div>
-                    <p class="text-xs text-gray-400 mt-2">Perfect for a brand new online presence.</p>
-                </div>
-                <ul class="space-y-3 mb-8 flex-grow">
-                    @foreach(['5-Page Responsive Website','Domain + Hosting (1 Year)','Logo Design','WhatsApp Chat Integration','Google Maps & Analytics Setup'] as $f)
-                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
-                    @endforeach
-                </ul>
-                <a href="/contact" class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
-                    <span class="text-[15px]">शुरू करें</span>
-                    <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
-                </a>
-            </div>
-
-            <!-- DIGITAL PRO (Highlighted) -->
-            <div class="bg-white rounded-2xl shadow-xl border-2 border-gold p-8 flex flex-col relative md:-my-4 hover:-translate-y-1 transition-transform duration-300 z-10">
-                <div class="absolute -top-4 inset-x-0 flex justify-center">
-                    <div class="bg-gold text-navy px-4 py-1.5 rounded-full text-xs font-bold shadow-md flex flex-col items-center leading-tight">
-                        <span>सबसे लोकप्रिय</span>
-                        <span class="text-[8px] uppercase tracking-widest">Most Popular</span>
+                @else
+                    <!-- Regular Card -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
+                            <div class="mt-6 flex items-end gap-2">
+                                <span class="text-4xl font-bold text-navy">₹{{ number_format($pkg->price) }}</span>
+                                @if($pkg->old_price && $pkg->old_price > $pkg->price)
+                                    <span class="text-sm text-green-600 font-bold mb-1">Save ₹{{ number_format($pkg->old_price - $pkg->price) }}</span>
+                                @endif
+                            </div>
+                            @if($pkg->description_en)
+                                <p class="text-xs text-gray-400 mt-2">{{ $pkg->description_en }}</p>
+                            @endif
+                        </div>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            @foreach($pkg->features as $f)
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
+                            @endforeach
+                        </ul>
+                        <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
+                                type="button" 
+                                class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
+                            <span class="text-[15px]">शुरू करें</span>
+                            <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
+                        </button>
                     </div>
-                </div>
-                <div class="flex flex-col mb-6 pb-6 border-b border-gray-100 mt-2">
-                    <h3 class="text-2xl font-bold text-navy mb-1">डिजिटल प्रो</h3>
-                    <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">Digital Pro</span>
-                    <div class="mt-6 flex items-end gap-2">
-                        <span class="text-4xl font-bold text-gold">₹7,999</span>
-                        <span class="text-sm text-green-600 font-bold mb-1">Save ₹3,000</span>
-                    </div>
-                    <p class="text-xs text-gray-400 mt-2">Scale your digital marketing & presence.</p>
-                </div>
-                <ul class="space-y-3 mb-8 flex-grow">
-                    @foreach(['10-Page Custom Website','E-commerce / Payment Gateway','Social Media Setup (5 Platforms)','SEO Optimization (3 Months)','Google Business Profile','Priority Email Support'] as $f)
-                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
-                    @endforeach
-                </ul>
-                <a href="/contact" class="w-full bg-gold text-navy hover:bg-yellow-500 min-h-[56px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center">
-                    <span class="text-[16px] font-extrabold">शुरू करें</span>
-                    <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
-                </a>
-            </div>
-
-            <!-- FULL DIGITAL -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
-                <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                    <h3 class="text-2xl font-bold text-navy mb-1">फुल डिजिटल</h3>
-                    <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">Full Digital</span>
-                    <div class="mt-6 flex items-end gap-2">
-                        <span class="text-4xl font-bold text-navy">₹15,999</span>
-                        <span class="text-sm text-green-600 font-bold mb-1">Save ₹6,000</span>
-                    </div>
-                    <p class="text-xs text-gray-400 mt-2">Complete tech transformation for your business.</p>
-                </div>
-                <ul class="space-y-3 mb-8 flex-grow">
-                    @foreach(['All Digital Pro features','Android + iOS Mobile App','CRM / ERP Integration','Dedicated Account Manager','Monthly Performance Reports','1 Year Domain + Hosting Free'] as $f)
-                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
-                    @endforeach
-                </ul>
-                <a href="/contact" class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
-                    <span class="text-[15px]">शुरू करें</span>
-                    <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
-                </a>
-            </div>
+                @endif
+            @endforeach
         </div>
 
+    </div>
+
+    <!-- Popup Inquiry Modal -->
+    <div x-show="showInquiryModal" class="fixed inset-0 z-[200] overflow-y-auto" style="display: none;" x-cloak>
+        <!-- Backdrop -->
+        <div x-show="showInquiryModal" x-transition.opacity @click="showInquiryModal = false" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <!-- Centering Wrapper -->
+        <div class="flex min-h-full items-center justify-center p-4">
+            <!-- Modal Content -->
+            <div x-show="showInquiryModal" 
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="transform scale-95 opacity-0"
+                 x-transition:enter-end="transform scale-100 opacity-100"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="transform scale-100 opacity-100"
+                 x-transition:leave-end="transform scale-95 opacity-0"
+                 class="bg-white rounded-2xl border-t-4 border-gold shadow-2xl p-6 md:p-8 w-full max-w-lg relative z-10 text-navy my-8"
+                 style="max-width: 512px; width: 100%;">
+                
+                <!-- Close Button -->
+                <button @click="showInquiryModal = false" 
+                        type="button" 
+                        class="absolute top-4 right-4 text-gray-400 hover:text-navy text-3xl font-light focus:outline-none cursor-pointer z-50"
+                        style="background: transparent; border: none; line-height: 1; padding: 0;">
+                    &times;
+                </button>
+
+                @if(session('package_inquiry_success'))
+                    <!-- Success View -->
+                    <div class="text-center flex flex-col items-center justify-center pt-4">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-sm">
+                            ✓
+                        </div>
+                        <h3 class="text-2xl font-bold text-navy mb-2 font-serif">Inquiry Submitted!</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6">{{ session('package_inquiry_success') }}</p>
+                        <button @click="showInquiryModal = false" 
+                                type="button" 
+                                class="bg-navy text-white hover:bg-navy/95 font-bold px-8 py-3 rounded-xl transition-colors">
+                            Close
+                        </button>
+                    </div>
+                @else
+                    <!-- Form View -->
+                    <form action="{{ route('package-inquiries.store') }}" method="POST" class="space-y-4">
+                        @csrf
+                        <input type="hidden" name="package_slug" :value="selectedPkgSlug">
+
+                        <div class="mb-6">
+                            <span class="text-[10px] font-bold text-gold uppercase tracking-widest block mb-1">Package Selected</span>
+                            <h3 class="text-2xl font-serif font-black text-navy leading-tight text-left">
+                                <span x-text="selectedPkgNameHi"></span>
+                                <span class="text-gray-300 mx-1">/</span>
+                                <span x-text="selectedPkgNameEn" class="text-gray-500 font-sans font-bold text-lg"></span>
+                            </h3>
+                            <div class="mt-2 flex items-baseline gap-1 text-gold">
+                                <span class="text-xl font-bold">₹</span>
+                                <span x-text="selectedPkgPrice" class="text-2xl font-black"></span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 text-left">
+                            <div>
+                                <label class="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wider">Full Name <span class="text-red-500">*</span></label>
+                                <input type="text" name="name" value="{{ old('name') }}" required placeholder="Rahul Sharma" 
+                                       class="w-full bg-gray-50 border @error('name') border-red-500 @else border-gray-200 @enderror rounded-xl px-4 py-3 text-[13px] text-navy focus:outline-none focus:border-gold transition-colors">
+                                @error('name')
+                                    <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wider">Mobile Number <span class="text-red-500">*</span></label>
+                                <div class="flex">
+                                    <span class="bg-gray-100 border @error('phone') border-red-500 border-r-0 @else border-gray-200 border-r-0 @enderror rounded-l-xl px-4 py-3 text-[13px] text-gray-500 font-bold flex items-center">+91</span>
+                                    <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="9876543210" 
+                                           class="w-full bg-gray-50 border @error('phone') border-red-500 @else border-gray-200 @enderror rounded-r-xl px-4 py-3 text-[13px] text-navy focus:outline-none focus:border-gold transition-colors">
+                                </div>
+                                @error('phone')
+                                    <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wider">Email Address <span class="text-red-500">*</span></label>
+                                <input type="email" name="email" value="{{ old('email') }}" required placeholder="rahul@example.com" 
+                                       class="w-full bg-gray-50 border @error('email') border-red-500 @else border-gray-200 @enderror rounded-xl px-4 py-3 text-[13px] text-navy focus:outline-none focus:border-gold transition-colors">
+                                @error('email')
+                                    <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-navy mb-1.5 uppercase tracking-wider">Remarks / Special Requirements (Optional)</label>
+                                <textarea name="notes" placeholder="Tell us if you need any customizations or specific additions..." rows="2" 
+                                          class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-[13px] text-navy focus:outline-none focus:border-gold transition-colors">{{ old('notes') }}</textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full bg-gold hover:bg-gold-light text-navy font-bold py-4 rounded-xl shadow-md transition-all flex flex-col items-center justify-center min-h-[56px] mt-6">
+                            <span class="text-[16px] font-extrabold">पूछताछ सबमिट करें</span>
+                            <span class="text-[10px] uppercase tracking-widest mt-0.5">Submit Inquiry</span>
+                        </button>
+                    </form>
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 
@@ -210,32 +321,44 @@
                 <thead class="bg-navy text-white">
                     <tr>
                         <th class="p-4 font-bold">Feature</th>
-                        <th class="p-4 font-bold text-center">Starter</th>
-                        <th class="p-4 font-bold text-center bg-gold text-navy">Growth ⭐</th>
-                        <th class="p-4 font-bold text-center">Complete</th>
+                        @foreach($legalPackages as $pkg)
+                            <th class="p-4 font-bold text-center {{ $pkg->is_popular ? 'bg-gold text-navy' : '' }}">
+                                {{ $pkg->name_en }} {{ $pkg->is_popular ? '⭐' : '' }}
+                            </th>
+                        @endforeach
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @php
-                    $rows = [
-                        ['Company Registration','✓','✓ (Pvt Ltd)','✓'],
-                        ['GST Registration','✓','✓','✓'],
-                        ['Trademark','✗','✓','✓ + Copyright'],
-                        ['Website','✗','5 Pages','Full Custom'],
-                        ['Mobile App','✗','✗','Android'],
-                        ['E-commerce','✗','✗','✓'],
-                        ['Support','Email','Priority','Dedicated Manager'],
-                        ['Price','₹2,499','₹6,999','₹14,999'],
+                    $compareKeys = [
+                        'Company Registration',
+                        'GST Registration',
+                        'Trademark',
+                        'Website',
+                        'Mobile App',
+                        'E-commerce',
+                        'Support',
                     ];
                     @endphp
-                    @foreach($rows as $row)
+                    @foreach($compareKeys as $key)
                     <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="p-4 font-semibold text-navy">{{ $row[0] }}</td>
-                        <td class="p-4 text-center text-gray-500">{{ $row[1] }}</td>
-                        <td class="p-4 text-center font-bold text-navy bg-gold/5">{{ $row[2] }}</td>
-                        <td class="p-4 text-center text-gray-500">{{ $row[3] }}</td>
+                        <td class="p-4 font-semibold text-navy">{{ $key }}</td>
+                        @foreach($legalPackages as $pkg)
+                        <td class="p-4 text-center {{ $pkg->is_popular ? 'font-bold text-navy bg-gold/5' : 'text-gray-500' }}">
+                            {{ $pkg->comparison_features[$key] ?? '✗' }}
+                        </td>
+                        @endforeach
                     </tr>
                     @endforeach
+                    <!-- Price Row -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="p-4 font-semibold text-navy">Price</td>
+                        @foreach($legalPackages as $pkg)
+                        <td class="p-4 text-center font-extrabold {{ $pkg->is_popular ? 'text-[#D4A843] bg-gold/5 text-lg' : 'text-navy text-base' }}">
+                            ₹{{ number_format($pkg->price) }}
+                        </td>
+                        @endforeach
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -51,82 +51,249 @@
             
             <!-- LEFT - CONTACT FORM -->
             <div class="w-full lg:w-3/5">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                <div class="bg-white p-6 md:p-10 rounded-3xl shadow-xl shadow-gray-100/50 border border-gray-100">
                     <div class="flex flex-col mb-8">
-                        <h2 class="text-2xl font-bold text-navy mb-1 font-serif">हमें संदेश भेजें</h2>
+                        <h2 class="text-2xl md:text-3xl font-bold text-navy mb-1 font-serif">हमें संदेश भेजें</h2>
                         <span class="text-xs font-bold text-gold uppercase tracking-wider">Send us a message</span>
                     </div>
 
-                    <form class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Full Name -->
-                            <div>
-                                <label class="flex flex-col mb-2 text-navy">
-                                    <span class="font-bold text-sm">पूरा नाम <span class="text-red-500">*</span></span>
-                                    <span class="text-[10px] uppercase text-gray-500 font-bold tracking-wider">Full Name</span>
-                                </label>
-                                <input type="text" required placeholder="उदा: अमित पटेल / Ex: Amit Patel" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-navy focus:border-navy text-navy min-h-[48px] px-4">
+                    @if(session('callback_success'))
+                        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 text-center my-4 animate-fadeIn">
+                            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+                                ✓
                             </div>
-                            <!-- Phone Number -->
-                            <div>
-                                <label class="flex flex-col mb-2 text-navy">
-                                    <span class="font-bold text-sm">फ़ोन नंबर (WhatsApp) <span class="text-red-500">*</span></span>
-                                    <span class="text-[10px] uppercase text-gray-500 font-bold tracking-wider">Phone Number</span>
-                                </label>
-                                <input type="tel" required placeholder="+91 XXXXX XXXXX" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-navy focus:border-navy text-navy min-h-[48px] px-4">
-                            </div>
+                            <h4 class="text-emerald-950 font-bold text-base mb-1 font-serif">संदेश प्राप्त हुआ! / Message Received!</h4>
+                            <p class="text-emerald-800 text-xs leading-relaxed mb-4">{{ session('callback_success') }}</p>
                         </div>
+                    @else
+                        <form action="{{ route('callback.store') }}" method="POST" class="space-y-6">
+                            @csrf
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Full Name -->
+                                <div class="group">
+                                    <label class="flex flex-col mb-2 text-navy">
+                                        <span class="font-bold text-sm">पूरा नाम <span class="text-red-500">*</span></span>
+                                                                   <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400 group-focus-within:text-gold transition-colors">
+                                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                        </div>
+                                        <input type="text" name="name" value="{{ old('name') }}" required placeholder="उदा: अमित पटेल / Ex: Amit Patel" class="w-full pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('name') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.75rem;">
+                                    </div>
+                                    @error('name')
+                                        <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                                    @enderror
+                                </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- City -->
-                            <div>
-                                <label class="flex flex-col mb-2 text-navy">
-                                    <span class="font-bold text-sm">शहर <span class="text-red-500">*</span></span>
-                                    <span class="text-[10px] uppercase text-gray-500 font-bold tracking-wider">City</span>
-                                </label>
-                                <input type="text" required placeholder="उदा: मुंबई, दिल्ली / Ex: Mumbai, Delhi" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-navy focus:border-navy text-navy min-h-[48px] px-4">
-                            </div>
-                            <!-- Service Needed -->
-                            <div>
-                                <label class="flex flex-col mb-2 text-navy">
-                                    <span class="font-bold text-sm">सेवा चुनें <span class="text-red-500">*</span></span>
-                                    <span class="text-[10px] uppercase text-gray-500 font-bold tracking-wider">Service Needed</span>
-                                </label>
-                                <select required class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-navy focus:border-navy text-navy min-h-[48px] px-4 bg-white">
-                                    <option value="" disabled selected>चुनें / Select</option>
-                                    <option value="business">व्यापार पंजीकरण / Business Registration</option>
-                                    <option value="gst">जीएसटी सेवाएं / GST Services</option>
-                                    <option value="trademark">ट्रेडमार्क / Trademark</option>
-                                    <option value="documents">कानूनी दस्तावेज़ / Legal Documents</option>
-                                    <option value="lawyer">वकील से बात / Talk to Lawyer</option>
-                                    <option value="other">अन्य / Other</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div>
-                            <label class="flex flex-col mb-2 text-navy">
-                                <span class="font-bold text-sm">संदेश / समस्या का विवरण <span class="text-red-500">*</span></span>
-                                <span class="text-[10px] uppercase text-gray-500 font-bold tracking-wider">Message / Problem Description</span>
-                            </label>
-                            <textarea required rows="4" placeholder="हम आपकी कैसे मदद कर सकते हैं? / How can we help you?" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-navy focus:border-navy text-navy px-4 py-3"></textarea>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                            <button type="submit" class="w-full sm:w-auto bg-gold text-navy hover:bg-gold-light min-h-[56px] px-10 rounded-xl font-bold transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col items-center justify-center">
-                                <span class="text-[16px] font-extrabold">भेजें</span>
-                                <span class="text-[10px] uppercase tracking-widest mt-0.5">Submit</span>
-                            </button>
-                            <div class="flex items-center text-green-700 bg-green-50 px-4 py-2 rounded-lg border border-green-200 w-full sm:w-auto justify-center">
-                                <svg class="w-5 h-5 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <div class="flex flex-col">
-                                    <span class="text-[11px] font-bold leading-tight">हम 2 घंटे में जवाब देंगे</span>
-                                    <span class="text-[9px] uppercase tracking-wider">We reply within 2 hours</span>
+                                <!-- Phone Number -->
+                                <div class="group">
+                                    <label class="flex flex-col mb-2 text-navy">
+                                        <span class="font-bold text-sm">फ़ोन नंबर (WhatsApp) <span class="text-red-500">*</span></span>
+                                        <span class="text-[10px] uppercase text-gray-400 font-bold tracking-wider">Phone Number (10 digits)</span>
+                                    </label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400 group-focus-within:text-gold transition-colors">
+                                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                            </svg>
+                                        </div>
+                                        <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="उदा: 9876543210 / Ex: 9876543210" class="w-full pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('phone') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.75rem;">
+                                    </div>
+                                    @error('phone')
+                                        <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
-                        </div>
-                    </form>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- City -->
+                                <div class="group">
+                                    <label class="flex flex-col mb-2 text-navy">
+                                        <span class="font-bold text-sm">शहर <span class="text-red-500">*</span></span>
+                                        <span class="text-[10px] uppercase text-gray-400 font-bold tracking-wider">City</span>
+                                    </label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400 group-focus-within:text-gold transition-colors">
+                                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            </svg>
+                                        </div>
+                                        <input type="text" name="city" value="{{ old('city') }}" required placeholder="उदा: मुंबई, दिल्ली / Ex: Mumbai, Delhi" class="w-full pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('city') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.75rem;">
+                                    </div>
+                                    @error('city')
+                                        <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <!-- Service Needed -->
+                                <div>
+                                    <label class="flex flex-col mb-2 text-navy">
+                                        <span class="font-bold text-sm">सेवा चुनें <span class="text-red-500">*</span></span>
+                                        <span class="text-[10px] uppercase text-gray-400 font-bold tracking-wider">Service Needed</span>
+                                    </label>
+                                    @php
+                                        $dbCategories = \App\Models\ServiceCategory::with('services')->get();
+                                    @endphp
+                                    <div x-data="{
+                                        open: false,
+                                        search: '',
+                                        selectedVal: '{{ old('service') }}',
+                                        selectedLabel: '{{ old('service') ? '' : 'चुनें / Select a service...' }}',
+                                        services: [
+                                            @foreach($dbCategories as $cat)
+                                                @foreach($cat->services as $svc)
+                                                    {
+                                                        slug: '{{ $svc->slug }}',
+                                                        name_en: '{{ str_replace("'", "\\'", $svc->name_en) }}',
+                                                        name_hi: '{{ str_replace("'", "\\'", $svc->name_hi) }}',
+                                                        category: '{{ str_replace("'", "\\'", $cat->name) }}'
+                                                    },
+                                                @endforeach
+                                            @endforeach
+                                        ],
+                                        init() {
+                                            if (this.selectedVal) {
+                                                let match = this.services.find(s => s.slug === this.selectedVal);
+                                                if (match) {
+                                                    this.selectedLabel = (match.name_hi ? match.name_hi + ' / ' : '') + match.name_en;
+                                                } else if (this.selectedVal === 'other') {
+                                                    this.selectedLabel = 'अन्य सेवा / Other Service';
+                                                }
+                                            }
+                                        },
+                                        get filteredServices() {
+                                            if (!this.search) return this.services;
+                                            let query = this.search.toLowerCase();
+                                            return this.services.filter(s => 
+                                                s.name_en.toLowerCase().includes(query) || 
+                                                (s.name_hi && s.name_hi.toLowerCase().includes(query)) ||
+                                                s.category.toLowerCase().includes(query)
+                                            );
+                                        },
+                                        selectService(slug, label) {
+                                            this.selectedVal = slug;
+                                            this.selectedLabel = label;
+                                            this.open = false;
+                                            this.search = '';
+                                        }
+                                    }" class="relative">
+                                        
+                                        <!-- Hidden input for form submission -->
+                                        <input type="hidden" name="service" :value="selectedVal">
+
+                                        <!-- Trigger Button -->
+                                        <button @click="open = !open" type="button" class="w-full border @error('service') border-red-500 @else border-gray-200 @enderror rounded-xl shadow-sm text-left flex justify-between items-center py-3 pr-4 bg-gray-50/50 relative z-20 focus:bg-white focus:shadow-md focus:border-navy transition-all duration-200" style="padding-left: 2.75rem;">
+                                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                                </svg>
+                                            </div>
+                                            <span x-text="selectedLabel" class="text-navy text-sm font-semibold truncate"></span>
+                                            <svg class="w-4 h-4 text-gray-500 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown List -->
+                                        <div x-show="open" 
+                                             @click.away="open = false" 
+                                             x-transition:enter="transition ease-out duration-100"
+                                             x-transition:enter-start="transform opacity-0 scale-95"
+                                             x-transition:enter-end="transform opacity-100 scale-100"
+                                             x-transition:leave="transition ease-in duration-75"
+                                             x-transition:leave-start="transform opacity-100 scale-100"
+                                             x-transition:leave-end="transform opacity-0 scale-95"
+                                             class="absolute left-0 right-0 mt-1 bg-white border border-gray-200 shadow-2xl rounded-2xl z-50 overflow-hidden flex flex-col max-h-[300px]">
+                                            
+                                            <!-- Search Input Box -->
+                                            <div class="p-2 border-b border-gray-100 bg-gray-50">
+                                                <div class="relative">
+                                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                                                        <i class="fas fa-search text-[10px]"></i>
+                                                    </span>
+                                                    <input x-model="search" 
+                                                           type="text" 
+                                                           placeholder="खोजें... / Search service..." 
+                                                           class="w-full bg-white border border-gray-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#f5a623] transition-colors">
+                                                </div>
+                                            </div>
+
+                                            <!-- Options list -->
+                                            <div class="overflow-y-auto divide-y divide-gray-100 flex-1 min-h-0">
+                                                <template x-if="filteredServices.length === 0">
+                                                    <div class="p-4 text-center text-xs text-gray-400">
+                                                        कोई सेवा नहीं मिली / No services found
+                                                    </div>
+                                                </template>
+                                                
+                                                <div class="py-1">
+                                                    <template x-for="svc in filteredServices" :key="svc.slug">
+                                                        <button @click="selectService(svc.slug, (svc.name_hi ? svc.name_hi + ' / ' : '') + svc.name_en)"
+                                                                type="button"
+                                                                class="w-full text-left px-4 py-2.5 hover:bg-gray-50 transition-colors flex items-center justify-between group">
+                                                            <div class="flex flex-col truncate pr-2">
+                                                                <span x-text="svc.name_hi ? svc.name_hi : svc.name_en" class="text-xs font-bold text-navy group-hover:text-[#f5a623] transition-colors truncate"></span>
+                                                                <span x-text="svc.name_en" class="text-[10px] text-gray-400 truncate" x-show="svc.name_hi"></span>
+                                                            </div>
+                                                            <span x-text="svc.category" class="text-[9px] bg-gray-100 text-gray-500 font-bold uppercase px-2 py-0.5 rounded-full shrink-0"></span>
+                                                        </button>
+                                                    </template>
+                                                    
+                                                    <!-- Other option -->
+                                                    <button x-show="!search || 'other'.includes(search.toLowerCase()) || 'अन्य'.includes(search)"
+                                                            @click="selectService('other', 'अन्य सेवा / Other Service')"
+                                                            type="button"
+                                                            class="w-full text-left px-4 py-2.5 hover:bg-gray-50 transition-colors flex items-center justify-between group">
+                                                        <div class="flex flex-col">
+                                                            <span class="text-xs font-bold text-navy group-hover:text-[#f5a623] transition-colors">अन्य सेवा / Other Service</span>
+                                                        </div>
+                                                        <span class="text-[9px] bg-navy/5 text-navy font-bold uppercase px-2 py-0.5 rounded-full shrink-0">General</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @error('service')
+                                        <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="group">
+                                <label class="flex flex-col mb-2 text-navy">
+                                    <span class="font-bold text-sm">संदेश / समस्या का विवरण <span class="text-red-500">*</span></span>
+                                    <span class="text-[10px] uppercase text-gray-400 font-bold tracking-wider">Message / Problem Description</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute top-3.5 left-3.5 pointer-events-none text-gray-400 group-focus-within:text-gold transition-colors">
+                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                        </svg>
+                                    </div>
+                                    <textarea name="message" required rows="4" placeholder="हम आपकी कैसे मदद कर सकते हैं? / How can we help you?" class="w-full pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('message') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.75rem;">{{ old('message') }}</textarea>
+                                </div>
+                                @error('message')
+                                    <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                                <button type="submit" class="w-full sm:w-auto bg-gold text-navy hover:bg-[#e2961d] active:scale-[0.98] min-h-[56px] px-10 rounded-xl font-bold transition-all duration-200 shadow-lg shadow-gold/20 hover:shadow-gold/30 flex flex-col items-center justify-center">
+                                    <span class="text-[16px] font-extrabold">भेजें</span>
+                                    <span class="text-[10px] uppercase tracking-widest mt-0.5">Submit</span>
+                                </button>
+                                <div class="flex items-center text-green-700 bg-green-50 px-4 py-2 rounded-lg border border-green-200 w-full sm:w-auto justify-center">
+                                    <svg class="w-5 h-5 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <div class="flex flex-col">
+                                        <span class="text-[11px] font-bold leading-tight">हम 2 घंटे में जवाब देंगे</span>
+                                        <span class="text-[9px] uppercase tracking-wider">We reply within 2 hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    @endif
                 </div>
             </div>
 

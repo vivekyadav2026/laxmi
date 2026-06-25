@@ -3,6 +3,7 @@
 @section('title', 'Funding & Mentorship | Foundida')
 
 @section('content')
+<div x-data="{ modalOpen: false, selectedPlan: 'monthly' }">
 <!-- HERO SECTION -->
 <x-inner-hero>
     <div class="flex flex-col items-center justify-center text-center">
@@ -83,31 +84,31 @@
         <div class="flex flex-wrap justify-center items-center gap-2 md:gap-4 max-w-5xl mx-auto">
             <!-- Timeline Item -->
             <div class="flex items-center">
-                <span class="px-4 py-2 bg-[#0B1F3A] text-white text-[12px] md:text-sm font-bold rounded-full shadow-md">Bootstrapping</span>
+                <span class="px-4 py-2 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md" style="background-color: #0B1F3A;">Bootstrapping</span>
                 <i class="fas fa-chevron-right text-gray-300 mx-2 text-sm hidden sm:block"></i>
             </div>
             <div class="flex items-center">
-                <span class="px-4 py-2 bg-[#0B1F3A]/90 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md">Angel</span>
+                <span class="px-4 py-2 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md" style="background-color: rgba(11, 31, 58, 0.9);">Angel</span>
                 <i class="fas fa-chevron-right text-gray-300 mx-2 text-sm hidden sm:block"></i>
             </div>
             <div class="flex items-center">
-                <span class="px-4 py-2 bg-[#0B1F3A]/80 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md">Seed</span>
+                <span class="px-4 py-2 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md" style="background-color: rgba(11, 31, 58, 0.8);">Seed</span>
                 <i class="fas fa-chevron-right text-gray-300 mx-2 text-sm hidden sm:block"></i>
             </div>
             <div class="flex items-center">
-                <span class="px-4 py-2 bg-[#f5a623] text-white text-[12px] md:text-sm font-bold rounded-full shadow-md">Series A</span>
+                <span class="px-4 py-2 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md" style="background-color: #f5a623;">Series A</span>
                 <i class="fas fa-chevron-right text-gray-300 mx-2 text-sm hidden sm:block"></i>
             </div>
             <div class="flex items-center">
-                <span class="px-4 py-2 bg-[#f5a623]/90 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md">Series B</span>
+                <span class="px-4 py-2 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md" style="background-color: rgba(245, 166, 35, 0.9);">Series B</span>
                 <i class="fas fa-chevron-right text-gray-300 mx-2 text-sm hidden sm:block"></i>
             </div>
             <div class="flex items-center">
-                <span class="px-4 py-2 bg-[#f5a623]/80 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md">Series C</span>
+                <span class="px-4 py-2 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md" style="background-color: rgba(245, 166, 35, 0.8);">Series C</span>
                 <i class="fas fa-chevron-right text-gray-300 mx-2 text-sm hidden sm:block"></i>
             </div>
             <div class="flex items-center mt-2 sm:mt-0">
-                <span class="px-4 py-2 bg-green-600 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md">IPO / Acquisition</span>
+                <span class="px-4 py-2 text-white text-[12px] md:text-sm font-bold rounded-full shadow-md" style="background-color: #16a34a;">IPO / Acquisition</span>
             </div>
         </div>
 
@@ -216,51 +217,149 @@
 </div>
 
 <!-- PRICING SECTION -->
-<div class="bg-white py-20 relative z-20">
+<div class="bg-white py-20 relative z-20" id="pricing">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16 flex flex-col items-center">
             <h2 class="text-3xl font-bold text-[#0B1F3A] mb-2 font-serif">फंडिंग सब्सक्रिप्शन प्लान</h2>
             <p class="text-sm font-bold text-[#D4A843] uppercase tracking-wider">Choose Your Plan</p>
+            
+            @if(session('subscription_success'))
+                <div class="mt-8 max-w-lg w-full bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl p-5 text-center animate-fadeIn">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+                        ✓
+                    </div>
+                    <h4 class="font-bold text-base mb-1 font-serif text-emerald-950">Subscription Request Received!</h4>
+                    <p class="text-xs leading-relaxed">{{ session('subscription_success') }}</p>
+                </div>
+            @endif
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <!-- Monthly -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:border-[#D4A843] transition-colors relative">
-                <h3 class="text-2xl font-bold text-[#0B1F3A] mb-1">Monthly Plan</h3>
-                <p class="text-[12px] text-gray-500 font-bold uppercase tracking-wider mb-6">Flexibility to Grow</p>
-                <div class="flex items-end mb-6">
-                    <span class="text-4xl font-extrabold text-[#0B1F3A]">₹999</span>
-                    <span class="text-gray-500 mb-1 ml-1">/ month</span>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex items-start"><i class="fas fa-check text-[#D4A843] mt-1 mr-3"></i><span class="text-sm text-gray-700">1 Monthly Mentorship Call</span></li>
-                    <li class="flex items-start"><i class="fas fa-check text-[#D4A843] mt-1 mr-3"></i><span class="text-sm text-gray-700">Basic Pitch Deck Review</span></li>
-                    <li class="flex items-start"><i class="fas fa-check text-[#D4A843] mt-1 mr-3"></i><span class="text-sm text-gray-700">Loan Application Support</span></li>
-                    <li class="flex items-start"><i class="fas fa-times text-gray-300 mt-1 mr-3"></i><span class="text-sm text-gray-400">Direct VC Intros (Yearly Only)</span></li>
-                </ul>
-                <button class="w-full border-2 border-[#0B1F3A] text-[#0B1F3A] hover:bg-[#0B1F3A] hover:text-white py-3 rounded-xl font-bold transition-colors">Select Monthly</button>
-            </div>
-
-            <!-- Yearly -->
-            <div class="bg-[#0B1F3A] rounded-2xl shadow-xl border-2 border-[#D4A843] p-8 flex flex-col relative transform md:-translate-y-4">
-                <div class="absolute top-0 right-8 transform -translate-y-1/2">
-                    <span class="bg-[#D4A843] text-[#0B1F3A] text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">Most Popular</span>
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-1">Yearly Plan</h3>
-                <p class="text-[12px] text-[#D4A843] font-bold uppercase tracking-wider mb-6">Complete Funding Engine</p>
-                <div class="flex items-end mb-6">
-                    <span class="text-4xl font-extrabold text-white">₹9,999</span>
-                    <span class="text-gray-400 mb-1 ml-1">/ year</span>
-                </div>
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex items-start"><i class="fas fa-check text-[#D4A843] mt-1 mr-3"></i><span class="text-sm text-gray-300">Unlimited Mentorship Calls</span></li>
-                    <li class="flex items-start"><i class="fas fa-check text-[#D4A843] mt-1 mr-3"></i><span class="text-sm text-gray-300">Complete Pitch Deck Design</span></li>
-                    <li class="flex items-start"><i class="fas fa-check text-[#D4A843] mt-1 mr-3"></i><span class="text-sm text-gray-300">Grant & Loan Priority Processing</span></li>
-                    <li class="flex items-start"><i class="fas fa-check text-[#D4A843] mt-1 mr-3"></i><span class="text-sm text-white font-bold">Guaranteed Direct VC Intros</span></li>
-                </ul>
-                <button class="w-full bg-[#D4A843] text-[#0B1F3A] hover:bg-[#c09435] py-3 rounded-xl font-bold transition-colors">Select Yearly (Save 16%)</button>
-            </div>
+            @foreach($plans as $plan)
+                @if($plan->is_popular)
+                    <!-- Popular Plan (Dark Theme) -->
+                    <div class="bg-[#0B1F3A] rounded-2xl shadow-xl border-2 border-[#D4A843] p-8 flex flex-col relative transform md:-translate-y-4">
+                        @if($plan->badge)
+                            <div class="absolute top-0 right-8 transform -translate-y-1/2">
+                                <span class="bg-[#D4A843] text-[#0B1F3A] text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">{{ $plan->badge }}</span>
+                            </div>
+                        @endif
+                        <h3 class="text-2xl font-bold text-white mb-1">{{ $plan->name }}</h3>
+                        @if($plan->description)
+                            <p class="text-[12px] text-[#D4A843] font-bold uppercase tracking-wider mb-6">{{ $plan->description }}</p>
+                        @endif
+                        <div class="flex items-end mb-6">
+                            <span class="text-4xl font-extrabold text-white">₹{{ number_format($plan->price) }}</span>
+                            <span class="text-gray-400 mb-1 ml-1">/ {{ $plan->billing_period }}</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-grow">
+                            @foreach($plan->features as $feature)
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-[#D4A843] mt-1 mr-3"></i>
+                                    <span class="text-sm text-gray-300">{{ $feature }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <button @click="selectedPlan = '{{ $plan->slug }}'; modalOpen = true" type="button" class="w-full bg-[#D4A843] text-[#0B1F3A] hover:bg-[#c09435] py-3 rounded-xl font-bold transition-colors">
+                            Select {{ $plan->name }}
+                        </button>
+                    </div>
+                @else
+                    <!-- Regular Plan (Light Theme) -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:border-[#D4A843] transition-colors relative">
+                        @if($plan->badge)
+                            <div class="absolute top-0 right-8 transform -translate-y-1/2">
+                                <span class="bg-[#D4A843] text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">{{ $plan->badge }}</span>
+                            </div>
+                        @endif
+                        <h3 class="text-2xl font-bold text-[#0B1F3A] mb-1">{{ $plan->name }}</h3>
+                        @if($plan->description)
+                            <p class="text-[12px] text-gray-500 font-bold uppercase tracking-wider mb-6">{{ $plan->description }}</p>
+                        @endif
+                        <div class="flex items-end mb-6">
+                            <span class="text-4xl font-extrabold text-[#0B1F3A]">₹{{ number_format($plan->price) }}</span>
+                            <span class="text-gray-500 mb-1 ml-1">/ {{ $plan->billing_period }}</span>
+                        </div>
+                        <ul class="space-y-4 mb-8 flex-grow">
+                            @foreach($plan->features as $feature)
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-[#D4A843] mt-1 mr-3"></i>
+                                    <span class="text-sm text-gray-700">{{ $feature }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <button @click="selectedPlan = '{{ $plan->slug }}'; modalOpen = true" type="button" class="w-full border-2 border-[#0B1F3A] text-[#0B1F3A] hover:bg-[#0B1F3A] hover:text-white py-3 rounded-xl font-bold transition-colors">
+                            Select {{ $plan->name }}
+                        </button>
+                    </div>
+                @endif
+            @endforeach
         </div>
     </div>
+
+</div>
+
+<!-- Modal Backdrop & Window -->
+<div x-show="modalOpen" class="fixed inset-0 z-[200] overflow-y-auto" style="display: none;">
+    <!-- Backdrop -->
+    <div x-show="modalOpen" x-transition.opacity @click="modalOpen = false" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+    <!-- Centering Wrapper -->
+    <div class="flex min-h-full items-center justify-center p-4">
+        <!-- Modal Content -->
+        <div x-show="modalOpen" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="transform scale-95 opacity-0"
+             x-transition:enter-end="transform scale-100 opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="transform scale-100 opacity-100"
+             x-transition:leave-end="transform scale-95 opacity-0"
+             class="bg-white rounded-2xl border-t-4 border-gold shadow-2xl p-6 md:p-8 w-full max-w-md relative z-10 text-navy my-8"
+             style="max-width: 480px; width: 100%;">
+            
+            <button @click="modalOpen = false" 
+                    class="absolute top-4 right-4 text-gray-400 hover:text-navy text-3xl font-light focus:outline-none cursor-pointer z-50"
+                    style="background: transparent; border: none; line-height: 1; padding: 0;"
+                    type="button">&times;</button>
+            
+            <h3 class="text-2xl font-bold font-serif mb-1 text-navy">Subscribe to <span class="capitalize text-saffron" x-text="selectedPlan"></span> Plan</h3>
+            <p class="text-gray-500 text-xs mb-6">Get access to our complete funding and mentorship engine.</p>
+            
+            <form action="{{ route('funding.subscribe') }}" method="POST" class="space-y-4">
+                @csrf
+                <input type="hidden" name="plan" :value="selectedPlan">
+                
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Full Name</label>
+                    <input type="text" name="name" required placeholder="e.g. Rahul Sharma" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gold transition-colors">
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Mobile Number</label>
+                    <div class="flex">
+                        <span class="bg-gray-100 border border-gray-200 border-r-0 rounded-l-xl px-3.5 py-3 text-[13px] text-gray-500 font-bold flex items-center">+91</span>
+                        <input type="tel" name="phone" required pattern="[0-9]{10}" placeholder="98765 43210" class="w-full bg-gray-50 border border-gray-200 rounded-r-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gold transition-colors">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Email Address</label>
+                    <input type="email" name="email" required placeholder="e.g. rahul@startup.com" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gold transition-colors">
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Startup / Company Name (Optional)</label>
+                    <input type="text" name="startup_name" placeholder="e.g. Acme Tech Pvt Ltd" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gold transition-colors">
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-saffron text-white text-[14px] md:text-[15px] font-extrabold py-3.5 rounded-xl hover:bg-saffron-dark transition-all shadow-md">
+                        Subscribe Now 🚀
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </div>
 @endsection

@@ -93,56 +93,58 @@
         @media (max-width: 767px) {
             .blog-card-inner { padding: 18px !important; }
         }
+        
+        /* Hide Google Translate Legacy Top Banner Banner & overrides */
+        .goog-te-banner-frame,
+        .goog-te-banner-frame.skiptranslate,
+        iframe.goog-te-banner-frame,
+        iframe.goog-te-banner-frame.skiptranslate,
+        iframe[id*="translate"],
+        iframe[src*="translate"],
+        .goog-te-banner,
+        #goog-gt-tt,
+        .goog-te-balloon-frame,
+        .skiptranslate,
+        .goog-te-gadget,
+        .goog-te-gadget-icon,
+        .goog-logo-link,
+        #google_translate_element,
+        .goog-te-gadget-simple {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0px !important;
+            width: 0px !important;
+        }
+        body {
+            top: 0px !important;
+            position: static !important;
+        }
+        html {
+            margin-top: 0px !important;
+            top: 0px !important;
+        }
+        .goog-text-highlight {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col" x-data="{ 
     mobileMenuOpen: false, 
     mobileLegalOpen: false,
     mobileTechOpen: false,
-    annoucementOpen: true, 
-    currentLang: 'en',
-    initLanguage() {
-        // Direct immediate check of googtrans cookie for instant load feedback
-        const getCookie = (name) => {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        };
-        const googtrans = getCookie('googtrans');
-        if (googtrans) {
-            this.currentLang = googtrans.endsWith('hi') ? 'hi' : 'en';
-        }
-
-        // Check current language after a delay for Google Translate script injection
-        setTimeout(() => {
-            const select = document.querySelector('.goog-te-combo');
-            if (select) {
-                this.currentLang = select.value === '' ? 'en' : (select.value || this.currentLang);
-            }
-        }, 1200);
-        
-        // Listen for user changes on the google translate combo box
-        document.addEventListener('change', (e) => {
-            if (e.target && e.target.classList.contains('goog-te-combo')) {
-                this.currentLang = e.target.value === '' ? 'en' : (e.target.value || 'en');
-            }
-        });
-    },
-    changeLang(lang) {
-        this.currentLang = lang;
-        const cookieValue = lang === 'en' ? '/en/en' : `/en/${lang}`;
-        document.cookie = `googtrans=${cookieValue}; path=/;`;
-        window.location.reload();
-    }
-}" x-init="initLanguage()">
+    annoucementOpen: true
+}">
 
     <!-- TOP ANNOUNCEMENT BAR -->
-    <div x-show="annoucementOpen" class="min-h-[40px] py-[8px] bg-[#D4A843] flex items-center justify-between px-[16px] md:px-[32px] w-full relative z-[110]">
-        <div class="flex-1 text-center text-[#0B1F3A] text-[13px] font-semibold">
+    <div x-show="annoucementOpen" class="min-h-[40px] py-2 bg-[#D4A843] flex items-center justify-center px-4 relative z-[110] notranslate">
+        <div class="text-center text-[#0B1F3A] text-[11px] md:text-[13px] font-semibold pr-6 md:pr-0 leading-normal">
             🎉 Limited Offer: Get 15% OFF on all services | Use Code: LEGAL15
         </div>
-        <button @click="annoucementOpen = false" class="text-[#0B1F3A]/60 hover:text-[#0B1F3A] text-[13px] absolute right-[32px]">
-            &times; Close
+        <button @click="annoucementOpen = false" class="text-[#0B1F3A]/60 hover:text-[#0B1F3A] text-[18px] absolute right-3 top-1/2 -translate-y-1/2 leading-none flex items-center justify-center h-8 w-8" aria-label="Close">
+            &times;
         </button>
     </div>
 
@@ -150,32 +152,37 @@
     <header class="sticky top-0 z-[100] bg-white border-b border-[#E2E0D8] h-[76px] notranslate">
         <div class="w-full max-w-[1500px] mx-auto px-[16px] md:px-[32px] h-full flex justify-between items-center gap-[16px]">
             
-            <!-- Left: Logo -->
             <div class="flex flex-col justify-center flex-shrink-0">
                 <a href="/" class="flex items-center">
-                    <img src="/logo.png" alt="Foundida" class="h-[44px] md:h-[56px] object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'text-[26px] md:text-[30px] font-bold text-[#0B1F3A] tracking-tight leading-none whitespace-nowrap\'>Foundida<span class=\'text-[#D4A843]\'>.</span></span>'">
+                    <img src="/logo.png" alt="Foundida" class="h-[64px] md:h-[63px] object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'text-[26px] md:text-[30px] font-bold text-[#0B1F3A] tracking-tight leading-none whitespace-nowrap\'>Foundida<span class=\'text-[#D4A843]\'>.</span></span>'">
                 </a>
             </div>
 
             <!-- Center: Nav Links -->
-            <nav class="hidden lg:flex lg:space-x-4 xl:space-x-6">
-                <a href="/" class="text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Home</a>
+            <nav class="hidden lg:flex lg:space-x-3 xl:space-x-4 2xl:space-x-6">
+                <a href="/" class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Home</a>
                 
                 <!-- Legal Services Dropdown -->
                 <div class="relative group cursor-pointer flex items-center h-[68px]">
-                    <span class="text-[13px] text-[#1A1A2E] font-medium group-hover:text-[#f57c00] transition-colors flex items-center whitespace-nowrap">
+                    <span class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium group-hover:text-[#f57c00] transition-colors flex items-center whitespace-nowrap">
                         Legal Services <span class="ml-1 text-[10px]">▼</span>
                     </span>
                     <div class="absolute top-[68px] left-[-200px] xl:left-0 w-[580px] bg-white border border-[#E2E0D8] shadow-xl rounded-b-[8px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[200] py-[12px] px-[16px] grid grid-cols-2 gap-x-4 gap-y-2">
-                        @if(config('services_data.categories'))
-                            @foreach(array_slice(config('services_data.categories'), 0, 7) as $cat)
+                        @php $legalCats = \App\Models\ServiceCategory::with('services')->where('slug', '!=', 'tech-services')->take(7)->get(); @endphp
+                        @if($legalCats->count() > 0)
+                            @foreach($legalCats as $cat)
                                 <div>
-                                    <div class="text-[#D4A843] text-[11px] font-bold uppercase tracking-[0.1em] mb-[4px] border-b border-[#E2E0D8] pb-[2px]">{{ $cat['name'] }}</div>
-                                    <div class="flex flex-col space-y-[2px]">
-                                        @foreach(array_slice($cat['services'], 0, 4) as $svc)
-                                            <a href="{{ route('service.generic', ['category_slug' => $cat['slug'], 'service_slug' => $svc['slug']]) }}" class="text-[12px] text-[#1A1A2E] hover:text-[#f57c00] transition-colors">{{ $svc['name_en'] }}</a>
+                                    <div class="text-[#D4A843] text-[11px] font-bold uppercase tracking-[0.1em] mb-[4px] border-b border-[#E2E0D8] pb-[2px]">{{ $cat->name }}</div>
+                                    <div class="flex flex-col space-y-[4px]">
+                                        @foreach($cat->services->take(4) as $svc)
+                                            <a href="{{ route('service.generic', ['category_slug' => $cat->slug, 'service_slug' => $svc->slug]) }}" class="block py-0.5 hover:text-[#f57c00] transition-all group/link">
+                                                <div class="text-[12px] text-[#1A1A2E] group-hover/link:text-[#f57c00] font-medium leading-tight">{{ $svc->name_en }}</div>
+                                                @if($svc->name_hi)
+                                                    <div class="text-[10px] text-[#5C6370] leading-normal font-sans">{{ $svc->name_hi }}</div>
+                                                @endif
+                                            </a>
                                         @endforeach
-                                        <a href="/services/{{ $cat['slug'] }}" class="text-[11px] text-[#5C6370] hover:text-[#1a237e] mt-1 font-semibold">View all &rarr;</a>
+                                        <a href="/services/{{ $cat->slug }}" class="text-[11px] text-[#5C6370] hover:text-[#1a237e] mt-1 font-semibold">View all &rarr;</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -185,18 +192,18 @@
 
                 <!-- Tech Services Dropdown -->
                 <div class="relative group cursor-pointer flex items-center h-[68px]">
-                    <span class="text-[13px] text-[#1A1A2E] font-medium group-hover:text-[#f57c00] transition-colors flex items-center whitespace-nowrap">
+                    <span class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium group-hover:text-[#f57c00] transition-colors flex items-center whitespace-nowrap">
                         Tech Services <span class="ml-1 text-[10px]">▼</span>
                     </span>
                     <div class="absolute top-[68px] left-0 min-w-[250px] bg-white border border-[#E2E0D8] shadow-xl rounded-b-[8px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[200] py-[6px]">
-                        @php $techCat = config('services_data.categories.8'); @endphp
+                        @php $techCat = \App\Models\ServiceCategory::with('services')->where('slug', 'tech-services')->first(); @endphp
                         @if($techCat)
-                            @foreach($techCat['services'] as $svc)
-                            <a href="{{ route('service.generic', ['category_slug' => $techCat['slug'], 'service_slug' => $svc['slug']]) }}" class="block px-[14px] py-[6px] hover:bg-[#F8F7F3] border-b border-[#E2E0D8] last:border-0 group/link">
-                                <div class="text-[13px] text-[#1A1A2E] group-hover/link:text-[#f57c00] font-medium transition-colors">{{ $svc['name_en'] }}</div>
+                            @foreach($techCat->services as $svc)
+                            <a href="{{ route('service.generic', ['category_slug' => $techCat->slug, 'service_slug' => $svc->slug]) }}" class="block px-[14px] py-[6px] hover:bg-[#F8F7F3] border-b border-[#E2E0D8] last:border-0 group/link">
+                                <div class="text-[13px] text-[#1A1A2E] group-hover/link:text-[#f57c00] font-medium transition-colors">{{ $svc->name_en }}</div>
                                 <div class="flex items-center justify-between mt-[4px]">
-                                    <span class="text-[10px] text-[#5C6370]">{{ $svc['name_hi'] }}</span>
-                                    <span class="text-[10px] text-[#2D7A4F] font-bold">{{ $svc['price'] }}</span>
+                                    <span class="text-[10px] text-[#5C6370]">{{ $svc->name_hi }}</span>
+                                    <span class="text-[10px] text-[#2D7A4F] font-bold">{{ $svc->price }}</span>
                                 </div>
                             </a>
                             @endforeach
@@ -204,53 +211,38 @@
                     </div>
                 </div>
 
-                <a href="/packages" class="text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Packages</a>
-                <a href="/funding" class="text-[13px] text-[#1A1A2E] font-bold hover:text-[#f57c00] transition-colors flex items-center h-[68px]">
+                <a href="/packages" class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Packages</a>
+                <a href="/funding" class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-bold hover:text-[#f57c00] transition-colors flex items-center h-[68px]">
                     Funding <span class="bg-red-500 text-white text-[8px] font-bold px-1 ml-1 rounded animate-pulse">NEW</span>
                 </a>
-                <a href="/blog" class="text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Blog</a>
-                <a href="/contact" class="text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Contact</a>
+                <a href="/blog" class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Blog</a>
+                <a href="/contact" class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Contact</a>
             </nav>
 
             <!-- Right: Actions (Visible on Mobile & Desktop) -->
-            <div class="flex items-center space-x-[12px] xl:space-x-[16px] flex-shrink-0">
-                <!-- Premium Language Switcher Pill -->
-                <div class="flex items-center bg-gray-100 rounded-full p-0.5 border border-gray-200 shadow-sm shrink-0">
-                    <button @click="changeLang('en')" 
-                            :class="currentLang === 'en' ? 'bg-[#1a237e] text-white shadow-xs' : 'text-gray-500 hover:text-[#1a237e]'" 
-                            class="px-2.5 py-1 rounded-full text-[10px] md:text-[11px] font-bold transition-all duration-200 focus:outline-none uppercase">
-                        EN
-                    </button>
-                    <button @click="changeLang('hi')" 
-                            :class="currentLang === 'hi' ? 'bg-[#1a237e] text-white shadow-xs' : 'text-gray-500 hover:text-[#1a237e]'" 
-                            class="px-2.5 py-1 rounded-full text-[10px] md:text-[11px] font-bold transition-all duration-200 focus:outline-none font-sans">
-                        हिं
-                    </button>
-                </div>
+            <div class="flex items-center space-x-[8px] xl:space-x-[12px] 2xl:space-x-[16px] flex-shrink-0">
 
-                <!-- Hidden Google Translate Element to maintain script integration -->
-                <div id="google_translate_element" class="opacity-0 pointer-events-none absolute w-0 h-0 overflow-hidden"></div>
 
                 <!-- Desktop-only actions -->
-                <div class="hidden lg:flex items-center space-x-[12px] xl:space-x-[16px]">
-                    <a href="tel:+918750530252" class="hidden xl:flex text-[#1a237e] text-[14px] font-bold items-center whitespace-nowrap hover:text-[#f57c00] transition-colors">
+                <div class="hidden lg:flex items-center space-x-[8px] xl:space-x-[12px] 2xl:space-x-[16px]">
+                    <a href="tel:+918750530252" class="hidden 2xl:flex text-[#1a237e] text-[14px] font-bold items-center whitespace-nowrap hover:text-[#f57c00] transition-colors">
                         <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
                         +91 87505 30252
                     </a>
                     
-                    <div class="hidden xl:block h-[20px] w-[1px] bg-[#E2E0D8]"></div>
+                    <div class="hidden 2xl:block h-[20px] w-[1px] bg-[#E2E0D8]"></div>
 
                     <a href="/live-session" class="bg-[#0B1F3A] text-[#D4A843] text-[13px] font-bold px-[16px] py-[10px] rounded-[4px] hover:bg-[#1a2b5e] transition-colors whitespace-nowrap flex items-center shadow-sm border border-[#D4A843]/30">
                         <i class="fas fa-video mr-1"></i> ₹99 Live Guide
                     </a>
-                    <a href="#consultation" class="bg-[#f57c00] text-white text-[13px] font-semibold px-[20px] py-[10px] rounded-[4px] hover:bg-[#ef6c00] transition-colors whitespace-nowrap flex items-center shadow-sm">
+                    <a href="tel:+918750530252" class="bg-[#f57c00] text-white text-[13px] font-semibold px-[20px] py-[10px] rounded-[4px] hover:bg-[#ef6c00] transition-colors whitespace-nowrap flex items-center shadow-sm">
                         Free Consultation
                     </a>
                 </div>
 
                 <!-- Mobile menu button -->
                 <div class="flex items-center lg:hidden">
-                    <button @click="mobileMenuOpen = true; const select = document.querySelector('.goog-te-combo'); if (select) { currentLang = select.value || 'en'; }" type="button" class="text-[#1A1A2E] hover:text-[#0B1F3A] p-1">
+                    <button @click="mobileMenuOpen = true" type="button" class="text-[#1A1A2E] hover:text-[#0B1F3A] p-1">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -265,7 +257,7 @@
             <div x-show="mobileMenuOpen" class="fixed inset-y-0 left-0 w-[80%] max-w-sm bg-white p-6 shadow-xl overflow-y-auto">
                 <div class="flex justify-between items-center mb-6">
                     <a href="/" class="flex items-center">
-                        <img src="/logo.png" alt="Foundida" class="h-[40px] object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'text-[26px]\' font-bold text-[#0B1F3A] tracking-tight leading-none whitespace-nowrap\'>Foundida<span class=\'text-[#D4A843]\'>.</span></span>'">
+                        <img src="/logo.png" alt="Foundida" class="h-[48px] object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'text-[26px]\' font-bold text-[#0B1F3A] tracking-tight leading-none whitespace-nowrap\'>Foundida<span class=\'text-[#D4A843]\'>.</span></span>'">
                     </a>
                     <button @click="mobileMenuOpen = false" class="text-[#1A1A2E]">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -281,19 +273,24 @@
                             <svg class="w-3 h-3 transition-transform duration-200" :class="mobileLegalOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div x-show="mobileLegalOpen" class="mobile-submenu pl-3 mt-1.5 space-y-1 border-l border-[#E2E0D8]" style="display: none;">
-                            @if(config('services_data.categories'))
-                                @foreach(array_slice(config('services_data.categories'), 0, 8) as $cat)
+                            @php $mobLegalCats = \App\Models\ServiceCategory::with('services')->where('slug', '!=', 'tech-services')->take(8)->get(); @endphp
+                            @if($mobLegalCats->count() > 0)
+                                @foreach($mobLegalCats as $cat)
                                     <div class="py-0.5">
                                         <!-- Category Sub-header (Click to Expand services) -->
-                                        <button @click="openSub = (openSub === '{{ $cat['slug'] }}' ? null : '{{ $cat['slug'] }}')" class="w-full flex items-center justify-between text-[12px] font-semibold uppercase tracking-wider text-gray-700 hover:text-gold py-0.5 focus:outline-none">
-                                            <span>{{ $cat['name'] }}</span>
-                                            <svg class="w-2.5 h-2.5 transition-transform duration-200" :class="openSub === '{{ $cat['slug'] }}' ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                                        <button @click="openSub = (openSub === '{{ $cat->slug }}' ? null : '{{ $cat->slug }}')" class="w-full flex items-center justify-between text-[12px] font-semibold uppercase tracking-wider text-gray-700 hover:text-gold py-0.5 focus:outline-none">
+                                            <span>{{ $cat->name }}</span>
+                                            <svg class="w-2.5 h-2.5 transition-transform duration-200" :class="openSub === '{{ $cat->slug }}' ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                                         </button>
                                         
-                                        <!-- Services list inside category -->
-                                        <div x-show="openSub === '{{ $cat['slug'] }}'" class="flex flex-col space-y-1.5 pl-3 mt-1 pb-1.5 border-l border-gray-100/80">
-                                            @foreach(array_slice($cat['services'], 0, 4) as $svc)
-                                                <a href="{{ route('service.generic', ['category_slug' => $cat['slug'], 'service_slug' => $svc['slug']]) }}" @click="mobileMenuOpen = false" class="text-[13px] text-[#5C6370] hover:text-[#f57c00]">{{ $svc['name_en'] }}</a>
+                                        <div x-show="openSub === '{{ $cat->slug }}'" class="flex flex-col space-y-2 pl-3 mt-1 pb-1.5 border-l border-gray-100/80">
+                                            @foreach($cat->services->take(4) as $svc)
+                                                <a href="{{ route('service.generic', ['category_slug' => $cat->slug, 'service_slug' => $svc->slug]) }}" @click="mobileMenuOpen = false" class="block py-0.5 hover:text-[#f57c00] transition-colors">
+                                                    <div class="font-medium text-[#1A1A2E] text-[13px]">{{ $svc->name_en }}</div>
+                                                    @if($svc->name_hi)
+                                                        <div class="text-[11px] text-[#5C6370] leading-normal font-sans">{{ $svc->name_hi }}</div>
+                                                    @endif
+                                                </a>
                                             @endforeach
                                         </div>
                                     </div>
@@ -309,12 +306,12 @@
                             <svg class="w-3 h-3 transition-transform duration-200" :class="mobileTechOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div x-show="mobileTechOpen" class="mobile-submenu pl-3 mt-1.5 space-y-1.5 border-l border-[#E2E0D8]" style="display: none;">
-                            @php $techCat = config('services_data.categories.8'); @endphp
+                            @php $techCat = \App\Models\ServiceCategory::with('services')->where('slug', 'tech-services')->first(); @endphp
                             @if($techCat)
-                                @foreach($techCat['services'] as $svc)
-                                    <a href="{{ route('service.generic', ['category_slug' => $techCat['slug'], 'service_slug' => $svc['slug']]) }}" @click="mobileMenuOpen = false" class="block py-0.5 text-[13px] text-[#5C6370] hover:text-[#f57c00]">
-                                        <div class="font-medium text-[#1A1A2E]">{{ $svc['name_en'] }}</div>
-                                        <div class="text-[11px] text-[#5C6370]">{{ $svc['name_hi'] }} • <span class="text-[#2D7A4F] font-bold">{{ $svc['price'] }}</span></div>
+                                @foreach($techCat->services as $svc)
+                                    <a href="{{ route('service.generic', ['category_slug' => $techCat->slug, 'service_slug' => $svc->slug]) }}" @click="mobileMenuOpen = false" class="block py-0.5 text-[13px] text-[#5C6370] hover:text-[#f57c00]">
+                                        <div class="font-medium text-[#1A1A2E]">{{ $svc->name_en }}</div>
+                                        <div class="text-[11px] text-[#5C6370]">{{ $svc->name_hi }} • <span class="text-[#2D7A4F] font-bold">{{ $svc->price }}</span></div>
                                     </a>
                                 @endforeach
                             @endif
@@ -329,11 +326,8 @@
                         <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
                         +91 87505 30252
                     </a>
-                    <div class="flex items-center space-x-2 mt-2 mb-4">
-                        <button @click="changeLang('en')" :class="currentLang === 'en' ? 'bg-[#f57c00]/10 text-[#f57c00] font-bold' : 'border border-[#E2E0D8] text-[#5C6370] font-medium'" class="px-[12px] py-[6px] rounded text-[12px] transition-colors duration-200">English</button>
-                        <button @click="changeLang('hi')" :class="currentLang === 'hi' ? 'bg-[#f57c00]/10 text-[#f57c00] font-bold' : 'border border-[#E2E0D8] text-[#5C6370] font-medium'" class="px-[12px] py-[6px] rounded text-[12px] transition-colors duration-200">हिंदी</button>
-                    </div>
-                    <a href="#consultation" class="bg-[#f57c00] text-white text-[14px] font-semibold px-[20px] py-[12px] rounded-[4px] text-center">Free Consultation</a>
+
+                    <a href="tel:+918750530252" @click="mobileMenuOpen = false" class="bg-[#f57c00] text-white text-[14px] font-semibold px-[20px] py-[12px] rounded-[4px] text-center">Free Consultation</a>
                 </nav>
             </div>
         </div>
@@ -447,17 +441,7 @@
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
     </a>
 
-    <!-- Google Translate Script -->
-    <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-          pageLanguage: 'en', 
-          includedLanguages: 'hi,en', 
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
-    }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
     <!-- ===== MOBILE BOTTOM NAVIGATION BAR ===== -->
     <nav class="fixed bottom-0 left-0 right-0 z-[200] lg:hidden bg-white border-t border-gray-200 shadow-2xl notranslate" style="padding-bottom: env(safe-area-inset-bottom)">
@@ -537,6 +521,37 @@
             }
         });
     })();
+
+    // Smooth scroll to #consultation on homepage
+    document.addEventListener('click', function(e) {
+        const anchor = e.target.closest('a');
+        if (!anchor) return;
+        
+        const href = anchor.getAttribute('href');
+        if (href && (href === '#consultation' || href === '/#consultation' || href.endsWith('/#consultation'))) {
+            const path = window.location.pathname;
+            if (path === '/' || path === '' || path === '/index.php') {
+                const target = document.getElementById('consultation');
+                if (target) {
+                    e.preventDefault();
+                    
+                    const header = document.querySelector('header');
+                    let offset = 80;
+                    if (header) {
+                        offset = header.offsetHeight;
+                    }
+                    
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset - 20;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+    });
     </script>
 
     @stack('scripts')

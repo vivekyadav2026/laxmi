@@ -189,12 +189,12 @@ Route::get('/services/gst', function () {
 
 Route::get('/services/business-registration', function () {
     $types = [
-        ['icon' => 'office-building', 'name_hi' => 'प्राइवेट लिमिटेड कंपनी', 'name_en' => 'Private Limited Company', 'price' => '6,999', 'best_for_hi' => 'स्टार्टअप्स और निवेशकों को आकर्षित करने के लिए', 'best_for_en' => 'Startups seeking funding & trust'],
-        ['icon' => 'user', 'name_hi' => 'वन पर्सन कंपनी', 'name_en' => 'One Person Company (OPC)', 'price' => '4,999', 'best_for_hi' => 'अकेले संस्थापकों के लिए प्राइवेट लिमिटेड के लाभ', 'best_for_en' => 'Solo founders wanting corporate status'],
-        ['icon' => 'users', 'name_hi' => 'सीमित देयता भागीदारी', 'name_en' => 'LLP', 'price' => '3,999', 'best_for_hi' => 'कम अनुपालन के साथ पेशेवर और साझेदार', 'best_for_en' => 'Professionals wanting low compliance'],
-        ['icon' => 'user-circle', 'name_hi' => 'एकल स्वामित्व', 'name_en' => 'Sole Proprietorship', 'price' => '1,499', 'best_for_hi' => 'छोटे व्यवसायों और फ्रीलांसरों के लिए', 'best_for_en' => 'Small local businesses & freelancers'],
-        ['icon' => 'heart', 'name_hi' => 'धारा 8 (एनजीओ)', 'name_en' => 'Section 8 (NGO)', 'price' => '7,999', 'best_for_hi' => 'गैर-लाभकारी सामाजिक कार्यों के लिए', 'best_for_en' => 'Non-profit social work'],
-        ['icon' => 'user-group', 'name_hi' => 'साझेदारी फर्म', 'name_en' => 'Partnership Firm', 'price' => '2,499', 'best_for_hi' => 'मित्रों या परिवार के साथ व्यापार करने के लिए', 'best_for_en' => 'Simple business with friends/family'],
+        ['icon' => 'office-building', 'name_hi' => 'प्राइवेट लिमिटेड कंपनी', 'name_en' => 'Private Limited Company', 'price' => '6,999', 'best_for_hi' => 'स्टार्टअप्स और निवेशकों को आकर्षित करने के लिए', 'best_for_en' => 'Startups seeking funding & trust', 'slug' => 'private-limited-company'],
+        ['icon' => 'user', 'name_hi' => 'वन पर्सन कंपनी', 'name_en' => 'One Person Company (OPC)', 'price' => '4,999', 'best_for_hi' => 'अकेले संस्थापकों के लिए प्राइवेट लिमिटेड के लाभ', 'best_for_en' => 'Solo founders wanting corporate status', 'slug' => 'one-person-company'],
+        ['icon' => 'users', 'name_hi' => 'सीमित देयता भागीदारी', 'name_en' => 'LLP', 'price' => '3,999', 'best_for_hi' => 'कम अनुपालन के साथ पेशेवर और साझेदार', 'best_for_en' => 'Professionals wanting low compliance', 'slug' => 'llp-registration'],
+        ['icon' => 'user-circle', 'name_hi' => 'एकल स्वामित्व', 'name_en' => 'Sole Proprietorship', 'price' => '1,499', 'best_for_hi' => 'छोटे व्यवसायों और फ्रीलांसरों के लिए', 'best_for_en' => 'Small local businesses & freelancers', 'slug' => 'sole-proprietorship'],
+        ['icon' => 'heart', 'name_hi' => 'धारा 8 (एनजीओ)', 'name_en' => 'Section 8 (NGO)', 'price' => '7,999', 'best_for_hi' => 'गैर-लाभकारी सामाजिक कार्यों के लिए', 'best_for_en' => 'Non-profit social work', 'slug' => 'section-8-company'],
+        ['icon' => 'user-group', 'name_hi' => 'साझेदारी फर्म', 'name_en' => 'Partnership Firm', 'price' => '2,499', 'best_for_hi' => 'मित्रों या परिवार के साथ व्यापार करने के लिए', 'best_for_en' => 'Simple business with friends/family', 'slug' => 'partnership-firm'],
     ];
 
     $comparisons = [
@@ -441,14 +441,12 @@ Route::get('/admin/dashboard', function () {
 });
 
 Route::get('/services', function () {
-    $categories = config('services_data.categories');
+    $categories = \App\Models\ServiceCategory::with('services')->get();
     return view('pages.services.index', compact('categories'));
 });
 
 Route::get('/services/{category_slug}', function ($category_slug) {
-    $categories = config('services_data.categories');
-    $category = collect($categories)->firstWhere('slug', $category_slug);
-    if (!$category) abort(404);
+    $category = \App\Models\ServiceCategory::with('services')->where('slug', $category_slug)->firstOrFail();
     
     // Check if we need to show a custom category page or just a generic category list.
     // Right now, all category pages will route to pages.services.category
@@ -456,13 +454,8 @@ Route::get('/services/{category_slug}', function ($category_slug) {
 });
 
 Route::get('/services/{category_slug}/{service_slug}', function ($category_slug, $service_slug) {
-    $categories = config('services_data.categories');
-    
-    $category = collect($categories)->firstWhere('slug', $category_slug);
-    if (!$category) abort(404);
-    
-    $service = collect($category['services'])->firstWhere('slug', $service_slug);
-    if (!$service) abort(404);
+    $category = \App\Models\ServiceCategory::where('slug', $category_slug)->firstOrFail();
+    $service = \App\Models\Service::where('service_category_id', $category->id)->where('slug', $service_slug)->firstOrFail();
     
     return view('pages.service-generic', compact('category', 'service'));
 })->name('service.generic');
@@ -470,143 +463,13 @@ Route::get('/services/{category_slug}/{service_slug}', function ($category_slug,
 // =========================================
 // PACKAGES PAGE
 // =========================================
-Route::get('/packages', function () {
-    return view('pages.packages');
-});
+Route::get('/packages', [\App\Http\Controllers\PackageController::class, 'index']);
 
 // =========================================
 // BLOG LISTING PAGE
 // =========================================
 Route::get('/blog', function () {
-    $posts = [
-        [
-            'slug' => 'pvt-ltd-vs-llp-vs-opc',
-            'title_hi' => 'Private Limited vs LLP vs OPC — 2026 में क्या सही है?',
-            'title_en' => 'Private Limited vs LLP vs OPC Explained',
-            'excerpt' => 'Registration cost, compliance burden, and fundraising potential compared for Indian startups in plain language.',
-            'category' => 'legal',
-            'category_label' => 'LEGAL',
-            'color' => 'blue',
-            'badge_class' => 'bg-navy/5 text-navy',
-            'author' => 'CA Amit Kumar',
-            'author_initial' => 'A',
-            'date' => 'Jun 15, 2026',
-            'read_time' => '8 min',
-        ],
-        [
-            'slug' => 'gst-registration-guide-2026',
-            'title_hi' => 'GST Registration: किसे लेना ज़रूरी है? पूरी जानकारी',
-            'title_en' => 'GST Registration: Who Needs It? Complete Guide',
-            'excerpt' => 'Turnover limits, mandatory categories, and document checklist for GST registration in India.',
-            'category' => 'gst',
-            'category_label' => 'GST / TAX',
-            'color' => 'yellow',
-            'badge_class' => 'bg-gold/10 text-gold',
-            'author' => 'CA Priya Verma',
-            'author_initial' => 'P',
-            'date' => 'Jun 10, 2026',
-            'read_time' => '6 min',
-        ],
-        [
-            'slug' => 'trademark-registration-india',
-            'title_hi' => 'Trademark कैसे Register करें? Step-by-Step Guide 2026',
-            'title_en' => 'How to Register a Trademark in India',
-            'excerpt' => 'Complete process, fees, timelines, and TM classes explained. Protect your brand before someone else does.',
-            'category' => 'trademark',
-            'category_label' => 'TRADEMARK',
-            'color' => 'purple',
-            'badge_class' => 'bg-purple-50 text-purple-600',
-            'author' => 'Adv. Sneha Patil',
-            'author_initial' => 'S',
-            'date' => 'Jun 5, 2026',
-            'read_time' => '10 min',
-        ],
-        [
-            'slug' => 'website-zaruri-hai-business-ke-liye',
-            'title_hi' => 'बिज़नेस के लिए Website क्यों ज़रूरी है? (2026 Guide)',
-            'title_en' => 'Why Every Business Needs a Website in 2026',
-            'excerpt' => 'How a professional website acts as your 24/7 sales representative and builds credibility with customers.',
-            'category' => 'tech',
-            'category_label' => 'TECH',
-            'color' => 'green',
-            'badge_class' => 'bg-green-50 text-green-600',
-            'author' => 'Rahul Verma',
-            'author_initial' => 'R',
-            'date' => 'May 28, 2026',
-            'read_time' => '5 min',
-        ],
-        [
-            'slug' => 'startup-india-registration-benefits',
-            'title_hi' => 'Startup India में Register करने के 7 फायदे',
-            'title_en' => '7 Benefits of Startup India Registration',
-            'excerpt' => 'Tax exemptions, fast-track IP, fund access, and more. Every eligible startup should register under DPIIT.',
-            'category' => 'startup',
-            'category_label' => 'STARTUP',
-            'color' => 'orange',
-            'badge_class' => 'bg-orange-50 text-orange-600',
-            'author' => 'CA Amit Kumar',
-            'author_initial' => 'A',
-            'date' => 'May 20, 2026',
-            'read_time' => '7 min',
-        ],
-        [
-            'slug' => 'annual-compliance-private-limited',
-            'title_hi' => 'Private Limited Company की Annual Compliance क्या होती है?',
-            'title_en' => 'Annual Compliance Checklist for Pvt Ltd Companies',
-            'excerpt' => 'ROC filings, board meetings, audits, and ITR — a complete yearly compliance checklist to avoid penalties.',
-            'category' => 'compliance',
-            'category_label' => 'COMPLIANCE',
-            'color' => 'red',
-            'badge_class' => 'bg-red-50 text-red-600',
-            'author' => 'CA Priya Verma',
-            'author_initial' => 'P',
-            'date' => 'May 12, 2026',
-            'read_time' => '9 min',
-        ],
-        [
-            'slug' => 'fssai-food-license-kaise-le',
-            'title_hi' => 'FSSAI License कैसे लें? खाद्य व्यवसाय के लिए पूरी प्रक्रिया',
-            'title_en' => 'How to Get FSSAI Food License in India',
-            'excerpt' => 'Basic, State, and Central FSSAI registration explained with documents, fees, and timeline.',
-            'category' => 'legal',
-            'category_label' => 'LEGAL',
-            'color' => 'blue',
-            'badge_class' => 'bg-navy/5 text-navy',
-            'author' => 'Adv. Sneha Patil',
-            'author_initial' => 'S',
-            'date' => 'May 5, 2026',
-            'read_time' => '6 min',
-        ],
-        [
-            'slug' => 'ecommerce-store-kaise-banaye',
-            'title_hi' => 'ऑनलाइन Store कैसे शुरू करें? सिर्फ ₹4,999 में',
-            'title_en' => 'How to Start an Online Store for Small Business',
-            'excerpt' => 'Choosing the right platform, payment gateway setup, shipping integration, and getting your first order.',
-            'category' => 'tech',
-            'category_label' => 'TECH',
-            'color' => 'green',
-            'badge_class' => 'bg-green-50 text-green-600',
-            'author' => 'Rahul Verma',
-            'author_initial' => 'R',
-            'date' => 'Apr 28, 2026',
-            'read_time' => '8 min',
-        ],
-        [
-            'slug' => 'itr-filing-business-guide',
-            'title_hi' => 'Business ITR Filing — कौन सा Form भरना है?',
-            'title_en' => 'ITR Filing for Businesses: Which Form to Use?',
-            'excerpt' => 'ITR-3, ITR-4, ITR-5, ITR-6 — which income tax return form applies to your business type.',
-            'category' => 'gst',
-            'category_label' => 'GST / TAX',
-            'color' => 'yellow',
-            'badge_class' => 'bg-gold/10 text-gold',
-            'author' => 'CA Amit Kumar',
-            'author_initial' => 'A',
-            'date' => 'Apr 15, 2026',
-            'read_time' => '7 min',
-        ],
-    ];
-
+    $posts = \App\Models\Post::orderBy('created_at', 'desc')->get();
     return view('pages.blog', compact('posts'));
 });
 
@@ -614,135 +477,147 @@ Route::get('/blog', function () {
 // INDIVIDUAL BLOG ARTICLE
 // =========================================
 Route::get('/blog/{slug}', function ($slug) {
-    $allPosts = [
-        'pvt-ltd-vs-llp-vs-opc' => [
-            'slug' => 'pvt-ltd-vs-llp-vs-opc',
-            'title_hi' => 'Private Limited vs LLP vs OPC — 2026 में क्या सही है?',
-            'title_en' => 'Private Limited vs LLP vs OPC Explained',
-            'category_label' => 'LEGAL',
-            'author' => 'CA Amit Kumar',
-            'author_initial' => 'A',
-            'author_role' => 'Tax & Startup Advisor',
-            'author_bio' => 'CA Amit has 10+ years of experience helping Indian startups choose the right legal structure. He has helped 500+ founders register their companies.',
-            'date' => 'June 15, 2026',
-            'read_time' => '8 min read',
-            'tags' => ['Company Registration', 'Pvt Ltd', 'LLP', 'OPC', 'Startup', 'Legal'],
-            'takeaways' => [
-                'Private Limited is best for startups seeking external funding.',
-                'LLP is ideal for professionals with low compliance requirements.',
-                'OPC is for solo founders who want corporate protection without partners.',
-                'Compliance cost: Pvt Ltd > LLP > OPC > Proprietorship.',
-            ],
-            'sections' => [
-                [
-                    'heading_hi' => '1. प्राइवेट लिमिटेड कंपनी क्या है?',
-                    'heading_en' => 'What is a Private Limited Company?',
-                    'paragraphs' => [
-                        'Private Limited Company (Pvt Ltd) भारत में सबसे लोकप्रिय business structure है, खासकर startups के लिए जो funding raise करना चाहते हैं।',
-                        'इसमें minimum 2 directors और 2 shareholders की ज़रूरत होती है। Shareholders की देनदारी (liability) उनके shares तक सीमित होती है — यानी company का नुकसान आपकी personal संपत्ति को नहीं छू सकता।',
-                        'Registration cost: ₹6,999 (Foundida) | Government fee + stamp duty अलग से। Time: 10-15 working days.',
-                    ],
-                    'table' => null,
-                ],
-                [
-                    'heading_hi' => '2. LLP (Limited Liability Partnership)',
-                    'heading_en' => 'What is LLP?',
-                    'paragraphs' => [
-                        'LLP (Limited Liability Partnership) professionals जैसे CA, Lawyers, Consultants के लिए ideal है। इसमें कम से कम 2 partners होने चाहिए।',
-                        'LLP में annual compliance कम होती है — कोई mandatory board meeting नहीं, और Pvt Ltd जैसे strict ROC filings नहीं। Tax rate भी partnership के हिसाब से होती है।',
-                        'हालांकि, LLP venture capital raise नहीं कर सकता, जो इसकी सबसे बड़ी limitation है।',
-                    ],
-                    'table' => null,
-                ],
-                [
-                    'heading_hi' => '3. तुलना — कौन सा चुनें?',
-                    'heading_en' => 'Comparison Table',
-                    'paragraphs' => [
-                        'नीचे दी गई तालिका आपको सही structure चुनने में मदद करेगी:',
-                    ],
-                    'table' => [
-                        'headers' => ['Factor', 'Pvt Ltd', 'LLP', 'OPC'],
-                        'rows' => [
-                            ['Min Members', '2', '2', '1'],
-                            ['Liability', 'Limited', 'Limited', 'Limited'],
-                            ['Funding (VC/Angel)', '✓ Yes', '✗ No', '✗ No'],
-                            ['Annual Compliance', 'High', 'Medium', 'Low'],
-                            ['Tax Rate', '22% (Flat)', 'Slab', '22% (Flat)'],
-                            ['Registration Cost', '₹6,999', '₹3,999', '₹4,999'],
-                        ],
-                    ],
-                ],
-            ],
-            'conclusion' => 'अगर आप funding raise करना चाहते हैं या एक बड़ी team build करना चाहते हैं, तो Pvt Ltd सबसे best है। Professionals और small partners के लिए LLP better है। Solo founders के लिए OPC एक good option है। अगर अभी भी confused हैं, तो हमारे experts से free call पर बात करें।',
-        ],
-    ];
+    $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
 
-    $post = $allPosts[$slug] ?? null;
-    if (!$post) {
-        $post = [
-            'slug' => $slug,
-            'title_hi' => 'लेख लोड हो रहा है...',
-            'title_en' => 'Article Coming Soon',
-            'category_label' => 'BLOG',
-            'author' => 'Foundida Team',
-            'author_initial' => 'F',
-            'author_role' => 'Content Team',
-            'author_bio' => 'Expert writers covering legal and tech topics for Indian businesses.',
-            'date' => 'June 2026',
-            'read_time' => '5 min read',
-            'tags' => ['Legal', 'Business', 'India'],
-            'takeaways' => ['This article is being published soon. Check back shortly.'],
-            'sections' => [
-                ['heading_hi' => 'जल्द आ रहा है', 'heading_en' => 'Coming Soon', 'paragraphs' => ['हम इस विषय पर एक विस्तृत लेख तैयार कर रहे हैं। कृपया जल्द वापस देखें।', 'We are preparing a detailed article on this topic. Please check back soon.'], 'table' => null],
-            ],
-            'conclusion' => 'इस विषय के बारे में अभी expert से बात करने के लिए free consultation book करें।',
-        ];
-    }
-
-    $related = [
-        ['slug' => 'gst-registration-guide-2026', 'title_hi' => 'GST Registration: किसे लेना ज़रूरी है?', 'read_time' => '6 min'],
-        ['slug' => 'trademark-registration-india', 'title_hi' => 'Trademark कैसे Register करें?', 'read_time' => '10 min'],
-        ['slug' => 'startup-india-registration-benefits', 'title_hi' => 'Startup India के 7 फायदे', 'read_time' => '7 min'],
-    ];
+    $related = \App\Models\Post::where('slug', '!=', $slug)
+        ->take(3)
+        ->get()
+        ->map(function ($p) {
+            return [
+                'slug' => $p->slug,
+                'title_hi' => $p->title_hi,
+                'read_time' => $p->read_time,
+            ];
+        })
+        ->toArray();
 
     return view('pages.blog-single', compact('post', 'related'));
 });
 
 // Funding & Mentor Subscription
-Route::get('/funding', function () {
-    return view('pages.funding');
-});
+Route::get('/funding', [\App\Http\Controllers\SubscriptionController::class, 'showFundingPage']);
+Route::post('/funding/subscribe', [\App\Http\Controllers\SubscriptionController::class, 'store'])->name('funding.subscribe');
 
 // Live Session Guide
 Route::get('/live-session', function () {
     return view('pages.live-session');
 });
+Route::post('/live-session/book', [\App\Http\Controllers\LiveSessionBookingController::class, 'store'])->name('live-session.book');
+
+// Submit Callback Request (Public)
+Route::post('/callback-requests', [\App\Http\Controllers\CallbackRequestController::class, 'store'])->name('callback.store');
+Route::post('/package-inquiries', [\App\Http\Controllers\PackageInquiryController::class, 'store'])->name('package-inquiries.store');
 
 // =========================================
 // ADMIN PANEL ROUTES
 // =========================================
 Route::prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return redirect('/admin/dashboard');
+    // Guest Routes
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', [\App\Http\Controllers\AdminAuthController::class, 'showLogin'])->name('admin.login');
+        Route::post('/login', [\App\Http\Controllers\AdminAuthController::class, 'login'])->name('admin.login.submit');
+        Route::get('/register', [\App\Http\Controllers\AdminAuthController::class, 'showRegister'])->name('admin.register');
+        Route::post('/register', [\App\Http\Controllers\AdminAuthController::class, 'register'])->name('admin.register.submit');
     });
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    });
+    // Authenticated Logout Route
+    Route::post('/logout', [\App\Http\Controllers\AdminAuthController::class, 'logout'])->name('admin.logout');
 
-    Route::get('/users', function () {
-        return view('admin.users');
-    });
+    // Protected Admin Routes
+    Route::middleware('admin')->group(function () {
+        Route::get('/', function () {
+            return redirect('/admin/dashboard');
+        });
 
-    Route::get('/services', function () {
-        return view('admin.services');
-    });
+        Route::get('/dashboard', function () {
+            $kpis = [
+                ['title_hi' => 'कुल उपयोगकर्ता', 'title_en' => 'Total Users', 'value' => '1,04,230', 'icon' => 'users'],
+                ['title_hi' => 'कुल वकील', 'title_en' => 'Total Lawyers', 'value' => '5,420', 'icon' => 'academic-cap'],
+                ['title_hi' => 'आज के ऑर्डर', 'title_en' => 'Today\'s Orders', 'value' => '342', 'icon' => 'shopping-cart'],
+                ['title_hi' => 'मासिक राजस्व', 'title_en' => 'Monthly Revenue', 'value' => '₹45.2L', 'icon' => 'currency-rupee'],
+                ['title_hi' => 'लंबित सत्यापन', 'title_en' => 'Pending Verifications', 'value' => '84', 'icon' => 'shield-check'],
+                ['title_hi' => 'सपोर्ट टिकट', 'title_en' => 'Support Tickets', 'value' => '12', 'icon' => 'ticket'],
+            ];
 
-    Route::get('/funding', function () {
-        return view('admin.funding');
-    });
+            $recentOrders = [
+                ['id' => '#ORD-4021', 'user' => 'Rajesh Kumar', 'service' => 'GST Registration', 'amount' => '₹999', 'status' => 'Pending', 'date' => '19 Jun, 10:20 AM'],
+                ['id' => '#ORD-4020', 'user' => 'Sneha Tech Pvt Ltd', 'service' => 'Company Registration', 'amount' => '₹6,999', 'status' => 'Processing', 'date' => '19 Jun, 09:45 AM'],
+                ['id' => '#ORD-4019', 'user' => 'Amit Patel', 'service' => 'Trademark Filing', 'amount' => '₹2,999', 'status' => 'Completed', 'date' => '18 Jun, 04:30 PM'],
+            ];
 
-    Route::get('/settings', function () {
-        return view('admin.settings');
+            $verifications = [
+                ['name' => 'Adv. Priya Singh', 'city' => 'Pune', 'reg' => 'MAH/5432/2015', 'docs' => 3],
+                ['name' => 'Adv. Rahul Sharma', 'city' => 'Jaipur', 'reg' => 'RAJ/124/2018', 'docs' => 4],
+            ];
+
+            $lineChart = [
+                'labels' => ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                'data' => [2.1, 2.4, 2.8, 3.1, 3.5, 3.2, 3.8, 4.0, 4.2, 4.5, 4.1, 4.5] // In Lakhs
+            ];
+
+            $pieChart = [
+                'labels' => ['GST', 'Company Reg', 'Trademark', 'Rent Agreement', 'Other'],
+                'data' => [35, 25, 20, 15, 5]
+            ];
+
+            return view('admin.dashboard', compact('kpis', 'recentOrders', 'verifications', 'lineChart', 'pieChart'));
+        })->name('admin.dashboard');
+
+        Route::get('/users', function () {
+            return view('admin.users');
+        });
+
+        Route::resource('services', \App\Http\Controllers\AdminServiceController::class)->names([
+            'index' => 'admin.services.index',
+            'create' => 'admin.services.create',
+            'store' => 'admin.services.store',
+            'edit' => 'admin.services.edit',
+            'update' => 'admin.services.update',
+            'destroy' => 'admin.services.destroy',
+        ]);
+
+        Route::get('/funding', [\App\Http\Controllers\SubscriptionController::class, 'index'])->name('admin.funding.index');
+        Route::patch('/funding/{id}/status', [\App\Http\Controllers\SubscriptionController::class, 'updateStatus'])->name('admin.funding.updateStatus');
+        Route::delete('/funding/{id}', [\App\Http\Controllers\SubscriptionController::class, 'destroy'])->name('admin.funding.destroy');
+
+        Route::resource('subscription-plans', \App\Http\Controllers\AdminSubscriptionPlanController::class)->except(['show'])->names([
+            'index' => 'admin.subscription_plans.index',
+            'create' => 'admin.subscription_plans.create',
+            'store' => 'admin.subscription_plans.store',
+            'edit' => 'admin.subscription_plans.edit',
+            'update' => 'admin.subscription_plans.update',
+            'destroy' => 'admin.subscription_plans.destroy',
+        ]);
+
+        Route::resource('packages', \App\Http\Controllers\AdminPackageController::class)->except(['show'])->names([
+            'index' => 'admin.packages.index',
+            'create' => 'admin.packages.create',
+            'store' => 'admin.packages.store',
+            'edit' => 'admin.packages.edit',
+            'update' => 'admin.packages.update',
+            'destroy' => 'admin.packages.destroy',
+        ]);
+
+        Route::get('/settings', [\App\Http\Controllers\AdminSettingsController::class, 'index'])->name('admin.settings');
+        Route::put('/settings/profile', [\App\Http\Controllers\AdminSettingsController::class, 'updateProfile'])->name('admin.profile.update');
+        Route::put('/settings/password', [\App\Http\Controllers\AdminSettingsController::class, 'updatePassword'])->name('admin.password.update');
+
+        // Admin Callback / Lead Routes
+        Route::get('/callbacks', [\App\Http\Controllers\CallbackRequestController::class, 'index'])->name('admin.callbacks.index');
+        Route::patch('/callbacks/{id}/status', [\App\Http\Controllers\CallbackRequestController::class, 'updateStatus'])->name('admin.callbacks.updateStatus');
+        Route::delete('/callbacks/{id}', [\App\Http\Controllers\CallbackRequestController::class, 'destroy'])->name('admin.callbacks.destroy');
+
+        // Admin Package Inquiries Routes
+        Route::get('/package-inquiries', [\App\Http\Controllers\PackageInquiryController::class, 'index'])->name('admin.package-inquiries.index');
+        Route::patch('/package-inquiries/{id}/status', [\App\Http\Controllers\PackageInquiryController::class, 'updateStatus'])->name('admin.package-inquiries.updateStatus');
+        Route::delete('/package-inquiries/{id}', [\App\Http\Controllers\PackageInquiryController::class, 'destroy'])->name('admin.package-inquiries.destroy');
+
+        // Admin Live Session Bookings Routes
+        Route::get('/live-sessions', [\App\Http\Controllers\LiveSessionBookingController::class, 'index'])->name('admin.live-sessions.index');
+        Route::patch('/live-sessions/{id}/status', [\App\Http\Controllers\LiveSessionBookingController::class, 'updateStatus'])->name('admin.live-sessions.updateStatus');
+        Route::delete('/live-sessions/{id}', [\App\Http\Controllers\LiveSessionBookingController::class, 'destroy'])->name('admin.live-sessions.destroy');
+
+        // Admin Blogs CRUD
+        Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class)->names('admin.blogs');
     });
 });

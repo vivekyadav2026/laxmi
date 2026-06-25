@@ -14,7 +14,7 @@
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
                     <a href="/" class="flex flex-col text-gray-300 hover:text-[#f5a623] transition">
-                        <span class="font-bold leading-tight">ङोम</span>
+                        <span class="font-bold leading-tight">होम</span>
                         <span class="text-[10px] uppercase">Home</span>
                     </a>
                 </li>
@@ -79,23 +79,41 @@
         <div class="mt-8 lg:mt-0 bg-white rounded-2xl shadow-xl p-6 md:p-8 border-t-4 border-[#f5a623] relative z-10 w-full max-w-[440px] mx-auto lg:ml-auto">
             <h3 class="text-[20px] md:text-[24px] font-bold text-[#0d1b3e] mb-1 font-serif leading-tight">Request a Call Back</h3>
             <p class="text-gray-500 text-xs mb-6">Our experts will explain the process and help you get started.</p>
-            
-            <form class="space-y-4">
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Full Name</label>
-                    <input type="text" placeholder="e.g. Rahul Sharma" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-colors">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Mobile Number</label>
-                    <div class="flex">
-                        <span class="bg-gray-100 border border-gray-200 border-r-0 rounded-l-xl px-3.5 py-3 text-[13px] text-gray-500 font-bold flex items-center">+91</span>
-                        <input type="tel" placeholder="98765 43210" class="w-full bg-gray-50 border border-gray-200 rounded-r-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#f5a623] transition-colors">
+
+            @if(session('callback_success'))
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 text-center my-4 animate-fadeIn">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+                        ✓
                     </div>
+                    <h4 class="text-emerald-950 font-bold text-base mb-1 font-serif">Request Received!</h4>
+                    <p class="text-emerald-800 text-xs leading-relaxed mb-4">{{ session('callback_success') }}</p>
                 </div>
-                <button type="button" class="w-full bg-[#f5a623] text-[#0d1b3e] text-[14px] md:text-[15px] font-extrabold py-3.5 rounded-xl hover:bg-[#e0951b] transition-all shadow-md mt-2">
-                    Request Callback 📞
-                </button>
-            </form>
+            @else
+                <form action="{{ route('callback.store') }}" method="POST" class="space-y-4">
+                    @csrf
+                    <input type="hidden" name="service" value="{{ $service['slug'] }}">
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Full Name</label>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="e.g. Rahul Sharma" class="w-full bg-gray-50 border @error('name') border-red-500 @else border-gray-200 @enderror rounded-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-colors">
+                        @error('name')
+                            <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Mobile Number</label>
+                        <div class="flex">
+                            <span class="bg-gray-100 border @error('phone') border-red-500 border-r-0 @else border-gray-200 @enderror rounded-l-xl px-3.5 py-3 text-[13px] text-gray-500 font-bold flex items-center">+91</span>
+                            <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="98765 43210" class="w-full bg-gray-50 border @error('phone') border-red-500 @else border-gray-200 @enderror rounded-r-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#f5a623] transition-colors">
+                        </div>
+                        @error('phone')
+                            <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <button type="submit" class="w-full bg-[#f5a623] text-[#0d1b3e] text-[14px] md:text-[15px] font-extrabold py-3.5 rounded-xl hover:bg-[#e0951b] transition-all shadow-md mt-2">
+                        Request Callback 📞
+                    </button>
+                </form>
+            @endif
             <div class="text-center text-[10px] text-gray-400 mt-4 flex items-center justify-center gap-1.5">
                 <span>🔒</span>
                 <span>Your data is 100% secure.</span>

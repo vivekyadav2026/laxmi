@@ -46,7 +46,11 @@
     </div>
 </div>
 
-<!-- FEATURED ARTICLE -->
+@php
+    $featuredPost = $posts->first();
+@endphp
+
+@if($featuredPost)
 <div class="bg-offwhite py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-xl transition-shadow">
@@ -54,20 +58,33 @@
                 <div class="h-64 lg:h-auto bg-gradient-to-br from-navy to-blue-900 flex items-center justify-center relative overflow-hidden p-12">
                     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 20px 20px;"></div>
                     <div class="text-center relative z-10">
-                        <div class="text-[72px] mb-4">⚖️</div>
+                        <div class="text-[72px] mb-4">
+                            @if(($featuredPost->category ?? $featuredPost['category']) === 'legal') ⚖️
+                            @elseif(($featuredPost->category ?? $featuredPost['category']) === 'gst') 💵
+                            @elseif(($featuredPost->category ?? $featuredPost['category']) === 'trademark') 🏷️
+                            @elseif(($featuredPost->category ?? $featuredPost['category']) === 'tech') 💻
+                            @elseif(($featuredPost->category ?? $featuredPost['category']) === 'startup') 🚀
+                            @elseif(($featuredPost->category ?? $featuredPost['category']) === 'compliance') 📋
+                            @else 📝
+                            @endif
+                        </div>
                         <div class="bg-gold text-navy text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full inline-block">FEATURED</div>
                     </div>
                 </div>
                 <div class="p-10 flex flex-col justify-center">
                     <div class="flex items-center gap-3 mb-4">
-                        <span class="bg-navy/5 text-navy text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">LEGAL</span>
-                        <span class="text-[11px] text-gray-400">June 15, 2026 · 8 min read</span>
+                        <span class="{{ $featuredPost->badge_class ?? $featuredPost['badge_class'] ?? 'bg-navy/5 text-navy' }} text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                            {{ $featuredPost->category_label ?? $featuredPost['category_label'] ?? strtoupper($featuredPost->category ?? $featuredPost['category']) }}
+                        </span>
+                        <span class="text-[11px] text-gray-400">{{ $featuredPost->date ?? $featuredPost['date'] }} · {{ $featuredPost->read_time ?? $featuredPost['read_time'] }}</span>
                     </div>
                     <h2 class="text-2xl md:text-3xl font-bold text-navy font-serif mb-4 group-hover:text-gold transition-colors leading-snug">
-                        Private Limited vs LLP vs OPC — 2026 में नए बिज़नेस के लिए क्या सही है?
+                        {{ $featuredPost->title_hi ?? $featuredPost['title_hi'] ?? $featuredPost->title_en ?? $featuredPost['title_en'] }}
                     </h2>
-                    <p class="text-[13px] text-gray-500 mb-6 leading-relaxed">Registration cost, annual compliance burden, tax rates, and fundraising potential compared in plain Hindi + English. A must-read before you register.</p>
-                    <a href="/blog/pvt-ltd-vs-llp-vs-opc" class="inline-flex items-center font-bold text-gold hover:text-navy transition-colors text-sm">
+                    <p class="text-[13px] text-gray-500 mb-6 leading-relaxed">
+                        {{ $featuredPost->excerpt ?? $featuredPost['excerpt'] }}
+                    </p>
+                    <a href="/blog/{{ $featuredPost->slug ?? $featuredPost['slug'] }}" class="inline-flex items-center font-bold text-gold hover:text-navy transition-colors text-sm">
                         पूरा पढ़ें — Read Full Article <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                 </div>
@@ -75,6 +92,7 @@
         </div>
     </div>
 </div>
+@endif
 
 <!-- BLOG GRID -->
 <div class="bg-offwhite pb-20" id="blog-grid">
@@ -82,23 +100,40 @@
 
         <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
 
-            @foreach($posts as $post)
-            <article data-category="{{ $post['category'] }}" class="blog-card bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all group flex flex-col">
-                <div class="h-[4px] md:h-[6px] bg-{{ $post['color'] }}-600 w-full"></div>
+            @foreach($posts->skip($featuredPost ? 1 : 0) as $post)
+            @php
+                $colorClass = 'bg-navy';
+                $postColor = $post->color ?? $post['color'] ?? '';
+                if ($postColor === 'yellow' || $postColor === 'gold') {
+                    $colorClass = 'bg-gold';
+                } elseif ($postColor === 'purple') {
+                    $colorClass = 'bg-purple-600';
+                } elseif ($postColor === 'green') {
+                    $colorClass = 'bg-green-600';
+                } elseif ($postColor === 'orange') {
+                    $colorClass = 'bg-orange-500';
+                } elseif ($postColor === 'red') {
+                    $colorClass = 'bg-red-500';
+                } elseif ($postColor === 'blue') {
+                    $colorClass = 'bg-navy';
+                }
+            @endphp
+            <article data-category="{{ $post->category ?? $post['category'] }}" class="blog-card bg-white border border-gray-100 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all group flex flex-col">
+                <div class="h-[4px] md:h-[6px] {{ $colorClass }} w-full"></div>
                 <div class="blog-card-inner p-4 md:p-8 flex flex-col flex-grow">
                     <div class="flex items-center justify-between mb-3">
-                        <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest px-2 md:px-3 py-1 rounded-full {{ $post['badge_class'] }}">{{ $post['category_label'] }}</span>
-                        <span class="text-[10px] text-gray-400 hidden sm:block">{{ $post['read_time'] }}</span>
+                        <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest px-2 md:px-3 py-1 rounded-full {{ $post->badge_class ?? $post['badge_class'] ?? 'bg-navy/5 text-navy' }}">{{ $post->category_label ?? $post['category_label'] ?? strtoupper($post->category ?? $post['category']) }}</span>
+                        <span class="text-[10px] text-gray-400 hidden sm:block">{{ $post->read_time ?? $post['read_time'] }}</span>
                     </div>
-                    <h3 class="text-[13px] md:text-[18px] font-bold text-navy mb-1 md:mb-3 group-hover:text-gold transition-colors leading-snug">{{ $post['title_hi'] }}</h3>
-                    <p class="text-[10px] md:text-[12px] uppercase font-bold text-gray-400 tracking-wider mb-2 md:mb-3 hidden md:block">{{ $post['title_en'] }}</p>
-                    <p class="text-[11px] md:text-[13px] text-gray-500 mb-3 md:mb-6 flex-grow leading-relaxed hidden md:block">{{ $post['excerpt'] }}</p>
+                    <h3 class="text-[13px] md:text-[18px] font-bold text-navy mb-1 md:mb-3 group-hover:text-gold transition-colors leading-snug">{{ $post->title_hi ?? $post['title_hi'] ?? $post->title_en ?? $post['title_en'] }}</h3>
+                    <p class="text-[10px] md:text-[12px] uppercase font-bold text-gray-400 tracking-wider mb-2 md:mb-3 hidden md:block">{{ $post->title_en ?? $post['title_en'] }}</p>
+                    <p class="text-[11px] md:text-[13px] text-gray-500 mb-3 md:mb-6 flex-grow leading-relaxed hidden md:block">{{ $post->excerpt ?? $post['excerpt'] }}</p>
                     <div class="flex items-center justify-between border-t border-gray-100 pt-3 mt-auto">
                         <div class="flex items-center gap-1 md:gap-2">
-                            <div class="w-5 h-5 md:w-7 md:h-7 rounded-full bg-navy/10 flex items-center justify-center text-navy font-bold text-[10px]">{{ $post['author_initial'] }}</div>
-                            <span class="text-[10px] md:text-[11px] font-bold text-navy hidden sm:block">{{ $post['author'] }}</span>
+                            <div class="w-5 h-5 md:w-7 md:h-7 rounded-full bg-navy/10 flex items-center justify-center text-navy font-bold text-[10px]">{{ $post->author_initial ?? $post['author_initial'] }}</div>
+                            <span class="text-[10px] md:text-[11px] font-bold text-navy hidden sm:block">{{ $post->author ?? $post['author'] }}</span>
                         </div>
-                        <a href="/blog/{{ $post['slug'] }}" class="text-[10px] text-gold font-bold uppercase tracking-wider flex items-center gap-1">
+                        <a href="/blog/{{ $post->slug ?? $post['slug'] }}" class="text-[10px] text-gold font-bold uppercase tracking-wider flex items-center gap-1">
                             Read <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
                     </div>
