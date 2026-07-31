@@ -2,6 +2,29 @@
 
 @section('title', $category->name . ' Services - Foundida')
 
+@push('schema')
+@if(isset($category->page_content['faqs']))
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    @foreach($category->page_content['faqs'] as $faq)
+    {
+      "@type": "Question",
+      "name": "{{ strip_tags($faq['q_en']) }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ strip_tags($faq['a_en']) }}"
+      }
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+}
+</script>
+@endif
+@endpush
+
 @section('content')
 
 @php
