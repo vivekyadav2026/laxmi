@@ -136,6 +136,14 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-2 shrink-0 ml-2">
+                                @if($service->badge_hi)
+                                    <span class="text-[9px] font-extrabold text-white bg-red-500 px-1.5 py-0.5 rounded-md uppercase tracking-wider">{{ $service->badge_hi }}</span>
+                                @elseif($service->badge_en)
+                                    <span class="text-[9px] font-extrabold text-white bg-red-500 px-1.5 py-0.5 rounded-md uppercase tracking-wider">{{ $service->badge_en }}</span>
+                                @endif
+                                @if($service->old_price)
+                                    <span class="text-[10px] text-gray-400 line-through">{{ $service->old_price }}</span>
+                                @endif
                                 @if($service->price)
                                     <span class="text-[11px] font-extrabold text-[#0B1F3A] bg-[#FAF6ED] border border-[#E2E0D8] px-2 py-0.5 rounded-md">{{ $service->price }}</span>
                                 @endif

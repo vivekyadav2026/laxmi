@@ -458,6 +458,8 @@
                     'sub' => $svc->name_hi ?: ($svc->category ? strtoupper($svc->category->name) : 'LEGAL SERVICE'),
                     'desc' => $svc->time ? "Processing Time: {$svc->time}" : 'Complete legal processing and compliance.',
                     'price' => $svc->price ?: '₹999',
+                    'old_price' => $svc->old_price,
+                    'badge' => $svc->badge_hi ?: $svc->badge_en,
                     'link' => "/services/{$catSlug}/{$svc->slug}",
                     'icon' => $iconMap[$svc->id % count($iconMap)],
                 ];
@@ -475,8 +477,13 @@
             @foreach($legalCards as $card)
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-[24px] md:p-[28px] hover:shadow-xl hover:-translate-y-1 hover:border-gold/40 transition-all flex flex-col group relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-[#F4F6F9] rounded-bl-full pointer-events-none z-0"></div>
-                <div class="card-icon w-[52px] h-[52px] bg-[#0B1F3A] rounded-2xl flex items-center justify-center text-white mb-[20px] shadow-sm flex-shrink-0 relative z-10">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
+                <div class="flex items-center justify-between mb-[20px] relative z-10">
+                    <div class="card-icon w-[52px] h-[52px] bg-[#0B1F3A] rounded-2xl flex items-center justify-center text-white shadow-sm flex-shrink-0">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
+                    </div>
+                    @if(!empty($card['badge']))
+                        <span class="bg-red-500 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{{ $card['badge'] }}</span>
+                    @endif
                 </div>
                 <h3 class="card-title text-[18px] font-bold text-[#0B1F3A] font-serif mb-[2px] relative z-10">{{ $card['title'] }}</h3>
                 <p class="card-sub text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-[12px] relative z-10">{{ $card['sub'] }}</p>
@@ -484,7 +491,12 @@
                 <div class="flex items-center justify-between border-t border-gray-100/80 pt-[16px] relative z-10">
                     <div class="flex flex-col">
                         <span class="card-price-label text-[10px] text-gray-400 font-bold uppercase">From</span>
-                        <span class="card-price text-[18px] font-extrabold text-[#0B1F3A]">{{ $card['price'] }}</span>
+                        <div class="flex items-center gap-1.5">
+                            @if(!empty($card['old_price']))
+                                <span class="text-[12px] text-gray-400 line-through font-medium">{{ $card['old_price'] }}</span>
+                            @endif
+                            <span class="card-price text-[18px] font-extrabold text-[#0B1F3A]">{{ $card['price'] }}</span>
+                        </div>
                     </div>
                     <a href="{{ $card['link'] }}" class="card-arrow w-9 h-9 rounded-full bg-[#D4A843] flex items-center justify-center text-[#0B1F3A] shadow-sm hover:scale-105 hover:bg-[#E8B96A] transition-all">
                         <svg class="w-4 h-4 text-[#0B1F3A]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -536,6 +548,8 @@
                     'sub' => $svc->name_hi ?: 'TECH SERVICE',
                     'desc' => $svc->time ? "Delivery Time: {$svc->time}" : 'Scalable, fast tech solutions.',
                     'price' => $svc->price ?: '₹2,999',
+                    'old_price' => $svc->old_price,
+                    'badge' => $svc->badge_hi ?: $svc->badge_en,
                     'link' => "/services/{$catSlug}/{$svc->slug}",
                     'icon' => $iconMap[$svc->id % count($iconMap)],
                 ];
@@ -552,8 +566,13 @@
             @foreach($techCards as $card)
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-[24px] md:p-[28px] hover:shadow-xl hover:-translate-y-1 hover:border-gold/40 transition-all flex flex-col group relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-[#F4F6F9] rounded-bl-full pointer-events-none z-0"></div>
-                <div class="card-icon w-[52px] h-[52px] bg-[#0B1F3A] rounded-2xl flex items-center justify-center text-white mb-[20px] shadow-sm flex-shrink-0 relative z-10">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
+                <div class="flex items-center justify-between mb-[20px] relative z-10">
+                    <div class="card-icon w-[52px] h-[52px] bg-[#0B1F3A] rounded-2xl flex items-center justify-center text-white shadow-sm flex-shrink-0">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
+                    </div>
+                    @if(!empty($card['badge']))
+                        <span class="bg-red-500 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{{ $card['badge'] }}</span>
+                    @endif
                 </div>
                 <h3 class="card-title text-[18px] font-bold text-[#0B1F3A] font-serif mb-[2px] relative z-10">{{ $card['title'] }}</h3>
                 <p class="card-sub text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-[12px] relative z-10">{{ $card['sub'] }}</p>
@@ -561,7 +580,12 @@
                 <div class="flex items-center justify-between border-t border-gray-100/80 pt-[16px] relative z-10">
                     <div class="flex flex-col">
                         <span class="card-price-label text-[10px] text-gray-400 font-bold uppercase">From</span>
-                        <span class="card-price text-[18px] font-extrabold text-[#0B1F3A]">{{ $card['price'] }}</span>
+                        <div class="flex items-center gap-1.5">
+                            @if(!empty($card['old_price']))
+                                <span class="text-[12px] text-gray-400 line-through font-medium">{{ $card['old_price'] }}</span>
+                            @endif
+                            <span class="card-price text-[18px] font-extrabold text-[#0B1F3A]">{{ $card['price'] }}</span>
+                        </div>
                     </div>
                     <a href="{{ $card['link'] }}" class="card-arrow w-9 h-9 rounded-full bg-[#D4A843] flex items-center justify-center text-[#0B1F3A] shadow-sm hover:scale-105 hover:bg-[#E8B96A] transition-all">
                         <svg class="w-4 h-4 text-[#0B1F3A]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>

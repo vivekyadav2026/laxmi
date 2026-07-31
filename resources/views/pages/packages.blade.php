@@ -87,6 +87,11 @@
                             <span class="text-[16px] font-extrabold">शुरू करें</span>
                             <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
                         </button>
+                        <a href="{{ route('checkout', ['type' => 'package', 'slug' => $pkg->slug]) }}"
+                           class="w-full mt-2 border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[44px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
+                            <span class="flex items-center gap-2 text-[14px] font-bold"><i class="fas fa-lock text-xs"></i> Pay Now — ₹{{ number_format($pkg->price) }}</span>
+                            <span class="text-[9px] uppercase tracking-widest mt-0.5 opacity-60">Razorpay · UPI · Cards</span>
+                        </a>
                     </div>
                 @else
                     <!-- Regular Card -->
@@ -115,6 +120,11 @@
                             <span class="text-[15px]">शुरू करें</span>
                             <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
                         </button>
+                        <a href="{{ route('checkout', ['type' => 'package', 'slug' => $pkg->slug]) }}"
+                           class="w-full mt-2 bg-navy text-white hover:bg-navy/90 min-h-[44px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
+                            <span class="flex items-center gap-2 text-[14px] font-bold"><i class="fas fa-lock text-xs text-gold"></i> Pay Now — ₹{{ number_format($pkg->price) }}</span>
+                            <span class="text-[9px] uppercase tracking-widest mt-0.5 opacity-60">Razorpay · UPI · Cards</span>
+                        </a>
                     </div>
                 @endif
             @endforeach
@@ -165,6 +175,11 @@
                             <span class="text-[16px] font-extrabold">शुरू करें</span>
                             <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
                         </button>
+                        <a href="{{ route('checkout', ['type' => 'package', 'slug' => $pkg->slug]) }}"
+                           class="w-full mt-2 border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[44px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
+                            <span class="flex items-center gap-2 text-[14px] font-bold"><i class="fas fa-lock text-xs"></i> Pay Now — ₹{{ number_format($pkg->price) }}</span>
+                            <span class="text-[9px] uppercase tracking-widest mt-0.5 opacity-60">Razorpay · UPI · Cards</span>
+                        </a>
                     </div>
                 @else
                     <!-- Regular Card -->
@@ -193,6 +208,11 @@
                             <span class="text-[15px]">शुरू करें</span>
                             <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
                         </button>
+                        <a href="{{ route('checkout', ['type' => 'package', 'slug' => $pkg->slug]) }}"
+                           class="w-full mt-2 bg-navy text-white hover:bg-navy/90 min-h-[44px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
+                            <span class="flex items-center gap-2 text-[14px] font-bold"><i class="fas fa-lock text-xs text-gold"></i> Pay Now — ₹{{ number_format($pkg->price) }}</span>
+                            <span class="text-[9px] uppercase tracking-widest mt-0.5 opacity-60">Razorpay · UPI · Cards</span>
+                        </a>
                     </div>
                 @endif
             @endforeach

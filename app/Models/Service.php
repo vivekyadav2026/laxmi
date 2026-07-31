@@ -14,8 +14,11 @@ class Service extends Model
         'name_en',
         'name_hi',
         'price',
+        'old_price',
         'time',
         'slug',
+        'badge_en',
+        'badge_hi',
     ];
 
     public function category()

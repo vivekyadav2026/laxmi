@@ -6,6 +6,13 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
+// ─── Payment / Checkout Routes ─────────────────────────────────────────────
+Route::get('/checkout/{type}/{slug}', [\App\Http\Controllers\PaymentController::class, 'checkout'])->name('checkout');
+Route::post('/payment/create-order', [\App\Http\Controllers\PaymentController::class, 'createOrder'])->name('payment.create-order');
+Route::post('/payment/verify', [\App\Http\Controllers\PaymentController::class, 'verify'])->name('payment.verify');
+Route::get('/payment/success/{orderNumber}', [\App\Http\Controllers\PaymentController::class, 'success'])->name('payment.success');
+Route::get('/payment/failed', [\App\Http\Controllers\PaymentController::class, 'failed'])->name('payment.failed');
+
 Route::get('/vakeel-search', function () {
     $lawyers = collect([
         (object)[
@@ -591,8 +598,11 @@ Route::prefix('admin')->group(function () {
         ]);
 
         Route::get('/settings', [\App\Http\Controllers\AdminSettingsController::class, 'index'])->name('admin.settings');
+        Route::put('/settings/general', [\App\Http\Controllers\AdminSettingsController::class, 'updateGeneral'])->name('admin.settings.general');
         Route::put('/settings/profile', [\App\Http\Controllers\AdminSettingsController::class, 'updateProfile'])->name('admin.profile.update');
         Route::put('/settings/password', [\App\Http\Controllers\AdminSettingsController::class, 'updatePassword'])->name('admin.password.update');
+        Route::put('/settings/gateways', [\App\Http\Controllers\AdminSettingsController::class, 'updateGateways'])->name('admin.settings.gateways');
+        Route::put('/settings/emails', [\App\Http\Controllers\AdminSettingsController::class, 'updateEmails'])->name('admin.settings.emails');
 
         // Admin Callback / Lead Routes
         Route::get('/callbacks', [\App\Http\Controllers\CallbackRequestController::class, 'index'])->name('admin.callbacks.index');
@@ -611,5 +621,8 @@ Route::prefix('admin')->group(function () {
 
         // Admin Blogs CRUD
         Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class)->names('admin.blogs');
+
+        // Admin Payments
+        Route::get('/payments', [\App\Http\Controllers\AdminPaymentController::class, 'index'])->name('admin.payments.index');
     });
 });

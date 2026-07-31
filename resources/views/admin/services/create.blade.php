@@ -43,14 +43,32 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label for="price" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Price - Optional</label>
-                    <input type="text" name="price" id="price" value="{{ old('price') }}" class="w-full bg-navy/40 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner" placeholder="e.g. ₹6,999">
+                    <label for="price" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Offer Price (Current Sale Price) - Optional</label>
+                    <input type="text" name="price" id="price" value="{{ old('price') }}" class="w-full bg-navy/40 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner" placeholder="e.g. ₹999">
                     @error('price') <p class="mt-2 text-xs text-red-400 font-medium"><i class="fas fa-exclamation-triangle"></i> {{ $message }}</p> @enderror
                 </div>
+                <div>
+                    <label for="old_price" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Original Price (Strikethrough Price) - Optional</label>
+                    <input type="text" name="old_price" id="old_price" value="{{ old('old_price') }}" class="w-full bg-navy/40 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner" placeholder="e.g. ₹1,999">
+                    @error('old_price') <p class="mt-2 text-xs text-red-400 font-medium"><i class="fas fa-exclamation-triangle"></i> {{ $message }}</p> @enderror
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                     <label for="time" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Delivery Time - Optional</label>
                     <input type="text" name="time" id="time" value="{{ old('time') }}" class="w-full bg-navy/40 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner" placeholder="e.g. 10-15 days">
                     @error('time') <p class="mt-2 text-xs text-red-400 font-medium"><i class="fas fa-exclamation-triangle"></i> {{ $message }}</p> @enderror
+                </div>
+                <div>
+                    <label for="badge_en" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Offer Badge (English) - Optional</label>
+                    <input type="text" name="badge_en" id="badge_en" value="{{ old('badge_en') }}" class="w-full bg-navy/40 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner" placeholder="e.g. 50% OFF">
+                    @error('badge_en') <p class="mt-2 text-xs text-red-400 font-medium"><i class="fas fa-exclamation-triangle"></i> {{ $message }}</p> @enderror
+                </div>
+                <div>
+                    <label for="badge_hi" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Offer Badge (Hindi) - Optional</label>
+                    <input type="text" name="badge_hi" id="badge_hi" value="{{ old('badge_hi') }}" class="w-full bg-navy/40 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner" placeholder="e.g. 50% छूट">
+                    @error('badge_hi') <p class="mt-2 text-xs text-red-400 font-medium"><i class="fas fa-exclamation-triangle"></i> {{ $message }}</p> @enderror
                 </div>
             </div>
 

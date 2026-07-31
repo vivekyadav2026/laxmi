@@ -72,9 +72,16 @@
                     <div class="w-12 h-12 rounded-2xl bg-[#0B1F3A] text-white flex items-center justify-center shadow-md">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                     </div>
-                    @if($service->time)
-                        <span class="bg-[#FAF6ED] border border-[#E2E0D8] text-[#0B1F3A] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">{{ $service->time }}</span>
-                    @endif
+                    <div class="flex flex-col items-end gap-1.5">
+                        @if($service->badge_hi)
+                            <span class="bg-red-500 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{{ $service->badge_hi }}</span>
+                        @elseif($service->badge_en)
+                            <span class="bg-red-500 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{{ $service->badge_en }}</span>
+                        @endif
+                        @if($service->time)
+                            <span class="bg-[#FAF6ED] border border-[#E2E0D8] text-[#0B1F3A] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">{{ $service->time }}</span>
+                        @endif
+                    </div>
                 </div>
                 
                 <h3 class="text-[18px] font-bold text-[#0B1F3A] font-serif mb-1 group-hover:text-[#D4A843] transition-colors relative z-10">{{ $service->name_en }}</h3>
@@ -87,7 +94,12 @@
                 <div class="mt-auto flex items-center justify-between pt-4 border-t border-gray-100/80 relative z-10">
                     <div class="flex flex-col">
                         <span class="text-[10px] uppercase text-gray-400 font-bold tracking-wider">Starting at</span>
-                        <span class="text-[18px] font-extrabold text-[#0B1F3A]">{{ $service->price ?: '₹999' }}</span>
+                        <div class="flex items-center gap-2">
+                            @if($service->old_price)
+                                <span class="text-[13px] text-gray-400 line-through font-medium">{{ $service->old_price }}</span>
+                            @endif
+                            <span class="text-[18px] font-extrabold text-[#0B1F3A]">{{ $service->price ?: '₹999' }}</span>
+                        </div>
                     </div>
                     <div class="w-9 h-9 rounded-full bg-[#D4A843] flex items-center justify-center text-[#0B1F3A] group-hover:scale-110 transition-transform shadow-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>

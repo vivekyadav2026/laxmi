@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Dashboard - Foundida')</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,6 +118,17 @@
             </a>
 
             @php
+                $pendingPaymentsCount = \App\Models\Payment::where('status', 'pending')->count();
+            @endphp
+            <a href="{{ route('admin.payments.index') }}" class="flex items-center gap-4 px-4 py-3.5 text-sm font-semibold rounded-xl transition-all duration-300 {{ request()->routeIs('admin.payments.*') ? 'bg-gold/15 text-gold border border-gold/30 shadow-[0_0_15px_rgba(212,168,67,0.15)]' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+                <div class="w-6 flex justify-center"><i class="fas fa-credit-card text-lg"></i></div>
+                Payments
+                @if($pendingPaymentsCount > 0)
+                    <span class="ml-auto bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $pendingPaymentsCount }}</span>
+                @endif
+            </a>
+
+            @php
                 $pendingCallbacksCount = \App\Models\CallbackRequest::where('status', 'pending')->count();
             @endphp
             <a href="/admin/callbacks" class="flex items-center gap-4 px-4 py-3.5 text-sm font-semibold rounded-xl transition-all duration-300 {{ request()->is('admin/callbacks') ? 'bg-gold/15 text-gold border border-gold/30 shadow-[0_0_15px_rgba(212,168,67,0.15)]' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
@@ -158,6 +173,7 @@
                 Settings
             </a>
         </nav>
+
 
         <!-- Sidebar Footer -->
         <div class="p-6 border-t border-white/10">

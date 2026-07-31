@@ -30,8 +30,11 @@ class AdminServiceController extends Controller
             'name_en' => 'required|string|max:255',
             'name_hi' => 'nullable|string|max:255',
             'price' => 'nullable|string|max:255',
+            'old_price' => 'nullable|string|max:255',
             'time' => 'nullable|string|max:255',
             'slug' => 'nullable|string|max:255|unique:services,slug',
+            'badge_en' => 'nullable|string|max:255',
+            'badge_hi' => 'nullable|string|max:255',
         ]);
 
         if (empty($validated['slug'])) {
@@ -61,8 +64,11 @@ class AdminServiceController extends Controller
             'name_en' => 'required|string|max:255',
             'name_hi' => 'nullable|string|max:255',
             'price' => 'nullable|string|max:255',
+            'old_price' => 'nullable|string|max:255',
             'time' => 'nullable|string|max:255',
             'slug' => 'required|string|max:255|unique:services,slug,' . $service->id,
+            'badge_en' => 'nullable|string|max:255',
+            'badge_hi' => 'nullable|string|max:255',
         ]);
 
         $service->update($validated);
