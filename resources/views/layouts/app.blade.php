@@ -66,10 +66,18 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    </noscript>
 
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 
     <!-- Scripts & Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -212,7 +220,7 @@
             
             <div class="flex flex-col justify-center flex-shrink-0">
                 <a href="/" class="flex items-center">
-                    <img src="/logo.png" alt="Foundida" class="h-[64px] md:h-[63px] object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'text-[26px] md:text-[30px] font-bold text-[#0B1F3A] tracking-tight leading-none whitespace-nowrap\'>Foundida<span class=\'text-[#D4A843]\'>.</span></span>'">
+                    <img src="/logo.png" alt="Foundida" width="160" height="64" loading="lazy" class="h-[64px] md:h-[63px] object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'text-[26px] md:text-[30px] font-bold text-[#0B1F3A] tracking-tight leading-none whitespace-nowrap\'>Foundida<span class=\'text-[#D4A843]\'>.</span></span>'">
                 </a>
             </div>
 
@@ -339,9 +347,9 @@
             <div x-show="mobileMenuOpen" class="fixed inset-y-0 left-0 w-[80%] max-w-sm bg-white p-6 shadow-xl overflow-y-auto">
                 <div class="flex justify-between items-center mb-6">
                     <a href="/" class="flex items-center">
-                        <img src="/logo.png" alt="Foundida" class="h-[48px] object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'text-[26px]\' font-bold text-[#0B1F3A] tracking-tight leading-none whitespace-nowrap\'>Foundida<span class=\'text-[#D4A843]\'>.</span></span>'">
+                        <img src="/logo.png" alt="Foundida" width="120" height="48" loading="lazy" class="h-[48px] object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'text-[26px]\' font-bold text-[#0B1F3A] tracking-tight leading-none whitespace-nowrap\'>Foundida<span class=\'text-[#D4A843]\'>.</span></span>'">
                     </a>
-                    <button @click="mobileMenuOpen = false" class="text-[#1A1A2E]">
+                    <button @click="mobileMenuOpen = false" aria-label="Close mobile menu" class="text-[#1A1A2E]">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
@@ -453,7 +461,7 @@
                 <!-- Col 1 (Brand) -->
                 <div class="md:col-span-1">
                     <div class="flex items-center">
-                        <img src="/logo.png" alt="Foundida" class="h-[56px] object-contain filter brightness-0 invert" onerror="this.onerror=null; this.outerHTML='<div class=\'text-[32px] font-bold text-white tracking-tight leading-none\'>Foundida.</div>'">
+                        <img src="/logo.png" alt="Foundida" width="140" height="56" loading="lazy" class="h-[56px] object-contain filter brightness-0 invert" onerror="this.onerror=null; this.outerHTML='<div class=\'text-[32px] font-bold text-white tracking-tight leading-none\'>Foundida.</div>'">
                     </div>
                     <div class="text-[#E2E0D8] text-[13px] mt-[12px] leading-relaxed">India's trusted Legal & Tech platform for Startups. From idea to launch, we've got you covered.</div>
                     

@@ -53,7 +53,7 @@
             <div class="px-6 sm:px-8 pb-8 relative">
                 <!-- Profile Photo -->
                 <div class="absolute -top-16 md:-top-20">
-                    <img src="{{ $lawyer->image }}" alt="{{ $lawyer->name }}" class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gold shadow-lg object-cover bg-white">
+                    <img src="{{ $lawyer->image }}" alt="{{ $lawyer->name }}" loading="lazy" class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gold shadow-lg object-cover bg-white">
                 </div>
                 
                 <div class="pt-20 md:pt-24 flex flex-col lg:flex-row justify-between lg:items-end gap-6">
