@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Login - Foundida')
+@section('title', 'Reset Password - Foundida')
 
 @section('content')
 <div class="min-h-screen flex flex-col md:flex-row bg-white">
     <!-- LEFT SIDE (Navy 40%) -->
-    <div class="w-full md:w-2/5 bg-navy text-white flex flex-col justify-between p-8 md:p-12 relative overflow-hidden">
+    <div class="w-full md:w-2/5 bg-navy text-white flex flex-col justify-between p-8 md:p-12 relative overflow-hidden hidden md:flex">
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
         
         <div class="relative z-10">
@@ -52,30 +52,15 @@
                 </div>
             </div>
         </div>
-
-        <!-- Testimonial -->
-        <div class="relative z-10 mt-16 bg-navy-800/80 p-5 rounded-2xl border border-navy-600">
-            <svg class="w-8 h-8 text-gold opacity-50 absolute -top-4 -left-2" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-            <div class="flex flex-col italic text-gray-300 relative z-10 space-y-2">
-                <span class="text-sm">"Excellent service! My company registration was done without any hassle."</span>
-            </div>
-            <div class="mt-4 flex items-center">
-                <div class="w-8 h-8 rounded-full bg-gray-500 mr-3"></div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-white text-xs">Amit Sharma</span>
-                    <span class="text-[9px] text-gold uppercase tracking-widest">Client</span>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- RIGHT SIDE (White 60%) -->
     <div class="w-full md:w-3/5 bg-white flex flex-col justify-center px-8 py-12 md:px-16 lg:px-24">
         <div class="max-w-md w-full mx-auto">
             
-            <div class="flex flex-col mb-10 text-center md:text-left">
-                <h1 class="text-3xl md:text-4xl font-bold text-navy font-serif mb-1">Welcome Back</h1>
-                <p class="text-sm text-gray-400">Sign in to your client account</p>
+            <div class="flex flex-col mb-8 text-center md:text-left">
+                <h1 class="text-3xl md:text-4xl font-bold text-navy font-serif mb-1">Reset Password</h1>
+                <p class="text-sm text-gray-400">Enter your email and new password</p>
             </div>
 
             @if ($errors->any())
@@ -88,18 +73,21 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('login') }}" class="space-y-6">
+            <form method="POST" action="{{ route('password.update') }}" class="space-y-5">
                 @csrf
                 
-                <div class="space-y-6">
+                <input type="hidden" name="token" value="{{ $token }}">
+
+                <div>
+                    <label class="block mb-1.5 text-navy font-semibold text-sm">Email Address</label>
+                    <input type="email" name="email" value="{{ $email ?? old('email') }}" required placeholder="e.g. user@email.com" class="w-full border-gray-300 rounded-xl shadow-sm focus:ring-navy focus:border-navy text-navy min-h-[48px] px-4 text-sm">
+                </div>
+
+                <div x-data="{ showPass: false, showConfirmPass: false }" class="space-y-5">
                     <div>
-                        <label class="block mb-1.5 text-navy font-semibold text-sm">Email Address</label>
-                        <input type="email" name="email" value="{{ old('email') }}" required placeholder="e.g. user@email.com" class="w-full border-gray-300 rounded-xl shadow-sm focus:ring-navy focus:border-navy text-navy min-h-[48px] px-4">
-                    </div>
-                    <div x-data="{ showPass: false }">
-                        <label class="block mb-1.5 text-navy font-semibold text-sm">Password</label>
+                        <label class="block mb-1.5 text-navy font-semibold text-sm">New Password</label>
                         <div class="relative">
-                            <input :type="showPass ? 'text' : 'password'" name="password" required placeholder="••••••••" class="w-full border-gray-300 rounded-xl shadow-sm focus:ring-navy focus:border-navy text-navy min-h-[48px] pl-4 pr-10">
+                            <input :type="showPass ? 'text' : 'password'" name="password" required placeholder="••••••••" class="w-full border-gray-300 rounded-xl shadow-sm focus:ring-navy focus:border-navy text-navy min-h-[48px] pl-4 pr-10 text-sm">
                             <button type="button" @click="showPass = !showPass" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-navy focus:outline-none">
                                 <template x-if="showPass">
                                     <i class="fas fa-eye-slash text-sm"></i>
@@ -110,40 +98,30 @@
                             </button>
                         </div>
                     </div>
-                    <div class="flex justify-end">
-                        <a href="{{ route('password.request') }}" class="text-sm font-semibold text-gold hover:text-gold-dark transition-colors">
-                            Forgot Password?
-                        </a>
+
+                    <div>
+                        <label class="block mb-1.5 text-navy font-semibold text-sm">Confirm Password</label>
+                        <div class="relative">
+                            <input :type="showConfirmPass ? 'text' : 'password'" name="password_confirmation" required placeholder="••••••••" class="w-full border-gray-300 rounded-xl shadow-sm focus:ring-navy focus:border-navy text-navy min-h-[48px] pl-4 pr-10 text-sm">
+                            <button type="button" @click="showConfirmPass = !showConfirmPass" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-navy focus:outline-none">
+                                <template x-if="showConfirmPass">
+                                    <i class="fas fa-eye-slash text-sm"></i>
+                                </template>
+                                <template x-if="!showConfirmPass">
+                                    <i class="fas fa-eye text-sm"></i>
+                                </template>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Buttons -->
-                <div class="space-y-4 pt-4">
+                <div class="pt-4">
                     <button type="submit" class="w-full bg-[#0B1F3A] hover:bg-[#152a4e] text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 shadow-md hover:-translate-y-0.5 flex items-center justify-center">
-                        <span class="text-base font-extrabold">Login</span>
+                        <span class="text-base font-extrabold">Reset Password</span>
                     </button>
-
-                    <div class="relative py-2">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-200"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-2 bg-white text-gray-400 font-bold uppercase tracking-widest text-[10px]">OR</span>
-                        </div>
-                    </div>
-
-                    <a href="{{ route('auth.google') }}" class="w-full border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 min-h-[48px] rounded-xl font-bold transition-all duration-300 shadow-sm flex items-center justify-center hover:-translate-y-0.5">
-                        <svg class="w-5 h-5 mr-3" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                        <span class="text-[14px]">Login with Google</span>
-                    </a>
                 </div>
             </form>
-
-            <div class="mt-10 text-center border-t border-gray-100 pt-8">
-                <a href="/register" class="group inline-flex flex-col items-center">
-                    <span class="text-navy font-bold group-hover:text-gold transition-colors text-sm">Don't have an account? Sign Up</span>
-                </a>
-            </div>
 
         </div>
     </div>

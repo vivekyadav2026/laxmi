@@ -9,7 +9,11 @@ class ServiceCategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'count'];
+    protected $fillable = ['name', 'slug', 'count', 'page_content'];
+
+    protected $casts = [
+        'page_content' => 'array',
+    ];
 
     public function services()
     {

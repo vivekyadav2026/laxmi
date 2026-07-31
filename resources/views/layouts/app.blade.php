@@ -3,8 +3,47 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Foundida.')</title>
+    <title>@yield('title', 'Foundida — Your Complete Business Setup in India')</title>
+    <meta name="description" content="@yield('meta_description', 'India\'s trusted Legal & Tech platform for Startups. Company registration, GST, Trademarks, and Custom Tech Solutions. Zero to launch in one place.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'Company Registration, GST Registration, Trademark Registration, Startup Services, Legal Services India, Business Setup, Foundida')">
+    <link rel="canonical" href="{{ url()->current() }}">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'Foundida — Your Complete Business Setup in India')">
+    <meta property="og:description" content="@yield('meta_description', 'India\'s trusted Legal & Tech platform for Startups. Company registration, GST, Trademarks, and Custom Tech Solutions. Zero to launch in one place.')">
+    <meta property="og:image" content="@yield('og_image', asset('logo.png'))">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="@yield('title', 'Foundida — Your Complete Business Setup in India')">
+    <meta name="twitter:description" content="@yield('meta_description', 'India\'s trusted Legal & Tech platform for Startups. Company registration, GST, Trademarks, and Custom Tech Solutions. Zero to launch in one place.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('logo.png'))">
+
+    <!-- JSON-LD Schema (Global + Page Specific) -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Foundida",
+      "url": "https://foundida.com",
+      "logo": "https://foundida.com/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-8750530252",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"]
+      },
+      "sameAs": [
+        "https://www.facebook.com/foundida",
+        "https://www.linkedin.com/company/foundida"
+      ]
+    }
+    </script>
+    @stack('schema')
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -172,9 +211,16 @@
                         Legal Services <span class="ml-1 text-[10px]">▼</span>
                     </span>
                     <div class="absolute top-[68px] left-[-200px] xl:left-0 w-[580px] bg-white border border-[#E2E0D8] shadow-xl rounded-b-[8px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[200] py-[12px] px-[16px] grid grid-cols-2 gap-x-4 gap-y-2">
-                        @php $legalCats = \App\Models\ServiceCategory::with('services')->where('slug', '!=', 'tech-services')->take(7)->get(); @endphp
-                        @if($legalCats->count() > 0)
-                            @foreach($legalCats as $cat)
+                        @php 
+                            $navLegalCats = \Illuminate\Support\Facades\Cache::remember('nav_legal_cats', 3600, function() {
+                                return \App\Models\ServiceCategory::with('services')->where('slug', '!=', 'tech-services')->get();
+                            });
+                            $navTechCat = \Illuminate\Support\Facades\Cache::remember('nav_tech_cat', 3600, function() {
+                                return \App\Models\ServiceCategory::with('services')->where('slug', 'tech-services')->first();
+                            });
+                        @endphp
+                        @if($navLegalCats->take(7)->count() > 0)
+                            @foreach($navLegalCats->take(7) as $cat)
                                 <div>
                                     <div class="text-[#D4A843] text-[11px] font-bold uppercase tracking-[0.1em] mb-[4px] border-b border-[#E2E0D8] pb-[2px]">{{ $cat->name }}</div>
                                     <div class="flex flex-col space-y-[4px]">
@@ -200,10 +246,9 @@
                         Tech Services <span class="ml-1 text-[10px]">▼</span>
                     </span>
                     <div class="absolute top-[68px] left-0 min-w-[250px] bg-white border border-[#E2E0D8] shadow-xl rounded-b-[8px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[200] py-[6px]">
-                        @php $techCat = \App\Models\ServiceCategory::with('services')->where('slug', 'tech-services')->first(); @endphp
-                        @if($techCat)
-                            @foreach($techCat->services as $svc)
-                            <a href="{{ route('service.generic', ['category_slug' => $techCat->slug, 'service_slug' => $svc->slug]) }}" class="block px-[14px] py-[6px] hover:bg-[#F8F7F3] border-b border-[#E2E0D8] last:border-0 group/link">
+                        @if($navTechCat)
+                            @foreach($navTechCat->services as $svc)
+                            <a href="{{ route('service.generic', ['category_slug' => $navTechCat->slug, 'service_slug' => $svc->slug]) }}" class="block px-[14px] py-[6px] hover:bg-[#F8F7F3] border-b border-[#E2E0D8] last:border-0 group/link">
                                 <div class="text-[13px] text-[#1A1A2E] group-hover/link:text-[#f57c00] font-medium transition-colors">{{ $svc->name_en }}</div>
                                 <div class="flex items-center justify-between mt-[4px]">
                                     <span class="text-[10px] text-[#5C6370]">{{ $svc->name_hi }}</span>
@@ -229,6 +274,24 @@
 
                 <!-- Desktop-only actions -->
                 <div class="hidden lg:flex items-center space-x-[8px] xl:space-x-[12px] 2xl:space-x-[16px]">
+                    @auth
+                        @if(Auth::user()->isAdmin())
+                            <a href="{{ route('admin.dashboard') }}" class="text-[#0B1F3A] text-[13px] font-bold hover:text-[#f57c00] transition-colors whitespace-nowrap">
+                                <i class="fas fa-tachometer-alt mr-1 text-[#f57c00]"></i> Admin Panel
+                            </a>
+                        @else
+                            <a href="{{ route('dashboard.user') }}" class="text-[#0B1F3A] text-[13px] font-bold hover:text-[#f57c00] transition-colors whitespace-nowrap">
+                                <i class="fas fa-user-circle mr-1 text-[#f57c00]"></i> My Account
+                            </a>
+                        @endif
+                        <div class="h-[20px] w-[1px] bg-[#E2E0D8]"></div>
+                    @else
+                        <a href="/login" class="text-[#0B1F3A] text-[13px] font-bold hover:text-[#f57c00] transition-colors whitespace-nowrap flex items-center">
+                            <i class="fas fa-sign-in-alt mr-1 text-[#f57c00]"></i> Login
+                        </a>
+                        <div class="h-[20px] w-[1px] bg-[#E2E0D8]"></div>
+                    @endauth
+
                     <a href="tel:+918750530252" class="hidden 2xl:flex text-[#0B1F3A] text-[14px] font-bold items-center whitespace-nowrap hover:text-[#f57c00] transition-colors">
                         <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
                         +91 87505 30252
@@ -277,9 +340,8 @@
                             <svg class="w-3 h-3 transition-transform duration-200" :class="mobileLegalOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div x-show="mobileLegalOpen" class="mobile-submenu pl-3 mt-1.5 space-y-1 border-l border-[#E2E0D8]" style="display: none;">
-                            @php $mobLegalCats = \App\Models\ServiceCategory::with('services')->where('slug', '!=', 'tech-services')->take(8)->get(); @endphp
-                            @if($mobLegalCats->count() > 0)
-                                @foreach($mobLegalCats as $cat)
+                            @if($navLegalCats->take(8)->count() > 0)
+                                @foreach($navLegalCats->take(8) as $cat)
                                     <div class="py-0.5">
                                         <!-- Category Sub-header (Click to Expand services) -->
                                         <button @click="openSub = (openSub === '{{ $cat->slug }}' ? null : '{{ $cat->slug }}')" class="w-full flex items-center justify-between text-[12px] font-semibold uppercase tracking-wider text-gray-700 hover:text-gold py-0.5 focus:outline-none">
@@ -310,10 +372,9 @@
                             <svg class="w-3 h-3 transition-transform duration-200" :class="mobileTechOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div x-show="mobileTechOpen" class="mobile-submenu pl-3 mt-1.5 space-y-1.5 border-l border-[#E2E0D8]" style="display: none;">
-                            @php $techCat = \App\Models\ServiceCategory::with('services')->where('slug', 'tech-services')->first(); @endphp
-                            @if($techCat)
-                                @foreach($techCat->services as $svc)
-                                    <a href="{{ route('service.generic', ['category_slug' => $techCat->slug, 'service_slug' => $svc->slug]) }}" @click="mobileMenuOpen = false" class="block py-0.5 text-[13px] text-[#5C6370] hover:text-[#f57c00]">
+                            @if($navTechCat)
+                                @foreach($navTechCat->services as $svc)
+                                    <a href="{{ route('service.generic', ['category_slug' => $navTechCat->slug, 'service_slug' => $svc->slug]) }}" @click="mobileMenuOpen = false" class="block py-0.5 text-[13px] text-[#5C6370] hover:text-[#f57c00]">
                                         <div class="font-medium text-[#1A1A2E]">{{ $svc->name_en }}</div>
                                         <div class="text-[11px] text-[#5C6370]">{{ $svc->name_hi }} • <span class="text-[#2D7A4F] font-bold">{{ $svc->price }}</span></div>
                                     </a>
@@ -325,6 +386,30 @@
                     <a href="/packages" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Packages</a>
                     <a href="/blog" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Blog</a>
                     <a href="/contact" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Contact</a>
+                    
+                    <hr class="border-[#E2E0D8] my-2">
+                    @auth
+                        @if(Auth::user()->isAdmin())
+                            <a href="{{ route('admin.dashboard') }}" @click="mobileMenuOpen = false" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00] flex items-center">
+                                <i class="fas fa-tachometer-alt mr-2 text-gold"></i> Admin Panel
+                            </a>
+                        @else
+                            <a href="{{ route('dashboard.user') }}" @click="mobileMenuOpen = false" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00] flex items-center">
+                                <i class="fas fa-user-circle mr-2 text-gold"></i> My Account
+                            </a>
+                        @endif
+                        <form method="POST" action="{{ route('logout') }}" @submit="mobileMenuOpen = false" class="block w-full">
+                            @csrf
+                            <button type="submit" class="text-[14px] text-red-500 font-medium hover:text-red-700 flex items-center w-full text-left focus:outline-none">
+                                <i class="fas fa-sign-out-alt mr-2 text-red-500"></i> Logout
+                            </button>
+                        </form>
+                    @else
+                        <a href="/login" @click="mobileMenuOpen = false" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00] flex items-center">
+                            <i class="fas fa-sign-in-alt mr-2 text-gold"></i> Login / Register
+                        </a>
+                    @endauth
+
                     <hr class="border-[#E2E0D8] my-2">
                     <a href="tel:+918750530252" class="text-[#0B1F3A] text-[14px] font-semibold mb-2 flex items-center hover:text-[#f57c00] transition-colors">
                         <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
@@ -388,9 +473,9 @@
                     <div class="text-[#f57c00] text-[12px] font-bold uppercase tracking-[0.15em] mb-[16px]">LEGAL SERVICES</div>
                     <div class="flex flex-col space-y-[12px]">
                         <a href="/services/business-registration" class="text-[#E2E0D8] text-[13px] hover:text-[#f57c00] transition-colors">Company Registration</a>
-                        <a href="/services/trademark" class="text-[#E2E0D8] text-[13px] hover:text-[#f57c00] transition-colors">Trademark & IP</a>
-                        <a href="/services/gst" class="text-[#E2E0D8] text-[13px] hover:text-[#f57c00] transition-colors">GST & Taxes</a>
-                        <a href="/services/licenses-registrations" class="text-[#E2E0D8] text-[13px] hover:text-[#f57c00] transition-colors">Licenses (FSSAI, ISO)</a>
+                        <a href="/services/trademark-ip" class="text-[#E2E0D8] text-[13px] hover:text-[#f57c00] transition-colors">Trademark & IP</a>
+                        <a href="/services/gst-services" class="text-[#E2E0D8] text-[13px] hover:text-[#f57c00] transition-colors">GST & Taxes</a>
+                        <a href="/services/licenses-registrations" class="text-[#E2E0D8] text-[13px] hover:text-[#f57c00] transition-colors">Licenses & Registrations</a>
                         <a href="/services/tax-compliance" class="text-[#E2E0D8] text-[13px] hover:text-[#f57c00] transition-colors">Annual Compliance</a>
                     </div>
                 </div>
@@ -414,9 +499,18 @@
                     <a href="mailto:hello@foundida.com" class="block text-[#E2E0D8] text-[13px] mt-[4px] hover:text-[#f5a623] transition-colors">hello@foundida.com</a>
                     
                     <div class="mt-[32px] space-y-[12px]">
+                        <!-- Local SEO: NAP (Name, Address, Phone) -->
+                        <div class="mb-4">
+                            <h4 class="text-[12px] font-bold text-[#D4A843] mb-1">Foundida Headquarters</h4>
+                            <address class="text-[12px] text-white/80 not-italic leading-relaxed">
+                                123 Tech Park, Sector 62,<br>
+                                Noida, Uttar Pradesh 201309, India<br>
+                                Phone: +91 87505 30252
+                            </address>
+                        </div>
                         <div class="flex items-center text-white/80 bg-white/10 px-3 py-2 rounded">
                             <svg class="w-5 h-5 mr-3 text-[#f57c00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            <div class="text-[12px] font-medium leading-tight">ISO 9001:2015<br><span class="text-[10px] text-white/60">Certified Company</span></div>
+                            <div class="text-[12px] font-medium leading-tight">Startup India<br><span class="text-[10px] text-white/60">Recognized Platform</span></div>
                         </div>
                         <div class="flex items-center text-white/80 bg-white/10 px-3 py-2 rounded">
                             <svg class="w-5 h-5 mr-3 text-[#f57c00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
@@ -462,7 +556,7 @@
             </a>
 
             <!-- Legal -->
-            <a href="/services/gst" id="bnav-legal" class="bottom-nav-link flex flex-col items-center justify-center gap-[3px] text-gray-400 hover:text-[#D4A843] transition-colors">
+            <a href="/services/gst-services" id="bnav-legal" class="bottom-nav-link flex flex-col items-center justify-center gap-[3px] text-gray-400 hover:text-[#D4A843] transition-colors">
                 <div class="bottom-nav-icon w-[34px] h-[34px] rounded-xl flex items-center justify-center transition-all">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
@@ -561,3 +655,4 @@
     @stack('scripts')
 </body>
 </html>
+

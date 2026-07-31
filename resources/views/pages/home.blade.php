@@ -1,5 +1,37 @@
 @extends('layouts.app')
-@section('title', 'Your Complete Business Setup — Foundida.')
+@section('title', 'Company Registration & Legal Services in India | Foundida')
+@section('meta_description', 'Foundida offers top-rated Company Registration, GST filing, Trademark registration, and Custom Tech Solutions in India. From idea to launch, get your complete business setup online.')
+@section('meta_keywords', 'Company Registration in India, GST Registration, Trademark Filing, Startup Services, Legal Setup, Tech Solutions, Foundida')
+
+@push('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Foundida",
+  "url": "{{ url('/') }}",
+  "logo": "{{ asset('logo.png') }}",
+  "description": "India's trusted Legal & Tech platform for Startups. Company registration, GST, Trademarks, and Custom Tech Solutions.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Tech Park, Sector 62",
+    "addressLocality": "Noida",
+    "addressRegion": "UP",
+    "postalCode": "201309",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-8750530252",
+    "contactType": "customer service"
+  },
+  "sameAs": [
+    "https://www.facebook.com/foundida",
+    "https://www.linkedin.com/company/foundida"
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 
@@ -44,15 +76,15 @@
                 </span>
             </div>
 
-            <!-- Main Headline (Hindi) -->
+            <!-- Main Headline (Hindi/English optimized) -->
             <h1 class="text-[30px] sm:text-[36px] md:text-[52px] font-bold text-white leading-[1.15] mb-4 font-serif">
-                आपका पूरा बिज़नेस सेटअप — <span class="text-[#D4A843]">एक जगह</span>
+                Online <span class="text-[#D4A843]">Company Registration</span> & Business Setup in India
             </h1>
 
             <!-- Sub Headline (English) -->
-            <p class="text-[14px] md:text-[16px] text-gray-300 mb-6 font-medium leading-relaxed max-w-[500px]">
-                Legal setup + Tech setup — zero to launch in one place.
-            </p>
+            <h2 class="text-[14px] md:text-[16px] text-gray-300 mb-6 font-medium leading-relaxed max-w-[500px]">
+                Complete Legal Services, GST, Trademark, and Tech setup — zero to launch in one place. Trusted by 5,000+ Startups.
+            </h2>
 
             <!-- CTA Buttons - Side by Side on Mobile -->
             <div class="flex flex-row gap-3 items-center">
@@ -94,12 +126,11 @@
                 <!-- Divider -->
                 <div class="h-6 w-px bg-[#D4A843]/20 flex-shrink-0"></div>
 
-                <!-- Badge 3 -->
                 <div class="flex items-center gap-2.5 flex-shrink-0">
                     <div class="w-8 h-8 rounded-full bg-[#D4A843]/10 flex items-center justify-center text-[#D4A843] text-xs">🛡️</div>
                     <div class="flex flex-col">
-                        <span class="text-white font-extrabold text-xs leading-none">ISO</span>
-                        <span class="text-gray-400 text-[8px] uppercase tracking-wider font-semibold mt-0.5">Certified</span>
+                        <span class="text-white font-extrabold text-xs leading-none">100%</span>
+                        <span class="text-gray-400 text-[8px] uppercase tracking-wider font-semibold mt-0.5">Secure</span>
                     </div>
                 </div>
 
@@ -475,9 +506,9 @@
 
         <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[12px] md:gap-[24px] mobile-2col">
             @foreach($legalCards as $card)
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-[24px] md:p-[28px] hover:shadow-xl hover:-translate-y-1 hover:border-gold/40 transition-all flex flex-col group relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-24 h-24 bg-[#F4F6F9] rounded-bl-full pointer-events-none z-0"></div>
-                <div class="flex items-center justify-between mb-[20px] relative z-10">
+            <div onclick="window.location.href='{{ $card['link'] }}'" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-[24px] md:p-[28px] hover:shadow-xl hover:-translate-y-1 hover:border-gold/40 transition-all flex flex-col group relative overflow-hidden cursor-pointer">
+                <div class="card-arc absolute top-0 right-0 w-24 h-24 bg-[#F4F6F9] rounded-bl-full pointer-events-none z-0"></div>
+                <div class="card-icon-row flex items-center justify-between mb-[20px] relative z-10">
                     <div class="card-icon w-[52px] h-[52px] bg-[#0B1F3A] rounded-2xl flex items-center justify-center text-white shadow-sm flex-shrink-0">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
                     </div>
@@ -491,16 +522,16 @@
                 <div class="flex items-center justify-between border-t border-gray-100/80 pt-[16px] relative z-10">
                     <div class="flex flex-col">
                         <span class="card-price-label text-[10px] text-gray-400 font-bold uppercase">From</span>
-                        <div class="flex items-center gap-1.5">
+                        <div class="flex items-center gap-1 flex-wrap">
                             @if(!empty($card['old_price']))
-                                <span class="text-[12px] text-gray-400 line-through font-medium">{{ $card['old_price'] }}</span>
+                                <span class="text-[11px] text-gray-400 line-through font-medium">{{ $card['old_price'] }}</span>
                             @endif
                             <span class="card-price text-[18px] font-extrabold text-[#0B1F3A]">{{ $card['price'] }}</span>
                         </div>
                     </div>
-                    <a href="{{ $card['link'] }}" class="card-arrow w-9 h-9 rounded-full bg-[#D4A843] flex items-center justify-center text-[#0B1F3A] shadow-sm hover:scale-105 hover:bg-[#E8B96A] transition-all">
+                    <span class="card-arrow w-9 h-9 rounded-full bg-[#D4A843] flex items-center justify-center text-[#0B1F3A] shadow-sm hover:scale-105 hover:bg-[#E8B96A] transition-all">
                         <svg class="w-4 h-4 text-[#0B1F3A]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
+                    </span>
                 </div>
             </div>
             @endforeach
@@ -564,9 +595,9 @@
 
         <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[12px] md:gap-[24px] mobile-2col">
             @foreach($techCards as $card)
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-[24px] md:p-[28px] hover:shadow-xl hover:-translate-y-1 hover:border-gold/40 transition-all flex flex-col group relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-24 h-24 bg-[#F4F6F9] rounded-bl-full pointer-events-none z-0"></div>
-                <div class="flex items-center justify-between mb-[20px] relative z-10">
+            <div onclick="window.location.href='{{ $card['link'] }}'" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-[24px] md:p-[28px] hover:shadow-xl hover:-translate-y-1 hover:border-gold/40 transition-all flex flex-col group relative overflow-hidden cursor-pointer">
+                <div class="card-arc absolute top-0 right-0 w-24 h-24 bg-[#F4F6F9] rounded-bl-full pointer-events-none z-0"></div>
+                <div class="card-icon-row flex items-center justify-between mb-[20px] relative z-10">
                     <div class="card-icon w-[52px] h-[52px] bg-[#0B1F3A] rounded-2xl flex items-center justify-center text-white shadow-sm flex-shrink-0">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
                     </div>
@@ -580,16 +611,16 @@
                 <div class="flex items-center justify-between border-t border-gray-100/80 pt-[16px] relative z-10">
                     <div class="flex flex-col">
                         <span class="card-price-label text-[10px] text-gray-400 font-bold uppercase">From</span>
-                        <div class="flex items-center gap-1.5">
+                        <div class="flex items-center gap-1 flex-wrap">
                             @if(!empty($card['old_price']))
-                                <span class="text-[12px] text-gray-400 line-through font-medium">{{ $card['old_price'] }}</span>
+                                <span class="text-[11px] text-gray-400 line-through font-medium">{{ $card['old_price'] }}</span>
                             @endif
                             <span class="card-price text-[18px] font-extrabold text-[#0B1F3A]">{{ $card['price'] }}</span>
                         </div>
                     </div>
-                    <a href="{{ $card['link'] }}" class="card-arrow w-9 h-9 rounded-full bg-[#D4A843] flex items-center justify-center text-[#0B1F3A] shadow-sm hover:scale-105 hover:bg-[#E8B96A] transition-all">
+                    <span class="card-arrow w-9 h-9 rounded-full bg-[#D4A843] flex items-center justify-center text-[#0B1F3A] shadow-sm hover:scale-105 hover:bg-[#E8B96A] transition-all">
                         <svg class="w-4 h-4 text-[#0B1F3A]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
+                    </span>
                 </div>
             </div>
             @endforeach
@@ -1277,3 +1308,4 @@ const testiGoToFn = makeDragSlider('testi-track', 'testi-dots', 'testi-dot', 400
 function testiGoTo(i) { if(testiGoToFn) testiGoToFn(i); }
 </script>
 @endpush
+

@@ -26,6 +26,7 @@ class ServiceSeeder extends Seeder
                 'name' => $catData['name'],
                 'slug' => $catData['slug'],
                 'count' => $catData['count'],
+                'page_content' => $catData['page_content'] ?? null,
             ]);
 
             foreach ($catData['services'] as $serviceData) {
@@ -34,8 +35,14 @@ class ServiceSeeder extends Seeder
                     'name_en' => $serviceData['name_en'],
                     'name_hi' => $serviceData['name_hi'] ?? null,
                     'price' => $serviceData['price'] ?? null,
+                    'old_price' => $serviceData['old_price'] ?? null,
                     'time' => $serviceData['time'] ?? null,
                     'slug' => $serviceData['slug'],
+                    'icon' => $serviceData['icon'] ?? null,
+                    'best_for_en' => $serviceData['best_for_en'] ?? null,
+                    'best_for_hi' => $serviceData['best_for_hi'] ?? null,
+                    'badge_en' => $serviceData['badge_en'] ?? null,
+                    'badge_hi' => $serviceData['badge_hi'] ?? null,
                 ]);
             }
         }

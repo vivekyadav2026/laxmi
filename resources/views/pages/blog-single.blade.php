@@ -1,5 +1,31 @@
 @extends('layouts.app')
-@section('title', $post['title_hi'] . ' | Foundida Blog')
+@section('title', $post['title_en'] . ' | Foundida Blog')
+@section('meta_description', strip_tags(substr($post['conclusion'] ?? 'Read the latest legal insights on Foundida Blog.', 0, 160)))
+@section('meta_keywords', implode(', ', $post['tags']))
+
+@push('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ strip_tags($post['title_en']) }}",
+  "image": "{{ asset('logo.png') }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $post['author'] }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Foundida",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ asset('logo.png') }}"
+    }
+  },
+  "datePublished": "{{ date('Y-m-d', strtotime(str_replace(['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितंबर','अक्टूबर','नवंबर','दिसंबर'], ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], $post['date']))) }}"
+}
+</script>
+@endpush
 
 @section('content')
 
@@ -163,3 +189,4 @@
 </div>
 
 @endsection
+

@@ -19,6 +19,9 @@ class Service extends Model
         'slug',
         'badge_en',
         'badge_hi',
+        'icon',
+        'best_for_en',
+        'best_for_hi',
     ];
 
     public function category()

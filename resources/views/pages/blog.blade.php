@@ -1,5 +1,27 @@
 @extends('layouts.app')
-@section('title', 'Legal & Tech Tips Blog | Foundida')
+@section('title', 'Legal & Tech Tips Blog | Startup Setup in India - Foundida')
+@section('meta_description', 'Read the latest legal and tech tips for Indian startups. Simplified guides on company registration, GST, trademarks, and business compliance.')
+@section('meta_keywords', 'Startup Blog India, Company Registration Guide, GST Tips, Trademark Registration Blog, Legal Advice for Startups')
+
+@push('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Foundida Legal & Tech Blog",
+  "url": "{{ url('/blog') }}",
+  "description": "Simple articles in Hindi & English on company law, GST, trademarks, and digital business.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Foundida",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ asset('logo.png') }}"
+    }
+  }
+}
+</script>
+@endpush
 
 @section('content')
 
@@ -196,3 +218,4 @@ function filterBlog(category) {
 </script>
 
 @endsection
+

@@ -1,6 +1,34 @@
 @extends('layouts.app')
 
-@section('title', 'हमारे बारे में | About Us - Foundida')
+@section('title', 'About Us — Foundida | India\'s Most Trusted Legal Platform')
+@section('meta_description', 'Learn about Foundida, India\'s most trusted legal platform for startups and SMEs. Discover our journey, experienced leadership team, and our mission to simplify legal setup.')
+@section('meta_keywords', 'About Foundida, Legal Services India, Online CA, Startup Setup India, Trusted Legal Platform')
+
+@push('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "AboutPage",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Foundida",
+    "url": "{{ url('/about') }}",
+    "foundingDate": "2020",
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "Rajesh Kumar"
+      }
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-8750530252",
+      "contactType": "customer service"
+    }
+  }
+}
+</script>
+@endpush
 
 @section('content')
 <!-- BREADCRUMB -->
@@ -38,9 +66,9 @@
         <h1 class="font-serif text-[36px] md:text-[56px] font-bold text-white leading-tight">
             <span class="text-[#f5a623]">भारत</span> का सबसे भरोसेमंद लीगल प्लेटफॉर्म
         </h1>
-        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed mt-4 max-w-[600px] mx-auto">
-            India's Most Trusted Legal Platform
-        </p>
+        <h2 class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed mt-4 max-w-[600px] mx-auto">
+            India's Most Trusted Legal Platform for Startups and Businesses
+        </h2>
     </div>
 </x-inner-hero>
 
@@ -225,3 +253,4 @@
     </div>
 </div>
 @endsection
+

@@ -162,102 +162,14 @@ Route::get('/pricing', function () {
     return view('pages.pricing', compact('packages', 'comparisons', 'faqs'));
 });
 
-Route::get('/services/gst', function () {
-    $services = [
-        ['name_hi' => 'जीएसटी पंजीकरण', 'name_en' => 'GST Registration', 'price' => '999', 'period' => '', 'included_hi' => '3 दिन में पूरा, मुफ्त परामर्श, दस्तावेज़ सत्यापन', 'included_en' => 'Done in 3 days, Free Consultation, Document Verification'],
-        ['name_hi' => 'जीएसटी रिटर्न फाइलिंग', 'name_en' => 'GST Return Filing', 'price' => '499', 'period' => '/ month', 'included_hi' => 'मासिक फाइलिंग, त्रुटि मुक्त, लेट फीस से बचाव', 'included_en' => 'Monthly filing, Error-free, Avoid late fees'],
-        ['name_hi' => 'जीएसटी नोटिस उत्तर', 'name_en' => 'GST Notice Reply', 'price' => '499', 'period' => '', 'included_hi' => 'विशेषज्ञ विश्लेषण, सटीक उत्तर, 24 घंटे में ड्राफ्ट', 'included_en' => 'Expert Analysis, Precise Reply, Draft in 24hr'],
-        ['name_hi' => 'जीएसटी वार्षिक रिटर्न', 'name_en' => 'GST Annual Return', 'price' => '1,499', 'period' => '', 'included_hi' => 'पूर्ण ऑडिट, GSTR-9 फाइलिंग, सीए द्वारा समीक्षा', 'included_en' => 'Full Audit, GSTR-9 Filing, CA Reviewed'],
-        ['name_hi' => 'जीएसटी रद्दीकरण', 'name_en' => 'GST Cancellation', 'price' => '799', 'period' => '', 'included_hi' => 'नियमों का अनुपालन, कोई लंबित देय नहीं, तेज़ प्रक्रिया', 'included_en' => 'Regulatory Compliance, No pending dues, Fast process'],
-        ['name_hi' => 'जीएसटी रिफंड क्लेम', 'name_en' => 'GST Refund Claim', 'price' => '1,499', 'period' => '', 'included_hi' => 'अधिकतम रिफंड, 100% अनुपालन, दस्तावेज़ अपलोड', 'included_en' => 'Maximum Refund, 100% Compliance, Document Upload'],
-    ];
-
-    $faqs = [
-        [
-            'q_hi' => 'जीएसटी नोटिस क्या होता है?', 
-            'q_en' => 'What is a GST notice?', 
-            'a_hi' => 'जीएसटी नोटिस कर विभाग द्वारा भेजा गया एक संचार है, जब उन्हें आपके रिटर्न, भुगतानों या डेटा में कोई विसंगति मिलती है। इसका समय पर उत्तर देना अनिवार्य है।',
-            'a_en' => 'A GST notice is a communication sent by the tax department when they find discrepancies in your returns, payments, or data. It is mandatory to reply on time.'
-        ],
-        [
-            'q_hi' => 'नोटिस का रिप्लाई कब तक देना होता है?', 
-            'q_en' => 'By when do I need to reply to the notice?', 
-            'a_hi' => 'आमतौर पर, जीएसटी नोटिस का जवाब देने के लिए 15 से 30 दिन का समय दिया जाता है (नोटिस के प्रकार पर निर्भर करता है)। देरी होने पर जुर्माना लग सकता है।',
-            'a_en' => 'Usually, you get 15 to 30 days to reply to a GST notice (depending on the type of notice). Delay can lead to penalties.'
-        ],
-        [
-            'q_hi' => 'क्या मैं खुद रिप्लाई कर सकता हूँ?', 
-            'q_en' => 'Can I reply to it myself?', 
-            'a_hi' => 'हाँ, आप खुद कर सकते हैं, लेकिन जीएसटी कानून जटिल हैं। गलत उत्तर से आपको भारी जुर्माना लग सकता है, इसलिए कर विशेषज्ञ (Tax Expert) से जवाब ड्राफ्ट करवाना सुरक्षित है।',
-            'a_en' => 'Yes, you can, but GST laws are complex. An incorrect reply can attract heavy penalties, so it is safer to get it drafted by a Tax Expert.'
-        ],
-    ];
-
-    return view('pages.services.gst', compact('services', 'faqs'));
-});
-
-Route::get('/services/business-registration', function () {
-    $types = [
-        ['icon' => 'office-building', 'name_hi' => 'प्राइवेट लिमिटेड कंपनी', 'name_en' => 'Private Limited Company', 'price' => '6,999', 'best_for_hi' => 'स्टार्टअप्स और निवेशकों को आकर्षित करने के लिए', 'best_for_en' => 'Startups seeking funding & trust', 'slug' => 'private-limited-company'],
-        ['icon' => 'user', 'name_hi' => 'वन पर्सन कंपनी', 'name_en' => 'One Person Company (OPC)', 'price' => '4,999', 'best_for_hi' => 'अकेले संस्थापकों के लिए प्राइवेट लिमिटेड के लाभ', 'best_for_en' => 'Solo founders wanting corporate status', 'slug' => 'one-person-company'],
-        ['icon' => 'users', 'name_hi' => 'सीमित देयता भागीदारी', 'name_en' => 'LLP', 'price' => '3,999', 'best_for_hi' => 'कम अनुपालन के साथ पेशेवर और साझेदार', 'best_for_en' => 'Professionals wanting low compliance', 'slug' => 'llp-registration'],
-        ['icon' => 'user-circle', 'name_hi' => 'एकल स्वामित्व', 'name_en' => 'Sole Proprietorship', 'price' => '1,499', 'best_for_hi' => 'छोटे व्यवसायों और फ्रीलांसरों के लिए', 'best_for_en' => 'Small local businesses & freelancers', 'slug' => 'sole-proprietorship'],
-        ['icon' => 'heart', 'name_hi' => 'धारा 8 (एनजीओ)', 'name_en' => 'Section 8 (NGO)', 'price' => '7,999', 'best_for_hi' => 'गैर-लाभकारी सामाजिक कार्यों के लिए', 'best_for_en' => 'Non-profit social work', 'slug' => 'section-8-company'],
-        ['icon' => 'user-group', 'name_hi' => 'साझेदारी फर्म', 'name_en' => 'Partnership Firm', 'price' => '2,499', 'best_for_hi' => 'मित्रों या परिवार के साथ व्यापार करने के लिए', 'best_for_en' => 'Simple business with friends/family', 'slug' => 'partnership-firm'],
-    ];
-
-    $comparisons = [
-        ['type_hi' => 'प्राइवेट लिमिटेड', 'type_en' => 'Pvt Ltd', 'members' => '2', 'liability' => 'Limited', 'liability_color' => 'green', 'tax' => '30% (Standard)', 'tax_color' => 'neutral', 'best_for_hi' => 'स्टार्टअप्स', 'best_for_en' => 'Startups', 'cost' => '₹6,999', 'cost_color' => 'red'],
-        ['type_hi' => 'एलएलपी', 'type_en' => 'LLP', 'members' => '2', 'liability' => 'Limited', 'liability_color' => 'green', 'tax' => '30%', 'tax_color' => 'neutral', 'best_for_hi' => 'पेशेवर', 'best_for_en' => 'Professionals', 'cost' => '₹3,999', 'cost_color' => 'neutral'],
-        ['type_hi' => 'एकल स्वामित्व', 'type_en' => 'Proprietorship', 'members' => '1', 'liability' => 'Unlimited', 'liability_color' => 'red', 'tax' => 'Slab Rate', 'tax_color' => 'green', 'best_for_hi' => 'छोटे व्यवसाय', 'best_for_en' => 'Small Business', 'cost' => '₹1,499', 'cost_color' => 'green'],
-    ];
-
-    return view('pages.services.business-registration', compact('types', 'comparisons'));
-});
-
-Route::get('/services/trademark', function () {
-    $packages = [
-        ['name_hi' => 'ट्रेडमार्क खोज', 'name_en' => 'Trademark Search', 'price' => 'मुफ़्त', 'price_text_en' => 'FREE', 'features_hi' => ['नाम की उपलब्धता की जाँच', 'क्लास चयन में मदद', 'त्वरित रिपोर्ट'], 'features_en' => ['Name Availability Check', 'Class Selection Help', 'Instant Report']],
-        ['name_hi' => 'ट्रेडमार्क फाइलिंग', 'name_en' => 'Trademark Filing', 'price' => '₹2,999', 'price_text' => '(1 वर्ग)', 'price_text_en' => '(1 Class)', 'features_hi' => ['दस्तावेज़ की तैयारी', 'टीएम-ए फाइलिंग', 'आवेदन की ट्रैकिंग'], 'features_en' => ['Document Preparation', 'TM-A Filing', 'Application Tracking'], 'highlight' => true],
-        ['name_hi' => 'फाइलिंग + रक्षा', 'name_en' => 'Filing + Opposition Defense', 'price' => '₹5,999', 'price_text' => '(संपूर्ण सुरक्षा)', 'price_text_en' => '(Complete Security)', 'features_hi' => ['आपत्ति का जवाब', 'सुनवाई में प्रतिनिधित्व', 'असीमित परामर्श'], 'features_en' => ['Reply to Objections', 'Hearing Representation', 'Unlimited Consultation']],
-    ];
-
-    $classes = [
-        ['id' => 35, 'title_hi' => 'क्लास 35 (व्यापार)', 'title_en' => 'Class 35 (Business)', 'desc_hi' => 'विज्ञापन, व्यवसाय प्रबंधन, कार्यालय कार्य, ई-कॉमर्स', 'desc_en' => 'Advertising, business management, office functions, e-commerce', 'popular' => true],
-        ['id' => 42, 'title_hi' => 'क्लास 42 (तकनीक)', 'title_en' => 'Class 42 (Tech)', 'desc_hi' => 'सॉफ्टवेयर सेवाएं, वैज्ञानिक और तकनीकी सेवाएं', 'desc_en' => 'Software services, scientific and technological services', 'popular' => true],
-        ['id' => 25, 'title_hi' => 'क्लास 25 (कपड़े)', 'title_en' => 'Class 25 (Clothing)', 'desc_hi' => 'कपड़े, जूते, सिर के परिधान', 'desc_en' => 'Clothing, footwear, headgear', 'popular' => true],
-        ['id' => 43, 'title_hi' => 'क्लास 43 (रेस्तरां)', 'title_en' => 'Class 43 (Restaurant)', 'desc_hi' => 'भोजन और पेय प्रदान करने के लिए सेवाएं', 'desc_en' => 'Services for providing food and drink', 'popular' => true],
-        ['id' => 5, 'title_hi' => 'क्लास 5 (फार्मा)', 'title_en' => 'Class 5 (Pharma)', 'desc_hi' => 'दवाएं, आहार संबंधी पूरक', 'desc_en' => 'Pharmaceuticals, dietary supplements', 'popular' => false],
-        ['id' => 9, 'title_hi' => 'क्लास 9 (इलेक्ट्रॉनिक्स)', 'title_en' => 'Class 9 (Electronics)', 'desc_hi' => 'कंप्यूटर हार्डवेयर, मोबाइल ऐप्स', 'desc_en' => 'Computer hardware, mobile apps', 'popular' => false],
-    ];
-
-    $timeline = [
-        ['step_hi' => 'आवेदन फाइलिंग', 'step_en' => 'Application Filing', 'time_hi' => '1-3 दिन', 'time_en' => '1-3 Days'],
-        ['step_hi' => 'वियना वर्गीकरण', 'step_en' => 'Vienna Codification', 'time_hi' => '1 महीना', 'time_en' => '1 Month'],
-        ['step_hi' => 'औपचारिक जांच', 'step_en' => 'Formality Check', 'time_hi' => '1-2 महीने', 'time_en' => '1-2 Months'],
-        ['step_hi' => 'परीक्षा रिपोर्ट', 'step_en' => 'Examination Report', 'time_hi' => '2-4 महीने', 'time_en' => '2-4 Months'],
-        ['step_hi' => 'आपत्ति उत्तर', 'step_en' => 'Reply to Objection', 'time_hi' => '1 महीना (यदि हो)', 'time_en' => '1 Month (if any)'],
-        ['step_hi' => 'सुनवाई', 'step_en' => 'Show Cause Hearing', 'time_hi' => '6-8 महीने', 'time_en' => '6-8 Months'],
-        ['step_hi' => 'जर्नल प्रकाशन', 'step_en' => 'Journal Publication', 'time_hi' => '4 महीने', 'time_en' => '4 Months'],
-        ['step_hi' => 'विरोध की प्रतीक्षा', 'step_en' => 'Opposition Wait', 'time_hi' => '4 महीने', 'time_en' => '4 Months'],
-        ['step_hi' => 'प्रमाण पत्र', 'step_en' => 'Registration Certificate', 'time_hi' => '18-24 महीने', 'time_en' => '18-24 Months'],
-    ];
-
-    $benefits = [
-        ['title_hi' => 'ब्रांड सुरक्षा', 'title_en' => 'Brand Protection', 'desc_hi' => 'नकल करने वालों से सुरक्षा', 'desc_en' => 'Protection from copycats', 'icon' => 'shield-check'],
-        ['title_hi' => 'कानूनी अधिकार', 'title_en' => 'Legal Rights', 'desc_hi' => 'उल्लंघन करने वालों पर मुकदमा करने का अधिकार', 'desc_en' => 'Legal right to sue infringers', 'icon' => 'scale'],
-        ['title_hi' => 'व्यापार मूल्यांकन', 'title_en' => 'Business Valuation', 'desc_hi' => 'संपत्ति मूल्य में वृद्धि', 'desc_en' => 'Boosts intangible asset value', 'icon' => 'trending-up'],
-        ['title_hi' => 'ई-कॉमर्स के लिए आवश्यक', 'title_en' => 'E-Commerce Ready', 'desc_hi' => 'अमेज़ॅन/फ्लिपकार्ट ब्रांड रजिस्ट्री', 'desc_en' => 'Amazon/Flipkart brand registry', 'icon' => 'shopping-cart'],
-    ];
-
-    return view('pages.services.trademark', compact('packages', 'classes', 'timeline', 'benefits'));
-});
+Route::redirect('/services/gst', '/services/gst-services', 301);
+Route::redirect('/services/trademark', '/services/trademark-ip', 301);
 
 Route::get('/about', function () {
     $milestones = [
         ['year' => '2020', 'title_hi' => 'स्थापित', 'title_en' => 'Founded'],
         ['year' => '2021', 'title_hi' => '10,000 ग्राहक', 'title_en' => '10,000 Clients'],
-        ['year' => '2022', 'title_hi' => 'आईएसओ प्रमाणित', 'title_en' => 'ISO Certified'],
+        ['year' => '2022', 'title_hi' => '10,000+ मामले', 'title_en' => '10,000+ Cases Resolved'],
         ['year' => '2023', 'title_hi' => '1 लाख+ ग्राहक', 'title_en' => '1L+ Clients'],
         ['year' => '2024', 'title_hi' => '100+ शहर', 'title_en' => '100+ Cities'],
         ['year' => '2025', 'title_hi' => '10 लाख+ ग्राहक', 'title_en' => '10L+ Clients'],
@@ -286,7 +198,7 @@ Route::get('/about', function () {
     ];
 
     $certs = [
-        ['name_hi' => 'आईएसओ 9001:2018', 'name_en' => 'ISO 9001:2018', 'icon' => 'badge-check'],
+        ['name_hi' => 'स्टार्टअप इंडिया मान्यता', 'name_en' => 'Startup India Recognized', 'icon' => 'badge-check'],
         ['name_hi' => 'बार काउंसिल पार्टनर', 'name_en' => 'Bar Council Partner', 'icon' => 'scale'],
         ['name_hi' => 'एमसीए पंजीकृत', 'name_en' => 'MCA Registered', 'icon' => 'office-building'],
         ['name_hi' => 'एमएसएमई प्रमाणित', 'name_en' => 'MSME Certified', 'icon' => 'document-check'],
@@ -338,42 +250,54 @@ Route::get('/contact', function () {
     return view('pages.contact', compact('faqs'));
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\UserController;
+
+// Guest Auth Routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+    Route::get('/register', function () {
+        return view('auth.register');
+    })->name('register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+    Route::post('/send-otp', [AuthController::class, 'sendOtp'])->name('auth.send-otp');
+
+    // Google Authentication redirect & callback
+    Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+
+    // Password Reset Routes
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
+    Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
+    Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 });
 
-Route::get('/register', function () {
-    return view('auth.register');
+// Authenticated User Routes
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+    Route::get('/dashboard/user', [UserController::class, 'dashboard'])->name('dashboard.user');
+    Route::get('/dashboard/profile', [UserController::class, 'profile'])->name('dashboard.profile');
+    Route::post('/dashboard/profile', [UserController::class, 'updateProfile'])->name('dashboard.profile.update');
 });
 
-Route::get('/dashboard/user', function () {
-    $stats = [
-        ['title_hi' => 'सक्रिय मामले', 'title_en' => 'Active Cases', 'value' => '2', 'icon' => 'briefcase'],
-        ['title_hi' => 'तैयार दस्तावेज़', 'title_en' => 'Documents Ready', 'value' => '5', 'icon' => 'document-text'],
-        ['title_hi' => 'आगामी कॉल', 'title_en' => 'Upcoming Calls', 'value' => '1', 'icon' => 'phone'],
-        ['title_hi' => 'बचत की गई राशि', 'title_en' => 'Amount Saved', 'value' => '₹12,400', 'icon' => 'currency-rupee'],
-    ];
-
-    $consultations = [
-        ['lawyer_hi' => 'एडवोकेट रवि शर्मा', 'lawyer_en' => 'Adv. Ravi Sharma', 'service_hi' => 'जीएसटी नोटिस जवाब', 'service_en' => 'GST Notice Reply', 'date' => '24 Jun 2026', 'time' => '10:30 AM', 'status' => 'upcoming', 'status_hi' => 'आगामी', 'status_en' => 'Upcoming'],
-        ['lawyer_hi' => 'एडवोकेट नेहा सिंह', 'lawyer_en' => 'Adv. Neha Singh', 'service_hi' => 'रेंट एग्रीमेंट समीक्षा', 'service_en' => 'Rent Agreement Review', 'date' => '20 Jun 2026', 'time' => '04:00 PM', 'status' => 'completed', 'status_hi' => 'पूरा हुआ', 'status_en' => 'Completed'],
-        ['lawyer_hi' => 'सीए अमित पटेल', 'lawyer_en' => 'CA Amit Patel', 'service_hi' => 'व्यापार पंजीकरण', 'service_en' => 'Business Registration', 'date' => '18 Jun 2026', 'time' => '11:00 AM', 'status' => 'cancelled', 'status_hi' => 'रद्द', 'status_en' => 'Cancelled'],
-    ];
-
-    $documents = [
-        ['name_hi' => 'किराया समझौता', 'name_en' => 'Rent Agreement', 'date' => '15 Jun 2026'],
-        ['name_hi' => 'एनडीए (NDA)', 'name_en' => 'Non-Disclosure Agreement', 'date' => '10 Jun 2026'],
-        ['name_hi' => 'साझेदारी विलेख', 'name_en' => 'Partnership Deed', 'date' => '05 Jun 2026'],
-    ];
-
-    $activities = [
-        ['title_hi' => 'ऑर्डर दिया गया (ट्रेडमार्क)', 'title_en' => 'Order Placed (Trademark)', 'date' => 'Today, 09:30 AM', 'color' => 'gold'],
-        ['title_hi' => 'दस्तावेज़ डाउनलोड किया गया', 'title_en' => 'Document Downloaded', 'date' => 'Yesterday, 04:15 PM', 'color' => 'blue'],
-        ['title_hi' => 'परामर्श पूरा हुआ', 'title_en' => 'Consultation Completed', 'date' => '20 Jun, 04:30 PM', 'color' => 'green'],
-        ['title_hi' => 'भुगतान सफल', 'title_en' => 'Payment Successful', 'date' => '19 Jun, 11:00 AM', 'color' => 'navy'],
-    ];
-
-    return view('dashboard.user', compact('stats', 'consultations', 'documents', 'activities'));
+// Static Policy Pages
+Route::get('/privacy-policy', function () {
+    return view('pages.privacy');
+});
+Route::get('/terms', function () {
+    return view('pages.terms');
+});
+Route::get('/refund-policy', function () {
+    return view('pages.refund');
+});
+Route::get('/disclaimer', function () {
+    return view('pages.disclaimer');
 });
 
 Route::get('/dashboard/lawyer', function () {
@@ -516,6 +440,48 @@ Route::post('/live-session/book', [\App\Http\Controllers\LiveSessionBookingContr
 // Submit Callback Request (Public)
 Route::post('/callback-requests', [\App\Http\Controllers\CallbackRequestController::class, 'store'])->name('callback.store');
 Route::post('/package-inquiries', [\App\Http\Controllers\PackageInquiryController::class, 'store'])->name('package-inquiries.store');
+
+// =========================================
+// SITEMAP ROUTE
+// =========================================
+Route::get('/sitemap.xml', function () {
+    $baseUrl = url('/');
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+    // Static Pages
+    $pages = [
+        '/', '/about', '/contact', '/pricing', '/packages', '/diy-documents', '/vakeel-search'
+    ];
+    foreach ($pages as $page) {
+        $xml .= '<url><loc>' . $baseUrl . $page . '</loc><changefreq>weekly</changefreq><priority>' . ($page === '/' ? '1.0' : '0.8') . '</priority></url>';
+    }
+
+    // Dynamic Services Categories
+    try {
+        $categories = \App\Models\ServiceCategory::all();
+        foreach ($categories as $cat) {
+            $xml .= '<url><loc>' . $baseUrl . '/services/' . $cat->slug . '</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>';
+        }
+        
+        $services = \App\Models\Service::with('category')->get();
+        foreach ($services as $svc) {
+            if ($svc->category) {
+                $xml .= '<url><loc>' . $baseUrl . '/services/' . $svc->category->slug . '/' . $svc->slug . '</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>';
+            }
+        }
+        
+        $posts = \App\Models\Post::all();
+        foreach ($posts as $post) {
+            $xml .= '<url><loc>' . $baseUrl . '/blog/' . $post->slug . '</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>';
+        }
+    } catch (\Exception $e) {
+        // Fallback if DB fails during early setup
+    }
+
+    $xml .= '</urlset>';
+    return response($xml, 200)->header('Content-Type', 'text/xml');
+});
 
 // =========================================
 // ADMIN PANEL ROUTES

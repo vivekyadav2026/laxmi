@@ -207,8 +207,8 @@
         min-height: 42px !important;
         padding-top: 8px !important;
         padding-bottom: 8px !important;
-        padding-left: 12px !important;
-        padding-right: 12px !important;
+        padding-left: 12px;
+        padding-right: 12px;
         font-size: 13px !important;
         border-radius: 10px !important;
         border-color: rgba(226, 224, 216, 0.8) !important;
@@ -232,17 +232,79 @@
 
 
 
-    /* App-like cards */
+    /* App-like service cards - 2 column grid */
     .mobile-2col {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
     }
 
+    /* Card wrapper */
     .mobile-2col > * {
-        border-radius: 14px !important;
-        padding: 12px !important;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02) !important;
-        border: 1px solid rgba(11, 31, 58, 0.05) !important;
+        border-radius: 16px !important;
+        padding: 14px 12px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+        border: 1px solid rgba(11, 31, 58, 0.07) !important;
+        overflow: hidden !important;
+    }
+
+    /* Icon circle */
+    .mobile-2col .card-icon {
+        width: 38px !important;
+        height: 38px !important;
+        border-radius: 10px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .mobile-2col .card-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    /* Icon row top spacing */
+    .mobile-2col .card-icon-row {
+        margin-bottom: 10px !important;
+    }
+
+    /* Card title */
+    .mobile-2col .card-title {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 2px !important;
+    }
+
+    /* Card sub label */
+    .mobile-2col .card-sub {
+        font-size: 8px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Price label */
+    .mobile-2col .card-price-label {
+        font-size: 8px !important;
+    }
+
+    /* Price value */
+    .mobile-2col .card-price {
+        font-size: 14px !important;
+    }
+
+    /* Arrow button */
+    .mobile-2col .card-arrow {
+        width: 30px !important;
+        height: 30px !important;
+        min-width: 30px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .mobile-2col .card-arrow svg {
+        width: 13px !important;
+        height: 13px !important;
+    }
+
+    /* Top decorative arc */
+    .mobile-2col .card-arc {
+        width: 60px !important;
+        height: 60px !important;
     }
 
     /* Make package cards on packages page compact and rounded */

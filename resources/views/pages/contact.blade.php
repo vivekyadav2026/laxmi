@@ -1,6 +1,47 @@
 @extends('layouts.app')
 
-@section('title', 'संपर्क करें | Contact Us - Foundida')
+@section('title', 'Contact Us — Foundida | Reach our Legal Experts')
+@section('meta_description', 'Contact Foundida for any queries related to company registration, GST, and legal compliance. Get expert legal advice within 2 hours. WhatsApp or Call us now.')
+@section('meta_keywords', 'Contact Foundida, Legal Services Contact India, CA Contact Number, Startup Legal Support')
+
+@push('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "ContactPage",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Foundida",
+    "url": "{{ url('/') }}",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-8750530252",
+      "contactType": "customer service",
+      "areaServed": "IN",
+      "availableLanguage": ["English", "Hindi"]
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    @foreach($faqs as $index => $faq)
+    {
+      "@type": "Question",
+      "name": "{{ strip_tags($faq['q_en']) }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ strip_tags($faq['a_en']) }}"
+      }
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 <!-- BREADCRUMB -->
@@ -79,7 +120,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
                                         </div>
-                                        <input type="text" name="name" value="{{ old('name') }}" required placeholder="उदा: अमित पटेल / Ex: Amit Patel" class="w-full pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('name') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.75rem;">
+                                        <input type="text" name="name" value="{{ old('name') }}" required placeholder="उदा: अमित पटेल / Ex: Amit Patel" class="w-full !pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('name') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none">
                                     </div>
                                     @error('name')
                                         <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
@@ -98,7 +139,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                             </svg>
                                         </div>
-                                        <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="उदा: 9876543210 / Ex: 9876543210" class="w-full pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('phone') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.75rem;">
+                                        <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="उदा: 9876543210 / Ex: 9876543210" class="w-full !pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('phone') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none">
                                     </div>
                                     @error('phone')
                                         <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
@@ -120,7 +161,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </div>
-                                        <input type="text" name="city" value="{{ old('city') }}" required placeholder="उदा: मुंबई, दिल्ली / Ex: Mumbai, Delhi" class="w-full pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('city') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.75rem;">
+                                        <input type="text" name="city" value="{{ old('city') }}" required placeholder="उदा: मुंबई, दिल्ली / Ex: Mumbai, Delhi" class="w-full !pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('city') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none">
                                     </div>
                                     @error('city')
                                         <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
@@ -183,7 +224,7 @@
                                         <input type="hidden" name="service" :value="selectedVal">
 
                                         <!-- Trigger Button -->
-                                        <button @click="open = !open" type="button" class="w-full border @error('service') border-red-500 @else border-gray-200 @enderror rounded-xl shadow-sm text-left flex justify-between items-center py-3 pr-4 bg-gray-50/50 relative z-20 focus:bg-white focus:shadow-md focus:border-navy transition-all duration-200" style="padding-left: 2.75rem;">
+                                        <button @click="open = !open" type="button" class="w-full !pl-12 border @error('service') border-red-500 @else border-gray-200 @enderror rounded-xl shadow-sm text-left flex justify-between items-center py-3 pr-4 bg-gray-50/50 relative z-20 focus:bg-white focus:shadow-md focus:border-navy transition-all duration-200">
                                             <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
                                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -272,7 +313,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                         </svg>
                                     </div>
-                                    <textarea name="message" required rows="4" placeholder="हम आपकी कैसे मदद कर सकते हैं? / How can we help you?" class="w-full pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('message') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.75rem;">{{ old('message') }}</textarea>
+                                    <textarea name="message" required rows="4" placeholder="हम आपकी कैसे मदद कर सकते हैं? / How can we help you?" class="w-full !pl-12 pr-4 py-3 bg-gray-50/50 border border-gray-200 @error('message') border-red-500 focus:ring-red-500 focus:border-red-500 @else focus:ring-navy focus:border-navy @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 font-medium transition-all duration-200 focus:bg-white focus:shadow-md outline-none">{{ old('message') }}</textarea>
                                 </div>
                                 @error('message')
                                     <p class="text-red-500 text-[11px] mt-1 font-semibold">{{ $message }}</p>
@@ -429,3 +470,4 @@
     </div>
 </div>
 @endsection
+

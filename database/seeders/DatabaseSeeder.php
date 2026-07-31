@@ -15,14 +15,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Seed Standard User
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'user@foundida.com',
+            'password' => bcrypt('password'),
+            'role' => 'user',
+        ]);
+
+        // Seed Admin User
+        User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@foundida.com',
+            'password' => bcrypt('password'),
+            'role' => 'admin',
         ]);
 
         $this->call([
             SubscriptionPlanSeeder::class,
             PackageSeeder::class,
+            ServiceSeeder::class,
+            PostSeeder::class,
         ]);
     }
 }

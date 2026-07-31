@@ -1,9 +1,55 @@
 @extends('layouts.app')
-@section('title', $service['name_en'] . ' | ' . $category['name'])
+@section('title', $service['name_en'] . ' Services Online in India | ' . $category['name'] . ' - Foundida')
+@section('meta_description', 'Expert ' . $service['name_en'] . ' services in India. Complete ' . strtolower($category['name']) . ' solutions online. Get transparent pricing starting at ' . $service['price'] . ' with Foundida.')
+@section('meta_keywords', $service['name_en'] . ', ' . $service['name_hi'] . ', ' . $category['name'] . ', ' . $service['name_en'] . ' in India, Online ' . $service['name_en'])
 
 @php
     $content = \App\Services\ContentGenerator::generateContent($category['name'], $service['name_en']);
 @endphp
+
+@push('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "{{ $service['name_en'] }}",
+  "provider": {
+    "@type": "LegalService",
+    "name": "Foundida",
+    "image": "{{ asset('logo.png') }}"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "India"
+  },
+  "description": "{{ strip_tags($content['description']) }}",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "INR",
+    "price": "{{ preg_replace('/[^0-9]/', '', $service['price']) }}",
+    "url": "{{ url()->current() }}"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    @foreach($content['faqs'] as $index => $faq)
+    {
+      "@type": "Question",
+      "name": "{{ strip_tags($faq['q_en']) }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ strip_tags($faq['a_en']) }}"
+      }
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 
@@ -165,3 +211,4 @@
     </div>
 </section>
 @endsection
+

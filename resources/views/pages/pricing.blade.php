@@ -1,6 +1,29 @@
 @extends('layouts.app')
 
-@section('title', 'कीमत | Pricing - Foundida')
+@section('title', 'Transparent Pricing | Legal & Setup Packages - Foundida')
+@section('meta_description', 'Clear, transparent, and affordable pricing for Company Registration, GST filing, and Trademark services in India. Compare our startup packages and save up to 20%.')
+@section('meta_keywords', 'Company Registration Fees, GST Registration Cost, Trademark Cost in India, Startup Pricing Packages')
+
+@push('schema')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    @foreach($faqs as $index => $faq)
+    {
+      "@type": "Question",
+      "name": "{{ strip_tags($faq['q_en']) }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ strip_tags($faq['a_en']) }}"
+      }
+    }{{ !$loop->last ? ',' : '' }}
+    @endforeach
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 <x-inner-hero>
@@ -250,3 +273,4 @@
     </div>
 </div>
 @endsection
+
