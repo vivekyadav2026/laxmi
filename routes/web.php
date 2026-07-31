@@ -465,7 +465,7 @@ Route::get('/sitemap.xml', function () {
 
     // Static Pages
     $pages = [
-        '/', '/about', '/contact', '/pricing', '/packages', '/diy-documents', '/vakeel-search'
+        '/', '/about', '/contact', '/pricing', '/packages', '/diy-documents', '/vakeel-search', '/funding-opportunities'
     ];
     foreach ($pages as $page) {
         $xml .= '<url><loc>' . $baseUrl . $page . '</loc><changefreq>weekly</changefreq><priority>' . ($page === '/' ? '1.0' : '0.8') . '</priority></url>';
@@ -488,6 +488,12 @@ Route::get('/sitemap.xml', function () {
         $posts = \App\Models\Post::all();
         foreach ($posts as $post) {
             $xml .= '<url><loc>' . $baseUrl . '/blog/' . $post->slug . '</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>';
+        }
+
+        // Dynamic Funding Opportunities
+        $programs = \App\Models\FundingProgram::all();
+        foreach ($programs as $prog) {
+            $xml .= '<url><loc>' . $baseUrl . '/funding-opportunities/' . $prog->slug . '</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>';
         }
     } catch (\Exception $e) {
         // Fallback if DB fails during early setup

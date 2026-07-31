@@ -21,6 +21,7 @@
     <meta name="description" content="@yield('meta_description', 'India\'s trusted Legal & Tech platform for Startups. Company registration, GST, Trademarks, and Custom Tech Solutions. Zero to launch in one place.')">
     <meta name="keywords" content="@yield('meta_keywords', 'Company Registration, GST Registration, Trademark Registration, Startup Services, Legal Services India, Business Setup, Foundida')">
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="manifest" href="/site.webmanifest">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="@yield('og_type', 'website')">

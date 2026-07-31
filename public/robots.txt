@@ -1,6 +1,10 @@
 User-agent: *
 Disallow: /admin/
 Disallow: /dashboard/
+Disallow: /login
+Disallow: /register
+Disallow: /password/
+Disallow: /checkout/
 Allow: /
 
 Sitemap: https://foundida.com/sitemap.xml
