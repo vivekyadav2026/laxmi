@@ -22,7 +22,7 @@
   },
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+91-8750530252",
+    "telephone": "{{ \App\Models\Setting::get('contact_phone', '+91 87505 30252') }}",
     "contactType": "customer service"
   },
   "sameAs": [
@@ -83,7 +83,7 @@
 
             <!-- Sub Headline (English) -->
             <h2 class="text-[14px] md:text-[16px] text-gray-300 mb-6 font-medium leading-relaxed max-w-[500px]">
-                Complete Legal Services, GST, Trademark, and Tech setup — zero to launch in one place. Trusted by 5,000+ Startups.
+                Complete Legal Services, GST, Trademark, and Tech setup — zero to launch in one place. India's fastest growing business setup platform.
             </h2>
 
             <!-- CTA Buttons - Side by Side on Mobile -->
@@ -141,8 +141,8 @@
                 <div class="flex items-center gap-2.5 flex-shrink-0">
                     <div class="w-8 h-8 rounded-full bg-[#D4A843]/10 flex items-center justify-center text-[#D4A843] text-xs">🤝</div>
                     <div class="flex flex-col">
-                        <span class="text-white font-extrabold text-xs leading-none">5K+</span>
-                        <span class="text-gray-400 text-[8px] uppercase tracking-wider font-semibold mt-0.5">Startups</span>
+                        <span class="text-white font-extrabold text-xs leading-none">100+</span>
+                        <span class="text-gray-400 text-[8px] uppercase tracking-wider font-semibold mt-0.5">Onboarded</span>
                     </div>
                 </div>
             </div>
@@ -1009,7 +1009,7 @@
     <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-4 md:mb-[32px] flex flex-col items-center">
-            <h2 class="text-[22px] md:text-[44px] font-bold text-gold mb-1 md:mb-[8px] font-serif">5,000+ संस्थापकों का भरोसा</h2>
+            <h2 class="text-[22px] md:text-[44px] font-bold text-gold mb-1 md:mb-[8px] font-serif">संस्थापकों का भरोसा</h2>
             <p class="text-[10px] md:text-[12px] font-bold text-gray-300 uppercase tracking-[0.2em] mb-1 md:mb-[16px]">Trusted by Founders</p>
         </div>
 

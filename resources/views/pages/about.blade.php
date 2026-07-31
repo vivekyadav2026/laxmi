@@ -22,7 +22,7 @@
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-8750530252",
+      "telephone": "{{ \App\Models\Setting::get('contact_phone', '+91 87505 30252') }}",
       "contactType": "customer service"
     }
   }

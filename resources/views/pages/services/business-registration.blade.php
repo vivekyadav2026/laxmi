@@ -17,7 +17,7 @@
                 <li>
                     <div class="flex items-center">
                         <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <a href="#" class="flex flex-col text-gray-300 hover:text-gold transition ml-1 md:ml-2">
+                        <a href="/services" class="flex flex-col text-gray-300 hover:text-gold transition ml-1 md:ml-2">
                             <span class="font-bold leading-tight">सेवाएं</span>
                             <span class="text-[10px] uppercase">Services</span>
                         </a>

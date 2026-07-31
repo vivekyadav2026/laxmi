@@ -174,5 +174,91 @@ class PackageSeeder extends Seeder
             'is_active' => true,
             'sort_order' => 6,
         ]);
+
+        // 3. Funding Packages
+        Package::create([
+            'name_hi' => 'बुनियादी',
+            'name_en' => 'Basic',
+            'slug' => 'funding-basic',
+            'type' => 'funding',
+            'price' => 499,
+            'old_price' => 999,
+            'description_hi' => 'शुरुआती स्टार्टअप्स के लिए',
+            'description_en' => 'Perfect for early stage startups.',
+            'features' => [
+                'Pitch Deck Review',
+                '1 Investor Matchmaking',
+                'Email Support',
+            ],
+            'comparison_features' => [],
+            'is_popular' => false,
+            'is_active' => true,
+            'sort_order' => 7,
+        ]);
+
+        Package::create([
+            'name_hi' => 'व्यावसायिक',
+            'name_en' => 'Professional',
+            'slug' => 'funding-professional',
+            'type' => 'funding',
+            'price' => 1499,
+            'old_price' => 2499,
+            'description_hi' => 'सक्रिय धन उगाहने के लिए',
+            'description_en' => 'Ideal for active fundraising.',
+            'badge_hi' => 'लोकप्रिय',
+            'badge_en' => 'Popular',
+            'features' => [
+                'Pitch Deck Review & Design Feedback',
+                '5 Investor Matchmaking',
+                'Direct Intro to 2 Angels',
+                'Priority Support',
+            ],
+            'comparison_features' => [],
+            'is_popular' => true,
+            'is_active' => true,
+            'sort_order' => 8,
+        ]);
+
+        Package::create([
+            'name_hi' => 'प्रीमियम',
+            'name_en' => 'Premium',
+            'slug' => 'funding-premium',
+            'type' => 'funding',
+            'price' => 2999,
+            'old_price' => 4999,
+            'description_hi' => 'पूर्ण समर्थन और मार्गदर्शन',
+            'description_en' => 'Full support & intros.',
+            'features' => [
+                'Professional Pitch Deck Design',
+                'Unlimited Matchmaking',
+                'Guaranteed 5 Angel/VC Intros',
+                'Dedicated Consultant Support',
+            ],
+            'comparison_features' => [],
+            'is_popular' => false,
+            'is_active' => true,
+            'sort_order' => 9,
+        ]);
+
+        Package::create([
+            'name_hi' => 'एंटरप्राइज',
+            'name_en' => 'Enterprise',
+            'slug' => 'funding-enterprise',
+            'type' => 'funding',
+            'price' => 4999,
+            'old_price' => 7999,
+            'description_hi' => 'अनुकूलित कॉर्पोरेट वित्त पोषण',
+            'description_en' => 'Custom institutional funding.',
+            'features' => [
+                'Tailored Funding Strategy',
+                'Direct Roadshows with VCs',
+                'Complete Financial Modelling',
+                'Custom Legal Support',
+            ],
+            'comparison_features' => [],
+            'is_popular' => false,
+            'is_active' => true,
+            'sort_order' => 10,
+        ]);
     }
 }

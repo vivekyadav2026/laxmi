@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@php
+    $contactPhone = \App\Models\Setting::get('contact_phone', '+91 87505 30252');
+    $cleanPhone = preg_replace('/[^0-9+]/', '', $contactPhone);
+@endphp
+
 @section('title', 'Payment Successful – Foundida')
 
 @section('content')
@@ -81,7 +86,7 @@
             </div>
         </div>
 
-        <p class="text-center text-xs text-gray-400 mt-6">Need help? Call us at <a href="tel:+918750530252" class="text-navy font-bold">+91 87505 30252</a></p>
+        <p class="text-center text-xs text-gray-400 mt-6">Need help? Call us at <a href="tel:{{ $cleanPhone }}" class="text-navy font-bold">{{ $contactPhone }}</a></p>
     </div>
 </div>
 @endsection

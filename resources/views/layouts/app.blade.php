@@ -553,10 +553,10 @@
                 <div>&copy; {{ date('Y') }} {{ $siteName }}. All rights reserved.</div>
                 <div class="mt-4 md:mt-0 space-x-[16px]">
                     <a href="/about" class="text-[#E2E0D8] hover:text-white transition-colors">About Us</a>
-                    <a href="#" class="text-[#E2E0D8] hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="text-[#E2E0D8] hover:text-white transition-colors">Terms</a>
-                    <a href="#" class="text-[#E2E0D8] hover:text-white transition-colors">Refund Policy</a>
-                    <a href="#" class="text-[#E2E0D8] hover:text-white transition-colors">Disclaimer</a>
+                    <a href="/privacy-policy" class="text-[#E2E0D8] hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="/terms" class="text-[#E2E0D8] hover:text-white transition-colors">Terms</a>
+                    <a href="/refund-policy" class="text-[#E2E0D8] hover:text-white transition-colors">Refund Policy</a>
+                    <a href="/disclaimer" class="text-[#E2E0D8] hover:text-white transition-colors">Disclaimer</a>
                 </div>
             </div>
         </div>

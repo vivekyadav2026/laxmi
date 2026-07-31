@@ -168,19 +168,16 @@ Route::redirect('/services/trademark', '/services/trademark-ip', 301);
 
 Route::get('/about', function () {
     $milestones = [
-        ['year' => '2020', 'title_hi' => 'स्थापित', 'title_en' => 'Founded'],
-        ['year' => '2021', 'title_hi' => '10,000 ग्राहक', 'title_en' => '10,000 Clients'],
-        ['year' => '2022', 'title_hi' => '10,000+ मामले', 'title_en' => '10,000+ Cases Resolved'],
-        ['year' => '2023', 'title_hi' => '1 लाख+ ग्राहक', 'title_en' => '1L+ Clients'],
-        ['year' => '2024', 'title_hi' => '100+ शहर', 'title_en' => '100+ Cities'],
-        ['year' => '2025', 'title_hi' => '10 लाख+ ग्राहक', 'title_en' => '10L+ Clients'],
+        ['year' => '2026', 'title_hi' => 'स्थापित एवं लॉन्च', 'title_en' => 'Founded & Launched'],
+        ['year' => '2026', 'title_hi' => '100+ स्टार्टअप्स ऑनबोर्ड', 'title_en' => '100+ Startups Onboard'],
+        ['year' => '2026', 'title_hi' => '50+ शहरों में सेवाएं', 'title_en' => 'Services in 50+ Cities'],
     ];
 
     $stats = [
-        ['number' => '10L+', 'title_hi' => 'ग्राहक', 'title_en' => 'Clients'],
-        ['number' => '500+', 'title_hi' => 'विशेषज्ञ वकील', 'title_en' => 'Expert Lawyers'],
-        ['number' => '100+', 'title_hi' => 'शहर', 'title_en' => 'Cities'],
-        ['number' => '4.8★', 'title_hi' => 'रेटिंग', 'title_en' => 'Rating'],
+        ['number' => '100+', 'title_hi' => 'ग्राहक', 'title_en' => 'Clients'],
+        ['number' => '50+', 'title_hi' => 'विशेषज्ञ वकील', 'title_en' => 'Expert Lawyers'],
+        ['number' => '50+', 'title_hi' => 'शहर', 'title_en' => 'Cities'],
+        ['number' => '4.9★', 'title_hi' => 'रेटिंग', 'title_en' => 'Rating'],
     ];
 
     $team = [

@@ -17,7 +17,7 @@
                 <li>
                     <div class="flex items-center">
                         <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <a href="#" class="flex flex-col text-gray-300 hover:text-gold transition ml-1 md:ml-2">
+                        <a href="/services" class="flex flex-col text-gray-300 hover:text-gold transition ml-1 md:ml-2">
                             <span class="font-bold leading-tight">सेवाएं</span>
                             <span class="text-[10px] uppercase">Services</span>
                         </a>
@@ -167,8 +167,8 @@
                     <svg class="w-8 h-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-bold text-lg mb-1">5,000+ नोटिस संभाले गए</span>
-                    <span class="text-xs text-gray-400">5,000+ Notices Handled</span>
+                    <span class="font-bold text-lg mb-1">त्वरित नोटिस समाधान</span>
+                    <span class="text-xs text-gray-400">Expert Notice Resolution</span>
                 </div>
             </div>
 

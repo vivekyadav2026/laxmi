@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@php
+    $contactPhone = \App\Models\Setting::get('contact_phone', '+91 87505 30252');
+    $cleanPhone = preg_replace('/[^0-9+]/', '', $contactPhone);
+@endphp
+
 @section('title', 'सभी सेवाएं | All Legal, Tax & Tech Services - Foundida')
 
 @section('content')
@@ -183,8 +188,8 @@
                     <a href="/#consultation" class="bg-[#D4A843] text-[#0B1F3A] font-extrabold text-sm px-7 py-3.5 rounded-xl hover:bg-[#E8B96A] transition-all text-center shadow-lg">
                         📞 मुफ़्त सलाह लें
                     </a>
-                    <a href="tel:+918750530252" class="bg-white/10 text-white font-bold text-sm px-6 py-3.5 rounded-xl hover:bg-white/20 transition-all text-center border border-white/20">
-                        +91 87505 30252
+                    <a href="tel:{{ $cleanPhone }}" class="bg-white/10 text-white font-bold text-sm px-6 py-3.5 rounded-xl hover:bg-white/20 transition-all text-center border border-white/20">
+                        {{ $contactPhone }}
                     </a>
                 </div>
             </div>
