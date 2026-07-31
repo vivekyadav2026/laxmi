@@ -115,6 +115,8 @@ Route::get('/diy-documents', function () {
 });
 
 Route::get('/pricing', function () {
+    $packages = \App\Models\Package::where('is_active', true)->orderBy('sort_order')->get();
+
     $comparisons = [
         ['service_hi' => 'जीएसटी नोटिस उत्तर', 'service_en' => 'GST Notice Reply', 'market' => 5000, 'our' => 499],
         ['service_hi' => 'ट्रेडमार्क पंजीकरण', 'service_en' => 'Trademark Filing', 'market' => 15000, 'our' => 2999],
@@ -150,7 +152,7 @@ Route::get('/pricing', function () {
         ],
     ];
     
-    return view('pages.pricing', compact('comparisons', 'faqs'));
+    return view('pages.pricing', compact('packages', 'comparisons', 'faqs'));
 });
 
 Route::get('/services/gst', function () {
@@ -530,41 +532,31 @@ Route::prefix('admin')->group(function () {
         });
 
         Route::get('/dashboard', function () {
+            $totalUsers = \App\Models\User::count();
+            $totalCallbacks = \App\Models\CallbackRequest::count();
+            $totalPackageInquiries = \App\Models\PackageInquiry::count();
+            $totalLiveSessions = \App\Models\LiveSessionBooking::count();
+            $totalSubscriptions = \App\Models\Subscription::count();
+            $totalPackages = \App\Models\Package::where('is_active', true)->count();
+
             $kpis = [
-                ['title_hi' => 'कुल उपयोगकर्ता', 'title_en' => 'Total Users', 'value' => '1,04,230', 'icon' => 'users'],
-                ['title_hi' => 'कुल वकील', 'title_en' => 'Total Lawyers', 'value' => '5,420', 'icon' => 'academic-cap'],
-                ['title_hi' => 'आज के ऑर्डर', 'title_en' => 'Today\'s Orders', 'value' => '342', 'icon' => 'shopping-cart'],
-                ['title_hi' => 'मासिक राजस्व', 'title_en' => 'Monthly Revenue', 'value' => '₹45.2L', 'icon' => 'currency-rupee'],
-                ['title_hi' => 'लंबित सत्यापन', 'title_en' => 'Pending Verifications', 'value' => '84', 'icon' => 'shield-check'],
-                ['title_hi' => 'सपोर्ट टिकट', 'title_en' => 'Support Tickets', 'value' => '12', 'icon' => 'ticket'],
+                ['title_hi' => 'कुल उपयोगकर्ता', 'title_en' => 'Total Users', 'value' => number_format($totalUsers), 'icon' => 'users'],
+                ['title_hi' => 'कॉलबैक अनुरोध', 'title_en' => 'Callback Requests', 'value' => number_format($totalCallbacks), 'icon' => 'phone'],
+                ['title_hi' => 'पैकेज पूछताछ', 'title_en' => 'Package Inquiries', 'value' => number_format($totalPackageInquiries), 'icon' => 'box'],
+                ['title_hi' => 'लाइव सेशंस', 'title_en' => 'Live Sessions', 'value' => number_format($totalLiveSessions), 'icon' => 'headset'],
+                ['title_hi' => 'फंडिंग प्लान्स', 'title_en' => 'Funding Plans', 'value' => number_format($totalSubscriptions), 'icon' => 'rocket'],
+                ['title_hi' => 'सक्रिय पैकेज', 'title_en' => 'Active Packages', 'value' => number_format($totalPackages), 'icon' => 'check-circle'],
             ];
 
-            $recentOrders = [
-                ['id' => '#ORD-4021', 'user' => 'Rajesh Kumar', 'service' => 'GST Registration', 'amount' => '₹999', 'status' => 'Pending', 'date' => '19 Jun, 10:20 AM'],
-                ['id' => '#ORD-4020', 'user' => 'Sneha Tech Pvt Ltd', 'service' => 'Company Registration', 'amount' => '₹6,999', 'status' => 'Processing', 'date' => '19 Jun, 09:45 AM'],
-                ['id' => '#ORD-4019', 'user' => 'Amit Patel', 'service' => 'Trademark Filing', 'amount' => '₹2,999', 'status' => 'Completed', 'date' => '18 Jun, 04:30 PM'],
-            ];
+            $recentCallbacks = \App\Models\CallbackRequest::orderBy('created_at', 'desc')->take(5)->get();
+            $recentPackageInquiries = \App\Models\PackageInquiry::orderBy('created_at', 'desc')->take(5)->get();
 
-            $verifications = [
-                ['name' => 'Adv. Priya Singh', 'city' => 'Pune', 'reg' => 'MAH/5432/2015', 'docs' => 3],
-                ['name' => 'Adv. Rahul Sharma', 'city' => 'Jaipur', 'reg' => 'RAJ/124/2018', 'docs' => 4],
-            ];
-
-            $lineChart = [
-                'labels' => ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                'data' => [2.1, 2.4, 2.8, 3.1, 3.5, 3.2, 3.8, 4.0, 4.2, 4.5, 4.1, 4.5] // In Lakhs
-            ];
-
-            $pieChart = [
-                'labels' => ['GST', 'Company Reg', 'Trademark', 'Rent Agreement', 'Other'],
-                'data' => [35, 25, 20, 15, 5]
-            ];
-
-            return view('admin.dashboard', compact('kpis', 'recentOrders', 'verifications', 'lineChart', 'pieChart'));
+            return view('admin.dashboard', compact('kpis', 'recentCallbacks', 'recentPackageInquiries'));
         })->name('admin.dashboard');
 
         Route::get('/users', function () {
-            return view('admin.users');
+            $users = \App\Models\User::orderBy('created_at', 'desc')->paginate(15);
+            return view('admin.users', compact('users'));
         });
 
         Route::resource('services', \App\Http\Controllers\AdminServiceController::class)->names([

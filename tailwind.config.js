@@ -8,10 +8,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: { DEFAULT: '#1a237e', 800: '#121858', 600: '#283593' },
+        navy: { DEFAULT: '#0B1F3A', 800: '#071527', 600: '#142E54', light: '#18345E' },
         saffron: { DEFAULT: '#f57c00', light: '#ff9800', dark: '#ef6c00' },
         gold: { DEFAULT: '#D4A843', light: '#E8B96A', dark: '#A67828' },
-        offwhite: '#F8F7F4',
+        offwhite: '#F4F6F9',
       },
       fontFamily: {
         sans: ['Inter', 'Noto Sans Devanagari', 'sans-serif'],

@@ -58,46 +58,51 @@
         <!-- Left: Recent Activity Table -->
         <div class="lg:col-span-2 bg-white/5 backdrop-blur-xl rounded-3xl shadow-lg border border-white/10 flex flex-col overflow-hidden">
             <div class="px-8 py-6 border-b border-white/10 flex items-center justify-between bg-white/5">
-                <h2 class="text-lg font-bold text-white font-serif">Recent Service Requests</h2>
-                <a href="/admin/services" class="text-sm font-bold text-gold hover:text-white transition-colors">View All</a>
+                <h2 class="text-lg font-bold text-white font-serif">Recent Callback & Consultation Requests</h2>
+                <a href="{{ route('admin.callbacks.index') }}" class="text-sm font-bold text-gold hover:text-white transition-colors">View All Lead Requests</a>
             </div>
             <div class="p-0 overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-black/20 border-b border-white/5">
-                            <th class="py-4 px-8 text-xs font-bold text-gray-400 uppercase tracking-wider">Client</th>
-                            <th class="py-4 px-8 text-xs font-bold text-gray-400 uppercase tracking-wider">Service</th>
-                            <th class="py-4 px-8 text-xs font-bold text-gray-400 uppercase tracking-wider">Amount</th>
-                            <th class="py-4 px-8 text-xs font-bold text-gray-400 uppercase tracking-wider">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-white/5 text-sm">
-                        @foreach($recentOrders as $order)
-                        <tr class="hover:bg-white/5 transition-colors group cursor-pointer">
-                            <td class="py-5 px-8 flex items-center gap-4">
-                                <div class="relative">
-                                    <img src="https://ui-avatars.com/api/?name={{ urlencode($order['user']) }}&background=random" class="w-10 h-10 rounded-xl shadow-md group-hover:scale-105 transition-transform">
-                                </div>
-                                <div>
-                                    <p class="font-bold text-gray-200">{{ $order['user'] }}</p>
-                                    <p class="text-xs text-gray-500">{{ $order['id'] }}</p>
-                                </div>
-                            </td>
-                            <td class="py-5 px-8 font-semibold text-gray-300">{{ $order['service'] }}</td>
-                            <td class="py-5 px-8 font-bold text-gold">{{ $order['amount'] }}</td>
-                            <td class="py-5 px-8">
-                                @if($order['status'] == 'Completed')
-                                    <span class="bg-green-500/20 border border-green-500/30 text-green-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-[0_0_10px_rgba(74,222,128,0.2)]">Completed</span>
-                                @elseif($order['status'] == 'Processing')
-                                    <span class="bg-blue-500/20 border border-blue-500/30 text-blue-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-[0_0_10px_rgba(96,165,250,0.2)]">Processing</span>
-                                @else
-                                    <span class="bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-[0_0_10px_rgba(250,204,21,0.2)]">Pending</span>
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                @if($recentCallbacks->isEmpty())
+                    <div class="p-12 text-center flex flex-col items-center justify-center">
+                        <div class="w-14 h-14 bg-navy/40 border border-white/5 rounded-full flex items-center justify-center text-gray-400 text-xl mb-3 shadow-inner">
+                            <i class="fas fa-inbox"></i>
+                        </div>
+                        <h4 class="text-base font-bold text-white font-serif mb-1">No Recent Callback Requests</h4>
+                        <p class="text-xs text-gray-400 max-w-sm">When visitors submit the "Ask Experts" form on the homepage, requests will show up here instantly.</p>
+                    </div>
+                @else
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-black/20 border-b border-white/5 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                <th class="py-4 px-8">Client</th>
+                                <th class="py-4 px-8">Mobile Number</th>
+                                <th class="py-4 px-8">Service</th>
+                                <th class="py-4 px-8">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-sm">
+                            @foreach($recentCallbacks as $cb)
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="py-5 px-8 font-bold text-white">
+                                    {{ $cb->name }}
+                                    <div class="text-xs text-gray-400 font-normal">{{ $cb->created_at->format('d M, h:i A') }}</div>
+                                </td>
+                                <td class="py-5 px-8 font-semibold text-gray-300">
+                                    <a href="tel:+91{{ $cb->phone }}" class="hover:text-gold transition-colors">+91 {{ $cb->phone }}</a>
+                                </td>
+                                <td class="py-5 px-8 font-semibold text-gold">{{ ucfirst(str_replace('-', ' ', $cb->service)) }}</td>
+                                <td class="py-5 px-8">
+                                    @if($cb->status == 'contacted')
+                                        <span class="bg-green-500/20 border border-green-500/30 text-green-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Contacted</span>
+                                    @else
+                                        <span class="bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pending</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
             </div>
         </div>
 
@@ -106,50 +111,42 @@
             <div class="px-8 py-6 border-b border-white/10 flex items-center justify-between bg-white/5">
                 <h2 class="text-lg font-bold text-white font-serif">Quick Actions</h2>
             </div>
-            <div class="p-6">
+            <div class="p-6 space-y-4">
                 <!-- Action 1 -->
-                <a href="#" class="flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/5 hover:border-gold/30 hover:bg-gold/10 transition-all mb-4 group shadow-md hover:shadow-lg hover:shadow-gold/5">
+                <a href="{{ route('admin.packages.create') }}" class="flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/5 hover:border-gold/30 hover:bg-gold/10 transition-all group shadow-md">
                     <div class="w-12 h-12 rounded-xl bg-navy text-gold flex items-center justify-center group-hover:bg-gold group-hover:text-navy transition-colors shadow-inner border border-white/10">
-                        <i class="fas fa-file-signature text-lg"></i>
+                        <i class="fas fa-box text-lg"></i>
                     </div>
                     <div>
-                        <h4 class="text-sm font-bold text-gray-200">Draft New Document</h4>
-                        <p class="text-xs text-gray-400">Create legal draft for clients</p>
+                        <h4 class="text-sm font-bold text-gray-200">Add Combo Package</h4>
+                        <p class="text-xs text-gray-400">Create new legal or tech package</p>
                     </div>
                     <i class="fas fa-chevron-right ml-auto text-gray-600 group-hover:text-gold transition-colors text-xs"></i>
                 </a>
 
                 <!-- Action 2 -->
-                <a href="#" class="flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/5 hover:border-gold/30 hover:bg-gold/10 transition-all mb-4 group shadow-md hover:shadow-lg hover:shadow-gold/5">
+                <a href="{{ route('admin.callbacks.index') }}" class="flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/5 hover:border-gold/30 hover:bg-gold/10 transition-all group shadow-md">
                     <div class="w-12 h-12 rounded-xl bg-navy text-gold flex items-center justify-center group-hover:bg-gold group-hover:text-navy transition-colors shadow-inner border border-white/10">
-                        <i class="fas fa-bullhorn text-lg"></i>
+                        <i class="fas fa-phone-alt text-lg"></i>
                     </div>
                     <div>
-                        <h4 class="text-sm font-bold text-gray-200">Send Announcement</h4>
-                        <p class="text-xs text-gray-400">Email all active users</p>
+                        <h4 class="text-sm font-bold text-gray-200">Callback Requests</h4>
+                        <p class="text-xs text-gray-400">View customer call requests</p>
                     </div>
                     <i class="fas fa-chevron-right ml-auto text-gray-600 group-hover:text-gold transition-colors text-xs"></i>
                 </a>
 
                 <!-- Action 3 -->
-                <a href="/admin/settings" class="flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/5 hover:border-gold/30 hover:bg-gold/10 transition-all group shadow-md hover:shadow-lg hover:shadow-gold/5">
+                <a href="{{ route('admin.settings') }}" class="flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/5 hover:border-gold/30 hover:bg-gold/10 transition-all group shadow-md">
                     <div class="w-12 h-12 rounded-xl bg-navy text-gold flex items-center justify-center group-hover:bg-gold group-hover:text-navy transition-colors shadow-inner border border-white/10">
                         <i class="fas fa-user-shield text-lg"></i>
                     </div>
                     <div>
-                        <h4 class="text-sm font-bold text-gray-200">Update Password</h4>
-                        <p class="text-xs text-gray-400">Manage your security settings</p>
+                        <h4 class="text-sm font-bold text-gray-200">Update Security</h4>
+                        <p class="text-xs text-gray-400">Manage admin password & profile</p>
                     </div>
                     <i class="fas fa-chevron-right ml-auto text-gray-600 group-hover:text-gold transition-colors text-xs"></i>
                 </a>
-            </div>
-            
-            <!-- Small Chart Area Placeholder -->
-            <div class="mt-auto px-6 pb-6">
-                <div class="bg-black/20 rounded-2xl p-6 flex flex-col items-center justify-center h-36 border border-white/5 border-dashed">
-                    <i class="fas fa-chart-area text-4xl text-white/20 mb-3"></i>
-                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Weekly Traffic Overview</p>
-                </div>
             </div>
         </div>
     </div>

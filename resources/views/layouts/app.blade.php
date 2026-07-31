@@ -225,7 +225,7 @@
 
                 <!-- Desktop-only actions -->
                 <div class="hidden lg:flex items-center space-x-[8px] xl:space-x-[12px] 2xl:space-x-[16px]">
-                    <a href="tel:+918750530252" class="hidden 2xl:flex text-[#1a237e] text-[14px] font-bold items-center whitespace-nowrap hover:text-[#f57c00] transition-colors">
+                    <a href="tel:+918750530252" class="hidden 2xl:flex text-[#0B1F3A] text-[14px] font-bold items-center whitespace-nowrap hover:text-[#f57c00] transition-colors">
                         <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
                         +91 87505 30252
                     </a>
@@ -322,7 +322,7 @@
                     <a href="/blog" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Blog</a>
                     <a href="/contact" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Contact</a>
                     <hr class="border-[#E2E0D8] my-2">
-                    <a href="tel:+918750530252" class="text-[#1a237e] text-[14px] font-semibold mb-2 flex items-center hover:text-[#f57c00] transition-colors">
+                    <a href="tel:+918750530252" class="text-[#0B1F3A] text-[14px] font-semibold mb-2 flex items-center hover:text-[#f57c00] transition-colors">
                         <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
                         +91 87505 30252
                     </a>
@@ -339,7 +339,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-[#1a237e] pt-[64px] pb-[32px] mt-auto text-white">
+    <footer class="bg-[#0B1F3A] pt-[44px] pb-[28px] mt-auto text-white">
         <div class="w-full max-w-[1500px] mx-auto px-[16px] md:px-[32px]">
             <!-- Top: 4-column grid -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10">

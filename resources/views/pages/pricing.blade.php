@@ -46,187 +46,73 @@
             </div>
         </div>
 
-        <!-- 3-TIER PRICING CARDS -->
+        <!-- DYNAMIC PRICING CARDS -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-            
-            <!-- BASIC CARD -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
-                <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                    <h3 class="text-2xl font-bold text-navy mb-1">बेसिक</h3>
-                    <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">Basic</span>
-                    
-                    <div class="mt-6 flex items-end">
-                        <span class="text-4xl font-bold text-navy">₹<span x-text="billing === 'monthly' ? '599' : '499'"></span></span>
-                        <div class="flex flex-col ml-2 mb-1">
-                            <span class="text-xs text-gray-500 font-bold" x-show="billing === 'monthly'">/ महीना</span>
-                            <span class="text-[9px] uppercase text-gray-400" x-show="billing === 'monthly'">/ month</span>
+            @foreach($packages as $pkg)
+                @if($pkg->is_popular)
+                    <!-- Popular Card -->
+                    <div class="bg-white rounded-2xl shadow-xl border-2 border-gold p-8 flex flex-col relative md:-my-4 hover:-translate-y-1 transition-transform duration-300 z-10">
+                        @if($pkg->badge_hi)
+                            <div class="absolute -top-4 inset-x-0 flex justify-center">
+                                <div class="bg-gold text-navy px-4 py-1.5 rounded-full text-xs font-bold shadow-md flex flex-col items-center leading-tight">
+                                    <span>{{ $pkg->badge_hi }}</span>
+                                    @if($pkg->badge_en)
+                                        <span class="text-[8px] uppercase tracking-widest">{{ $pkg->badge_en }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
+                        <div class="flex flex-col mb-6 pb-6 border-b border-gray-100 mt-2">
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
+                            <div class="mt-6 flex items-end gap-2">
+                                <span class="text-4xl font-bold text-gold">₹{{ number_format($pkg->price) }}</span>
+                                @if($pkg->old_price && $pkg->old_price > $pkg->price)
+                                    <span class="text-sm text-green-600 font-bold mb-1">Save ₹{{ number_format($pkg->old_price - $pkg->price) }}</span>
+                                @endif
+                            </div>
+                            @if($pkg->description_en)
+                                <p class="text-xs text-gray-400 mt-2">{{ $pkg->description_en }}</p>
+                            @endif
                         </div>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            @foreach($pkg->features as $f)
+                                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
+                            @endforeach
+                        </ul>
+                        <a href="/packages" class="w-full bg-gold text-navy hover:bg-yellow-500 min-h-[52px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center">
+                            <span class="text-[16px] font-extrabold">शुरू करें</span>
+                            <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
+                        </a>
                     </div>
-                </div>
-                
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">जीएसटी नोटिस उत्तर</span>
-                            <span class="text-[10px] text-gray-500">GST Notice Reply</span>
+                @else
+                    <!-- Regular Card -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
+                        <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
+                            <div class="mt-6 flex items-end gap-2">
+                                <span class="text-4xl font-bold text-navy">₹{{ number_format($pkg->price) }}</span>
+                                @if($pkg->old_price && $pkg->old_price > $pkg->price)
+                                    <span class="text-sm text-green-600 font-bold mb-1">Save ₹{{ number_format($pkg->old_price - $pkg->price) }}</span>
+                                @endif
+                            </div>
+                            @if($pkg->description_en)
+                                <p class="text-xs text-gray-400 mt-2">{{ $pkg->description_en }}</p>
+                            @endif
                         </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">1 कानूनी दस्तावेज़ ड्राफ्ट</span>
-                            <span class="text-[10px] text-gray-500">1 Legal Document Draft</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">ईमेल सहायता</span>
-                            <span class="text-[10px] text-gray-500">Email Support</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">48 घंटे में डिलीवरी</span>
-                            <span class="text-[10px] text-gray-500">48hr Delivery</span>
-                        </div>
-                    </li>
-                </ul>
-                
-                <button class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
-                    <span class="text-[15px]">शुरू करें</span>
-                    <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
-                </button>
-            </div>
-
-            <!-- STANDARD CARD (HIGHLIGHTED) -->
-            <div class="bg-white rounded-2xl shadow-xl border-2 border-gold p-8 flex flex-col relative md:-my-4 hover:-translate-y-1 transition-transform duration-300 z-10">
-                <!-- Highlight Badge -->
-                <div class="absolute -top-4 inset-x-0 flex justify-center">
-                    <div class="bg-gold text-navy px-4 py-1.5 rounded-full text-xs font-bold shadow-md border border-gold-light flex flex-col items-center leading-tight">
-                        <span>सबसे लोकप्रिय</span>
-                        <span class="text-[8px] uppercase tracking-widest">Most Popular</span>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            @foreach($pkg->features as $f)
+                                <li class="flex items-start gap-3"><svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-700 text-sm font-medium">{{ $f }}</span></li>
+                            @endforeach
+                        </ul>
+                        <a href="/packages" class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
+                            <span class="text-[15px]">शुरू करें</span>
+                            <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
+                        </a>
                     </div>
-                </div>
-
-                <div class="flex flex-col mb-6 pb-6 border-b border-gray-100 mt-2">
-                    <h3 class="text-2xl font-bold text-navy mb-1">स्टैंडर्ड</h3>
-                    <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">Standard</span>
-                    
-                    <div class="mt-6 flex items-end">
-                        <span class="text-4xl font-bold text-gold">₹<span x-text="billing === 'monthly' ? '1,799' : '1,499'"></span></span>
-                        <div class="flex flex-col ml-2 mb-1">
-                            <span class="text-xs text-gray-500 font-bold" x-show="billing === 'monthly'">/ महीना</span>
-                            <span class="text-[9px] uppercase text-gray-400" x-show="billing === 'monthly'">/ month</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-gold mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-navy font-bold text-sm">बेसिक की सभी सुविधाएं</span>
-                            <span class="text-[10px] text-gray-500 uppercase">Everything in Basic</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-gold mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">वकील फ़ोन परामर्श (30 मिनट)</span>
-                            <span class="text-[10px] text-gray-500">Lawyer Phone Consultation (30 min)</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-gold mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">3 दस्तावेज़ संशोधन</span>
-                            <span class="text-[10px] text-gray-500">3 Document Revisions</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-gold mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">प्राथमिकता सहायता</span>
-                            <span class="text-[10px] text-gray-500">Priority Support</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-gold mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">24 घंटे में डिलीवरी</span>
-                            <span class="text-[10px] text-gray-500">24hr Delivery</span>
-                        </div>
-                    </li>
-                </ul>
-                
-                <button class="w-full bg-gold text-navy hover:bg-gold-light min-h-[56px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center">
-                    <span class="text-[16px] font-extrabold">शुरू करें</span>
-                    <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
-                </button>
-            </div>
-
-            <!-- PREMIUM CARD -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
-                <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                    <h3 class="text-2xl font-bold text-navy mb-1">प्रीमियम</h3>
-                    <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">Premium</span>
-                    
-                    <div class="mt-6 flex items-end">
-                        <span class="text-4xl font-bold text-navy">₹<span x-text="billing === 'monthly' ? '4,499' : '3,999'"></span></span>
-                        <div class="flex flex-col ml-2 mb-1">
-                            <span class="text-xs text-gray-500 font-bold" x-show="billing === 'monthly'">/ महीना</span>
-                            <span class="text-[9px] uppercase text-gray-400" x-show="billing === 'monthly'">/ month</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <ul class="space-y-4 mb-8 flex-grow">
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-navy font-bold text-sm">स्टैंडर्ड की सभी सुविधाएं</span>
-                            <span class="text-[10px] text-gray-500 uppercase">Everything in Standard</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">समर्पित वकील नियुक्ति</span>
-                            <span class="text-[10px] text-gray-500">Dedicated Lawyer Assignment</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">कोर्ट फाइलिंग सहायता</span>
-                            <span class="text-[10px] text-gray-500">Court Filing Support</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">असीमित संशोधन</span>
-                            <span class="text-[10px] text-gray-500">Unlimited Revisions</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <div class="flex flex-col">
-                            <span class="text-gray-700 font-semibold text-sm">व्हाट्सएप प्राथमिकता सहायता</span>
-                            <span class="text-[10px] text-gray-500">WhatsApp Priority Support</span>
-                        </div>
-                    </li>
-                </ul>
-                
-                <button class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
-                    <span class="text-[15px]">शुरू करें</span>
-                    <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
-                </button>
-            </div>
-
+                @endif
+            @endforeach
         </div>
     </div>
 </div>
