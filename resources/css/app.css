@@ -411,6 +411,20 @@
         margin-left: 0 !important;
     }
 
+    /* Reset height, min-height, padding, and layout for mobile drawer main items */
+    .mobile-nav-links a,
+    .mobile-nav-links button {
+        height: auto !important;
+        min-height: 0 !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0px !important;
+    }
+
     /* Reset height, min-height, padding, and layout for mobile drawer submenus */
     .mobile-submenu a,
     .mobile-submenu button {

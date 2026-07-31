@@ -107,6 +107,22 @@
                 @endif
             </a>
 
+            <a href="{{ route('admin.funding-programs.index') }}" class="flex items-center gap-4 px-4 py-3.5 text-sm font-semibold rounded-xl transition-all duration-300 {{ request()->is('admin/funding-programs*') ? 'bg-gold/15 text-gold border border-gold/30 shadow-[0_0_15px_rgba(212,168,67,0.15)]' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+                <div class="w-6 flex justify-center"><i class="fas fa-hand-holding-usd text-lg"></i></div>
+                Funding Directory
+            </a>
+
+            @php
+                $pendingFundingAppsCount = \App\Models\FundingApplication::where('payment_status', 'paid')->whereNotIn('status', ['Approved', 'Rejected'])->count();
+            @endphp
+            <a href="{{ route('admin.funding-applications.index') }}" class="flex items-center gap-4 px-4 py-3.5 text-sm font-semibold rounded-xl transition-all duration-300 {{ request()->is('admin/funding-applications*') ? 'bg-gold/15 text-gold border border-gold/30 shadow-[0_0_15px_rgba(212,168,67,0.15)]' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+                <div class="w-6 flex justify-center"><i class="fas fa-file-signature text-lg"></i></div>
+                Paid Applications
+                @if($pendingFundingAppsCount > 0)
+                    <span class="ml-auto bg-gold/20 text-gold border border-gold/30 text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $pendingFundingAppsCount }}</span>
+                @endif
+            </a>
+
             <a href="{{ route('admin.subscription_plans.index') }}" class="flex items-center gap-4 px-4 py-3.5 text-sm font-semibold rounded-xl transition-all duration-300 {{ request()->is('admin/subscription-plans*') ? 'bg-gold/15 text-gold border border-gold/30 shadow-[0_0_15px_rgba(212,168,67,0.15)]' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <div class="w-6 flex justify-center"><i class="fas fa-gem text-lg"></i></div>
                 Subscription Plans

@@ -15,11 +15,33 @@
         <h1 class="font-serif text-[36px] md:text-[56px] font-bold text-white leading-tight mb-4">
             Unlock <span class="text-[#f5a623]">Growth & Funding</span><br />for Your Startup
         </h1>
-        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed max-w-[650px] mx-auto">
+        <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed max-w-[650px] mx-auto mb-6">
             Connect directly with Venture Capitalists, get help with Government Grants, secure Business Loans, and receive expert Mentorship to scale your business.
         </p>
+        
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a href="{{ route('funding.index') }}" class="bg-[#D4A843] text-[#0B1F3A] px-8 py-3.5 rounded-xl font-extrabold text-sm hover:bg-[#E8B96A] transition-all shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2">
+                <i class="fas fa-search-dollar"></i> Browse Funding Opportunities Directory ➔
+            </a>
+        </div>
     </div>
 </x-inner-hero>
+
+<!-- DIRECTORY BANNER CARD SECTION -->
+<div class="bg-[#0B1F3A] py-10 border-b border-[#D4A843]/20 relative z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-3xl max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-left">
+                <span class="bg-[#D4A843]/20 text-[#D4A843] text-[10px] font-extrabold px-3 py-1 rounded-full border border-[#D4A843]/30 uppercase tracking-widest">Live Marketplace</span>
+                <h3 class="text-2xl font-bold text-white font-serif mt-2">Startup Funding Opportunities Directory</h3>
+                <p class="text-xs text-gray-300 mt-1 max-w-lg">Filter active government grants, angel funds, VCs, and accelerators. Apply yourself for free or hire Foundida for assisted preparation.</p>
+            </div>
+            <a href="{{ route('funding.index') }}" class="bg-[#D4A843] text-[#0B1F3A] px-6 py-3 rounded-xl font-extrabold text-xs hover:bg-[#E8B96A] transition-all shrink-0">
+                Explore Marketplace 🚀
+            </a>
+        </div>
+    </div>
+</div>
 
 <!-- FEATURES GRID -->
 <div class="bg-gray-50 py-20 relative z-20 border-b border-gray-200">

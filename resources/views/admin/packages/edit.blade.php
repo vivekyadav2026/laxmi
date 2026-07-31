@@ -56,6 +56,7 @@
                     <select name="type" id="type" required x-model="type" class="w-full bg-navy/90 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold transition-colors">
                         <option value="legal" {{ old('type', $package->type) === 'legal' ? 'selected' : '' }}>Legal (Registration & Compliance)</option>
                         <option value="tech" {{ old('type', $package->type) === 'tech' ? 'selected' : '' }}>Tech (Website, App & Media)</option>
+                        <option value="funding" {{ old('type', $package->type) === 'funding' ? 'selected' : '' }}>Funding (Assisted Application Tiers)</option>
                     </select>
                 </div>
             </div>

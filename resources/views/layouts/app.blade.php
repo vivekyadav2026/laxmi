@@ -330,7 +330,7 @@
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
-                <nav class="flex flex-col space-y-4">
+                <nav class="mobile-nav-links flex flex-col space-y-3">
                     <a href="/" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Home</a>
                     
                     <!-- Collapsible Legal Services -->
@@ -384,6 +384,9 @@
                     </div>
 
                     <a href="/packages" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Packages</a>
+                    <a href="{{ route('funding.index') }}" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00] flex items-center gap-1.5">
+                        Funding <span class="bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">NEW</span>
+                    </a>
                     <a href="/blog" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Blog</a>
                     <a href="/contact" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Contact</a>
                     

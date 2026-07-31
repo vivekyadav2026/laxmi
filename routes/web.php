@@ -284,7 +284,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/user', [UserController::class, 'dashboard'])->name('dashboard.user');
     Route::get('/dashboard/profile', [UserController::class, 'profile'])->name('dashboard.profile');
     Route::post('/dashboard/profile', [UserController::class, 'updateProfile'])->name('dashboard.profile.update');
+    
+    // User Funding Applications Tracker
+    Route::get('/dashboard/funding-applications', [\App\Http\Controllers\FundingApplicationController::class, 'userApplications'])->name('dashboard.funding-applications');
 });
+
+// Funding Opportunities Marketplace Routes
+Route::get('/funding-opportunities', [\App\Http\Controllers\FundingProgramController::class, 'index'])->name('funding.index');
+Route::get('/funding-opportunities/{slug}', [\App\Http\Controllers\FundingProgramController::class, 'show'])->name('funding.show');
+Route::post('/funding-opportunities/{id}/save', [\App\Http\Controllers\FundingProgramController::class, 'toggleSave'])->name('funding.save');
+Route::post('/funding-opportunities/{id}/report', [\App\Http\Controllers\FundingProgramController::class, 'reportExpired'])->name('funding.report');
+
+// Foundida Assisted Application & Checkout
+Route::post('/funding-assisted/submit', [\App\Http\Controllers\FundingApplicationController::class, 'submitAssisted'])->name('funding.assisted.submit');
+Route::get('/funding-assisted/checkout/{id}', [\App\Http\Controllers\FundingApplicationController::class, 'checkout'])->name('funding.checkout');
+Route::post('/funding-assisted/process-payment/{id}', [\App\Http\Controllers\FundingApplicationController::class, 'processPayment'])->name('funding.process-payment');
+Route::get('/funding-assisted/invoice/{id}', [\App\Http\Controllers\FundingApplicationController::class, 'invoice'])->name('funding.invoice');
+
 
 // Static Policy Pages
 Route::get('/privacy-policy', function () {
@@ -587,6 +603,24 @@ Route::prefix('admin')->group(function () {
 
         // Admin Blogs CRUD
         Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class)->names('admin.blogs');
+
+        // Admin Funding Programs Directory Management
+        Route::resource('funding-programs', \App\Http\Controllers\AdminFundingProgramController::class)->names([
+            'index' => 'admin.funding-programs.index',
+            'create' => 'admin.funding-programs.create',
+            'store' => 'admin.funding-programs.store',
+            'edit' => 'admin.funding-programs.edit',
+            'update' => 'admin.funding-programs.update',
+            'destroy' => 'admin.funding-programs.destroy',
+        ]);
+        Route::post('/funding-programs/{id}/duplicate', [\App\Http\Controllers\AdminFundingProgramController::class, 'duplicate'])->name('admin.funding-programs.duplicate');
+
+        // Admin Paid Application Management
+        Route::get('/funding-applications', [\App\Http\Controllers\AdminFundingApplicationController::class, 'index'])->name('admin.funding-applications.index');
+        Route::get('/funding-applications/{id}', [\App\Http\Controllers\AdminFundingApplicationController::class, 'show'])->name('admin.funding-applications.show');
+        Route::post('/funding-applications/{id}/status', [\App\Http\Controllers\AdminFundingApplicationController::class, 'updateStatus'])->name('admin.funding-applications.updateStatus');
+        Route::post('/funding-applications/{id}/message', [\App\Http\Controllers\AdminFundingApplicationController::class, 'addMessage'])->name('admin.funding-applications.message');
+        Route::post('/funding-applications/{id}/upload', [\App\Http\Controllers\AdminFundingApplicationController::class, 'uploadDocument'])->name('admin.funding-applications.upload');
 
         // Admin Payments
         Route::get('/payments', [\App\Http\Controllers\AdminPaymentController::class, 'index'])->name('admin.payments.index');

@@ -79,6 +79,20 @@
                     <span class="font-bold text-sm leading-tight">My Profile</span>
                 </div>
             </a>
+
+            <a href="{{ route('funding.index') }}" class="flex items-center px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-colors group">
+                <i class="fas fa-search-dollar w-5 mr-3 text-gold"></i>
+                <div class="flex flex-col">
+                    <span class="font-bold text-sm leading-tight">Funding Opportunities</span>
+                </div>
+            </a>
+
+            <a href="{{ route('dashboard.funding-applications') }}" class="flex items-center px-4 py-3 text-gray-300 hover:bg-white/5 hover:text-white rounded-xl transition-colors group">
+                <i class="fas fa-rocket w-5 mr-3 text-gold"></i>
+                <div class="flex flex-col">
+                    <span class="font-bold text-sm leading-tight">My Funding Applications</span>
+                </div>
+            </a>
         </nav>
 
         <!-- Logout -->

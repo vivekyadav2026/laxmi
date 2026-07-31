@@ -36,7 +36,7 @@
 @section('content')
 
 <!-- 1. HERO SECTION -->
-<section class="bg-[#0B1F3A] relative overflow-hidden py-8 md:py-[56px] z-10">
+<section class="bg-[#0B1F3A] relative overflow-hidden pt-20 pb-16 md:py-[56px] z-10">
     <!-- Subtle diagonal golden gradient overlay on the right side -->
     <div class="absolute inset-y-0 right-0 w-full lg:w-1/2 bg-gradient-to-tr from-transparent to-[#D4A843]/15 pointer-events-none z-0"></div>
 
@@ -149,7 +149,7 @@
         </div>
 
         <!-- Consultation Form Card (Part 2 — separate white card) -->
-        <div id="consultation" class="mt-8 lg:mt-0 bg-white rounded-2xl shadow-xl p-6 md:p-8 border-t-4 border-[#D4A843] relative z-10 w-full max-w-[440px] mx-auto lg:ml-auto">
+        <div id="consultation" class="mt-8 mb-6 lg:mt-0 bg-white rounded-2xl shadow-xl p-6 pb-10 md:p-8 border-t-4 border-[#D4A843] relative z-10 w-full max-w-[440px] mx-auto lg:ml-auto">
             <h3 class="text-[20px] md:text-[24px] font-bold text-[#0B1F3A] mb-1 font-serif leading-tight">विशेषज्ञों से बात करें</h3>
             <p class="text-gray-500 text-xs mb-6">We reply within 2 hours.</p>
 
@@ -385,49 +385,64 @@
     </div>
 </section>
 
-<!-- FUNDING PROMO SECTION -->
-<section class="py-8 md:py-[48px] bg-[#0B1F3A] relative overflow-hidden border-t border-[#D4A843]/20">
+<!-- STARTUP FUNDING OPPORTUNITIES HOMEPAGE SECTION -->
+<section class="py-12 md:py-16 bg-[#0B1F3A] relative overflow-hidden border-t border-[#D4A843]/20">
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-12">
         <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
-            <div class="inline-flex items-center gap-2 bg-[#D4A843]/10 border border-[#D4A843]/30 rounded-full px-3 py-1.5 mb-5 select-none">
-                <span class="text-[10px] font-bold text-[#D4A843] uppercase tracking-widest"><i class="fas fa-rocket mr-1"></i> GROW FASTER</span>
+            <div class="inline-flex items-center gap-2 bg-[#D4A843]/10 border border-[#D4A843]/30 rounded-full px-3.5 py-1.5 mb-5 select-none">
+                <span class="text-[10px] font-bold text-[#D4A843] uppercase tracking-widest"><i class="fas fa-hand-holding-usd mr-1"></i> FUNDING MARKETPLACE</span>
             </div>
-            <h2 class="text-3xl md:text-5xl font-bold font-serif text-white leading-tight mb-4">
-                Funding & Mentorship <span class="text-[#D4A843]">Subscription</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold font-serif text-white leading-tight mb-4">
+                Startup Funding <span class="text-[#D4A843]">Opportunities</span>
             </h2>
-            <p class="text-gray-300 mb-6 max-w-lg text-sm md:text-base">
-                Stop worrying about capital. Connect directly with VCs, apply for government grants effortlessly, and get expert help preparing your pitch deck.
+            <p class="text-gray-300 mb-6 max-w-lg text-sm md:text-base leading-relaxed">
+                Discover grants, investors, incubators, accelerators, and government funding programs from one platform.
             </p>
-            <ul class="space-y-3 mb-8 text-left inline-block">
-                <li class="flex items-center text-gray-300 text-sm md:text-base"><i class="fas fa-check-circle text-[#D4A843] mr-3"></i> Direct VC & Angel Introductions</li>
-                <li class="flex items-center text-gray-300 text-sm md:text-base"><i class="fas fa-check-circle text-[#D4A843] mr-3"></i> Startup India Grants Support</li>
-                <li class="flex items-center text-gray-300 text-sm md:text-base"><i class="fas fa-check-circle text-[#D4A843] mr-3"></i> Priority Business Loan Assistance</li>
-            </ul>
-            <a href="/funding" class="bg-[#D4A843] text-[#0B1F3A] px-8 py-3 md:py-4 rounded-xl font-bold hover:bg-[#E8B96A] transition-all shadow-[0_0_20px_rgba(212,168,67,0.3)] hover:-translate-y-1 inline-flex items-center gap-2">
-                Explore Funding Plans <i class="fas fa-arrow-right text-sm"></i>
-            </a>
+            
+            <div class="flex flex-wrap gap-3 mb-8 justify-center md:justify-start">
+                <a href="{{ route('funding.index') }}" class="bg-[#D4A843] text-[#0B1F3A] px-7 py-3.5 rounded-xl font-extrabold hover:bg-[#E8B96A] transition-all shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 text-sm">
+                    <i class="fas fa-search"></i> Explore Funding
+                </a>
+                <a href="{{ route('funding.index') }}" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-7 py-3.5 rounded-xl font-bold transition-all inline-flex items-center gap-2 text-sm">
+                    ✨ Apply Through Foundida
+                </a>
+            </div>
+
+            <!-- Disclaimer notice -->
+            <div class="text-[10px] text-gray-400 bg-white/5 border border-white/10 p-3 rounded-xl max-w-lg text-left">
+                <span class="text-gold font-bold">Note:</span> Foundida does not provide funding. We assist startup founders with professional application preparation, pitch review, and submission.
+            </div>
         </div>
+
         <div class="w-full md:w-1/2 relative mt-6 md:mt-0">
-            <div class="absolute inset-0 bg-[#D4A843]/20 blur-3xl rounded-full"></div>
-            <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 md:p-8 rounded-2xl relative shadow-2xl">
-                <div class="flex items-center gap-4 mb-6 pb-6 border-b border-white/10">
-                    <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center text-green-400 shrink-0">
-                        <i class="fas fa-hand-holding-usd text-xl"></i>
-                    </div>
-                    <div>
-                        <div class="text-white font-bold text-lg md:text-xl">₹50L+ Raised</div>
-                        <div class="text-gray-400 text-xs md:text-sm">For Early Stage Startups</div>
-                    </div>
+            <div class="absolute inset-0 bg-[#D4A843]/20 blur-3xl rounded-full pointer-events-none"></div>
+            
+            <!-- Live Opportunities Badge Carousel Preview -->
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 md:p-8 rounded-3xl relative shadow-2xl space-y-4">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                    <span class="text-xs font-bold text-gold uppercase tracking-widest"><i class="fas fa-bolt mr-1"></i> Active Opportunities</span>
+                    <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Updated Today</span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-[#D4A843]/20 rounded-full flex items-center justify-center text-[#D4A843] shrink-0">
-                        <i class="fas fa-users text-xl"></i>
-                    </div>
+
+                <!-- Featured item 1 -->
+                <div class="bg-black/20 p-4 rounded-2xl border border-white/5 flex items-center justify-between gap-4 hover:border-gold/30 transition-all">
                     <div>
-                        <div class="text-white font-bold text-lg md:text-xl">100+ Investors</div>
-                        <div class="text-gray-400 text-xs md:text-sm">In our active network</div>
+                        <span class="text-[10px] text-gold font-bold uppercase">Government Grant</span>
+                        <h4 class="text-sm font-bold text-white font-serif">Startup India Seed Fund Scheme</h4>
+                        <span class="text-xs text-gray-400">Up to ₹50 Lakhs Grant & Debt</span>
                     </div>
+                    <a href="{{ route('funding.index') }}" class="bg-gold text-navy text-xs font-bold px-3 py-1.5 rounded-lg shrink-0">View</a>
+                </div>
+
+                <!-- Featured item 2 -->
+                <div class="bg-black/20 p-4 rounded-2xl border border-white/5 flex items-center justify-between gap-4 hover:border-gold/30 transition-all">
+                    <div>
+                        <span class="text-[10px] text-gold font-bold uppercase">Global Accelerator</span>
+                        <h4 class="text-sm font-bold text-white font-serif">Y Combinator S26 Batch</h4>
+                        <span class="text-xs text-gray-400">$500,000 (~₹4.1 Cr) Capital</span>
+                    </div>
+                    <a href="{{ route('funding.index') }}" class="bg-gold text-navy text-xs font-bold px-3 py-1.5 rounded-lg shrink-0">View</a>
                 </div>
             </div>
         </div>
