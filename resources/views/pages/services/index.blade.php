@@ -110,7 +110,7 @@
                 <!-- Category Header -->
                 <div class="flex items-center justify-between mb-5 relative z-10">
                     <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-2xl bg-[#0B1F3A] text-white flex items-center justify-center shadow-md shrink-0">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] text-[#B8892E] flex items-center justify-center shadow-md shadow-gold/20 shrink-0 group-hover:scale-110 transition-transform duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $iconPath }}"></path></svg>
                         </div>
                         <div>

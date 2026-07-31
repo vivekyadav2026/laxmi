@@ -144,6 +144,11 @@
                 @endif
             </a>
 
+            <a href="{{ route('admin.team.index') }}" class="flex items-center gap-4 px-4 py-3.5 text-sm font-semibold rounded-xl transition-all duration-300 {{ request()->routeIs('admin.team.*') ? 'bg-gold/15 text-gold border border-gold/30 shadow-[0_0_15px_rgba(212,168,67,0.15)]' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+                <div class="w-6 flex justify-center"><i class="fas fa-users text-lg"></i></div>
+                Our Team
+            </a>
+
             @php
                 $pendingCallbacksCount = \App\Models\CallbackRequest::where('status', 'pending')->count();
             @endphp

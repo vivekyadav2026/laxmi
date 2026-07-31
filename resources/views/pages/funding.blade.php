@@ -54,7 +54,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Feature 1 -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg">
-                <div class="w-14 h-14 bg-[#0B1F3A]/5 rounded-xl flex items-center justify-center mb-6 text-[#0B1F3A]">
+                <div class="w-14 h-14 bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] rounded-xl flex items-center justify-center mb-6 text-[#B8892E] shadow-md shadow-gold/20 group-hover:scale-110 transition-transform duration-300">
                     <i class="fas fa-handshake text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-[#0B1F3A] mb-2">VC Connections</h3>
@@ -64,7 +64,7 @@
 
             <!-- Feature 2 -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg">
-                <div class="w-14 h-14 bg-[#0B1F3A]/5 rounded-xl flex items-center justify-center mb-6 text-[#0B1F3A]">
+                <div class="w-14 h-14 bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] rounded-xl flex items-center justify-center mb-6 text-[#B8892E] shadow-md shadow-gold/20 group-hover:scale-110 transition-transform duration-300">
                     <i class="fas fa-file-invoice-dollar text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-[#0B1F3A] mb-2">Govt. Grants</h3>
@@ -74,7 +74,7 @@
 
             <!-- Feature 3 -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg">
-                <div class="w-14 h-14 bg-[#0B1F3A]/5 rounded-xl flex items-center justify-center mb-6 text-[#0B1F3A]">
+                <div class="w-14 h-14 bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] rounded-xl flex items-center justify-center mb-6 text-[#B8892E] shadow-md shadow-gold/20 group-hover:scale-110 transition-transform duration-300">
                     <i class="fas fa-bank text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-[#0B1F3A] mb-2">Business Loans</h3>
@@ -84,7 +84,7 @@
 
             <!-- Feature 4 -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300 hover:shadow-lg">
-                <div class="w-14 h-14 bg-[#0B1F3A]/5 rounded-xl flex items-center justify-center mb-6 text-[#0B1F3A]">
+                <div class="w-14 h-14 bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] rounded-xl flex items-center justify-center mb-6 text-[#B8892E] shadow-md shadow-gold/20 group-hover:scale-110 transition-transform duration-300">
                     <i class="fas fa-chalkboard-teacher text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-[#0B1F3A] mb-2">Mentorship</h3>

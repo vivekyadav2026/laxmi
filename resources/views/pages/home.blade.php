@@ -454,7 +454,7 @@
     <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#D4A843 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-8 text-[#0B1F3A]">
         <div class="flex flex-col md:flex-row items-center text-center md:text-left gap-6 md:w-2/3">
-            <div class="w-16 h-16 md:w-20 md:h-20 bg-[#0B1F3A] rounded-2xl flex items-center justify-center shadow-md shrink-0 text-[#D4A843] text-2xl md:text-3xl border border-[#0B1F3A]/20">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] rounded-2xl flex items-center justify-center shadow-md shrink-0 text-[#B8892E] text-2xl md:text-3xl border border-[#D4A843]/20">
                 <i class="fas fa-headset animate-pulse"></i>
             </div>
             <div>
@@ -524,8 +524,8 @@
             <div onclick="window.location.href='{{ $card['link'] }}'" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-[24px] md:p-[28px] hover:shadow-xl hover:-translate-y-1 hover:border-gold/40 transition-all flex flex-col group relative overflow-hidden cursor-pointer">
                 <div class="card-arc absolute top-0 right-0 w-24 h-24 bg-[#F4F6F9] rounded-bl-full pointer-events-none z-0"></div>
                 <div class="card-icon-row flex items-center justify-between mb-[20px] relative z-10">
-                    <div class="card-icon w-[52px] h-[52px] bg-[#0B1F3A] rounded-2xl flex items-center justify-center text-white shadow-sm flex-shrink-0">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
+                    <div class="card-icon w-[52px] h-[52px] bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] rounded-2xl flex items-center justify-center shadow-md shadow-gold/20 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-[#B8892E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
                     </div>
                     @if(!empty($card['badge']))
                         <span class="bg-red-500 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{{ $card['badge'] }}</span>
@@ -554,12 +554,14 @@
 
         <!-- Centered View All Button -->
         <div class="text-center mt-[48px]">
-            <a href="/services" class="inline-flex items-center gap-3 bg-navy text-white font-bold text-[15px] px-[40px] py-[16px] rounded-xl hover:bg-navy/90 hover:-translate-y-1 transition-all shadow-lg">
-                <span class="flex flex-col items-start">
-                    <span>सभी कानूनी सेवाएं देखें</span>
-                    <span class="text-[10px] uppercase tracking-wider text-gray-300">View All Legal Services</span>
+            <a href="/services" class="inline-flex items-center gap-4 bg-[#0B1F3A] hover:bg-[#122543] text-white px-8 py-3.5 rounded-2xl border border-[#D4A843]/30 hover:border-[#D4A843] shadow-[0_4px_20px_rgba(11,31,58,0.15)] hover:shadow-[0_10px_30px_rgba(212,168,67,0.2)] hover:-translate-y-0.5 transition-all duration-300 group/btn">
+                <span class="flex flex-col items-start text-left">
+                    <span class="text-white text-[15px] font-bold">सभी कानूनी सेवाएं देखें</span>
+                    <span class="text-[10px] uppercase tracking-widest text-[#D4A843] font-bold mt-0.5">View All Legal Services</span>
                 </span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <span class="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] flex items-center justify-center text-[#B8892E] shadow-sm group-hover/btn:translate-x-1 transition-transform duration-300">
+                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
             </a>
         </div>
     </div>
@@ -613,8 +615,8 @@
             <div onclick="window.location.href='{{ $card['link'] }}'" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-[24px] md:p-[28px] hover:shadow-xl hover:-translate-y-1 hover:border-gold/40 transition-all flex flex-col group relative overflow-hidden cursor-pointer">
                 <div class="card-arc absolute top-0 right-0 w-24 h-24 bg-[#F4F6F9] rounded-bl-full pointer-events-none z-0"></div>
                 <div class="card-icon-row flex items-center justify-between mb-[20px] relative z-10">
-                    <div class="card-icon w-[52px] h-[52px] bg-[#0B1F3A] rounded-2xl flex items-center justify-center text-white shadow-sm flex-shrink-0">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
+                    <div class="card-icon w-[52px] h-[52px] bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] rounded-2xl flex items-center justify-center shadow-md shadow-gold/20 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-[#B8892E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $card['icon'] }}"></path></svg>
                     </div>
                     @if(!empty($card['badge']))
                         <span class="bg-red-500 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">{{ $card['badge'] }}</span>
@@ -643,12 +645,14 @@
 
         <!-- Centered View All Button -->
         <div class="text-center mt-[48px]">
-            <a href="/services" class="inline-flex items-center gap-3 bg-navy text-white font-bold text-[15px] px-[40px] py-[16px] rounded-xl hover:bg-navy/90 hover:-translate-y-1 transition-all shadow-lg">
-                <span class="flex flex-col items-start">
-                    <span>सभी टेक सेवाएं देखें</span>
-                    <span class="text-[10px] uppercase tracking-wider text-gray-300">View All Tech Services</span>
+            <a href="/services" class="inline-flex items-center gap-4 bg-[#0B1F3A] hover:bg-[#122543] text-white px-8 py-3.5 rounded-2xl border border-[#D4A843]/30 hover:border-[#D4A843] shadow-[0_4px_20px_rgba(11,31,58,0.15)] hover:shadow-[0_10px_30px_rgba(212,168,67,0.2)] hover:-translate-y-0.5 transition-all duration-300 group/btn">
+                <span class="flex flex-col items-start text-left">
+                    <span class="text-white text-[15px] font-bold">सभी टेक सेवाएं देखें</span>
+                    <span class="text-[10px] uppercase tracking-widest text-[#D4A843] font-bold mt-0.5">View All Tech Services</span>
                 </span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <span class="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] flex items-center justify-center text-[#B8892E] shadow-sm group-hover/btn:translate-x-1 transition-transform duration-300">
+                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
             </a>
         </div>
     </div>
@@ -973,41 +977,29 @@
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-[32px]">
+            @forelse($teamMembers as $member)
             <div class="bg-white rounded-2xl p-4 md:p-[32px] text-center hover:-translate-y-2 transition-transform duration-300 shadow-sm border border-gray-100 group">
                 <div class="w-14 h-14 md:w-[96px] md:h-[96px] rounded-full mx-auto mb-3 md:mb-[24px] border-2 md:border-[4px] border-gold overflow-hidden group-hover:shadow-lg transition-shadow">
-                    <img src="https://ui-avatars.com/api/?name=Amit+Kumar&background=1a237e&color=fff&size=150" alt="CA Amit Kumar" class="w-full h-full object-cover">
+                    <img src="{{ $member->photo_url }}" alt="{{ $member->name }}" class="w-full h-full object-cover object-top">
                 </div>
-                <h3 class="text-[13px] md:text-[18px] font-bold text-navy mb-0.5 md:mb-[2px]">CA Amit Kumar</h3>
-                <p class="text-[9px] md:text-[10px] text-gold uppercase tracking-widest font-bold mb-2 md:mb-[12px]">Tax & Reg Head</p>
-                <p class="text-[11px] md:text-[13px] text-gray-500 leading-relaxed hidden md:block">10+ Years Exp in Startup Structuring.</p>
+                <h3 class="text-[13px] md:text-[18px] font-bold text-navy mb-0.5 md:mb-[2px]">{{ $member->name }}</h3>
+                <p class="text-[9px] md:text-[10px] text-gold uppercase tracking-widest font-bold mb-2 md:mb-[12px]">{{ $member->role }}</p>
+                @if($member->bio)
+                <p class="text-[11px] md:text-[13px] text-gray-500 leading-relaxed hidden md:block">{{ $member->bio }}</p>
+                @endif
+                @if($member->linkedin_url)
+                <a href="{{ $member->linkedin_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 mt-2 text-[10px] text-gold hover:text-navy transition-colors">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                @endif
             </div>
-
-            <div class="bg-white rounded-2xl p-4 md:p-[32px] text-center hover:-translate-y-2 transition-transform duration-300 shadow-sm border border-gray-100 group">
-                <div class="w-14 h-14 md:w-[96px] md:h-[96px] rounded-full mx-auto mb-3 md:mb-[24px] border-2 md:border-[4px] border-gold overflow-hidden group-hover:shadow-lg transition-shadow">
-                    <img src="https://ui-avatars.com/api/?name=Priya+Sharma&background=1a237e&color=fff&size=150" alt="Adv Priya Sharma" class="w-full h-full object-cover">
-                </div>
-                <h3 class="text-[13px] md:text-[18px] font-bold text-navy mb-0.5 md:mb-[2px]">Adv Priya Sharma</h3>
-                <p class="text-[9px] md:text-[10px] text-gold uppercase tracking-widest font-bold mb-2 md:mb-[12px]">IP & TM Expert</p>
-                <p class="text-[11px] md:text-[13px] text-gray-500 leading-relaxed hidden md:block">Secured 1000+ brands and patents.</p>
+            @empty
+            {{-- Fallback: show placeholder if no members added yet --}}
+            <div class="col-span-full text-center py-10 text-gray-400 text-sm">
+                <i class="fas fa-users text-3xl mb-2 block opacity-30"></i>
+                Team members will appear here once added from the admin panel.
             </div>
-
-            <div class="bg-white rounded-2xl p-4 md:p-[32px] text-center hover:-translate-y-2 transition-transform duration-300 shadow-sm border border-gray-100 group">
-                <div class="w-14 h-14 md:w-[96px] md:h-[96px] rounded-full mx-auto mb-3 md:mb-[24px] border-2 md:border-[4px] border-gold overflow-hidden group-hover:shadow-lg transition-shadow">
-                    <img src="https://ui-avatars.com/api/?name=Rahul+Verma&background=1a237e&color=fff&size=150" alt="Rahul Verma" class="w-full h-full object-cover">
-                </div>
-                <h3 class="text-[13px] md:text-[18px] font-bold text-navy mb-0.5 md:mb-[2px]">Rahul Verma</h3>
-                <p class="text-[9px] md:text-[10px] text-gold uppercase tracking-widest font-bold mb-2 md:mb-[12px]">Lead Web Dev</p>
-                <p class="text-[11px] md:text-[13px] text-gray-500 leading-relaxed hidden md:block">Full-stack expert in Laravel & React.</p>
-            </div>
-
-            <div class="bg-white rounded-2xl p-4 md:p-[32px] text-center hover:-translate-y-2 transition-transform duration-300 shadow-sm border border-gray-100 group">
-                <div class="w-14 h-14 md:w-[96px] md:h-[96px] rounded-full mx-auto mb-3 md:mb-[24px] border-2 md:border-[4px] border-gold overflow-hidden group-hover:shadow-lg transition-shadow">
-                    <img src="https://ui-avatars.com/api/?name=Sneha+Patil&background=1a237e&color=fff&size=150" alt="Sneha Patil" class="w-full h-full object-cover">
-                </div>
-                <h3 class="text-[13px] md:text-[18px] font-bold text-navy mb-0.5 md:mb-[2px]">Sneha Patil</h3>
-                <p class="text-[9px] md:text-[10px] text-gold uppercase tracking-widest font-bold mb-2 md:mb-[12px]">App Developer</p>
-                <p class="text-[11px] md:text-[13px] text-gray-500 leading-relaxed hidden md:block">Flutter & React Native cross-platform master.</p>
-            </div>
+            @endforelse
         </div>
     </div>
 </section>

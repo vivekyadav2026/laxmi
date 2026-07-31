@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pages.home');
+    $teamMembers = \App\Models\TeamMember::where('is_active', true)->orderBy('sort_order')->get();
+    return view('pages.home', compact('teamMembers'));
 });
 
 // ─── Payment / Checkout Routes ─────────────────────────────────────────────
@@ -624,5 +625,13 @@ Route::prefix('admin')->group(function () {
 
         // Admin Payments
         Route::get('/payments', [\App\Http\Controllers\AdminPaymentController::class, 'index'])->name('admin.payments.index');
+
+        // Admin Team Members
+        Route::get('/team', [\App\Http\Controllers\AdminTeamController::class, 'index'])->name('admin.team.index');
+        Route::get('/team/create', [\App\Http\Controllers\AdminTeamController::class, 'create'])->name('admin.team.create');
+        Route::post('/team', [\App\Http\Controllers\AdminTeamController::class, 'store'])->name('admin.team.store');
+        Route::get('/team/{team}/edit', [\App\Http\Controllers\AdminTeamController::class, 'edit'])->name('admin.team.edit');
+        Route::put('/team/{team}', [\App\Http\Controllers\AdminTeamController::class, 'update'])->name('admin.team.update');
+        Route::delete('/team/{team}', [\App\Http\Controllers\AdminTeamController::class, 'destroy'])->name('admin.team.destroy');
     });
 });

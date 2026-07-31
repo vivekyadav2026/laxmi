@@ -86,7 +86,7 @@
                 <div class="absolute top-0 right-0 w-24 h-24 bg-[#F4F6F9] rounded-bl-full pointer-events-none z-0"></div>
 
                 <!-- Icon -->
-                <div class="relative w-14 h-14 rounded-2xl bg-[#0B1F3A] text-[#D4A843] flex items-center justify-center text-[26px] mb-6 border shadow-sm shrink-0">
+                <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] text-[#B8892E] flex items-center justify-center mb-6 shadow-md shadow-gold/20 shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         {!! $svgIcons[$service->icon] ?? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"></path>' !!}
                     </svg>
@@ -267,7 +267,7 @@
                 <div class="relative border-l-2 border-gray-200 max-w-3xl mx-auto pl-8 space-y-8 py-4">
                     @foreach($category->page_content['timeline'] as $idx => $step)
                     <div class="relative">
-                        <div class="absolute -left-[41px] top-0.5 w-6 h-6 rounded-full bg-[#0B1F3A] border-4 border-white flex items-center justify-center text-[10px] text-white font-bold">
+                        <div class="absolute -left-[41px] top-0.5 w-6 h-6 rounded-full bg-gradient-to-br from-[#D4A843] to-[#B8892E] border-4 border-white flex items-center justify-center text-[10px] text-white font-bold shadow-sm">
                             {{ $idx + 1 }}
                         </div>
                         <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between gap-6">
@@ -297,7 +297,7 @@
                     @foreach($category->page_content['benefits'] as $ben)
                     <div class="bg-white rounded-3xl p-6 border border-gray-200 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
                         <div>
-                            <div class="w-12 h-12 rounded-2xl bg-[#0B1F3A] text-[#D4A843] flex items-center justify-center shadow-xs mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] text-[#B8892E] flex items-center justify-center shadow-md shadow-gold/20 mb-5">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     {!! $svgIcons[$ben['icon']] ?? '' !!}
                                 </svg>
