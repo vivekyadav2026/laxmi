@@ -28,12 +28,14 @@ class AdminSettingsController extends Controller
             'contact_email' => 'required|email|max:255',
             'contact_phone' => 'required|string|max:255',
             'office_address' => 'nullable|string|max:500',
+            'working_hours' => 'nullable|string|max:255',
             'currency_symbol' => 'required|string|max:10',
             'meta_description' => 'nullable|string|max:500',
             'facebook_url' => 'nullable|url|max:255',
             'instagram_url' => 'nullable|url|max:255',
             'linkedin_url' => 'nullable|url|max:255',
             'twitter_url' => 'nullable|url|max:255',
+            'youtube_url' => 'nullable|url|max:255',
         ]);
 
         foreach ($validated as $key => $val) {

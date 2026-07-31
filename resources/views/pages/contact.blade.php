@@ -1,8 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Us — Foundida | Reach our Legal Experts')
-@section('meta_description', 'Contact Foundida for any queries related to company registration, GST, and legal compliance. Get expert legal advice within 2 hours. WhatsApp or Call us now.')
-@section('meta_keywords', 'Contact Foundida, Legal Services Contact India, CA Contact Number, Startup Legal Support')
+@php
+    $siteName = \App\Models\Setting::get('site_name', 'Foundida');
+    $contactPhone = \App\Models\Setting::get('contact_phone', '+91 87505 30252');
+    $cleanPhone = preg_replace('/[^0-9+]/', '', $contactPhone);
+    $whatsappPhone = preg_replace('/[^0-9]/', '', $contactPhone); // For wa.me link
+    $contactEmail = \App\Models\Setting::get('contact_email', 'hello@foundida.com');
+    $officeAddress = \App\Models\Setting::get('office_address', 'B-42, Legal Tech Tower, Cyber City, Phase 3, Gurugram, Haryana - 122002');
+    $workingHours = \App\Models\Setting::get('working_hours', 'Mon - Sat: 9:00 AM - 6:30 PM');
+@endphp
+
+@section('title', 'Contact Us — ' . $siteName . ' | Reach our Legal Experts')
+@section('meta_description', 'Contact ' . $siteName . ' for any queries related to company registration, GST, and legal compliance. Get expert legal advice within 2 hours. WhatsApp or Call us now.')
+@section('meta_keywords', 'Contact ' . $siteName . ', Legal Services Contact India, CA Contact Number, Startup Legal Support')
 
 @push('schema')
 <script type="application/ld+json">
@@ -11,11 +21,11 @@
   "@type": "ContactPage",
   "mainEntity": {
     "@type": "Organization",
-    "name": "Foundida",
+    "name": "{{ $siteName }}",
     "url": "{{ url('/') }}",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-8750530252",
+      "telephone": "{{ $cleanPhone }}",
       "contactType": "customer service",
       "areaServed": "IN",
       "availableLanguage": ["English", "Hindi"]
@@ -342,7 +352,8 @@
             <div class="w-full lg:w-2/5 space-y-6">
                 
                 <!-- WhatsApp -->
-                <a href="https://wa.me/918750530252" target="_blank" rel="noopener noreferrer" class="block bg-[#25D366] text-white p-6 rounded-2xl shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-[#1DA851] group">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/{{ $whatsappPhone }}" target="_blank" rel="noopener noreferrer" class="block bg-[#25D366] text-white p-6 rounded-2xl shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-[#1DA851] group">
                     <div class="flex items-center justify-between">
                         <div class="flex flex-col">
                             <span class="text-2xl font-bold font-serif mb-1 group-hover:scale-105 transition-transform origin-left">अभी WhatsApp करें</span>
@@ -360,7 +371,7 @@
                         </div>
                         <div class="flex flex-col">
                             <div class="text-sm text-gray-500 font-bold uppercase tracking-wider mb-2">Call Us Directly</div>
-                            <a href="tel:+918750530252" class="text-2xl font-extrabold text-navy hover:text-gold transition-colors">+91 87505 30252</a>
+                            <a href="tel:{{ $cleanPhone }}" class="text-2xl font-extrabold text-navy hover:text-gold transition-colors">{{ $contactPhone }}</a>
                         </div>
                     </div>
                 </div>
@@ -373,7 +384,7 @@
                         </div>
                         <div class="flex flex-col">
                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">ईमेल / Email</span>
-                            <a href="mailto:hello@foundida.com" class="text-lg font-bold text-navy hover:text-gold transition-colors">hello@foundida.com</a>
+                            <a href="mailto:{{ $contactEmail }}" class="text-lg font-bold text-navy hover:text-gold transition-colors">{{ $contactEmail }}</a>
                         </div>
                     </div>
                 </div>
@@ -393,14 +404,14 @@
                                     <span class="leading-tight">सोम - शनि</span>
                                     <span class="text-[9px] uppercase text-gray-500">Mon - Sat</span>
                                 </div>
-                                <span>9:00 AM - 7:00 PM</span>
+                                <span>{{ $workingHours }}</span>
                             </div>
                             <div class="flex justify-between text-gray-500 pt-1">
                                 <div class="flex flex-col">
                                     <span class="leading-tight">रविवार</span>
                                     <span class="text-[9px] uppercase text-gray-400">Sunday</span>
                                 </div>
-                                <span>10:00 AM - 4:00 PM</span>
+                                <span>Closed</span>
                             </div>
                         </div>
                     </div>
@@ -416,8 +427,7 @@
                             <div class="flex flex-col mb-2">
                                 <span class="text-[10px] font-bold text-gold uppercase tracking-widest leading-tight">प्रधान कार्यालय / Head Office</span>
                             </div>
-                            <span class="font-semibold text-sm leading-relaxed mb-0.5">बी-42, लीगल टेक टावर, साइबर सिटी, फेज़ 3, गुरुग्राम, हरियाणा - 122002</span>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-400">B-42, Legal Tech Tower, Cyber City, Phase 3, Gurugram, Haryana - 122002</span>
+                            <span class="font-semibold text-sm leading-relaxed mb-0.5">{{ $officeAddress }}</span>
                         </div>
                     </div>
                 </div>

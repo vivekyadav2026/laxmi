@@ -1,3 +1,17 @@
+@php
+    $siteName = \App\Models\Setting::get('site_name', 'Foundida');
+    $contactPhone = \App\Models\Setting::get('contact_phone', '+91 87505 30252');
+    $cleanPhone = preg_replace('/[^0-9+]/', '', $contactPhone);
+    $whatsappPhone = preg_replace('/[^0-9]/', '', $contactPhone); // For wa.me link
+    $contactEmail = \App\Models\Setting::get('contact_email', 'hello@foundida.com');
+    $officeAddress = \App\Models\Setting::get('office_address', '123 Tech Park, Sector 62, Noida, Uttar Pradesh 201309, India');
+    $workingHours = \App\Models\Setting::get('working_hours', 'Mon - Sat: 9:00 AM - 6:30 PM');
+    $facebookUrl = \App\Models\Setting::get('facebook_url', 'https://www.facebook.com/foundida');
+    $instagramUrl = \App\Models\Setting::get('instagram_url', 'https://www.instagram.com/foundida');
+    $linkedinUrl = \App\Models\Setting::get('linkedin_url', 'https://www.linkedin.com/company/foundida');
+    $twitterUrl = \App\Models\Setting::get('twitter_url', 'https://x.com/foundida');
+    $youtubeUrl = \App\Models\Setting::get('youtube_url', 'https://www.youtube.com/@foundida');
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
@@ -27,19 +41,19 @@
     {
       "@@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Foundida",
-      "url": "https://foundida.com",
-      "logo": "https://foundida.com/logo.png",
+      "name": "{{ $siteName }}",
+      "url": "{{ url('/') }}",
+      "logo": "{{ asset('logo.png') }}",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+91-8750530252",
+        "telephone": "{{ $cleanPhone }}",
         "contactType": "customer service",
         "areaServed": "IN",
         "availableLanguage": ["English", "Hindi"]
       },
       "sameAs": [
-        "https://www.facebook.com/foundida",
-        "https://www.linkedin.com/company/foundida"
+        "{{ $facebookUrl }}",
+        "{{ $linkedinUrl }}"
       ]
     }
     </script>
@@ -292,9 +306,9 @@
                         <div class="h-[20px] w-[1px] bg-[#E2E0D8]"></div>
                     @endauth
 
-                    <a href="tel:+918750530252" class="hidden 2xl:flex text-[#0B1F3A] text-[14px] font-bold items-center whitespace-nowrap hover:text-[#f57c00] transition-colors">
+                    <a href="tel:{{ $cleanPhone }}" class="hidden 2xl:flex text-[#0B1F3A] text-[14px] font-bold items-center whitespace-nowrap hover:text-[#f57c00] transition-colors">
                         <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
-                        +91 87505 30252
+                        {{ $contactPhone }}
                     </a>
                     
                     <div class="hidden 2xl:block h-[20px] w-[1px] bg-[#E2E0D8]"></div>
@@ -302,7 +316,7 @@
                     <a href="/live-session" class="bg-[#0B1F3A] text-[#D4A843] text-[13px] font-bold px-[16px] py-[10px] rounded-[4px] hover:bg-[#1a2b5e] transition-colors whitespace-nowrap flex items-center shadow-sm border border-[#D4A843]/30">
                         <i class="fas fa-video mr-1"></i> ₹99 Live Guide
                     </a>
-                    <a href="tel:+918750530252" class="bg-[#f57c00] text-white text-[13px] font-semibold px-[20px] py-[10px] rounded-[4px] hover:bg-[#ef6c00] transition-colors whitespace-nowrap flex items-center shadow-sm">
+                    <a href="tel:{{ $cleanPhone }}" class="bg-[#f57c00] text-white text-[13px] font-semibold px-[20px] py-[10px] rounded-[4px] hover:bg-[#ef6c00] transition-colors whitespace-nowrap flex items-center shadow-sm">
                         Free Consultation
                     </a>
                 </div>
@@ -414,12 +428,12 @@
                     @endauth
 
                     <hr class="border-[#E2E0D8] my-2">
-                    <a href="tel:+918750530252" class="text-[#0B1F3A] text-[14px] font-semibold mb-2 flex items-center hover:text-[#f57c00] transition-colors">
+                    <a href="tel:{{ $cleanPhone }}" class="text-[#0B1F3A] text-[14px] font-semibold mb-2 flex items-center hover:text-[#f57c00] transition-colors">
                         <i class="fas fa-phone-alt mr-2 text-[#f57c00]"></i>
-                        +91 87505 30252
+                        {{ $contactPhone }}
                     </a>
 
-                    <a href="tel:+918750530252" @click="mobileMenuOpen = false" class="bg-[#f57c00] text-white text-[14px] font-semibold px-[20px] py-[12px] rounded-[4px] text-center">Free Consultation</a>
+                    <a href="tel:{{ $cleanPhone }}" @click="mobileMenuOpen = false" class="bg-[#f57c00] text-white text-[14px] font-semibold px-[20px] py-[12px] rounded-[4px] text-center">Free Consultation</a>
                 </nav>
             </div>
         </div>
@@ -445,29 +459,41 @@
                     <!-- Social Icons -->
                     <div class="flex space-x-3 mt-[24px]">
                         <!-- Facebook -->
-                        <a href="https://www.facebook.com/foundida" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="Facebook">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+                        @if(!empty($facebookUrl))
+                        <a href="{{ $facebookUrl }}" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="Facebook">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
                         </a>
+                        @endif
                         <!-- Instagram -->
-                        <a href="https://www.instagram.com/foundida" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="Instagram">
+                        @if(!empty($instagramUrl))
+                        <a href="{{ $instagramUrl }}" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="Instagram">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                         </a>
+                        @endif
                         <!-- LinkedIn -->
-                        <a href="https://www.linkedin.com/company/foundida" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="LinkedIn">
+                        @if(!empty($linkedinUrl))
+                        <a href="{{ $linkedinUrl }}" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="LinkedIn">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         </a>
+                        @endif
                         <!-- X / Twitter -->
-                        <a href="https://x.com/foundida" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="Twitter">
+                        @if(!empty($twitterUrl))
+                        <a href="{{ $twitterUrl }}" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="Twitter">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         </a>
+                        @endif
                         <!-- YouTube -->
-                        <a href="https://www.youtube.com/@foundida" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="YouTube">
+                        @if(!empty($youtubeUrl))
+                        <a href="{{ $youtubeUrl }}" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="YouTube">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.528 3.545 12 3.545 12 3.545s-7.528 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.022 0 12 0 12s0 3.978.502 5.837a3.003 3.003 0 002.11 2.11c1.86.508 9.388.508 9.388.508s7.528 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.978 24 12 24 12s0-3.978-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                         </a>
+                        @endif
                         <!-- WhatsApp -->
-                        <a href="https://wa.me/918750530252" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="WhatsApp">
+                        @if(!empty($whatsappPhone))
+                        <a href="https://wa.me/{{ $whatsappPhone }}" target="_blank" rel="noopener noreferrer" class="social-link w-[36px] h-[36px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#f57c00] transition-all" aria-label="WhatsApp">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.666.988 3.31 1.489 5.355 1.49 5.511 0 9.993-4.474 9.997-9.986.002-2.67-1.035-5.18-2.919-7.066C17.135 1.706 14.634.666 12.01.666 6.5.666 2.017 5.148 2.013 10.66c-.001 2.045.507 3.7 1.499 5.373L2.52 20.8l4.127-1.646zm11.233-7.514c-.33-.165-1.951-.963-2.251-1.073-.3-.11-.519-.165-.738.165-.219.33-.848 1.073-1.039 1.293-.19.22-.382.247-.711.082-.33-.165-1.393-.513-2.653-1.638-.98-.874-1.641-1.953-1.833-2.282-.19-.33-.02-.508.145-.671.149-.148.33-.385.495-.578.165-.192.219-.33.329-.55.11-.22.055-.412-.028-.577-.082-.165-.738-1.786-1.011-2.446-.266-.64-.537-.552-.738-.562-.19-.01-.41-.01-.628-.01-.219 0-.575.082-.876.412-.3.33-1.148 1.127-1.148 2.747 0 1.62 1.177 3.184 1.341 3.404.165.22 2.316 3.537 5.61 4.96.783.338 1.395.54 1.872.69.787.25 1.5.215 2.065.13.63-.095 1.951-.798 2.224-1.54.273-.742.273-1.375.191-1.513-.082-.137-.3-.22-.63-.385z"/></svg>
                         </a>
+                        @endif
                     </div>
                 </div>
 
@@ -498,17 +524,16 @@
                 <!-- Col 4 (Contact & Badges) -->
                 <div>
                     <div class="text-[#f57c00] text-[12px] font-bold uppercase tracking-[0.15em] mb-[16px]">CONTACT US</div>
-                    <a href="tel:+918750530252" class="block text-white text-[18px] font-bold hover:text-[#f5a623] transition-colors">+91 87505 30252</a>
-                    <a href="mailto:hello@foundida.com" class="block text-[#E2E0D8] text-[13px] mt-[4px] hover:text-[#f5a623] transition-colors">hello@foundida.com</a>
+                    <a href="tel:{{ $cleanPhone }}" class="block text-white text-[18px] font-bold hover:text-[#f5a623] transition-colors">{{ $contactPhone }}</a>
+                    <a href="mailto:{{ $contactEmail }}" class="block text-[#E2E0D8] text-[13px] mt-[4px] hover:text-[#f5a623] transition-colors">{{ $contactEmail }}</a>
                     
                     <div class="mt-[32px] space-y-[12px]">
                         <!-- Local SEO: NAP (Name, Address, Phone) -->
                         <div class="mb-4">
-                            <h4 class="text-[12px] font-bold text-[#D4A843] mb-1">Foundida Headquarters</h4>
+                            <h4 class="text-[12px] font-bold text-[#D4A843] mb-1">{{ $siteName }} Headquarters</h4>
                             <address class="text-[12px] text-white/80 not-italic leading-relaxed">
-                                123 Tech Park, Sector 62,<br>
-                                Noida, Uttar Pradesh 201309, India<br>
-                                Phone: +91 87505 30252
+                                {!! nl2br(e($officeAddress)) !!}<br>
+                                Phone: {{ $contactPhone }}
                             </address>
                         </div>
                         <div class="flex items-center text-white/80 bg-white/10 px-3 py-2 rounded">
@@ -525,7 +550,7 @@
             
             <!-- Bottom Bar -->
             <div class="border-t border-white/10 pt-[24px] mt-[48px] flex flex-col md:flex-row justify-between items-center text-[12px] text-[#E2E0D8]/60">
-                <div>&copy; {{ date('Y') }} Foundida. All rights reserved.</div>
+                <div>&copy; {{ date('Y') }} {{ $siteName }}. All rights reserved.</div>
                 <div class="mt-4 md:mt-0 space-x-[16px]">
                     <a href="/about" class="text-[#E2E0D8] hover:text-white transition-colors">About Us</a>
                     <a href="#" class="text-[#E2E0D8] hover:text-white transition-colors">Privacy Policy</a>
@@ -538,7 +563,7 @@
     </footer>
 
     <!-- WHATSAPP FLOATING BUTTON -->
-    <a href="https://wa.me/918750530252" target="_blank" rel="noopener noreferrer" class="fixed bottom-[84px] lg:bottom-[24px] right-[16px] lg:right-[24px] z-[90] bg-[#25D366] text-white w-[48px] h-[48px] rounded-full flex items-center justify-center shadow-xl hover:bg-[#20bd5a] transition-all hover:scale-110 focus:outline-none" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/{{ $whatsappPhone }}" target="_blank" rel="noopener noreferrer" class="fixed bottom-[84px] lg:bottom-[24px] right-[16px] lg:right-[24px] z-[90] bg-[#25D366] text-white w-[48px] h-[48px] rounded-full flex items-center justify-center shadow-xl hover:bg-[#20bd5a] transition-all hover:scale-110 focus:outline-none" aria-label="Chat on WhatsApp">
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
     </a>
 

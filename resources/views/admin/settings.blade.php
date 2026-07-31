@@ -105,6 +105,11 @@
                     </div>
 
                     <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Support Timings / Working Hours</label>
+                        <input type="text" name="working_hours" value="{{ old('working_hours', $settings['working_hours'] ?? 'Mon - Sat: 9:00 AM - 6:30 PM') }}" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner" placeholder="Mon - Sat: 9:00 AM - 6:30 PM">
+                    </div>
+
+                    <div>
                         <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Default Meta Description</label>
                         <textarea name="meta_description" rows="2" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner">{{ old('meta_description', $settings['meta_description'] ?? '') }}</textarea>
                     </div>
@@ -128,6 +133,10 @@
                         <div>
                             <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Twitter / X URL</label>
                             <input type="url" name="twitter_url" value="{{ old('twitter_url', $settings['twitter_url'] ?? '') }}" placeholder="https://twitter.com/foundida" class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 px-3 text-white text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">YouTube URL</label>
+                            <input type="url" name="youtube_url" value="{{ old('youtube_url', $settings['youtube_url'] ?? '') }}" placeholder="https://youtube.com/@foundida" class="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 px-3 text-white text-xs">
                         </div>
                     </div>
 
