@@ -6,7 +6,7 @@
 @if(isset($category->page_content['faqs']))
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     @foreach($category->page_content['faqs'] as $faq)
