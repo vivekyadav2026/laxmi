@@ -6,8 +6,8 @@
     <title>@yield('title', 'Admin Dashboard - Foundida')</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="144x144" href="{{ asset('favicon-144x144.png') }}">
+    <link rel="shortcut icon" type="image/png" sizes="144x144" href="{{ asset('favicon-144x144.png') }}">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
