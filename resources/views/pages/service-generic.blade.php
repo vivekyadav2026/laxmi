@@ -11,20 +11,20 @@
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
-  "@type": "Service",
+  "@@type": "Service",
   "serviceType": "{{ $service['name_en'] }}",
   "provider": {
-    "@type": "LegalService",
+    "@@type": "LegalService",
     "name": "Foundida",
     "image": "{{ asset('logo.png') }}"
   },
   "areaServed": {
-    "@type": "Country",
+    "@@type": "Country",
     "name": "India"
   },
   "description": "{{ strip_tags($content['description']) }}",
   "offers": {
-    "@type": "Offer",
+    "@@type": "Offer",
     "priceCurrency": "INR",
     "price": "{{ preg_replace('/[^0-9]/', '', $service['price']) }}",
     "url": "{{ url()->current() }}"
@@ -34,14 +34,14 @@
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
-  "@type": "FAQPage",
+  "@@type": "FAQPage",
   "mainEntity": [
     @foreach($content['faqs'] as $index => $faq)
     {
-      "@type": "Question",
+      "@@type": "Question",
       "name": "{{ strip_tags($faq['q_en']) }}",
       "acceptedAnswer": {
-        "@type": "Answer",
+        "@@type": "Answer",
         "text": "{{ strip_tags($faq['a_en']) }}"
       }
     }{{ !$loop->last ? ',' : '' }}

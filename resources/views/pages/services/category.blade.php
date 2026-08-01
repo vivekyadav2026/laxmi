@@ -7,14 +7,14 @@
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
-  "@type": "FAQPage",
+  "@@type": "FAQPage",
   "mainEntity": [
     @foreach($category->page_content['faqs'] as $faq)
     {
-      "@type": "Question",
+      "@@type": "Question",
       "name": "{{ strip_tags($faq['q_en']) }}",
       "acceptedAnswer": {
-        "@type": "Answer",
+        "@@type": "Answer",
         "text": "{{ strip_tags($faq['a_en']) }}"
       }
     }{{ !$loop->last ? ',' : '' }}

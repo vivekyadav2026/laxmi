@@ -7,13 +7,13 @@
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
-  "@type": "LegalService",
+  "@@type": "LegalService",
   "name": "Foundida",
   "url": "{{ url('/') }}",
   "logo": "{{ asset('logo.png') }}",
   "description": "India's trusted Legal & Tech platform for Startups. Company registration, GST, Trademarks, and Custom Tech Solutions.",
   "address": {
-    "@type": "PostalAddress",
+    "@@type": "PostalAddress",
     "streetAddress": "123 Tech Park, Sector 62",
     "addressLocality": "Noida",
     "addressRegion": "UP",
@@ -21,7 +21,7 @@
     "addressCountry": "IN"
   },
   "contactPoint": {
-    "@type": "ContactPoint",
+    "@@type": "ContactPoint",
     "telephone": "{{ \App\Models\Setting::get('contact_phone', '+91 87505 30252') }}",
     "contactType": "customer service"
   },

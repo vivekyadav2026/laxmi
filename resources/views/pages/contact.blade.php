@@ -18,13 +18,13 @@
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
-  "@type": "ContactPage",
+  "@@type": "ContactPage",
   "mainEntity": {
-    "@type": "Organization",
+    "@@type": "Organization",
     "name": "{{ $siteName }}",
     "url": "{{ url('/') }}",
     "contactPoint": {
-      "@type": "ContactPoint",
+      "@@type": "ContactPoint",
       "telephone": "{{ $cleanPhone }}",
       "contactType": "customer service",
       "areaServed": "IN",
@@ -36,14 +36,14 @@
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
-  "@type": "FAQPage",
+  "@@type": "FAQPage",
   "mainEntity": [
     @foreach($faqs as $index => $faq)
     {
-      "@type": "Question",
+      "@@type": "Question",
       "name": "{{ strip_tags($faq['q_en']) }}",
       "acceptedAnswer": {
-        "@type": "Answer",
+        "@@type": "Answer",
         "text": "{{ strip_tags($faq['a_en']) }}"
       }
     }{{ !$loop->last ? ',' : '' }}

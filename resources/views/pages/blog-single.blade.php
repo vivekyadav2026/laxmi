@@ -7,18 +7,18 @@
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
-  "@type": "Article",
+  "@@type": "Article",
   "headline": "{{ strip_tags($post['title_en']) }}",
   "image": "{{ asset('logo.png') }}",
   "author": {
-    "@type": "Person",
+    "@@type": "Person",
     "name": "{{ $post['author'] }}"
   },
   "publisher": {
-    "@type": "Organization",
+    "@@type": "Organization",
     "name": "Foundida",
     "logo": {
-      "@type": "ImageObject",
+      "@@type": "ImageObject",
       "url": "{{ asset('logo.png') }}"
     }
   },

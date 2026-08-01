@@ -51,12 +51,12 @@
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
-      "@type": "Organization",
+      "@@type": "Organization",
       "name": "{{ $siteName }}",
       "url": "{{ url('/') }}",
       "logo": "{{ asset('logo.png') }}",
       "contactPoint": {
-        "@type": "ContactPoint",
+        "@@type": "ContactPoint",
         "telephone": "{{ $cleanPhone }}",
         "contactType": "customer service",
         "areaServed": "IN",

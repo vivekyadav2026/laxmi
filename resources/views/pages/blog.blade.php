@@ -7,15 +7,15 @@
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
-  "@type": "Blog",
+  "@@type": "Blog",
   "name": "Foundida Legal & Tech Blog",
   "url": "{{ url('/blog') }}",
   "description": "Simple articles in Hindi & English on company law, GST, trademarks, and digital business.",
   "publisher": {
-    "@type": "Organization",
+    "@@type": "Organization",
     "name": "Foundida",
     "logo": {
-      "@type": "ImageObject",
+      "@@type": "ImageObject",
       "url": "{{ asset('logo.png') }}"
     }
   }

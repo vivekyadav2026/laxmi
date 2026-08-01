@@ -8,24 +8,24 @@
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
-  "@type": "AboutPage",
+  "@@type": "AboutPage",
   "mainEntity": {
-    "@type": "Organization",
+    "@@type": "Organization",
     "name": "Foundida",
     "url": "{{ url('/about') }}",
     "foundingDate": "2020",
     "founders": [
       {
-        "@type": "Person",
+        "@@type": "Person",
         "name": "Vivek Yadav"
       },
       {
-        "@type": "Person",
+        "@@type": "Person",
         "name": "Ranjeet Kumar Maurya"
       }
     ],
     "contactPoint": {
-      "@type": "ContactPoint",
+      "@@type": "ContactPoint",
       "telephone": "{{ \App\Models\Setting::get('contact_phone', '+91 87505 30252') }}",
       "contactType": "customer service"
     }
