@@ -298,6 +298,7 @@
                     Funding <span class="bg-red-500 text-white text-[8px] font-bold px-1 ml-1 rounded animate-pulse">NEW</span>
                 </a>
                 <a href="/blog" class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Blog</a>
+                <a href="/about" class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">About Us</a>
                 <a href="/contact" class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium hover:text-[#f57c00] transition-colors flex items-center h-[68px]">Contact</a>
             </nav>
 
@@ -334,9 +335,6 @@
 
                     <a href="/live-session" class="bg-[#0B1F3A] text-[#D4A843] text-[13px] font-bold px-[16px] py-[10px] rounded-[4px] hover:bg-[#1a2b5e] transition-colors whitespace-nowrap flex items-center shadow-sm border border-[#D4A843]/30">
                         <i class="fas fa-video mr-1"></i> ₹99 Live Guide
-                    </a>
-                    <a href="tel:{{ $cleanPhone }}" class="bg-[#f57c00] text-white text-[13px] font-semibold px-[20px] py-[10px] rounded-[4px] hover:bg-[#ef6c00] transition-colors whitespace-nowrap flex items-center shadow-sm">
-                        Free Consultation
                     </a>
                 </div>
 
@@ -421,6 +419,7 @@
                         Funding <span class="bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">NEW</span>
                     </a>
                     <a href="/blog" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Blog</a>
+                    <a href="/about" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">About Us</a>
                     <a href="/contact" class="text-[14px] text-[#1A1A2E] font-medium hover:text-[#f57c00]">Contact</a>
                     
                     <hr class="border-[#E2E0D8] my-2">
@@ -545,6 +544,12 @@
                     <div class="text-[#f57c00] text-[12px] font-bold uppercase tracking-[0.15em] mb-[16px]">CONTACT US</div>
                     <a href="tel:{{ $cleanPhone }}" class="block text-white text-[18px] font-bold hover:text-[#f5a623] transition-colors">{{ $contactPhone }}</a>
                     <a href="mailto:{{ $contactEmail }}" class="block text-[#E2E0D8] text-[13px] mt-[4px] hover:text-[#f5a623] transition-colors">{{ $contactEmail }}</a>
+                    
+                    <div class="mt-4">
+                        <a href="tel:{{ $cleanPhone }}" class="inline-flex items-center bg-[#f57c00] text-white text-[13px] font-semibold px-[20px] py-[10px] rounded-[4px] hover:bg-[#ef6c00] transition-colors whitespace-nowrap shadow-sm">
+                            <i class="fas fa-headset mr-2"></i> Free Consultation
+                        </a>
+                    </div>
                     
                     <div class="mt-[32px] space-y-[12px]">
                         <!-- Local SEO: NAP (Name, Address, Phone) -->

@@ -181,10 +181,8 @@ Route::get('/about', function () {
     ];
 
     $team = [
-        ['name_hi' => 'राजेश कुमार', 'name_en' => 'Rajesh Kumar', 'role_hi' => 'मुख्य कार्यकारी अधिकारी (CEO)', 'role_en' => 'Chief Executive Officer', 'linkedin' => 'https://www.linkedin.com/company/foundida'],
-        ['name_hi' => 'प्रिया शर्मा', 'name_en' => 'Priya Sharma', 'role_hi' => 'मुख्य कानूनी अधिकारी (CLO)', 'role_en' => 'Chief Legal Officer', 'linkedin' => 'https://www.linkedin.com/company/foundida'],
-        ['name_hi' => 'अमित सिंह', 'name_en' => 'Amit Singh', 'role_hi' => 'तकनीकी प्रमुख (CTO)', 'role_en' => 'Chief Technology Officer', 'linkedin' => 'https://www.linkedin.com/company/foundida'],
-        ['name_hi' => 'नेहा गुप्ता', 'name_en' => 'Neha Gupta', 'role_hi' => 'ग्राहक सफलता प्रमुख', 'role_en' => 'Head of Customer Success', 'linkedin' => 'https://www.linkedin.com/company/foundida'],
+        ['name_hi' => 'विवेक यादव', 'name_en' => 'Vivek Yadav', 'role_hi' => 'संस्थापक और सीईओ (Founder & CEO)', 'role_en' => 'Founder & CEO', 'linkedin' => 'https://www.linkedin.com/company/foundida'],
+        ['name_hi' => 'रणजीत कुमार मौर्य', 'name_en' => 'Ranjeet Kumar Maurya', 'role_hi' => 'सह-संस्थापक और सीटीओ (Co-Founder & CTO)', 'role_en' => 'Co-Founder & CTO', 'linkedin' => 'https://www.linkedin.com/company/foundida'],
     ];
 
     $media = [

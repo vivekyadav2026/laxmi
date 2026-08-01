@@ -17,7 +17,11 @@
     "founders": [
       {
         "@type": "Person",
-        "name": "Rajesh Kumar"
+        "name": "Vivek Yadav"
+      },
+      {
+        "@type": "Person",
+        "name": "Ranjeet Kumar Maurya"
       }
     ],
     "contactPoint": {
@@ -207,6 +211,7 @@
     </div>
 </div>
 
+{{-- 
 <!-- MEDIA COVERAGE -->
 <div class="bg-offwhite py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -225,6 +230,7 @@
         </div>
     </div>
 </div>
+--}}
 
 <!-- CERTIFICATIONS -->
 <div class="bg-navy py-16 border-t border-navy-600">
