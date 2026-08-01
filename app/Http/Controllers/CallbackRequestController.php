@@ -36,13 +36,26 @@ class CallbackRequestController extends Controller
             $notes = implode(" | ", $notesArr);
         }
 
-        CallbackRequest::create([
+        $callback = CallbackRequest::create([
             'name' => $validated['name'],
             'phone' => $validated['phone'],
             'service' => $validated['service'],
             'status' => 'pending',
             'notes' => $notes,
         ]);
+
+        defer(function () use ($callback) {
+            try {
+                $adminEmail = env('ADMIN_EMAIL', config('mail.from.address'));
+                if ($adminEmail) {
+                    \Illuminate\Support\Facades\Mail::to($adminEmail)->send(
+                        new \App\Mail\AdminNotificationMail('Callback Request', $callback->toArray())
+                    );
+                }
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Failed to send admin notification email: ' . $e->getMessage());
+            }
+        });
 
         return redirect()->back()
             ->withInput()

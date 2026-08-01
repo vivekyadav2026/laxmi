@@ -28,7 +28,7 @@ class LiveSessionBookingController extends Controller
             'preferred_time.required' => 'Please select a preferred time slot.',
         ]);
 
-        LiveSessionBooking::create([
+        $booking = LiveSessionBooking::create([
             'name' => $validated['name'],
             'phone' => $validated['phone'],
             'email' => $validated['email'] ?? null,
@@ -37,6 +37,19 @@ class LiveSessionBookingController extends Controller
             'status' => 'pending',
             'notes' => $request->input('notes'),
         ]);
+
+        defer(function () use ($booking) {
+            try {
+                $adminEmail = env('ADMIN_EMAIL', config('mail.from.address'));
+                if ($adminEmail) {
+                    \Illuminate\Support\Facades\Mail::to($adminEmail)->send(
+                        new \App\Mail\AdminNotificationMail('Live Session Booking', $booking->toArray())
+                    );
+                }
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Failed to send admin notification email: ' . $e->getMessage());
+            }
+        });
 
         return redirect()->back()->with('booking_success', 'आपके लाइव सेशन की बुकिंग का अनुरोध प्राप्त हुआ है! / Your live session booking request has been received!');
     }

@@ -86,6 +86,19 @@ class FundingApplicationController extends Controller
             'status' => 'Pending Documents',
         ]);
 
+        defer(function () use ($application) {
+            try {
+                $adminEmail = env('ADMIN_EMAIL', config('mail.from.address'));
+                if ($adminEmail) {
+                    \Illuminate\Support\Facades\Mail::to($adminEmail)->send(
+                        new \App\Mail\AdminNotificationMail('Assisted Funding Application', $application->toArray())
+                    );
+                }
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Failed to send admin notification email: ' . $e->getMessage());
+            }
+        });
+
         // Create log entry
         FundingApplicationLog::create([
             'funding_application_id' => $application->id,

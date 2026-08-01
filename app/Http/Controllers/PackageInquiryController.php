@@ -30,7 +30,7 @@ class PackageInquiryController extends Controller
             'package_slug.exists' => 'Selected package does not exist.',
         ]);
 
-        PackageInquiry::create([
+        $inquiry = PackageInquiry::create([
             'name' => $validated['name'],
             'phone' => $validated['phone'],
             'email' => $validated['email'],
@@ -38,6 +38,19 @@ class PackageInquiryController extends Controller
             'status' => 'pending',
             'notes' => $validated['notes'] ?? null,
         ]);
+
+        defer(function () use ($inquiry) {
+            try {
+                $adminEmail = env('ADMIN_EMAIL', config('mail.from.address'));
+                if ($adminEmail) {
+                    \Illuminate\Support\Facades\Mail::to($adminEmail)->send(
+                        new \App\Mail\AdminNotificationMail('Package Inquiry', $inquiry->toArray())
+                    );
+                }
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Failed to send admin notification email: ' . $e->getMessage());
+            }
+        });
 
         return redirect()->back()
             ->with('package_inquiry_success', 'Thank you! Your inquiry has been received. Our team will contact you shortly regarding the package.');
