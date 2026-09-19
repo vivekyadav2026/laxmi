@@ -296,7 +296,7 @@
                     <span class="text-[12px] xl:text-[13px] text-[#1A1A2E] font-medium group-hover:text-[#f57c00] transition-colors flex items-center whitespace-nowrap">
                         Legal Services <span class="ml-1 text-[10px]">▼</span>
                     </span>
-                    <div class="absolute top-[68px] left-[-200px] xl:left-0 w-[580px] bg-white border border-[#E2E0D8] shadow-xl rounded-b-[8px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[200] py-[12px] px-[16px] grid grid-cols-2 gap-x-4 gap-y-2">
+                    <div class="absolute top-[68px] bg-white border border-[#E2E0D8] shadow-xl rounded-b-[8px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[200] grid grid-cols-3" style="width: 820px; left: 0; padding: 28px; gap: 12px 32px;">
                         @php 
                             $navLegalCats = \Illuminate\Support\Facades\Cache::remember('nav_legal_cats', 3600, function() {
                                 return \App\Models\ServiceCategory::with('services')->where('slug', '!=', 'tech-services')->get();

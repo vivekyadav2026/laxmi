@@ -166,11 +166,11 @@
                 
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 mb-8 mt-2 w-full sm:max-w-none mx-auto sm:mx-0">
-                    <button onclick="document.getElementById('consultationModal').style.display='flex'" class="inline-flex items-center justify-center gap-2 font-extrabold px-7 py-3.5 rounded-full transition-all hover:-translate-y-0.5 whitespace-nowrap w-full sm:w-auto" style="background: linear-gradient(135deg, #F5A623, #FFC152); box-shadow: 0 6px 20px rgba(245, 166, 35, 0.35); color: #0B1F3A; font-size: 15px;">
+                    <button onclick="document.getElementById('consultationModal').style.display='flex'" class="inline-flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-md transition-all hover:-translate-y-0.5 whitespace-nowrap w-full sm:w-auto shadow-sm" style="background-color: #F5A623; color: #0B1F3A; font-size: 14px;">
                         <i class="fas fa-phone-alt"></i>
                         <span>Get Free Consultation</span>
                     </button>
-                    <a href="/packages" class="inline-flex items-center justify-center gap-2 font-bold px-7 py-3.5 rounded-full transition-all whitespace-nowrap w-full sm:w-auto hover:bg-gray-50" style="background-color: transparent; border: 2px solid #CDE5D4; color: #2D7A4F; font-size: 15px;">
+                    <a href="/services" class="inline-flex items-center justify-center gap-2 bg-white border border-gray-300 font-bold px-6 py-3 rounded-md transition-all shadow-sm hover:bg-gray-50 whitespace-nowrap w-full sm:w-auto" style="color: #0B1F3A; font-size: 14px;">
                         <i class="fas fa-box-open"></i>
                         <span>View All Services</span>
                         <i class="fas fa-arrow-right text-xs ml-1 opacity-70"></i>
