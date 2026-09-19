@@ -47,7 +47,7 @@
 <div class="bg-gray-50 py-20 relative z-20 border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16 flex flex-col items-center">
-            <h2 class="text-3xl font-bold text-[#0B1F3A] mb-2 font-serif">क्या-क्या मिलेगा?</h2>
+            <h2 class="text-3xl font-bold text-[#0B1F3A] mb-2 font-serif">What's Included?</h2>
             <p class="text-sm font-bold text-[#D4A843] uppercase tracking-wider">What's Included in the Subscription</p>
         </div>
 
@@ -58,7 +58,7 @@
                     <i class="fas fa-handshake text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-[#0B1F3A] mb-2">VC Connections</h3>
-                <p class="text-gray-500 text-sm mb-2">हम आपको एंजेल इन्वेस्टर्स और वेंचर कैपिटलिस्ट्स से सीधे कनेक्ट करेंगे।</p>
+                <p class="text-gray-500 text-sm mb-2">Directly connect with angel investors and venture capitalists.</p>
                 <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-auto">Direct Introductions</span>
             </div>
 
@@ -68,7 +68,7 @@
                     <i class="fas fa-file-invoice-dollar text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-[#0B1F3A] mb-2">Govt. Grants</h3>
-                <p class="text-gray-500 text-sm mb-2">स्टार्टअप इंडिया, मुद्रा लोन और अन्य सरकारी योजनाओं का लाभ उठाने में मदद।</p>
+                <p class="text-gray-500 text-sm mb-2">Assistance in leveraging Startup India, Mudra loans, and government schemes.</p>
                 <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-auto">Subsidy & Grants</span>
             </div>
 
@@ -78,7 +78,7 @@
                     <i class="fas fa-bank text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-[#0B1F3A] mb-2">Business Loans</h3>
-                <p class="text-gray-500 text-sm mb-2">आसान शर्तों पर बिना किसी झंझट के बैंक से बिज़नेस लोन प्राप्त करें।</p>
+                <p class="text-gray-500 text-sm mb-2">Get hassle-free business loans from leading banks at competitive rates.</p>
                 <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-auto">Credit Assistance</span>
             </div>
 
@@ -88,7 +88,7 @@
                     <i class="fas fa-chalkboard-teacher text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-[#0B1F3A] mb-2">Mentorship</h3>
-                <p class="text-gray-500 text-sm mb-2">पिच डेक तैयार करने और बिज़नेस मॉडल बनाने में विशेषज्ञों की सलाह।</p>
+                <p class="text-gray-500 text-sm mb-2">Expert guidance on preparing pitch decks and financial modeling.</p>
                 <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-auto">Pitch Deck Prep</span>
             </div>
         </div>
@@ -138,7 +138,7 @@
             <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTIwIDIwTDEwIDEwbTEwIDEwbTEwLTEwTDIwIDIwbS0xMCAxMGwxMC0xMG0xMCAxMGwtMTAtMTAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIuNSIvPgo8L3N2Zz4=')]"></div>
             <div class="relative z-10 md:w-2/3">
                 <h3 class="text-xl md:text-2xl font-bold mb-2">Starting a Startup in India in 2026?</h3>
-                <p class="text-gray-300 text-sm md:text-base leading-relaxed">हम आपको गाइड करेंगे कि आज के समय में किस फंडिंग स्टेज पर क्या-क्या <strong>requirements</strong> होती हैं, और इन्वेस्टर्स क्या देखते हैं। हमारी एक्सपर्ट टीम आपकी पिच डेक से लेकर कंप्लायंस तक पूरी मदद करेगी।</p>
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed">We will guide you on the specific requirements for every funding stage in 2026. Our expert team will assist you from pitch deck creation to investor compliance.</p>
             </div>
             <div class="relative z-10 w-full md:w-auto flex-shrink-0">
                 <a href="#pricing" class="block w-full text-center bg-[#f5a623] text-[#0B1F3A] font-bold px-8 py-4 rounded-xl hover:bg-[#c09435] transition-colors shadow-lg">Get Expert Guide</a>
@@ -158,81 +158,81 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- 1 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-wallet"></i></div>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-coins"></i></div>
                 <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">1. Bootstrapping</h3>
-                <p class="text-sm text-gray-600">Apne paise se business shuru karna bina kisi external investment ke.</p>
+                <p class="text-sm text-gray-600">Funding the business using personal savings and revenue generated by the company.</p>
             </div>
             <!-- 2 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
                 <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-users"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">2. Friends & Family Funding</h3>
-                <p class="text-sm text-gray-600">Doston ya family members se initial capital raise karna.</p>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">2. Friends & Family</h3>
+                <p class="text-sm text-gray-600">Initial capital provided by close friends or family members to launch the product.</p>
             </div>
             <!-- 3 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-user-tie"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">3. Angel Investment</h3>
-                <p class="text-sm text-gray-600">Individual High-Net-Worth investors jo startup me early stage me invest karte hain.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-user-astronaut"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">3. Angel Investors</h3>
+                <p class="text-sm text-gray-600">High net-worth individuals who provide early-stage capital in exchange for equity.</p>
             </div>
             <!-- 4 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-seedling"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">4. Seed Funding</h3>
-                <p class="text-sm text-gray-600">Initial stage funding product development aur market validation ke liye.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-building-columns"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">4. Venture Capital (VC)</h3>
+                <p class="text-sm text-gray-600">Institutional investment funds targeting high-growth early and growth-stage startups.</p>
             </div>
             <!-- 5 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-rocket"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">5. Venture Capital (VC)</h3>
-                <p class="text-sm text-gray-600">High-growth startups me large professional investment firms ka paisa.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-hand-holding-hand"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">5. Crowdfunding</h3>
+                <p class="text-sm text-gray-600">Raising small amounts of money from a large number of people online.</p>
             </div>
             <!-- 6 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-chart-line"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">6. Series A, B, C Funding</h3>
-                <p class="text-sm text-gray-600">Business ko scale karne aur expand karne ke liye multiple funding rounds.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-rocket"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">6. Accelerators & Incubators</h3>
+                <p class="text-sm text-gray-600">Programs offering mentorship, office space, and seed capital for equity.</p>
             </div>
             <!-- 7 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-building-columns"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">7. Bank Loan</h3>
-                <p class="text-sm text-gray-600">Traditional banks ya NBFCs se loan lekar business chalana.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-landmark"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">7. Government Grants</h3>
+                <p class="text-sm text-gray-600">Non-dilutive funding and subsidies provided by government schemes like Startup India.</p>
             </div>
             <!-- 8 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-landmark-flag"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">8. Govt Grants / Schemes</h3>
-                <p class="text-sm text-gray-600">Sarkari yojanaon (e.g. Startup India) ke through financial support.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-briefcase"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">8. Business Loans & Debt</h3>
+                <p class="text-sm text-gray-600">Working capital or term loans provided by commercial banks and NBFCs.</p>
             </div>
             <!-- 9 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-globe"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">9. Crowdfunding</h3>
-                <p class="text-sm text-gray-600">Bahut saare logon se online platform ke through chhota-chhota paisa collect karna.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-building"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">9. Corporate Venture Capital</h3>
+                <p class="text-sm text-gray-600">Investments made by established corporations into innovative startups.</p>
             </div>
             <!-- 10 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-hand-holding-dollar"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">10. Revenue-Based Funding</h3>
-                <p class="text-sm text-gray-600">Future revenue ke percentage ke against immediate capital lena.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-chart-line"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">10. Revenue-Based Financing</h3>
+                <p class="text-sm text-gray-600">Capital provided in exchange for a fixed percentage of ongoing revenues.</p>
             </div>
             <!-- 11 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-file-invoice-dollar"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">11. Debt Funding</h3>
-                <p class="text-sm text-gray-600">Bonds, debentures ya loan ke form me funding lena jisme equity nahi deni padti.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-vault"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">11. Venture Debt</h3>
+                <p class="text-sm text-gray-600">Debt financing provided to venture-backed startups to extend runway.</p>
             </div>
             <!-- 12 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
-                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-briefcase"></i></div>
-                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">12. Private Equity (PE)</h3>
-                <p class="text-sm text-gray-600">Mature aur profitable businesses me large institutional investment.</p>
+                <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-trophy"></i></div>
+                <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">12. Competitions & Hackathons</h3>
+                <p class="text-sm text-gray-600">Prize money won through startup pitch competitions and innovation challenges.</p>
             </div>
             <!-- 13 -->
             <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
                 <div class="text-[#f5a623] text-2xl mb-3"><i class="fas fa-bullhorn"></i></div>
                 <h3 class="font-bold text-[#0B1F3A] text-lg mb-2">13. IPO (Initial Public Offering)</h3>
-                <p class="text-sm text-gray-600">Company ke shares stock market ke through public ko bechkar fund raise karna.</p>
+                <p class="text-sm text-gray-600">Raising funds from the public by listing company shares on the stock market.</p>
             </div>
         </div>
     </div>
@@ -242,7 +242,7 @@
 <div class="bg-white py-20 relative z-20" id="pricing">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16 flex flex-col items-center">
-            <h2 class="text-3xl font-bold text-[#0B1F3A] mb-2 font-serif">फंडिंग सब्सक्रिप्शन प्लान</h2>
+            <h2 class="text-3xl font-bold text-[#0B1F3A] mb-2 font-serif">Funding Subscription Plans</h2>
             <p class="text-sm font-bold text-[#D4A843] uppercase tracking-wider">Choose Your Plan</p>
             
             @if(session('subscription_success'))

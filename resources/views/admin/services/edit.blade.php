@@ -67,7 +67,7 @@
                 </div>
                 <div>
                     <label for="badge_hi" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Offer Badge (Hindi) - Optional</label>
-                    <input type="text" name="badge_hi" id="badge_hi" value="{{ old('badge_hi', $service->badge_hi) }}" class="w-full bg-navy/40 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner" placeholder="e.g. 50% छूट">
+                    <input type="text" name="badge_hi" id="badge_hi" value="{{ old('badge_hi', $service->badge_hi) }}" class="w-full bg-navy/40 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all text-sm shadow-inner" placeholder="e.g. 50% OFF">
                     @error('badge_hi') <p class="mt-2 text-xs text-red-400 font-medium"><i class="fas fa-exclamation-triangle"></i> {{ $message }}</p> @enderror
                 </div>
             </div>

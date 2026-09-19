@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'पैकेज | Best Value Packages - Foundida')
+@section('title', 'Best Value Packages - Foundida')
 
 @section('content')
 
@@ -11,7 +11,7 @@
             </span>
         </div>
         <h1 class="font-serif text-[36px] md:text-[52px] font-bold text-white leading-tight mb-4">
-            सबसे <span class="text-[#f5a623]">बेहतरीन</span> पैकेज
+            Best Value <span class="text-[#f5a623]">Packages</span>
         </h1>
         <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed max-w-[600px] mx-auto">
             Get Legal + Tech services bundled together and save up to 40%. Everything a new business needs — one place, one price.
@@ -53,18 +53,15 @@
                 @if($pkg->is_popular)
                     <!-- Popular Card -->
                     <div class="bg-white rounded-2xl shadow-xl border-2 border-gold p-8 flex flex-col relative md:-my-4 hover:-translate-y-1 transition-transform duration-300 z-10">
-                        @if($pkg->badge_hi)
+                        @if($pkg->badge_en ?: $pkg->badge_hi)
                             <div class="absolute -top-4 inset-x-0 flex justify-center">
                                 <div class="bg-gold text-navy px-4 py-1.5 rounded-full text-xs font-bold shadow-md flex flex-col items-center leading-tight">
-                                    <span>{{ $pkg->badge_hi }}</span>
-                                    @if($pkg->badge_en)
-                                        <span class="text-[8px] uppercase tracking-widest">{{ $pkg->badge_en }}</span>
-                                    @endif
+                                    <span>{{ $pkg->badge_en ?: $pkg->badge_hi }}</span>
                                 </div>
                             </div>
                         @endif
                         <div class="flex flex-col mb-6 pb-6 border-b border-gray-100 mt-2">
-                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_en }}</h3>
                             <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
                             <div class="mt-6 flex items-end gap-2">
                                 <span class="text-4xl font-bold text-gold">₹{{ number_format($pkg->price) }}</span>
@@ -84,8 +81,7 @@
                         <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
                                 type="button" 
                                 class="w-full bg-gold text-navy hover:bg-yellow-500 min-h-[56px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center">
-                            <span class="text-[16px] font-extrabold">शुरू करें</span>
-                            <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
+                            <span class="text-[16px] font-extrabold">Get Started</span>
                         </button>
                         <a href="{{ route('checkout', ['type' => 'package', 'slug' => $pkg->slug]) }}"
                            class="w-full mt-2 border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[44px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
@@ -97,7 +93,7 @@
                     <!-- Regular Card -->
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
                         <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_en }}</h3>
                             <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
                             <div class="mt-6 flex items-end gap-2">
                                 <span class="text-4xl font-bold text-navy">₹{{ number_format($pkg->price) }}</span>
@@ -117,8 +113,7 @@
                         <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
                                 type="button" 
                                 class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
-                            <span class="text-[15px]">शुरू करें</span>
-                            <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
+                            <span class="text-[15px]">Get Started</span>
                         </button>
                         <a href="{{ route('checkout', ['type' => 'package', 'slug' => $pkg->slug]) }}"
                            class="w-full mt-2 bg-navy text-white hover:bg-navy/90 min-h-[44px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
@@ -141,18 +136,15 @@
                 @if($pkg->is_popular)
                     <!-- Popular Card -->
                     <div class="bg-white rounded-2xl shadow-xl border-2 border-gold p-8 flex flex-col relative md:-my-4 hover:-translate-y-1 transition-transform duration-300 z-10">
-                        @if($pkg->badge_hi)
+                        @if($pkg->badge_en ?: $pkg->badge_hi)
                             <div class="absolute -top-4 inset-x-0 flex justify-center">
                                 <div class="bg-gold text-navy px-4 py-1.5 rounded-full text-xs font-bold shadow-md flex flex-col items-center leading-tight">
-                                    <span>{{ $pkg->badge_hi }}</span>
-                                    @if($pkg->badge_en)
-                                        <span class="text-[8px] uppercase tracking-widest">{{ $pkg->badge_en }}</span>
-                                    @endif
+                                    <span>{{ $pkg->badge_en ?: $pkg->badge_hi }}</span>
                                 </div>
                             </div>
                         @endif
                         <div class="flex flex-col mb-6 pb-6 border-b border-gray-100 mt-2">
-                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_en }}</h3>
                             <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
                             <div class="mt-6 flex items-end gap-2">
                                 <span class="text-4xl font-bold text-gold">₹{{ number_format($pkg->price) }}</span>
@@ -172,8 +164,7 @@
                         <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
                                 type="button" 
                                 class="w-full bg-gold text-navy hover:bg-yellow-500 min-h-[56px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center">
-                            <span class="text-[16px] font-extrabold">शुरू करें</span>
-                            <span class="text-[10px] uppercase tracking-widest mt-0.5">Get Started</span>
+                            <span class="text-[16px] font-extrabold">Get Started</span>
                         </button>
                         <a href="{{ route('checkout', ['type' => 'package', 'slug' => $pkg->slug]) }}"
                            class="w-full mt-2 border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[44px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
@@ -185,7 +176,7 @@
                     <!-- Regular Card -->
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
                         <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_en }}</h3>
                             <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
                             <div class="mt-6 flex items-end gap-2">
                                 <span class="text-4xl font-bold text-navy">₹{{ number_format($pkg->price) }}</span>
@@ -205,8 +196,7 @@
                         <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
                                 type="button" 
                                 class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
-                            <span class="text-[15px]">शुरू करें</span>
-                            <span class="text-[10px] uppercase tracking-wider mt-0.5">Get Started</span>
+                            <span class="text-[15px]">Get Started</span>
                         </button>
                         <a href="{{ route('checkout', ['type' => 'package', 'slug' => $pkg->slug]) }}"
                            class="w-full mt-2 bg-navy text-white hover:bg-navy/90 min-h-[44px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
@@ -269,9 +259,7 @@
                         <div class="mb-6">
                             <span class="text-[10px] font-bold text-gold uppercase tracking-widest block mb-1">Package Selected</span>
                             <h3 class="text-2xl font-serif font-black text-navy leading-tight text-left">
-                                <span x-text="selectedPkgNameHi"></span>
-                                <span class="text-gray-300 mx-1">/</span>
-                                <span x-text="selectedPkgNameEn" class="text-gray-500 font-sans font-bold text-lg"></span>
+                                <span x-text="selectedPkgNameEn"></span>
                             </h3>
                             <div class="mt-2 flex items-baseline gap-1 text-gold">
                                 <span class="text-xl font-bold">₹</span>
@@ -319,8 +307,7 @@
 
                         <button type="submit" 
                                 class="w-full bg-gold hover:bg-gold-light text-navy font-bold py-4 rounded-xl shadow-md transition-all flex flex-col items-center justify-center min-h-[56px] mt-6">
-                            <span class="text-[16px] font-extrabold">पूछताछ सबमिट करें</span>
-                            <span class="text-[10px] uppercase tracking-widest mt-0.5">Submit Inquiry</span>
+                            <span class="text-[16px] font-extrabold">Submit Inquiry</span>
                         </button>
                     </form>
                 @endif
@@ -333,8 +320,8 @@
 <div class="bg-white py-20 border-t border-gray-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 flex flex-col items-center">
-            <h2 class="text-3xl font-bold text-navy font-serif mb-2">पैकेज तुलना</h2>
-            <p class="text-sm font-bold text-gold uppercase tracking-widest">Package Comparison</p>
+            <h2 class="text-3xl font-bold text-navy font-serif mb-2">Package Comparison</h2>
+            <p class="text-sm font-bold text-gold uppercase tracking-widest">Compare Features & Pricing</p>
         </div>
         <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
             <table class="w-full text-sm text-left">
@@ -389,10 +376,10 @@
 <div class="bg-navy py-16 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h2 class="text-3xl md:text-4xl font-bold text-gold font-serif mb-4">अभी शुरू करें — पहली Consultation मुफ़्त है</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-gold font-serif mb-4">Get Started Today — Your First Consultation is Free</h2>
         <p class="text-gray-300 text-base mb-8">Not sure which package suits you? Talk to our expert in 2 minutes and get a personalized recommendation.</p>
         <a href="/contact" class="inline-block bg-gold text-navy font-extrabold text-lg px-10 py-4 rounded-xl hover:bg-yellow-400 transition-all shadow-xl hover:-translate-y-1">
-            मुफ़्त परामर्श लें &rarr;
+            Get Free Consultation &rarr;
         </a>
     </div>
 </div>

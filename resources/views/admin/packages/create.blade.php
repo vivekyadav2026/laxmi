@@ -38,7 +38,7 @@
                 <!-- Hindi Name -->
                 <div>
                     <label for="name_hi" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Package Name (Hindi)</label>
-                    <input type="text" name="name_hi" id="name_hi" required value="{{ old('name_hi') }}" placeholder="e.g. स्टार्टर" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                    <input type="text" name="name_hi" id="name_hi" required value="{{ old('name_hi') }}" placeholder="e.g. Starter" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
                 </div>
             </div>
 
@@ -76,35 +76,57 @@
                     <div class="relative">
                         <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">₹</span>
                         <input type="number" name="old_price" id="old_price" min="0" value="{{ old('old_price') }}" placeholder="e.g. 2999" class="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
-                    </div>
+                <div>
+                    <label for="name_hi" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Package Name (Hindi)</label>
+                    <input type="text" name="name_hi" id="name_hi" required value="{{ old('name_hi') }}" placeholder="e.g. Starter" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                </div>
+
+                <div>
+                    <label for="name_en" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Package Name (English) <span class="text-red-500">*</span></label>
+                    <input type="text" name="name_en" id="name_en" required value="{{ old('name_en') }}" placeholder="e.g. Starter Plan" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Description English -->
-                <div>
-                    <label for="description_en" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">English Description</label>
-                    <input type="text" name="description_en" id="description_en" value="{{ old('description_en') }}" placeholder="e.g. For early-stage founders" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
-                </div>
-
-                <!-- Description Hindi -->
-                <div>
-                    <label for="description_hi" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Hindi Description</label>
-                    <input type="text" name="description_hi" id="description_hi" value="{{ old('description_hi') }}" placeholder="e.g. शुरुआती संस्थापकों के लिए" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
-                </div>
-            </div>
-
+            <!-- Pricing & Billing -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Badge English -->
                 <div>
-                    <label for="badge_en" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Badge (English - Optional)</label>
-                    <input type="text" name="badge_en" id="badge_en" value="{{ old('badge_en') }}" placeholder="e.g. Most Popular" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                    <label for="price" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Display Price <span class="text-red-500">*</span></label>
+                    <input type="text" name="price" id="price" required value="{{ old('price') }}" placeholder="e.g. ₹6,999" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
                 </div>
 
-                <!-- Badge Hindi -->
                 <div>
-                    <label for="badge_hi" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Badge (Hindi - Optional)</label>
-                    <input type="text" name="badge_hi" id="badge_hi" value="{{ old('badge_hi') }}" placeholder="e.g. सबसे लोकप्रिय" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                    <label for="original_price" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Original Price (Strikeout)</label>
+                    <input type="text" name="original_price" id="original_price" value="{{ old('original_price') }}" placeholder="e.g. ₹12,999" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                </div>
+
+                <div>
+                    <label for="billing_cycle" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Billing Cycle <span class="text-red-500">*</span></label>
+                    <select name="billing_cycle" id="billing_cycle" required class="w-full bg-[#0d1b3e] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold transition-colors">
+                        <option value="one-time" {{ old('billing_cycle') == 'one-time' ? 'selected' : '' }}>One-Time Payment</option>
+                        <option value="monthly" {{ old('billing_cycle') == 'monthly' ? 'selected' : '' }}>Monthly Billing</option>
+                        <option value="yearly" {{ old('billing_cycle') == 'yearly' ? 'selected' : '' }}>Yearly Billing</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="description_hi" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Description (Hindi)</label>
+                    <input type="text" name="description_hi" id="description_hi" value="{{ old('description_hi') }}" placeholder="e.g. For early stage founders" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                </div>
+
+                <div>
+                    <label for="description_en" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Description (English)</label>
+                    <input type="text" name="description_en" id="description_en" value="{{ old('description_en') }}" placeholder="e.g. For early stage founders" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                </div>
+            </div>
+
+            <!-- Badges & Highlight -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="badge_hi" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Badge Text (Hindi)</label>
+                    <input type="text" name="badge_hi" id="badge_hi" value="{{ old('badge_hi') }}" placeholder="e.g. Most Popular" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
                 </div>
 
                 <!-- Sort Order -->

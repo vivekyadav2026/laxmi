@@ -64,7 +64,7 @@
                         <label for="title_hi" class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Title (Hindi) <span class="text-red-500">*</span></label>
                         <input type="text" name="title_hi" id="title_hi" value="{{ old('title_hi', $post->title_hi) }}" required
                             class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold text-sm"
-                            placeholder="e.g. ट्रेडमार्क कैसे रजिस्टर करें? पूरी जानकारी">
+                            placeholder="e.g. How to Register a Trademark? Complete Guide">
                     </div>
                 </div>
 
@@ -229,7 +229,7 @@
                             <label for="section_{{ $i }}_heading_hi" class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Section {{ $i }} Heading (Hindi) {{ $i === 1 ? '*' : '' }}</label>
                             <input type="text" name="section_{{ $i }}_heading_hi" id="section_{{ $i }}_heading_hi" value="{{ old('section_' . $i . '_heading_hi', $sectHeadingHi) }}" {{ $i === 1 ? 'required' : '' }}
                                 class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold text-sm"
-                                placeholder="e.g. 1. प्राइवेट लिमिटेड कंपनी क्या है?">
+                                placeholder="e.g. 1. What is a Private Limited Company?">
                         </div>
 
                         <!-- Heading EN -->

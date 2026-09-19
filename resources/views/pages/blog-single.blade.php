@@ -22,7 +22,7 @@
       "url": "{{ asset('logo.png') }}"
     }
   },
-  "datePublished": "{{ date('Y-m-d', strtotime(str_replace(['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितंबर','अक्टूबर','नवंबर','दिसंबर'], ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], $post['date']))) }}"
+  "datePublished": "{{ date('Y-m-d', strtotime($post['date'])) }}"
 }
 </script>
 @endpush
@@ -34,9 +34,9 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="flex text-sm" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3 flex-wrap gap-y-1">
-                <li><a href="/" class="text-gray-300 hover:text-gold transition flex flex-col"><span class="font-bold leading-tight text-xs">होम</span><span class="text-[9px] uppercase">Home</span></a></li>
+                <li><a href="/" class="text-gray-300 hover:text-gold transition font-bold text-xs">Home</a></li>
                 <li><svg class="w-3 h-3 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></li>
-                <li><a href="/blog" class="text-gray-300 hover:text-gold transition flex flex-col"><span class="font-bold leading-tight text-xs">Blog</span></a></li>
+                <li><a href="/blog" class="text-gray-300 hover:text-gold transition font-bold text-xs">Blog</a></li>
                 <li><svg class="w-3 h-3 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></li>
                 <li><span class="text-gold text-xs font-bold truncate max-w-[200px]">{{ $post['title_en'] }}</span></li>
             </ol>
@@ -51,8 +51,7 @@
                 {{ $post['category_label'] }}
             </span>
         </div>
-        <h1 class="font-serif text-[28px] md:text-[42px] font-bold text-white leading-tight mb-3">{{ $post['title_hi'] }}</h1>
-        <p class="text-[12px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-6">{{ $post['title_en'] }}</p>
+        <h1 class="font-serif text-[28px] md:text-[42px] font-bold text-white leading-tight mb-4">{{ $post['title_en'] }}</h1>
         <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400">
             <div class="flex items-center gap-2">
                 <div class="w-8 h-8 rounded-full bg-[#f5a623]/20 flex items-center justify-center text-[#f5a623] font-bold text-xs">{{ $post['author_initial'] }}</div>
@@ -76,7 +75,7 @@
                 <!-- Key Takeaway Box -->
                 <div class="bg-navy/5 border-l-4 border-gold rounded-r-2xl p-6 mb-8">
                     <h3 class="text-navy font-bold text-base mb-2 flex items-center gap-2">
-                        <span>💡</span> मुख्य बातें — Key Takeaways
+                        <span>💡</span> Key Takeaways
                     </h3>
                     <ul class="space-y-2 text-sm text-gray-600">
                         @foreach($post['takeaways'] as $point)
@@ -88,8 +87,7 @@
                 <!-- Article Content -->
                 @foreach($post['sections'] as $section)
                 <div class="mb-10">
-                    <h2 class="text-2xl font-bold text-navy mb-1 font-serif">{{ $section['heading_hi'] }}</h2>
-                    <p class="text-[11px] font-bold text-gold uppercase tracking-widest mb-4">{{ $section['heading_en'] }}</p>
+                    <h2 class="text-2xl font-bold text-navy mb-4 font-serif">{{ $section['heading_en'] }}</h2>
                     @if(isset($section['table']))
                     <div class="overflow-x-auto rounded-xl border border-gray-200 mb-4">
                         <table class="w-full text-sm text-left">
@@ -122,11 +120,11 @@
 
                 <!-- Conclusion -->
                 <div class="bg-navy rounded-2xl p-8 text-white">
-                    <h3 class="font-serif text-xl font-bold text-gold mb-3">निष्कर्ष — Conclusion</h3>
+                    <h3 class="font-serif text-xl font-bold text-gold mb-3">Conclusion</h3>
                     <p class="text-gray-300 text-sm leading-relaxed">{{ $post['conclusion'] }}</p>
                     <div class="mt-6">
                         <a href="/contact" class="inline-block bg-gold text-navy font-extrabold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all text-sm">
-                            मुफ़्त परामर्श लें &rarr;
+                            Get Free Consultation &rarr;
                         </a>
                     </div>
                 </div>
@@ -153,7 +151,7 @@
                     <h4 class="text-gold font-bold font-serif text-lg mb-2">Confused about registration?</h4>
                     <p class="text-gray-400 text-xs mb-5">Our experts will help you choose the right structure in a free 15-min call.</p>
                     <a href="/contact" class="block bg-gold text-navy font-extrabold py-3 rounded-xl hover:bg-yellow-400 transition-all text-sm">
-                        Free Call Book करें
+                        Book Free Call
                     </a>
                 </div>
 

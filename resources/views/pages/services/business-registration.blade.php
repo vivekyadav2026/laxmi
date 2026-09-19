@@ -1,35 +1,32 @@
 @extends('layouts.app')
 
-@section('title', 'व्यापार रजिस्टर करें | Business Registration - Foundida')
+@section('title', 'Business Registration Services Online in India | Foundida')
 
 @section('content')
 <!-- BREADCRUMB -->
-<div class="bg-navy py-4 border-b border-navy-600">
+<div class="bg-navy py-3.5 border-b border-navy-600">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex text-sm" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <nav class="flex text-xs font-semibold" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2">
                 <li class="inline-flex items-center">
-                    <a href="/" class="flex flex-col text-gray-300 hover:text-gold transition">
-                        <span class="font-bold leading-tight">होम</span>
-                        <span class="text-[10px] uppercase">Home</span>
+                    <a href="/" class="text-gray-300 hover:text-gold transition uppercase tracking-wider">
+                        Home
                     </a>
                 </li>
                 <li>
                     <div class="flex items-center">
-                        <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <a href="/services" class="flex flex-col text-gray-300 hover:text-gold transition ml-1 md:ml-2">
-                            <span class="font-bold leading-tight">सेवाएं</span>
-                            <span class="text-[10px] uppercase">Services</span>
+                        <svg class="w-3.5 h-3.5 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <a href="/services" class="text-gray-300 hover:text-gold transition uppercase tracking-wider">
+                            Services
                         </a>
                     </div>
                 </li>
                 <li aria-current="page">
                     <div class="flex items-center">
-                        <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <div class="flex flex-col text-gold ml-1 md:ml-2">
-                            <span class="font-bold leading-tight">व्यापार पंजीकरण</span>
-                            <span class="text-[10px] uppercase">Business Reg.</span>
-                        </div>
+                        <svg class="w-3.5 h-3.5 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <span class="text-gold uppercase tracking-wider">
+                            Business Registration
+                        </span>
                     </div>
                 </li>
             </ol>
@@ -41,14 +38,14 @@
     <div class="flex flex-col items-center justify-center text-center">
         <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
             <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
-                REGISTER YOUR BUSINESS
+                REGISTER YOUR BUSINESS IN INDIA
             </span>
         </div>
         <h1 class="font-serif text-[36px] md:text-[52px] font-bold text-white leading-tight mb-4">
-            अपना <span class="text-[#f5a623]">बिज़नेस</span> रजिस्टर करें
+            Register Your <span class="text-[#f5a623]">Company Online</span>
         </h1>
         <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed max-w-[600px] mx-auto">
-            Fast, Affordable, Legal — Register your company in India completely online with full expert guidance.
+            Fast, Affordable, Legal — Register your business structure in India completely online with full expert guidance from dedicated incorporation specialists.
         </p>
     </div>
 </x-inner-hero>
@@ -58,8 +55,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center mb-16 flex flex-col items-center">
-            <h2 class="text-3xl font-bold text-navy mb-2 font-serif">अपने लिए सही कंपनी प्रकार चुनें</h2>
-            <p class="text-sm font-bold text-gold uppercase tracking-wider">Choose the Right Company Type</p>
+            <h2 class="text-3xl font-bold text-navy mb-2 font-serif">Choose the Right Company Type</h2>
+            <p class="text-xs font-bold text-gold uppercase tracking-wider">Select the entity structure that fits your scale and strategy</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -84,34 +81,25 @@
 
                 <!-- Name -->
                 <div class="flex flex-col mb-4">
-                    <h3 class="text-xl font-bold text-navy group-hover:text-gold transition-colors">{{ $type['name_hi'] }}</h3>
-                    <span class="text-xs uppercase tracking-widest font-semibold text-gray-400 mt-1">{{ $type['name_en'] }}</span>
+                    <h3 class="text-xl font-bold text-navy group-hover:text-gold transition-colors">{{ $type['name_en'] }}</h3>
                 </div>
                 
                 <!-- Best For -->
                 <div class="mb-6 flex-grow">
                     <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 h-full flex flex-col justify-center">
-                        <div class="flex flex-col mb-1">
-                            <span class="text-[11px] font-bold text-gold leading-tight">इसके लिए सर्वश्रेष्ठ:</span>
-                            <span class="text-[9px] uppercase font-bold text-gold/70">Best For:</span>
-                        </div>
-                        <span class="text-sm font-semibold text-gray-700 leading-tight mb-1">{{ $type['best_for_hi'] }}</span>
-                        <span class="text-[11px] text-gray-500 leading-tight">{{ $type['best_for_en'] }}</span>
+                        <span class="text-[10px] uppercase font-bold text-gold tracking-wider mb-1">Best For</span>
+                        <span class="text-xs text-gray-700 font-semibold leading-relaxed">{{ $type['best_for_en'] }}</span>
                     </div>
                 </div>
                 
                 <!-- Price & Action -->
                 <div class="flex flex-col items-center mb-5">
-                    <div class="flex flex-col items-center mb-1">
-                        <span class="text-[11px] font-bold text-gray-500 leading-tight">पंजीकरण शुल्क</span>
-                        <span class="text-[9px] uppercase font-bold text-gray-400">Registration Fee</span>
-                    </div>
+                    <span class="text-[10px] uppercase font-bold text-gray-400 mb-0.5">Registration Fee</span>
                     <span class="text-3xl font-extrabold text-navy">₹{{ $type['price'] }}</span>
                 </div>
 
-                <a href="/services/business-registration/{{ $type['slug'] }}" class="w-full border-2 border-gold text-gold hover:bg-gold hover:text-navy min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center">
-                    <span class="text-[15px]">और जानें</span>
-                    <span class="text-[10px] uppercase tracking-wider mt-0.5">Know More</span>
+                <a href="/services/business-registration/{{ $type['slug'] }}" class="w-full border-2 border-gold text-gold hover:bg-gold hover:text-navy min-h-[48px] rounded-xl font-bold transition-all duration-300 flex items-center justify-center uppercase tracking-wider text-xs">
+                    Know More
                 </a>
             </div>
             @endforeach
@@ -124,62 +112,29 @@
 <div class="bg-white py-20 border-t border-gray-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 flex flex-col items-center">
-            <h2 class="text-3xl font-bold text-navy mb-2 font-serif">मेरे लिए कौन सा सही है?</h2>
-            <p class="text-sm font-bold text-gold uppercase tracking-wider mb-6">Which Type is Right For Me?</p>
+            <h2 class="text-3xl font-bold text-navy mb-2 font-serif">Which Entity Type is Right for You?</h2>
+            <p class="text-xs font-bold text-gold uppercase tracking-wider mb-6">Side-by-side comparison of company structures</p>
         </div>
 
         <div class="overflow-x-auto bg-white rounded-2xl shadow-sm border border-gray-200">
             <table class="w-full text-left border-collapse min-w-[800px]">
                 <thead>
                     <tr class="bg-navy text-white text-sm">
-                        <th class="p-4 border-b border-navy-600 font-semibold w-1/5">
-                            <div class="flex flex-col">
-                                <span class="text-base font-bold">प्रकार</span>
-                                <span class="text-[10px] uppercase font-normal text-gray-300">Type</span>
-                            </div>
-                        </th>
-                        <th class="p-4 border-b border-navy-600 font-semibold text-center">
-                            <div class="flex flex-col items-center">
-                                <span class="text-base font-bold">न्यूनतम सदस्य</span>
-                                <span class="text-[10px] uppercase font-normal text-gray-300">Min Members</span>
-                            </div>
-                        </th>
-                        <th class="p-4 border-b border-navy-600 font-semibold text-center">
-                            <div class="flex flex-col items-center">
-                                <span class="text-base font-bold">देयता</span>
-                                <span class="text-[10px] uppercase font-normal text-gray-300">Liability</span>
-                            </div>
-                        </th>
-                        <th class="p-4 border-b border-navy-600 font-semibold text-center">
-                            <div class="flex flex-col items-center">
-                                <span class="text-base font-bold">कर (टैक्स)</span>
-                                <span class="text-[10px] uppercase font-normal text-gray-300">Tax</span>
-                            </div>
-                        </th>
-                        <th class="p-4 border-b border-navy-600 font-semibold w-1/4">
-                            <div class="flex flex-col">
-                                <span class="text-base font-bold">सर्वश्रेष्ठ</span>
-                                <span class="text-[10px] uppercase font-normal text-gray-300">Best For</span>
-                            </div>
-                        </th>
-                        <th class="p-4 border-b border-navy-600 font-semibold text-right">
-                            <div class="flex flex-col items-end">
-                                <span class="text-base font-bold">लागत</span>
-                                <span class="text-[10px] uppercase font-normal text-gray-300">Cost</span>
-                            </div>
-                        </th>
+                        <th class="p-4 border-b border-navy-600 font-semibold w-1/5">Entity Type</th>
+                        <th class="p-4 border-b border-navy-600 font-semibold text-center">Min Members</th>
+                        <th class="p-4 border-b border-navy-600 font-semibold text-center">Liability</th>
+                        <th class="p-4 border-b border-navy-600 font-semibold text-center">Tax Rate</th>
+                        <th class="p-4 border-b border-navy-600 font-semibold w-1/4">Best Suitable For</th>
+                        <th class="p-4 border-b border-navy-600 font-semibold text-right">Cost</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @foreach($comparisons as $comp)
                     <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="p-4 border-r border-gray-50">
-                            <div class="flex flex-col">
-                                <span class="font-bold text-navy">{{ $comp['type_hi'] }}</span>
-                                <span class="text-xs text-gray-500">{{ $comp['type_en'] }}</span>
-                            </div>
+                        <td class="p-4 border-r border-gray-50 font-bold text-navy text-sm">
+                            {{ $comp['type_en'] }}
                         </td>
-                        <td class="p-4 text-center font-bold text-gray-700 border-r border-gray-50">{{ $comp['members'] }}</td>
+                        <td class="p-4 text-center font-bold text-gray-700 border-r border-gray-50 text-sm">{{ $comp['members'] }}</td>
                         
                         <td class="p-4 text-center border-r border-gray-50">
                             <span class="inline-flex px-3 py-1 rounded-full text-xs font-bold {{ $comp['liability_color'] == 'green' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200' }}">
@@ -193,11 +148,8 @@
                             </span>
                         </td>
                         
-                        <td class="p-4 border-r border-gray-50">
-                            <div class="flex flex-col">
-                                <span class="font-bold text-gray-700">{{ $comp['best_for_hi'] }}</span>
-                                <span class="text-xs text-gray-500">{{ $comp['best_for_en'] }}</span>
-                            </div>
+                        <td class="p-4 border-r border-gray-50 text-xs text-gray-700 font-semibold">
+                            {{ $comp['best_for_en'] }}
                         </td>
                         
                         <td class="p-4 text-right">
@@ -217,28 +169,26 @@
 <div class="bg-navy py-20 text-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16 flex flex-col items-center">
-            <h2 class="text-3xl font-bold text-white mb-2 font-serif">पंजीकरण प्रक्रिया</h2>
-            <p class="text-sm font-bold text-gold uppercase tracking-wider">Registration Timeline</p>
+            <h2 class="text-3xl font-bold text-white mb-2 font-serif">Incorporation Timeline</h2>
+            <p class="text-xs font-bold text-gold uppercase tracking-wider">Step-by-step registration workflow</p>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6 relative">
-            <!-- 6 Steps -->
             @php
                 $steps = [
-                    ['day_hi' => 'दिन 1-2', 'day_en' => 'Day 1-2', 'title_hi' => 'दस्तावेज़ संग्रह', 'title_en' => 'Documents Collect', 'icon' => 'folder-open'],
-                    ['day_hi' => 'दिन 3-4', 'day_en' => 'Day 3-4', 'title_hi' => 'MCA फाइलिंग', 'title_en' => 'MCA Filing', 'icon' => 'document-text'],
-                    ['day_hi' => 'दिन 5-7', 'day_en' => 'Day 5-7', 'title_hi' => 'डीआईएन / डीएससी', 'title_en' => 'DIN / DSC', 'icon' => 'key'],
-                    ['day_hi' => 'दिन 8-12', 'day_en' => 'Day 8-12', 'title_hi' => 'एमओए / एओए', 'title_en' => 'MOA / AOA', 'icon' => 'book-open'],
-                    ['day_hi' => 'दिन 13-18', 'day_en' => 'Day 13-18', 'title_hi' => 'प्रमाण पत्र', 'title_en' => 'Certificate', 'icon' => 'badge-check'],
-                    ['day_hi' => 'दिन 19-21', 'day_en' => 'Day 19-21', 'title_hi' => 'पैन / बैंक खाता', 'title_en' => 'PAN / TAN / Bank', 'icon' => 'credit-card'],
+                    ['day_en' => 'Day 1-2', 'title_en' => 'Documents Collection', 'icon' => 'folder-open'],
+                    ['day_en' => 'Day 3-4', 'title_en' => 'MCA Name Reservation', 'icon' => 'document-text'],
+                    ['day_en' => 'Day 5-7', 'title_en' => 'DIN / DSC Approval', 'icon' => 'key'],
+                    ['day_en' => 'Day 8-12', 'title_en' => 'MOA & AOA Drafting', 'icon' => 'book-open'],
+                    ['day_en' => 'Day 13-18', 'title_en' => 'Certificate of Incorporation', 'icon' => 'badge-check'],
+                    ['day_en' => 'Day 19-21', 'title_en' => 'PAN / TAN & Bank Account', 'icon' => 'credit-card'],
                 ];
             @endphp
 
             @foreach($steps as $index => $step)
             <div class="flex flex-col items-center text-center p-6 bg-navy-800 rounded-2xl border border-navy-600 hover:-translate-y-1 transition-transform hover:border-gold group relative">
-                <div class="absolute -top-3 -right-2 bg-gold text-navy font-bold px-2 py-0.5 rounded-full shadow border border-gold-light flex flex-col items-center leading-none">
-                    <span class="text-[10px]">{{ $step['day_hi'] }}</span>
-                    <span class="text-[8px] uppercase">{{ $step['day_en'] }}</span>
+                <div class="absolute -top-3 -right-2 bg-gold text-navy font-bold px-2.5 py-0.5 rounded-full shadow border border-gold-light text-[10px] uppercase">
+                    {{ $step['day_en'] }}
                 </div>
                 
                 <div class="w-14 h-14 bg-navy rounded-full flex items-center justify-center mb-4 shadow-inner border border-navy-600 group-hover:border-gold transition-colors">
@@ -257,10 +207,7 @@
                     @endif
                 </div>
                 
-                <div class="flex flex-col">
-                    <span class="font-bold text-base mb-1 leading-tight">{{ $step['title_hi'] }}</span>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">{{ $step['title_en'] }}</span>
-                </div>
+                <h3 class="font-bold text-sm mb-1 leading-tight text-white">{{ $step['title_en'] }}</h3>
             </div>
             @endforeach
         </div>
@@ -271,8 +218,8 @@
 <div class="bg-offwhite py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 flex flex-col items-center">
-            <h2 class="text-3xl font-bold text-navy mb-2 font-serif">आवश्यक दस्तावेज़</h2>
-            <p class="text-sm font-bold text-gold uppercase tracking-wider mb-6">Documents Checklist</p>
+            <h2 class="text-3xl font-bold text-navy mb-2 font-serif">Required Documents Checklist</h2>
+            <p class="text-xs font-bold text-gold uppercase tracking-wider mb-6">Simple documentation needed to begin incorporation</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -283,39 +230,27 @@
                         <svg class="w-6 h-6 text-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-xl font-bold text-navy">निदेशकों के लिए</h3>
-                        <span class="text-xs uppercase font-bold text-gray-400">For Directors / Partners</span>
+                        <h3 class="text-xl font-bold text-navy">For Directors / Partners</h3>
+                        <span class="text-xs font-semibold text-gray-400">Personal Identification Proofs</span>
                     </div>
                 </div>
                 
                 <ul class="space-y-4">
                     <li class="flex items-start">
                         <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-gray-700">आधार कार्ड</span>
-                            <span class="text-xs text-gray-500">Aadhar Card</span>
-                        </div>
+                        <span class="font-semibold text-gray-700 text-sm">Aadhaar Card</span>
                     </li>
                     <li class="flex items-start">
                         <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-gray-700">पैन कार्ड</span>
-                            <span class="text-xs text-gray-500">PAN Card</span>
-                        </div>
+                        <span class="font-semibold text-gray-700 text-sm">PAN Card</span>
                     </li>
                     <li class="flex items-start">
                         <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-gray-700">पासपोर्ट साइज फोटो</span>
-                            <span class="text-xs text-gray-500">Passport Size Photo</span>
-                        </div>
+                        <span class="font-semibold text-gray-700 text-sm">Passport Size Photograph</span>
                     </li>
                     <li class="flex items-start">
                         <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-gray-700">पता प्रमाण (बैंक स्टेटमेंट / बिल)</span>
-                            <span class="text-xs text-gray-500">Address Proof (Bank Statement / Bill)</span>
-                        </div>
+                        <span class="font-semibold text-gray-700 text-sm">Address Proof (Bank Statement or Utility Bill)</span>
                     </li>
                 </ul>
             </div>
@@ -327,32 +262,23 @@
                         <svg class="w-6 h-6 text-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-xl font-bold text-navy">कार्यालय के लिए</h3>
-                        <span class="text-xs uppercase font-bold text-gray-400">For Office</span>
+                        <h3 class="text-xl font-bold text-navy">For Registered Office Address</h3>
+                        <span class="text-xs font-semibold text-gray-400">Premises Proofs</span>
                     </div>
                 </div>
                 
                 <ul class="space-y-4">
                     <li class="flex items-start">
                         <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-gray-700">बिजली का बिल (नवीनतम)</span>
-                            <span class="text-xs text-gray-500">Electricity Bill (Latest)</span>
-                        </div>
+                        <span class="font-semibold text-gray-700 text-sm">Electricity Bill (Latest Copy)</span>
                     </li>
                     <li class="flex items-start">
                         <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-gray-700">मालिक से एनओसी (NOC)</span>
-                            <span class="text-xs text-gray-500">NOC from Owner</span>
-                        </div>
+                        <span class="font-semibold text-gray-700 text-sm">NOC from Property Owner</span>
                     </li>
                     <li class="flex items-start">
                         <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-gray-700">रेंट एग्रीमेंट (यदि किराए पर है)</span>
-                            <span class="text-xs text-gray-500">Rent Agreement (if rented)</span>
-                        </div>
+                        <span class="font-semibold text-gray-700 text-sm">Rent Agreement (If premises is rented)</span>
                     </li>
                 </ul>
             </div>

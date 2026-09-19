@@ -42,8 +42,8 @@
 
                 <!-- Right Side Content -->
                 <div class="w-full md:w-1/2">
-                    <h2 class="text-3xl font-bold text-[#0B1F3A] mb-2 font-serif">₹99 में क्या मिलेगा?</h2>
-                    <p class="text-sm font-bold text-[#D4A843] uppercase tracking-wider mb-8">What You Get in 30 Minutes</p>
+                    <h2 class="text-3xl font-bold text-[#0B1F3A] mb-2 font-serif">What Will You Get For ₹99?</h2>
+                    <p class="text-xs font-bold text-[#D4A843] uppercase tracking-wider mb-8">30-Minute Expert Consultation Blueprint</p>
 
                     <div class="space-y-6">
                         <div class="flex items-start">
@@ -51,8 +51,8 @@
                                 <i class="fas fa-map-signs"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold text-[#0B1F3A] mb-1">Business Roadmap</h4>
-                                <p class="text-sm text-gray-500">आपके बिज़नेस के लिए कौन सी कंपनी (PVT, LLP, Proprietorship) सही है, इसकी पूरी जानकारी।</p>
+                                <h4 class="text-lg font-bold text-[#0B1F3A] mb-1">Business Structure Roadmap</h4>
+                                <p class="text-sm text-gray-500">Complete guidance on which entity type (Private Limited, LLP, OPC, Proprietorship) is best suited for your business.</p>
                             </div>
                         </div>
 
@@ -61,8 +61,8 @@
                                 <i class="fas fa-file-signature"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold text-[#0B1F3A] mb-1">Licensing & GST</h4>
-                                <p class="text-sm text-gray-500">आपको किन-किन लाइसेंस (GST, FSSAI, Trademark) की जरूरत होगी, उसका पूरा खाका।</p>
+                                <h4 class="text-lg font-bold text-[#0B1F3A] mb-1">Licensing & GST Requirements</h4>
+                                <p class="text-sm text-gray-500">A customized blueprint of all required licenses including GST, FSSAI, MSME, and Trademark registrations.</p>
                             </div>
                         </div>
 
@@ -71,14 +71,14 @@
                                 <i class="fas fa-comments"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold text-[#0B1F3A] mb-1">Doubt Clearing</h4>
-                                <p class="text-sm text-gray-500">आपके सभी सवालों और शंकाओं का लाइव समाधान।</p>
+                                <h4 class="text-lg font-bold text-[#0B1F3A] mb-1">Live Q&A & Doubt Clearing</h4>
+                                <p class="text-sm text-gray-500">Live resolution of all your operational, taxation, and legal questions directly from seasoned advisors.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-8 pt-8 border-t border-gray-100">
-                        <p class="text-xs text-gray-400 italic">"यह ₹99 का निवेश आपको भविष्य में हजारों रुपये और कई कानूनी झंझटों से बचा सकता है।"</p>
+                        <p class="text-xs text-gray-400 italic">"This nominal ₹99 investment can save you thousands of rupees and prevent complex legal complications in the future."</p>
                     </div>
                 </div>
             </div>
@@ -111,8 +111,8 @@
                         <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold">
                             ✓
                         </div>
-                        <h3 class="text-xl font-bold text-navy mb-1 font-serif">बुकिंग का अनुरोध सफल!</h3>
-                        <p class="text-xs font-bold text-gold uppercase tracking-wider mb-3">Request Successful</p>
+                        <h3 class="text-xl font-bold text-navy mb-1 font-serif">Booking Request Successful!</h3>
+                        <p class="text-xs font-bold text-gold uppercase tracking-wider mb-3">Our team will connect with you shortly</p>
                         <p class="text-gray-600 text-xs leading-relaxed mb-6">{{ session('booking_success') }}</p>
                         <button @click="showBookingModal = false" class="bg-navy text-white px-8 py-2.5 rounded-xl font-bold hover:bg-navy-800 transition-colors text-sm w-full">
                             Close
@@ -120,8 +120,8 @@
                     </div>
                 @else
                     <div class="flex flex-col mb-6">
-                        <h3 class="text-lg font-bold text-navy mb-0.5 font-serif">लाइव सेशन बुक करें (₹99)</h3>
-                        <span class="text-[10px] font-bold text-gold uppercase tracking-wider">Book Live Expert Session</span>
+                        <h3 class="text-xl font-bold text-navy mb-1 font-serif">Book Live Session (₹99)</h3>
+                        <span class="text-xs font-semibold text-gray-500">Reserve your 1-on-1 expert session</span>
                     </div>
 
                     <form action="{{ route('live-session.book') }}" method="POST" class="space-y-4">
@@ -129,9 +129,8 @@
                         
                         <!-- Name -->
                         <div class="group">
-                            <label class="flex flex-col mb-1.5 text-navy">
-                                <span class="font-bold text-xs">पूरा नाम <span class="text-red-500">*</span></span>
-                                <span class="text-[9px] uppercase text-gray-400 font-bold tracking-wider">Full Name</span>
+                            <label class="block mb-1.5 text-xs font-bold text-navy uppercase tracking-wider">
+                                Full Name <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-gold transition-colors">
@@ -146,15 +145,14 @@
 
                         <!-- Phone -->
                         <div class="group">
-                            <label class="flex flex-col mb-1.5 text-navy">
-                                <span class="font-bold text-xs">फ़ोन नंबर (WhatsApp) <span class="text-red-500">*</span></span>
-                                <span class="text-[9px] uppercase text-gray-400 font-bold tracking-wider">WhatsApp Number</span>
+                            <label class="block mb-1.5 text-xs font-bold text-navy uppercase tracking-wider">
+                                WhatsApp Number <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-gold transition-colors">
                                     <i class="fab fa-whatsapp text-base"></i>
                                 </div>
-                                <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="10-digit number" class="w-full pr-4 py-2.5 bg-gray-50/50 border border-gray-200 @error('phone') border-red-500 @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 text-sm font-medium transition-all focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.5rem;">
+                                <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="10-digit mobile number" class="w-full pr-4 py-2.5 bg-gray-50/50 border border-gray-200 @error('phone') border-red-500 @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 text-sm font-medium transition-all focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.5rem;">
                             </div>
                             @error('phone')
                                 <p class="text-red-500 text-[10px] mt-1 font-semibold">{{ $message }}</p>
@@ -163,9 +161,8 @@
 
                         <!-- Email -->
                         <div class="group">
-                            <label class="flex flex-col mb-1.5 text-navy">
-                                <span class="font-bold text-xs">ईमेल पता</span>
-                                <span class="text-[9px] uppercase text-gray-400 font-bold tracking-wider">Email Address (Optional)</span>
+                            <label class="block mb-1.5 text-xs font-bold text-navy uppercase tracking-wider">
+                                Email Address <span class="text-gray-400 font-normal lowercase">(optional)</span>
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-gold transition-colors">
@@ -180,9 +177,8 @@
 
                         <!-- Preferred Date -->
                         <div class="group">
-                            <label class="flex flex-col mb-1.5 text-navy">
-                                <span class="font-bold text-xs">पसंदीदा तारीख <span class="text-red-500">*</span></span>
-                                <span class="text-[9px] uppercase text-gray-400 font-bold tracking-wider">Preferred Date</span>
+                            <label class="block mb-1.5 text-xs font-bold text-navy uppercase tracking-wider">
+                                Preferred Date <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-gold transition-colors">
@@ -197,16 +193,15 @@
 
                         <!-- Preferred Time Slot -->
                         <div class="group">
-                            <label class="flex flex-col mb-1.5 text-navy">
-                                <span class="font-bold text-xs">पसंदीदा समय <span class="text-red-500">*</span></span>
-                                <span class="text-[9px] uppercase text-gray-400 font-bold tracking-wider">Preferred Time Slot</span>
+                            <label class="block mb-1.5 text-xs font-bold text-navy uppercase tracking-wider">
+                                Preferred Time Slot <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-gold transition-colors">
                                     <i class="fas fa-clock text-sm"></i>
                                 </div>
                                 <select name="preferred_time" required class="w-full pr-4 py-2.5 bg-gray-50/50 border border-gray-200 @error('preferred_time') border-red-500 @enderror rounded-xl shadow-sm text-navy placeholder-gray-400 text-sm font-medium transition-all focus:bg-white focus:shadow-md outline-none" style="padding-left: 2.5rem; appearance: none;">
-                                    <option value="">समय स्लॉट चुनें / Select Slot</option>
+                                    <option value="">Select Time Slot</option>
                                     <option value="10:00 AM - 12:00 PM" {{ old('preferred_time') === '10:00 AM - 12:00 PM' ? 'selected' : '' }}>10:00 AM - 12:00 PM</option>
                                     <option value="12:00 PM - 02:00 PM" {{ old('preferred_time') === '12:00 PM - 02:00 PM' ? 'selected' : '' }}>12:00 PM - 02:00 PM</option>
                                     <option value="02:00 PM - 04:00 PM" {{ old('preferred_time') === '02:00 PM - 04:00 PM' ? 'selected' : '' }}>02:00 PM - 04:00 PM</option>
@@ -223,21 +218,22 @@
 
                         <!-- Notes -->
                         <div class="group">
-                            <label class="flex flex-col mb-1.5 text-navy">
-                                <span class="font-bold text-xs">अतिरिक्त जानकारी / नोट्स</span>
-                                <span class="text-[9px] uppercase text-gray-400 font-bold tracking-wider">Any message or specific questions (Optional)</span>
+                            <label class="block mb-1.5 text-xs font-bold text-navy uppercase tracking-wider">
+                                Additional Notes / Questions <span class="text-gray-400 font-normal lowercase">(optional)</span>
                             </label>
                             <textarea name="notes" rows="2" placeholder="Describe what you want to discuss..." class="w-full px-4 py-2.5 bg-gray-50/50 border border-gray-200 rounded-xl shadow-sm text-navy placeholder-gray-400 text-sm font-medium transition-all focus:bg-white focus:shadow-md outline-none">{{ old('notes') }}</textarea>
                         </div>
 
                         <div class="pt-2">
-                            <button type="submit" class="w-full bg-gold text-navy hover:bg-[#e2961d] active:scale-[0.99] py-3.5 rounded-xl font-bold transition-all shadow-lg shadow-gold/20 flex flex-col items-center justify-center">
-                                <span class="text-base font-extrabold">बुक करें (₹99 का भुगतान करें)</span>
-                                <span class="text-[10px] uppercase tracking-widest mt-0.5">Pay & Book Live Session</span>
+                            <button type="submit" class="w-full bg-gold text-navy hover:bg-[#e2961d] active:scale-[0.99] py-3.5 rounded-xl font-bold transition-all shadow-lg shadow-gold/20 flex items-center justify-center gap-2">
+                                <span class="text-base font-extrabold uppercase tracking-wide">Pay ₹99 & Book Live Session</span>
                             </button>
                         </div>
                     </form>
                 @endif
+            </div>
+        </div>
+    </div>
             </div>
         </div>
     </div>

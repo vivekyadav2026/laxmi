@@ -91,12 +91,12 @@
                 <!-- Primary CTA -->
                 <a href="#consultation" class="inline-flex items-center justify-center gap-2 bg-[#D4A843] text-[#0B1F3A] text-[13px] md:text-[15px] font-extrabold px-5 md:px-8 py-3 md:py-4 rounded-xl hover:bg-[#E8B96A] transition-all text-center shadow-lg whitespace-nowrap flex-grow sm:flex-grow-0">
                     <span class="text-base">📞</span>
-                    <span>मुफ्त परामर्श</span>
+                    <span>Free Consultation</span>
                 </a>
                 <!-- Secondary CTA -->
                 <a href="/packages" class="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-[#D4A843]/60 hover:border-[#D4A843] text-[12px] md:text-[14px] font-bold px-4 md:px-6 py-2.5 md:py-3.5 rounded-xl hover:bg-white/5 transition-all text-center whitespace-nowrap">
                     <span class="text-base">📦</span>
-                    <span>पैकेज देखें</span>
+                    <span>View Packages</span>
                 </a>
             </div>
 
@@ -150,7 +150,7 @@
 
         <!-- Consultation Form Card (Part 2 — separate white card) -->
         <div id="consultation" class="mt-8 mb-6 lg:mt-0 bg-white rounded-2xl shadow-xl p-6 pb-10 md:p-8 border-t-4 border-[#D4A843] relative z-10 w-full max-w-[440px] mx-auto lg:ml-auto">
-            <h3 class="text-[20px] md:text-[24px] font-bold text-[#0B1F3A] mb-1 font-serif leading-tight">विशेषज्ञों से बात करें</h3>
+            <h3 class="text-[20px] md:text-[24px] font-bold text-[#0B1F3A] mb-1 font-serif leading-tight">Speak with Experts</h3>
             <p class="text-gray-500 text-xs mb-6">We reply within 2 hours.</p>
 
             @if(session('callback_success'))
@@ -211,7 +211,7 @@
                 <span>✦</span> Startup Launch Roadmap <span>✦</span>
             </div>
             <h2 class="text-[26px] md:text-[48px] font-extrabold text-navy mb-2 md:mb-[12px] font-serif leading-tight">
-                5 Steps में शुरू करें अपना <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A843] to-[#A67828]">बिज़नेस</span>
+                Launch Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A843] to-[#A67828]">Business</span> in 5 Steps
             </h2>
             <p class="text-[13px] md:text-[16px] text-gray-600 max-w-[620px] mx-auto leading-relaxed">
                 See how we take your vision from a simple idea to a fully launched, legally compliant, and tech-ready digital business.
@@ -224,21 +224,17 @@
                 'num' => 1,
                 'emoji' => '💡',
                 'title_en' => 'Business Idea',
-                'title_hi' => 'बिजनेस आइडिया',
                 'sub' => 'Plan Model',
                 'desc_en' => 'You bring the vision and the passion.',
-                'desc_hi' => 'आप अपना नया विचार और लगन लाएं।',
                 'badge' => 'Your Part',
                 'is_gold' => false
             ],
             [
                 'num' => 2,
                 'emoji' => '🏢',
-                'title_en' => 'Company Reg',
-                'title_hi' => 'कंपनी रजिस्ट्रेशन',
+                'title_en' => 'Company Registration',
                 'sub' => 'Pvt Ltd / LLP',
                 'desc_en' => 'We register your entity in 3-7 days.',
-                'desc_hi' => '3 से 7 दिनों में कंपनी रजिस्टर्ड करें।',
                 'badge' => 'We Handle ✓',
                 'is_gold' => true
             ],
@@ -246,10 +242,8 @@
                 'num' => 3,
                 'emoji' => '✅',
                 'title_en' => 'Legal Setup',
-                'title_hi' => 'कानूनी सेटअप',
                 'sub' => 'GST & TM',
                 'desc_en' => 'Complete tax and IP protection.',
-                'desc_hi' => 'जीएसटी और ट्रेडमार्क से ब्रांड सुरक्षा।',
                 'badge' => 'We Handle ✓',
                 'is_gold' => true
             ],
@@ -257,21 +251,17 @@
                 'num' => 4,
                 'emoji' => '💻',
                 'title_en' => 'Tech Setup',
-                'title_hi' => 'टेक सेटअप',
                 'sub' => 'Web & App',
                 'desc_en' => 'Domain, hosting, and platform dev.',
-                'desc_hi' => 'वेबसाइट, डोमेन, होस्टिंग और ऐप डेवलपमेंट।',
                 'badge' => 'We Handle ✓',
                 'is_gold' => true
             ],
             [
                 'num' => 5,
                 'emoji' => '🚀',
-                'title_en' => 'Launch',
-                'title_hi' => 'लांच और ग्रोथ',
+                'title_en' => 'Launch & Scale',
                 'sub' => 'Go Live',
                 'desc_en' => 'Start scaling and acquiring users.',
-                'desc_hi' => 'मार्केट में गो-लाइव हों और बिज़नेस बढ़ाएं।',
                 'badge' => 'We Handle ✓',
                 'is_gold' => true
             ]
@@ -296,14 +286,12 @@
                         </div>
 
                         <!-- Titles -->
-                        <h4 class="text-[16px] font-extrabold text-navy font-serif leading-tight mb-0.5">{{ $s['title_hi'] }}</h4>
-                        <p class="text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1">{{ $s['title_en'] }}</p>
+                        <h4 class="text-[16px] font-extrabold text-navy font-serif leading-tight mb-0.5">{{ $s['title_en'] }}</h4>
                         <p class="text-[9px] text-gold uppercase tracking-widest font-black mb-3">{{ $s['sub'] }}</p>
 
                         <!-- Descriptions -->
                         <div class="flex flex-col flex-grow justify-center mb-4 text-center">
-                            <p class="text-[12px] text-gray-500 leading-relaxed">{{ $s['desc_hi'] }}</p>
-                            <p class="text-[10px] text-gray-400 italic mt-0.5">{{ $s['desc_en'] }}</p>
+                            <p class="text-[12px] text-gray-500 leading-relaxed">{{ $s['desc_en'] }}</p>
                         </div>
 
                         <!-- Badge -->
@@ -353,16 +341,14 @@
                         
                         <!-- Title block -->
                         <div class="w-44 lg:w-52 shrink-0">
-                            <h4 class="text-[17px] font-extrabold text-navy font-serif leading-tight mb-0.5 group-hover:text-gold transition-colors duration-300">{{ $s['title_hi'] }}</h4>
-                            <p class="text-[13px] font-bold text-gray-500 uppercase tracking-wide">{{ $s['title_en'] }}</p>
+                            <h4 class="text-[17px] font-extrabold text-navy font-serif leading-tight mb-0.5 group-hover:text-gold transition-colors duration-300">{{ $s['title_en'] }}</h4>
                             <p class="text-[9px] text-gold uppercase tracking-widest font-black mt-1">{{ $s['sub'] }}</p>
                         </div>
                     </div>
 
                     <!-- Middle: Detailed Descriptions -->
                     <div class="flex-1 px-6 border-l border-gray-100/80">
-                        <p class="text-[13px] text-gray-500 leading-relaxed">{{ $s['desc_hi'] }}</p>
-                        <p class="text-[11px] text-gray-400 italic leading-snug mt-1">{{ $s['desc_en'] }}</p>
+                        <p class="text-[13px] text-gray-500 leading-relaxed">{{ $s['desc_en'] }}</p>
                     </div>
 
                     <!-- Right Side: Action tag -->
@@ -479,9 +465,9 @@
 <section class="py-8 md:py-[56px] bg-white border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-4 md:mb-[32px] flex flex-col items-center">
-            <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">कानूनी सेवाएं</h2>
+            <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">Legal Services</h2>
             <p class="text-[10px] md:text-[12px] font-bold text-gold uppercase tracking-[0.2em] mb-1 md:mb-[16px]">Legal Services</p>
-            <p class="text-[12px] md:text-[16px] text-gray-600 max-w-[500px] mx-auto hidden md:block">Sab kuch legally sorted — transparent pricing, zero hassle.</p>
+            <p class="text-[12px] md:text-[16px] text-gray-600 max-w-[500px] mx-auto hidden md:block">Everything legally sorted — transparent pricing, zero hassle.</p>
         </div>
 
         @php
@@ -501,11 +487,11 @@
                 $catSlug = $svc->category ? $svc->category->slug : 'business-registration';
                 return [
                     'title' => $svc->name_en,
-                    'sub' => $svc->name_hi ?: ($svc->category ? strtoupper($svc->category->name) : 'LEGAL SERVICE'),
+                    'sub' => $svc->category ? strtoupper($svc->category->name) : 'LEGAL SERVICE',
                     'desc' => $svc->time ? "Processing Time: {$svc->time}" : 'Complete legal processing and compliance.',
                     'price' => $svc->price ?: '₹999',
                     'old_price' => $svc->old_price,
-                    'badge' => $svc->badge_hi ?: $svc->badge_en,
+                    'badge' => $svc->badge_en ?: $svc->badge_hi,
                     'link' => "/services/{$catSlug}/{$svc->slug}",
                     'icon' => $iconMap[$svc->id % count($iconMap)],
                 ];
@@ -556,8 +542,8 @@
         <div class="text-center mt-[48px]">
             <a href="/services" class="inline-flex items-center gap-4 bg-[#0B1F3A] hover:bg-[#122543] text-white px-8 py-3.5 rounded-2xl border border-[#D4A843]/30 hover:border-[#D4A843] shadow-[0_4px_20px_rgba(11,31,58,0.15)] hover:shadow-[0_10px_30px_rgba(212,168,67,0.2)] hover:-translate-y-0.5 transition-all duration-300 group/btn">
                 <span class="flex flex-col items-start text-left">
-                    <span class="text-white text-[15px] font-bold">सभी कानूनी सेवाएं देखें</span>
-                    <span class="text-[10px] uppercase tracking-widest text-[#D4A843] font-bold mt-0.5">View All Legal Services</span>
+                    <span class="text-white text-[15px] font-bold">View All Legal Services</span>
+                    <span class="text-[10px] uppercase tracking-widest text-[#D4A843] font-bold mt-0.5">Explore All Legal Offerings</span>
                 </span>
                 <span class="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] flex items-center justify-center text-[#B8892E] shadow-sm group-hover/btn:translate-x-1 transition-transform duration-300">
                     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -571,9 +557,9 @@
 <section class="py-8 md:py-[56px] bg-[#F4F6F9] border-t border-gray-200/60">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-4 md:mb-[32px] flex flex-col items-center">
-            <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">टेक सेवाएं</h2>
+            <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">Tech Services</h2>
             <p class="text-[10px] md:text-[12px] font-bold text-gold uppercase tracking-[0.2em] mb-1 md:mb-[16px]">Tech Services</p>
-            <p class="text-[12px] md:text-[16px] text-gray-600 max-w-[500px] mx-auto hidden md:block">Digital India के लिए — Scalable, fast, and beautiful tech solutions.</p>
+            <p class="text-[12px] md:text-[16px] text-gray-600 max-w-[500px] mx-auto hidden md:block">Scalable, fast, and modern tech solutions for startups.</p>
         </div>
 
         @php
@@ -593,11 +579,11 @@
                 $catSlug = $svc->category ? $svc->category->slug : 'tech-services';
                 return [
                     'title' => $svc->name_en,
-                    'sub' => $svc->name_hi ?: 'TECH SERVICE',
+                    'sub' => 'TECH SERVICE',
                     'desc' => $svc->time ? "Delivery Time: {$svc->time}" : 'Scalable, fast tech solutions.',
                     'price' => $svc->price ?: '₹2,999',
                     'old_price' => $svc->old_price,
-                    'badge' => $svc->badge_hi ?: $svc->badge_en,
+                    'badge' => $svc->badge_en ?: $svc->badge_hi,
                     'link' => "/services/{$catSlug}/{$svc->slug}",
                     'icon' => $iconMap[$svc->id % count($iconMap)],
                 ];
@@ -647,8 +633,8 @@
         <div class="text-center mt-[48px]">
             <a href="/services" class="inline-flex items-center gap-4 bg-[#0B1F3A] hover:bg-[#122543] text-white px-8 py-3.5 rounded-2xl border border-[#D4A843]/30 hover:border-[#D4A843] shadow-[0_4px_20px_rgba(11,31,58,0.15)] hover:shadow-[0_10px_30px_rgba(212,168,67,0.2)] hover:-translate-y-0.5 transition-all duration-300 group/btn">
                 <span class="flex flex-col items-start text-left">
-                    <span class="text-white text-[15px] font-bold">सभी टेक सेवाएं देखें</span>
-                    <span class="text-[10px] uppercase tracking-widest text-[#D4A843] font-bold mt-0.5">View All Tech Services</span>
+                    <span class="text-white text-[15px] font-bold">View All Tech Services</span>
+                    <span class="text-[10px] uppercase tracking-widest text-[#D4A843] font-bold mt-0.5">Explore All Tech Solutions</span>
                 </span>
                 <span class="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FFF3D6] to-[#FDE9A0] flex items-center justify-center text-[#B8892E] shadow-sm group-hover/btn:translate-x-1 transition-transform duration-300">
                     <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -676,7 +662,7 @@
          }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-4 md:mb-[24px] flex flex-col items-center">
-            <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">बेस्ट वैल्यू पैकेज</h2>
+            <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">Best Value Packages</h2>
             <p class="text-[10px] md:text-[12px] font-bold text-gold uppercase tracking-[0.2em] mb-1 md:mb-[16px]">Best Value Packages</p>
             <p class="text-[13px] md:text-[16px] text-gray-600 max-w-[600px] mx-auto hidden md:block">Get everything you need in one go and save up to 40%.</p>
         </div>
@@ -687,15 +673,13 @@
                     type="button"
                     :class="activeTab === 'legal' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-navy/5 text-gray-500 hover:bg-navy/10'" 
                     class="px-6 py-2.5 text-sm font-extrabold rounded-xl transition-all whitespace-nowrap flex flex-col items-center">
-                <span class="text-base">कानूनी पैकेज</span>
-                <span class="text-[9px] uppercase tracking-wider mt-0.5">Legal Packages</span>
+                <span class="text-base font-bold">Legal Packages</span>
             </button>
             <button @click="activeTab = 'tech'" 
                     type="button"
                     :class="activeTab === 'tech' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-navy/5 text-gray-500 hover:bg-navy/10'" 
                     class="px-6 py-2.5 text-sm font-extrabold rounded-xl transition-all whitespace-nowrap flex flex-col items-center">
-                <span class="text-base">तकनीकी पैकेज</span>
-                <span class="text-[9px] uppercase tracking-wider mt-0.5">Tech Packages</span>
+                <span class="text-base font-bold">Tech Packages</span>
             </button>
         </div>
 
@@ -739,7 +723,7 @@
                         <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
                                 type="button" 
                                 class="w-full bg-gold text-navy hover:bg-gold-light min-h-[56px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center mt-auto">
-                            <span class="text-[16px] font-extrabold">शुरू करें</span>
+                            <span class="text-[16px] font-extrabold">Get Started</span>
                             <span class="text-[10px] uppercase tracking-widest mt-0.5">Select {{ $pkg->name_en }}</span>
                         </button>
                     </div>
@@ -747,7 +731,7 @@
                     <!-- Regular Card -->
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
                         <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_en }}</h3>
                             <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
                             <div class="mt-6 flex items-end gap-2">
                                 <span class="text-4xl font-bold text-navy">₹{{ number_format($pkg->price) }}</span>
@@ -770,7 +754,7 @@
                         <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
                                 type="button" 
                                 class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center mt-auto">
-                            <span class="text-[15px]">शुरू करें</span>
+                            <span class="text-[15px]">Get Started</span>
                             <span class="text-[10px] uppercase tracking-wider mt-0.5">Select {{ $pkg->name_en }}</span>
                         </button>
                     </div>
@@ -784,18 +768,15 @@
                 @if($pkg->is_popular)
                     <!-- Popular Card -->
                     <div class="bg-white rounded-2xl shadow-xl border-2 border-gold p-8 flex flex-col relative md:-my-4 hover:-translate-y-1 transition-transform duration-300 z-10">
-                        @if($pkg->badge_hi)
+                        @if($pkg->badge_en ?: $pkg->badge_hi)
                             <div class="absolute -top-4 inset-x-0 flex justify-center">
                                 <div class="bg-gold text-navy px-4 py-1.5 rounded-full text-xs font-bold shadow-md flex flex-col items-center leading-tight">
-                                    <span>{{ $pkg->badge_hi }}</span>
-                                    @if($pkg->badge_en)
-                                        <span class="text-[8px] uppercase tracking-widest">{{ $pkg->badge_en }}</span>
-                                    @endif
+                                    <span>{{ $pkg->badge_en ?: $pkg->badge_hi }}</span>
                                 </div>
                             </div>
                         @endif
                         <div class="flex flex-col mb-6 pb-6 border-b border-gray-100 mt-2">
-                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_en }}</h3>
                             <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
                             <div class="mt-6 flex items-end gap-2">
                                 <span class="text-4xl font-bold text-navy">₹{{ number_format($pkg->price) }}</span>
@@ -818,7 +799,7 @@
                         <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
                                 type="button" 
                                 class="w-full bg-gold text-navy hover:bg-gold-light min-h-[56px] rounded-xl font-bold transition-all duration-300 shadow-md flex flex-col items-center justify-center mt-auto">
-                            <span class="text-[16px] font-extrabold">शुरू करें</span>
+                            <span class="text-[16px] font-extrabold">Get Started</span>
                             <span class="text-[10px] uppercase tracking-widest mt-0.5">Select {{ $pkg->name_en }}</span>
                         </button>
                     </div>
@@ -826,7 +807,7 @@
                     <!-- Regular Card -->
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 flex flex-col hover:-translate-y-1 transition-transform duration-300">
                         <div class="flex flex-col mb-6 pb-6 border-b border-gray-100">
-                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_hi }}</h3>
+                            <h3 class="text-2xl font-bold text-navy mb-1">{{ $pkg->name_en }}</h3>
                             <span class="text-[11px] uppercase tracking-widest font-semibold text-gray-400">{{ $pkg->name_en }}</span>
                             <div class="mt-6 flex items-end gap-2">
                                 <span class="text-4xl font-bold text-navy">₹{{ number_format($pkg->price) }}</span>
@@ -849,7 +830,7 @@
                         <button @click="showInquiryModal = true; selectedPkgNameHi = '{{ $pkg->name_hi }}'; selectedPkgNameEn = '{{ $pkg->name_en }}'; selectedPkgSlug = '{{ $pkg->slug }}'; selectedPkgPrice = '{{ number_format($pkg->price) }}'" 
                                 type="button" 
                                 class="w-full border-2 border-navy text-navy hover:bg-navy hover:text-white min-h-[48px] rounded-xl font-bold transition-all duration-300 flex flex-col items-center justify-center mt-auto">
-                            <span class="text-[15px]">शुरू करें</span>
+                            <span class="text-[15px]">Get Started</span>
                             <span class="text-[10px] uppercase tracking-wider mt-0.5">Select {{ $pkg->name_en }}</span>
                         </button>
                     </div>
@@ -907,9 +888,7 @@
                         <div class="mb-6">
                             <span class="text-[10px] font-bold text-gold uppercase tracking-widest block mb-1">Package Selected</span>
                             <h3 class="text-2xl font-serif font-black text-navy leading-tight text-left">
-                                <span x-text="selectedPkgNameHi"></span>
-                                <span class="text-gray-300 mx-1">/</span>
-                                <span x-text="selectedPkgNameEn" class="text-gray-500 font-sans font-bold text-lg text-left block md:inline"></span>
+                                <span x-text="selectedPkgNameEn"></span>
                             </h3>
                             <div class="mt-2 flex items-baseline gap-1 text-gold">
                                 <span class="text-xl font-bold">₹</span>
@@ -957,8 +936,7 @@
 
                         <button type="submit" 
                                 class="w-full bg-gold hover:bg-gold-light text-navy font-bold py-4 rounded-xl shadow-md transition-all flex flex-col items-center justify-center min-h-[56px] mt-6">
-                            <span class="text-[16px] font-extrabold">पूछताछ सबमिट करें</span>
-                            <span class="text-[10px] uppercase tracking-widest mt-0.5">Submit Inquiry</span>
+                            <span class="text-[16px] font-extrabold">Submit Inquiry</span>
                         </button>
                     </form>
                 @endif
@@ -971,7 +949,7 @@
 <section class="py-8 md:py-[56px] bg-[#F4F6F9] border-t border-gray-200/60">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-4 md:mb-[32px] flex flex-col items-center">
-            <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">आपकी सेवा में हमारी टीम</h2>
+            <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">Our Expert Team</h2>
             <p class="text-[10px] md:text-[12px] font-bold text-gold uppercase tracking-[0.2em] mb-1 md:mb-[16px]">Our Expert Team</p>
             <p class="text-[13px] md:text-[16px] text-gray-600 max-w-[600px] mx-auto hidden md:block">CAs, Lawyers, and Top Developers — all in one place to bring your vision to life.</p>
         </div>
@@ -1009,7 +987,7 @@
     <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#C9933A 1px, transparent 1px); background-size: 24px 24px;"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-4 md:mb-[32px] flex flex-col items-center">
-            <h2 class="text-[22px] md:text-[44px] font-bold text-gold mb-1 md:mb-[8px] font-serif">संस्थापकों का भरोसा</h2>
+            <h2 class="text-[22px] md:text-[44px] font-bold text-gold mb-1 md:mb-[8px] font-serif">Trusted by Founders</h2>
             <p class="text-[10px] md:text-[12px] font-bold text-gray-300 uppercase tracking-[0.2em] mb-1 md:mb-[16px]">Trusted by Founders</p>
         </div>
 
@@ -1089,11 +1067,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-4 md:mb-[32px]">
             <div>
-                <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">जानें, समझें, आगे बढ़ें</h2>
+                <h2 class="text-[22px] md:text-[44px] font-bold text-navy mb-1 md:mb-[8px] font-serif">Articles & Insights</h2>
                 <p class="text-[10px] md:text-[12px] font-bold text-gold uppercase tracking-[0.2em] mb-1 md:mb-[16px]">Legal & Tech Tips</p>
             </div>
             <a href="/blog" class="text-[11px] text-navy font-bold hover:text-gold transition-colors flex items-center gap-1 mt-1 md:mt-0">
-                सभी आर्टिकल →
+                All Articles →
             </a>
         </div>
 
@@ -1120,7 +1098,7 @@
                             {{ $post->category_label ?? strtoupper($post->category) }}
                         </div>
                         <h3 class="text-[12px] md:text-[18px] font-bold text-navy mb-1 md:mb-[12px] group-hover:text-gold transition-colors leading-snug">
-                            {{ $post->title_hi ?? $post->title_en }}
+                            {{ $post->title_en ?? $post->title_hi }}
                         </h3>
                         <p class="text-[11px] md:text-[13px] text-gray-500 mb-2 md:mb-[24px] flex-grow hidden md:block">
                             {{ $post->excerpt }}
@@ -1136,7 +1114,7 @@
                     <div class="h-[4px] md:h-[6px] bg-navy w-full"></div>
                     <div class="p-3 md:p-[32px] flex flex-col flex-grow">
                         <div class="text-navy text-[8px] md:text-[10px] font-bold mb-2 md:mb-[12px] uppercase tracking-widest bg-navy/5 inline-block self-start px-2 md:px-3 py-1 rounded-full">LEGAL</div>
-                        <h3 class="text-[12px] md:text-[18px] font-bold text-navy mb-1 md:mb-[12px] group-hover:text-gold transition-colors leading-snug">Pvt Ltd vs LLP: आपके लिए क्या सही?</h3>
+                        <h3 class="text-[12px] md:text-[18px] font-bold text-navy mb-1 md:mb-[12px] group-hover:text-gold transition-colors leading-snug">Pvt Ltd vs LLP: Which One is Right For You?</h3>
                         <p class="text-[11px] md:text-[13px] text-gray-500 mb-2 md:mb-[24px] flex-grow hidden md:block">Registration costs, compliance burden, and fundraising potential explained.</p>
                         <div class="text-[10px] md:text-[12px] text-gold font-bold uppercase tracking-wider flex items-center mt-auto">Read &rarr;</div>
                     </div>
@@ -1145,7 +1123,7 @@
                     <div class="h-[4px] md:h-[6px] bg-gold w-full"></div>
                     <div class="p-3 md:p-[32px] flex flex-col flex-grow">
                         <div class="text-gold text-[8px] md:text-[10px] font-bold mb-2 md:mb-[12px] uppercase tracking-widest bg-gold/10 inline-block self-start px-2 md:px-3 py-1 rounded-full">TECH</div>
-                        <h3 class="text-[12px] md:text-[18px] font-bold text-navy mb-1 md:mb-[12px] group-hover:text-gold transition-colors leading-snug">बिज़नेस के लिए Website क्यों? (2026)</h3>
+                        <h3 class="text-[12px] md:text-[18px] font-bold text-navy mb-1 md:mb-[12px] group-hover:text-gold transition-colors leading-snug">Why Every Business Needs a Website (2026)</h3>
                         <p class="text-[11px] md:text-[13px] text-gray-500 mb-2 md:mb-[24px] flex-grow hidden md:block">How a professional website acts as your 24/7 sales representative.</p>
                         <div class="text-[10px] md:text-[12px] text-gold font-bold uppercase tracking-wider flex items-center mt-auto">Read &rarr;</div>
                     </div>
@@ -1154,7 +1132,7 @@
                     <div class="h-[6px] bg-navy w-full"></div>
                     <div class="p-[32px] flex flex-col flex-grow">
                         <div class="text-navy text-[10px] font-bold mb-[12px] uppercase tracking-widest bg-navy/5 inline-block self-start px-3 py-1 rounded-full">COMPLIANCE</div>
-                        <h3 class="text-[18px] font-bold text-navy mb-[12px] group-hover:text-gold transition-colors leading-tight">GST Registration: किसे लेना ज़रूरी है?</h3>
+                        <h3 class="text-[18px] font-bold text-navy mb-[12px] group-hover:text-gold transition-colors leading-tight">GST Registration: Who Needs It?</h3>
                         <p class="text-[13px] text-gray-500 mb-[24px] flex-grow">Turnover limits, mandatory cases, and what documents are needed.</p>
                         <div class="text-[12px] text-gold font-bold uppercase tracking-wider flex items-center mt-auto">Read Article &rarr;</div>
                     </div>

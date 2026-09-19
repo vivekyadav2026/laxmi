@@ -39,7 +39,7 @@
                 <!-- Hindi Name -->
                 <div>
                     <label for="name_hi" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Package Name (Hindi)</label>
-                    <input type="text" name="name_hi" id="name_hi" required value="{{ old('name_hi', $package->name_hi) }}" placeholder="e.g. स्टार्टर" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                    <input type="text" name="name_hi" id="name_hi" required value="{{ old('name_hi', $package->name_hi) }}" placeholder="e.g. Starter" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
                 </div>
             </div>
 
@@ -91,21 +91,21 @@
                 <!-- Description Hindi -->
                 <div>
                     <label for="description_hi" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Hindi Description</label>
-                    <input type="text" name="description_hi" id="description_hi" value="{{ old('description_hi', $package->description_hi) }}" placeholder="e.g. शुरुआती संस्थापकों के लिए" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                    <input type="text" name="description_hi" id="description_hi" value="{{ old('description_hi', $package->description_hi) }}" placeholder="e.g. For early stage founders" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Badge English -->
                 <div>
-                    <label for="badge_en" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Badge (English)</label>
+                    <label for="badge_en" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Badge (English - Optional)</label>
                     <input type="text" name="badge_en" id="badge_en" value="{{ old('badge_en', $package->badge_en) }}" placeholder="e.g. Most Popular" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
                 </div>
 
                 <!-- Badge Hindi -->
                 <div>
-                    <label for="badge_hi" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Badge (Hindi)</label>
-                    <input type="text" name="badge_hi" id="badge_hi" value="{{ old('badge_hi', $package->badge_hi) }}" placeholder="e.g. सबसे लोकप्रिय" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
+                    <label for="badge_hi" class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">Badge (Hindi - Optional)</label>
+                    <input type="text" name="badge_hi" id="badge_hi" value="{{ old('badge_hi', $package->badge_hi) }}" placeholder="e.g. Most Popular" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors">
                 </div>
 
                 <!-- Sort Order -->

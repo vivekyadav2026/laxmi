@@ -54,31 +54,28 @@
 @section('content')
 
 <!-- BREADCRUMB -->
-<div class="bg-[#0d1b3e] py-4 border-b border-white/10 relative z-20">
+<div class="bg-[#0d1b3e] py-3.5 border-b border-white/10 relative z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex text-sm" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <nav class="flex text-xs font-semibold" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2">
                 <li class="inline-flex items-center">
-                    <a href="/" class="flex flex-col text-gray-300 hover:text-[#f5a623] transition">
-                        <span class="font-bold leading-tight">होम</span>
-                        <span class="text-[10px] uppercase">Home</span>
+                    <a href="/" class="text-gray-300 hover:text-[#f5a623] transition uppercase tracking-wider">
+                        Home
                     </a>
                 </li>
                 <li>
                     <div class="flex items-center">
-                        <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <a href="/services" class="flex flex-col text-gray-300 hover:text-[#f5a623] ml-1 md:ml-2 transition">
-                            <span class="font-bold leading-tight">सभी सेवाएं</span>
-                            <span class="text-[10px] uppercase">Services</span>
+                        <svg class="w-3.5 h-3.5 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <a href="/services" class="text-gray-300 hover:text-[#f5a623] transition uppercase tracking-wider">
+                            Services
                         </a>
                     </div>
                 </li>
                 <li>
                     <div class="flex items-center">
-                        <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <a href="/services/{{ $category['slug'] }}" class="flex flex-col text-gray-300 hover:text-[#f5a623] ml-1 md:ml-2 transition">
-                            <span class="font-bold leading-tight">{{ $category['name'] }}</span>
-                            <span class="text-[10px] uppercase">Category</span>
+                        <svg class="w-3.5 h-3.5 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <a href="/services/{{ $category['slug'] }}" class="text-gray-300 hover:text-[#f5a623] transition uppercase tracking-wider">
+                            {{ $category['name'] }}
                         </a>
                     </div>
                 </li>
@@ -97,13 +94,9 @@
                 </span>
             </div>
 
-            <h1 class="text-[36px] md:text-[52px] font-bold text-white leading-[1.15] mb-4 font-serif">
+            <h1 class="text-[36px] md:text-[52px] font-bold text-white leading-[1.15] mb-6 font-serif">
                 {{ $service['name_en'] }}
             </h1>
-            
-            <div class="text-[#f5a623] text-[20px] font-medium mb-6">
-                {{ $service['name_hi'] }}
-            </div>
             
             <p class="text-[15px] md:text-[16px] text-gray-300 mb-8 font-medium leading-relaxed max-w-[500px]">
                 {!! $content['description'] !!}

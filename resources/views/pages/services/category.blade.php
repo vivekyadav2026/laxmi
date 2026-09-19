@@ -45,30 +45,27 @@
 <!-- BREADCRUMB -->
 <div class="bg-[#0B1F3A] py-3.5 border-b border-white/10 relative z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex text-sm" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <nav class="flex text-xs font-semibold" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2">
                 <li class="inline-flex items-center">
-                    <a href="/" class="flex flex-col text-gray-300 hover:text-[#D4A843] transition">
-                        <span class="font-bold leading-tight">होम</span>
-                        <span class="text-[10px] uppercase">Home</span>
+                    <a href="/" class="text-gray-300 hover:text-[#D4A843] transition uppercase tracking-wider">
+                        Home
                     </a>
                 </li>
                 <li>
                     <div class="flex items-center">
-                        <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <a href="/services" class="flex flex-col text-gray-300 hover:text-[#D4A843] ml-1 md:ml-2 transition">
-                            <span class="font-bold leading-tight">सभी सेवाएं</span>
-                            <span class="text-[10px] uppercase">Services</span>
+                        <svg class="w-3.5 h-3.5 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <a href="/services" class="text-gray-300 hover:text-[#D4A843] transition uppercase tracking-wider">
+                            Services
                         </a>
                     </div>
                 </li>
                 <li aria-current="page">
                     <div class="flex items-center">
-                        <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <div class="flex flex-col text-[#D4A843] ml-1 md:ml-2">
-                            <span class="font-bold leading-tight">{{ $category->name }}</span>
-                            <span class="text-[10px] uppercase">Category</span>
-                        </div>
+                        <svg class="w-3.5 h-3.5 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <span class="text-[#D4A843] uppercase tracking-wider">
+                            {{ $category->name }}
+                        </span>
                     </div>
                 </li>
             </ol>
@@ -116,20 +113,12 @@
                 </div>
 
                 <!-- Title -->
-                @if($service->name_hi)
-                    <h3 class="text-[20px] font-extrabold text-[#0B1F3A] font-serif leading-tight mb-1">{{ $service->name_hi }}</h3>
-                @endif
-                <p class="text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-4">{{ $service->name_en }}</p>
+                <h3 class="text-[20px] font-extrabold text-[#0B1F3A] font-serif leading-tight mb-2">{{ $service->name_en ?: $service->name_hi }}</h3>
 
-                <!-- Best For Box (Left bordered) -->
-                @if($service->best_for_hi || $service->best_for_en)
+                <!-- Best For Box -->
+                @if($service->best_for_en || $service->best_for_hi)
                 <div class="border-l-4 border-[#D4A843] bg-gray-50 p-3 rounded-r-xl mb-6 text-left">
-                    @if($service->best_for_hi)
-                        <p class="text-[12px] text-gray-600 font-bold leading-normal mb-0.5">{{ $service->best_for_hi }}</p>
-                    @endif
-                    @if($service->best_for_en)
-                        <p class="text-[10px] text-gray-400 font-medium italic">{{ $service->best_for_en }}</p>
-                    @endif
+                    <p class="text-[12px] text-gray-700 font-semibold leading-normal">{{ $service->best_for_en ?: $service->best_for_hi }}</p>
                 </div>
                 @endif
 
@@ -156,32 +145,31 @@
         <!-- DYNAMIC PAGE CONTENT SECTIONS -->
         @if($category->page_content)
             
-            <!-- COMPARISONS TABLE (e.g. Business Registration) -->
+            <!-- COMPARISONS TABLE -->
             @if(isset($category->page_content['comparisons']))
             <div class="mt-20">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">मेरे लिए कौन सा सही है?</h2>
-                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Which Type Is Right For Me?</p>
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">Which Entity Type Is Right For You?</h2>
+                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Compare structures to choose the perfect legal entity for your startup</p>
                 </div>
                 
                 <div class="overflow-x-auto bg-white rounded-3xl border border-gray-200 shadow-sm">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-[#0B1F3A] text-white">
                             <tr>
-                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">प्रकार / Type</th>
-                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">न्यूनतम सदस्य / Min Members</th>
-                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">देयता / Liability</th>
-                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">कर (टैक्स) / Tax</th>
-                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">सर्वश्रेष्ठ / Best For</th>
-                                <th class="px-6 py-4 class-price text-right text-xs font-bold uppercase tracking-wider">लागत / Cost</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">Entity Type</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">Min Members</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">Liability</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">Taxation</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">Best For</th>
+                                <th class="px-6 py-4 class-price text-right text-xs font-bold uppercase tracking-wider">Estimated Cost</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100 text-sm">
                             @foreach($category->page_content['comparisons'] as $row)
                             <tr class="hover:bg-gray-50/50 transition-colors">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="font-bold text-[#0B1F3A]">{{ $row['type_hi'] }}</div>
-                                    <div class="text-[10px] text-gray-400">{{ $row['type_en'] }}</div>
+                                    <div class="font-bold text-[#0B1F3A]">{{ $row['type_en'] ?: $row['type_hi'] }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-gray-600 font-medium">{{ $row['members'] }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -191,8 +179,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-gray-600 font-medium">{{ $row['tax'] }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="font-bold text-[#0B1F3A]">{{ $row['best_for_hi'] }}</div>
-                                    <div class="text-[10px] text-gray-400">{{ $row['best_for_en'] }}</div>
+                                    <div class="font-bold text-[#0B1F3A]">{{ $row['best_for_en'] ?: $row['best_for_hi'] }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right font-extrabold {{ $row['cost_color'] === 'red' ? 'text-red-600' : ($row['cost_color'] === 'green' ? 'text-green-600' : 'text-[#0B1F3A]') }}">{{ $row['cost'] }}</td>
                             </tr>
@@ -207,40 +194,36 @@
             @if(isset($category->page_content['packages']))
             <div class="mt-20">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">हमारे पैकेजेस</h2>
-                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Our Custom Packages</p>
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">Our Service Packages</h2>
+                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Clear and transparent pricing plans</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     @foreach($category->page_content['packages'] as $pkg)
                     <div class="bg-white rounded-3xl p-8 border {{ isset($pkg['highlight']) && $pkg['highlight'] ? 'border-[#D4A843] ring-4 ring-[#D4A843]/10 relative scale-105' : 'border-gray-200' }} shadow-sm flex flex-col h-full">
                         @if(isset($pkg['highlight']) && $pkg['highlight'])
-                            <span class="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 bg-[#D4A843] text-[#0B1F3A] font-extrabold text-[10px] uppercase tracking-widest px-4 py-1 rounded-full shadow-sm">Popular</span>
+                            <span class="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 bg-[#D4A843] text-[#0B1F3A] font-extrabold text-[10px] uppercase tracking-widest px-4 py-1 rounded-full shadow-sm">Popular Choice</span>
                         @endif
 
-                        <h3 class="text-[20px] font-bold text-[#0B1F3A] font-serif mb-0.5">{{ $pkg['name_hi'] }}</h3>
-                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-6">{{ $pkg['name_en'] }}</p>
+                        <h3 class="text-[20px] font-bold text-[#0B1F3A] font-serif mb-1">{{ $pkg['name_en'] ?: $pkg['name_hi'] }}</h3>
 
-                        <div class="flex items-baseline mb-6">
+                        <div class="flex items-baseline mb-6 mt-4">
                             <span class="text-3xl font-extrabold text-[#0B1F3A]">{{ $pkg['price'] }}</span>
-                            @if(isset($pkg['price_text']))
-                                <span class="text-xs text-gray-400 ml-1.5">{{ $pkg['price_text'] }}</span>
+                            @if(isset($pkg['price_text_en']))
+                                <span class="text-xs text-gray-400 ml-1.5 uppercase font-bold">{{ $pkg['price_text_en'] }}</span>
                             @endif
                         </div>
 
                         <ul class="space-y-4 mb-8 flex-grow">
-                            @foreach($pkg['features_hi'] as $idx => $feat)
-                            <li class="flex items-start text-xs text-gray-600 font-bold leading-normal">
-                                <span class="text-green-500 mr-2 text-sm">✓</span>
-                                <div>
-                                    <span>{{ $feat }}</span>
-                                    <span class="block text-[10px] text-gray-400 font-medium italic mt-0.5">{{ $pkg['features_en'][$idx] }}</span>
-                                </div>
+                            @foreach(($pkg['features_en'] ?? $pkg['features_hi']) as $idx => $feat)
+                            <li class="flex items-start text-xs text-gray-700 font-semibold leading-normal">
+                                <span class="text-green-500 mr-2 text-sm font-bold">✓</span>
+                                <span>{{ $feat }}</span>
                             </li>
                             @endforeach
                         </ul>
 
-                        <a href="/#consultation" class="w-full text-center py-3.5 rounded-xl text-xs font-bold transition-all {{ isset($pkg['highlight']) && $pkg['highlight'] ? 'bg-[#0B1F3A] text-white hover:bg-navy-800' : 'bg-gray-100 text-[#0B1F3A] hover:bg-gray-200' }}">
+                        <a href="/#consultation" class="w-full text-center py-3.5 rounded-xl text-xs font-bold transition-all uppercase tracking-wider {{ isset($pkg['highlight']) && $pkg['highlight'] ? 'bg-[#0B1F3A] text-white hover:bg-navy-800' : 'bg-gray-100 text-[#0B1F3A] hover:bg-gray-200' }}">
                             Get Started
                         </a>
                     </div>
@@ -253,7 +236,7 @@
             @if(isset($category->page_content['classes']))
             <div class="mt-20">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">ट्रेडमार्क क्लासेज</h2>
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">Trademark Class Categories</h2>
                     <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Select the Right Class for Your Industry</p>
                 </div>
                 
@@ -267,11 +250,8 @@
                                     <span class="text-[9px] font-extrabold text-[#D4A843] bg-[#D4A843]/10 px-2 py-0.5 rounded-md uppercase tracking-wider">Popular</span>
                                 @endif
                             </div>
-                            <h3 class="font-bold font-serif text-[#0B1F3A] text-base mb-1">{{ $cls['title_hi'] }}</h3>
-                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-4">{{ $cls['title_en'] }}</p>
-                            
-                            <p class="text-xs text-gray-500 leading-normal">{{ $cls['desc_hi'] }}</p>
-                            <p class="text-[10px] text-gray-400 italic mt-1 leading-normal">{{ $cls['desc_en'] }}</p>
+                            <h3 class="font-bold font-serif text-[#0B1F3A] text-base mb-2">{{ $cls['title_en'] ?: $cls['title_hi'] }}</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">{{ $cls['desc_en'] ?: $cls['desc_hi'] }}</p>
                         </div>
                     </div>
                     @endforeach
@@ -283,8 +263,8 @@
             @if(isset($category->page_content['timeline']))
             <div class="mt-20">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">ट्रेडमार्क पंजीकरण प्रक्रिया</h2>
-                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Trademark Registration Timeline</p>
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">Trademark Registration Timeline</h2>
+                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Step-by-Step Registration Workflow</p>
                 </div>
 
                 <div class="relative border-l-2 border-gray-200 max-w-3xl mx-auto pl-8 space-y-8 py-4">
@@ -295,11 +275,10 @@
                         </div>
                         <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between gap-6">
                             <div>
-                                <h3 class="font-bold text-[#0B1F3A] text-[15px] mb-0.5">{{ $step['step_hi'] }}</h3>
-                                <p class="text-[11px] text-gray-400 font-medium">{{ $step['step_en'] }}</p>
+                                <h3 class="font-bold text-[#0B1F3A] text-[15px] mb-0.5">{{ $step['step_en'] ?: $step['step_hi'] }}</h3>
                             </div>
                             <div class="shrink-0 text-right">
-                                <span class="bg-[#FAF6ED] text-[#A67828] border border-[#E2E0D8] text-[10px] font-extrabold px-3 py-1 rounded-full">{{ $step['time_hi'] }}</span>
+                                <span class="bg-[#FAF6ED] text-[#A67828] border border-[#E2E0D8] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">{{ $step['time_en'] ?: $step['time_hi'] }}</span>
                             </div>
                         </div>
                     </div>
@@ -312,8 +291,8 @@
             @if(isset($category->page_content['benefits']))
             <div class="mt-20">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">ट्रेडमार्क के फायदे</h2>
-                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Benefits of Trademark Registration</p>
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">Key Registration Benefits</h2>
+                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Why Registering Your Trademark Matters</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -325,11 +304,8 @@
                                     {!! $svgIcons[$ben['icon']] ?? '' !!}
                                 </svg>
                             </div>
-                            <h3 class="font-bold text-[#0B1F3A] font-serif text-base mb-1">{{ $ben['title_hi'] }}</h3>
-                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-4">{{ $ben['title_en'] }}</p>
-                            
-                            <p class="text-xs text-gray-500 leading-normal">{{ $ben['desc_hi'] }}</p>
-                            <p class="text-[10px] text-gray-400 italic mt-1 leading-normal">{{ $ben['desc_en'] }}</p>
+                            <h3 class="font-bold text-[#0B1F3A] font-serif text-base mb-2">{{ $ben['title_en'] ?: $ben['title_hi'] }}</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed">{{ $ben['desc_en'] ?: $ben['desc_hi'] }}</p>
                         </div>
                     </div>
                     @endforeach
@@ -337,12 +313,12 @@
             </div>
             @endif
 
-            <!-- FAQs (e.g. GST Notices) -->
+            <!-- FAQs -->
             @if(isset($category->page_content['faqs']))
             <div class="mt-20 max-w-4xl mx-auto">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">अक्सर पूछे जाने वाले सवाल</h2>
-                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Frequently Asked Questions</p>
+                    <h2 class="text-2xl md:text-3xl font-bold font-serif text-[#0B1F3A] mb-2">Frequently Asked Questions</h2>
+                    <p class="text-xs uppercase font-bold text-gray-400 tracking-widest">Get answers to common queries</p>
                 </div>
                 
                 <div class="space-y-4" x-data="{ activeFaq: null }">
@@ -350,15 +326,13 @@
                     <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs">
                         <button @click="activeFaq = (activeFaq === {{ $idx }} ? null : {{ $idx }})" class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50/50 transition-colors">
                             <div>
-                                <span class="font-bold text-sm text-[#0B1F3A] leading-tight block">{{ $faq['q_hi'] }}</span>
-                                <span class="text-[10px] text-gray-400 font-semibold mt-1 block uppercase tracking-wide">{{ $faq['q_en'] }}</span>
+                                <span class="font-bold text-sm text-[#0B1F3A] leading-tight block">{{ $faq['q_en'] ?: $faq['q_hi'] }}</span>
                             </div>
                             <svg class="w-5 h-5 text-gray-400 transition-transform duration-300" :class="activeFaq === {{ $idx }} ? 'rotate-180 text-[#D4A843]' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path></svg>
                         </button>
                         <div x-show="activeFaq === {{ $idx }}" x-collapse class="border-t border-gray-100 bg-gray-50/30">
                             <div class="px-6 py-5 text-xs text-gray-600 font-medium leading-relaxed">
-                                <p class="mb-2">{{ $faq['a_hi'] }}</p>
-                                <p class="text-[11px] text-gray-400 italic">{{ $faq['a_en'] }}</p>
+                                <p>{{ $faq['a_en'] ?: $faq['a_hi'] }}</p>
                             </div>
                         </div>
                     </div>

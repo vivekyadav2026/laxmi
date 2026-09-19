@@ -5,28 +5,26 @@
     $cleanPhone = preg_replace('/[^0-9+]/', '', $contactPhone);
 @endphp
 
-@section('title', 'सभी सेवाएं | All Legal, Tax & Tech Services - Foundida')
+@section('title', 'All Legal, Tax & Technology Services | Foundida')
 
 @section('content')
 
 <!-- BREADCRUMB -->
 <div class="bg-[#0B1F3A] py-3.5 border-b border-white/10 relative z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex text-sm" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <nav class="flex text-xs font-semibold" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2">
                 <li class="inline-flex items-center">
-                    <a href="/" class="flex flex-col text-gray-300 hover:text-[#D4A843] transition">
-                        <span class="font-bold leading-tight">होम</span>
-                        <span class="text-[10px] uppercase">Home</span>
+                    <a href="/" class="text-gray-300 hover:text-[#D4A843] transition uppercase tracking-wider">
+                        Home
                     </a>
                 </li>
                 <li aria-current="page">
                     <div class="flex items-center">
-                        <svg class="w-4 h-4 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <div class="flex flex-col text-[#D4A843] ml-1 md:ml-2">
-                            <span class="font-bold leading-tight">सभी सेवाएं</span>
-                            <span class="text-[10px] uppercase">All Services</span>
-                        </div>
+                        <svg class="w-3.5 h-3.5 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <span class="text-[#D4A843] uppercase tracking-wider">
+                            All Services
+                        </span>
                     </div>
                 </li>
             </ol>
@@ -49,10 +47,10 @@
         </div>
 
         <h1 class="font-serif text-[32px] sm:text-[42px] md:text-[54px] font-extrabold text-white leading-[1.15] mb-4">
-            आपकी ज़रूरत की <span class="text-[#D4A843]">हर सेवा</span> — एक ही जगह
+            Every Service Your Business Needs — <span class="text-[#D4A843]">All In One Place</span>
         </h1>
         <p class="text-[14px] md:text-[16px] text-gray-300 font-medium leading-relaxed max-w-[640px] mb-8">
-            Company Registration, GST, Trademark, Tax Filings & Custom Website/App Development — Transparent Pricing & Expert Execution.
+            Company Registration, GST, Trademark, Tax Filings & Custom Web/App Development — Transparent Pricing & Expert Execution.
         </p>
     </div>
 </x-inner-hero>
@@ -77,7 +75,7 @@
                 </span>
                 <input x-model="searchQuery"
                        type="text"
-                       placeholder="सेवा खोजें (जैसे: GST, Company, Trademark, App...)"
+                       placeholder="Search service (e.g. GST, Company, Trademark, App...)"
                        class="w-full bg-[#F4F6F9] border border-gray-200 rounded-xl pl-11 pr-4 py-3 text-sm text-[#0B1F3A] placeholder-gray-400 focus:outline-none focus:border-[#D4A843] focus:ring-1 focus:ring-[#D4A843] transition-all">
                 <button x-show="searchQuery" @click="searchQuery = ''" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600">
                     ✕
@@ -133,17 +131,10 @@
                            class="p-2.5 rounded-xl hover:bg-[#F4F6F9] transition-all flex items-center justify-between group/item border border-transparent hover:border-gray-200/60">
                             <div class="flex items-center gap-2.5 min-w-0">
                                 <span class="w-1.5 h-1.5 rounded-full bg-[#D4A843] shrink-0"></span>
-                                <div class="flex flex-col min-w-0">
-                                    <span class="font-bold text-[13px] text-[#0B1F3A] group-hover/item:text-[#D4A843] transition-colors truncate">{{ $service->name_en }}</span>
-                                    @if($service->name_hi)
-                                        <span class="text-[10px] text-gray-400 truncate font-medium">{{ $service->name_hi }}</span>
-                                    @endif
-                                </div>
+                                <span class="font-bold text-[13px] text-[#0B1F3A] group-hover/item:text-[#D4A843] transition-colors truncate">{{ $service->name_en }}</span>
                             </div>
                             <div class="flex items-center gap-2 shrink-0 ml-2">
-                                @if($service->badge_hi)
-                                    <span class="text-[9px] font-extrabold text-white bg-red-500 px-1.5 py-0.5 rounded-md uppercase tracking-wider">{{ $service->badge_hi }}</span>
-                                @elseif($service->badge_en)
+                                @if($service->badge_en)
                                     <span class="text-[9px] font-extrabold text-white bg-red-500 px-1.5 py-0.5 rounded-md uppercase tracking-wider">{{ $service->badge_en }}</span>
                                 @endif
                                 @if($service->old_price)
@@ -162,7 +153,7 @@
                 <!-- Footer Category CTA -->
                 <div class="pt-4 border-t border-gray-100 flex items-center justify-between relative z-10 mt-auto">
                     <a href="/services/{{ $cat->slug }}" class="inline-flex items-center gap-2 text-[12px] font-extrabold text-[#0B1F3A] hover:text-[#D4A843] transition-colors">
-                        <span>{{ $cat->name }} की सभी सेवाएं देखें</span>
+                        <span>View All {{ $cat->name }} Services</span>
                         <span>→</span>
                     </a>
                     <a href="/#consultation" class="w-8 h-8 rounded-full bg-[#D4A843] flex items-center justify-center text-[#0B1F3A] hover:scale-110 transition-transform shadow-sm" title="Consult Expert">
@@ -181,12 +172,12 @@
                     <div class="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-[#D4A843] bg-white/5 px-3 py-1 rounded-full mb-3">
                         ✦ FREE EXPERT ADVICE
                     </div>
-                    <h3 class="text-2xl md:text-4xl font-bold font-serif mb-2 text-white">समझ नहीं आ रहा कौन सी सेवा चाहिए?</h3>
-                    <p class="text-gray-300 text-sm md:text-base leading-relaxed">हमारे सीए और लीगल एक्सपर्ट्स से मुफ्त सलाह लें। हम 2 घंटे में आपसे संपर्क करेंगे।</p>
+                    <h3 class="text-2xl md:text-4xl font-bold font-serif mb-2 text-white">Not Sure Which Service You Need?</h3>
+                    <p class="text-gray-300 text-sm md:text-base leading-relaxed">Consult with our CAs and legal advisors for free. We will reach out to you within 2 hours.</p>
                 </div>
                 <div class="shrink-0 flex flex-col sm:flex-row gap-3 w-full md:w-auto">
                     <a href="/#consultation" class="bg-[#D4A843] text-[#0B1F3A] font-extrabold text-sm px-7 py-3.5 rounded-xl hover:bg-[#E8B96A] transition-all text-center shadow-lg">
-                        📞 मुफ़्त सलाह लें
+                        📞 Get Free Consultation
                     </a>
                     <a href="tel:{{ $cleanPhone }}" class="bg-white/10 text-white font-bold text-sm px-6 py-3.5 rounded-xl hover:bg-white/20 transition-all text-center border border-white/20">
                         {{ $contactPhone }}
