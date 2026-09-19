@@ -1,3 +1,7 @@
+@php
+    $contactPhone = \App\Models\Setting::get('contact_phone', '+91 87505 30252');
+    $cleanPhone = preg_replace('/[^0-9+]/', '', $contactPhone);
+@endphp
 @extends('layouts.app')
 @section('title', 'Company Registration & Legal Services in India | Foundida')
 @section('meta_description', 'Foundida offers top-rated Company Registration, GST filing, Trademark registration, and Custom Tech Solutions in India. From idea to launch, get your complete business setup online.')
@@ -35,337 +39,779 @@
 
 @section('content')
 
-<!-- 1. HERO SECTION -->
-<section class="bg-[#0B1F3A] relative overflow-hidden pt-20 pb-16 md:py-[56px] z-10">
-    <!-- Subtle diagonal golden gradient overlay on the right side -->
-    <div class="absolute inset-y-0 right-0 w-full lg:w-1/2 bg-gradient-to-tr from-transparent to-[#D4A843]/15 pointer-events-none z-0"></div>
+<!-- 1. HERO SECTION --><!-- 1. HERO SECTION (COMPACT DESIGN) -->
+<style>
+    @keyframes float-1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    @keyframes float-2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @keyframes fade-in-up { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+    
+    .animate-float-1 { animation: float-1 4s ease-in-out infinite; }
+    .animate-float-2 { animation: float-2 5s ease-in-out infinite 1s; }
+    .animate-modal { animation: fade-in-up 0.3s ease-out forwards; }
+    
+    .hero-bg-pattern {
+        background-color: #f8faf9;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232d7a4f' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
 
-    <!-- Faint circuit board / legal document pattern as background texture -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
-        <svg class="absolute right-0 top-0 w-[600px] h-[600px] text-white/5" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.35">
-            <path d="M10,20 L30,20 L40,30 L70,30 L80,40 L90,40" />
-            <path d="M20,50 L40,50 L50,60 L80,60" />
-            <path d="M60,10 L70,20 L90,20" />
-            <circle cx="30" cy="20" r="1" fill="currentColor" />
-            <circle cx="70" cy="30" r="1" fill="currentColor" />
-            <circle cx="40" cy="50" r="1" fill="currentColor" />
-            <circle cx="80" cy="60" r="1" fill="currentColor" />
-            <!-- Legal document silhouette -->
-            <rect x="15" y="65" width="20" height="26" rx="1" stroke-dasharray="2 1" />
-            <line x1="19" y1="71" x2="31" y2="71" stroke-width="0.5" />
-            <line x1="19" y1="76" x2="31" y2="76" stroke-width="0.5" />
-            <line x1="19" y1="81" x2="27" y2="81" stroke-width="0.5" />
-        </svg>
-    </div>
+    /* HARDCODED GRID TO BYPASS TAILWIND COMPILER */
+    .hero-custom-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    @media (min-width: 768px) {
+        .hero-custom-grid {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .hero-custom-col-left {
+            width: 48%; /* Increased from 42% to close gap */
+            padding-right: 20px;
+        }
+        .hero-custom-col-right {
+            width: 52%; /* Decreased from 58% */
+        }
+    }
 
-    <!-- Glow Blobs for Visual Depth -->
-    <div class="hero-glow-blob"></div>
-    <div class="hero-glow-blob-2"></div>
+    /* CUSTOM SVG ANIMATIONS FROM USER */
+    .hero-visual {
+        width: 480px; max-width: 100%;
+        aspect-ratio: 480/570;
+        position: relative;
+    }
+    .hero-visual svg { width: 100%; height: 100%; display: block; }
+    
+    @media (prefers-reduced-motion: no-preference) {
+        .svg-rocket { animation: svg-float 5s ease-in-out infinite; }
+        .svg-flame { transform-origin: 240px 335px; animation: svg-flicker .6s ease-in-out infinite alternate; }
+        .svg-pulse { transform-box: fill-box; transform-origin: center; animation: svg-pulse 2.8s ease-out infinite; }
+        .svg-pulse:nth-of-type(2n) { animation-delay: .9s; }
+        .svg-pulse:nth-of-type(3n) { animation-delay: 1.8s; }
+    }
+    @keyframes svg-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes svg-flicker { from { transform: scaleY(.85); } to { transform: scaleY(1.15); } }
+    @keyframes svg-pulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(2.6); opacity: 0; } }
 
-    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-[48px] items-center relative z-10">
-        <!-- Hero Headline Area (Part 1) -->
-        <div class="flex flex-col z-20">
-            <!-- Top pill badge with golden border, animated golden dot pulse -->
-            <div class="inline-flex items-center gap-2 bg-[#D4A843]/10 border border-[#D4A843]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A843] opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#D4A843]"></span>
-                </span>
-                <span class="text-[10px] font-bold text-[#D4A843] uppercase tracking-widest flex items-center gap-1">
-                    FROM IDEA TO FUNDING <span class="text-[8px]">✦</span>
-                </span>
-            </div>
+    /* PREMIUM GLASSMORPHISM & TECH GLOW (From Reference Image) */
+    .glass-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 32px 0 rgba(11, 31, 58, 0.1);
+        border-radius: 16px;
+        transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px 0 rgba(11, 31, 58, 0.15);
+    }
+    .glass-icon {
+        background: linear-gradient(135deg, rgba(232, 243, 235, 0.9), rgba(232, 243, 235, 0.5));
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6);
+    }
+    .tech-glow {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(45,122,79,0.12) 0%, rgba(11,31,58,0.03) 50%, transparent 100%);
+        filter: blur(40px);
+        z-index: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
 
-            <!-- Main Headline (Hindi/English optimized) -->
-            <h1 class="text-[30px] sm:text-[36px] md:text-[52px] font-bold text-white leading-[1.15] mb-4 font-serif">
-                Online <span class="text-[#D4A843]">Company Registration</span> & Business Setup in India
-            </h1>
+    /* MOBILE RESPONSIVE TWEAKS */
+    .hero-heading { font-size: 38px; line-height: 1.1; margin-top: 10px; }
+    .hero-subheading { font-size: 15px; }
+    .hero-svg-wrapper { height: 280px; }
+    @media (min-width: 768px) {
+        .hero-heading { font-size: 52px; margin-top: 0; }
+        .hero-subheading { font-size: 17px; }
+        .hero-svg-wrapper { height: 380px; }
+    }
+</style>
 
-            <!-- Sub Headline (English) -->
-            <h2 class="text-[14px] md:text-[16px] text-gray-300 mb-6 font-medium leading-relaxed max-w-[500px]">
-                Complete Legal Services, GST, Trademark, and Tech setup — zero to launch in one place. India's fastest growing business setup platform.
-            </h2>
-
-            <!-- CTA Buttons - Side by Side on Mobile -->
-            <div class="flex flex-row gap-3 items-center">
-                <!-- Primary CTA -->
-                <a href="#consultation" class="inline-flex items-center justify-center gap-2 bg-[#D4A843] text-[#0B1F3A] text-[13px] md:text-[15px] font-extrabold px-5 md:px-8 py-3 md:py-4 rounded-xl hover:bg-[#E8B96A] transition-all text-center shadow-lg whitespace-nowrap flex-grow sm:flex-grow-0">
-                    <span class="text-base">📞</span>
-                    <span>Free Consultation</span>
-                </a>
-                <!-- Secondary CTA -->
-                <a href="/packages" class="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-[#D4A843]/60 hover:border-[#D4A843] text-[12px] md:text-[14px] font-bold px-4 md:px-6 py-2.5 md:py-3.5 rounded-xl hover:bg-white/5 transition-all text-center whitespace-nowrap">
-                    <span class="text-base">📦</span>
-                    <span>View Packages</span>
-                </a>
-            </div>
-
-            <!-- Trust Badges Row (Horizontal scroll on mobile with thin golden dividers) -->
-            <div class="mt-8 pt-6 border-t border-white/10 flex flex-row items-center overflow-x-auto hide-scrollbar flex-nowrap gap-4">
-                <!-- Badge 1 -->
-                <div class="flex items-center gap-2.5 flex-shrink-0">
-                    <div class="w-8 h-8 rounded-full bg-[#D4A843]/10 flex items-center justify-center text-[#D4A843] text-sm font-extrabold">₹</div>
-                    <div class="flex flex-col">
-                        <span class="text-white font-extrabold text-xs leading-none">₹499+</span>
-                        <span class="text-gray-400 text-[8px] uppercase tracking-wider font-semibold mt-0.5">Starting</span>
-                    </div>
+<section class="hero-bg-pattern relative pt-4 md:pt-6 pb-2 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- HARDCODED FLEXBOX GRID -->
+        <div class="hero-custom-grid">
+            
+            <!-- LEFT COLUMN: Content -->
+            <div class="hero-custom-col-left w-full flex flex-col items-start text-left z-20">
+                <!-- Pill Badge -->
+                <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-3 shadow-sm border" style="background-color: #E8F3EB; border-color: #CDE5D4;">
+                    <span class="text-sm">🚀</span>
+                    <span class="font-extrabold uppercase tracking-wider" style="color: #1a4a2f; font-size: 11px;">
+                        NEW STARTUP? YOU'RE IN THE RIGHT PLACE
+                    </span>
                 </div>
                 
-                <!-- Divider -->
-                <div class="h-6 w-px bg-[#D4A843]/20 flex-shrink-0"></div>
-
-                <!-- Badge 2 -->
-                <div class="flex items-center gap-2.5 flex-shrink-0">
-                    <div class="w-8 h-8 rounded-full bg-[#D4A843]/10 flex items-center justify-center text-[#D4A843] text-xs">⚡</div>
-                    <div class="flex flex-col">
-                        <span class="text-white font-extrabold text-xs leading-none">48Hr</span>
-                        <span class="text-gray-400 text-[8px] uppercase tracking-wider font-semibold mt-0.5">Delivery</span>
-                    </div>
+                <!-- Headline -->
+                <h1 class="hero-heading font-extrabold mb-4 tracking-tight font-serif" style="color: #0B1F3A;">
+                    <span class="block mb-1">Turn Your Idea</span>
+                    <span class="block" style="color: #2D7A4F;">Into a Real Business</span>
+                </h1>
+                
+                <!-- Subheadline -->
+                <p class="hero-subheading mb-6 leading-relaxed font-medium" style="color: #4b5563; max-width: 580px;">
+                    Company Registration, GST, Trademark, Compliance, Website, App, Digital Marketing and 80+ business services — all in one place. Simple. Affordable. Startup Friendly.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-8 mt-2 w-full sm:max-w-none mx-auto sm:mx-0">
+                    <button onclick="document.getElementById('consultationModal').style.display='flex'" class="inline-flex items-center justify-center gap-2 font-extrabold px-7 py-3.5 rounded-full transition-all hover:-translate-y-0.5 whitespace-nowrap w-full sm:w-auto" style="background: linear-gradient(135deg, #F5A623, #FFC152); box-shadow: 0 6px 20px rgba(245, 166, 35, 0.35); color: #0B1F3A; font-size: 15px;">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Get Free Consultation</span>
+                    </button>
+                    <a href="/packages" class="inline-flex items-center justify-center gap-2 font-bold px-7 py-3.5 rounded-full transition-all whitespace-nowrap w-full sm:w-auto hover:bg-gray-50" style="background-color: transparent; border: 2px solid #CDE5D4; color: #2D7A4F; font-size: 15px;">
+                        <i class="fas fa-box-open"></i>
+                        <span>View All Services</span>
+                        <i class="fas fa-arrow-right text-xs ml-1 opacity-70"></i>
+                    </a>
                 </div>
-
-                <!-- Divider -->
-                <div class="h-6 w-px bg-[#D4A843]/20 flex-shrink-0"></div>
-
-                <div class="flex items-center gap-2.5 flex-shrink-0">
-                    <div class="w-8 h-8 rounded-full bg-[#D4A843]/10 flex items-center justify-center text-[#D4A843] text-xs">🛡️</div>
-                    <div class="flex flex-col">
-                        <span class="text-white font-extrabold text-xs leading-none">100%</span>
-                        <span class="text-gray-400 text-[8px] uppercase tracking-wider font-semibold mt-0.5">Secure</span>
+                
+                <!-- Mini Badges Row -->
+                <div class="grid grid-cols-2 w-full" style="max-width: 500px; gap: 16px 20px;">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full text-white flex items-center justify-center text-xs shadow-sm" style="background-color: #2D7A4F;"><i class="fas fa-bolt"></i></div>
+                        <span class="font-bold text-gray-800" style="font-size: 13px;">Startup Friendly</span>
                     </div>
-                </div>
-
-                <!-- Divider -->
-                <div class="h-6 w-px bg-[#D4A843]/20 flex-shrink-0"></div>
-
-                <!-- Badge 4 -->
-                <div class="flex items-center gap-2.5 flex-shrink-0">
-                    <div class="w-8 h-8 rounded-full bg-[#D4A843]/10 flex items-center justify-center text-[#D4A843] text-xs">🤝</div>
-                    <div class="flex flex-col">
-                        <span class="text-white font-extrabold text-xs leading-none">100+</span>
-                        <span class="text-gray-400 text-[8px] uppercase tracking-wider font-semibold mt-0.5">Onboarded</span>
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-sm" style="background-color: #0B1F3A; color: #F5A623;"><i class="fas fa-rupee-sign"></i></div>
+                        <span class="font-bold text-gray-800" style="font-size: 13px;">Affordable Pricing</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full text-white flex items-center justify-center text-xs shadow-sm" style="background-color: #1da154;"><i class="fas fa-users"></i></div>
+                        <span class="font-bold text-gray-800" style="font-size: 13px;">Expert Support</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full text-white flex items-center justify-center text-xs shadow-sm" style="background-color: #0B1F3A;"><i class="fas fa-shield-alt"></i></div>
+                        <span class="font-bold text-gray-800" style="font-size: 13px;">End-to-End Guidance</span>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Consultation Form Card (Part 2 — separate white card) -->
-        <div id="consultation" class="mt-8 mb-6 lg:mt-0 bg-white rounded-2xl shadow-xl p-6 pb-10 md:p-8 border-t-4 border-[#D4A843] relative z-10 w-full max-w-[440px] mx-auto lg:ml-auto">
-            <h3 class="text-[20px] md:text-[24px] font-bold text-[#0B1F3A] mb-1 font-serif leading-tight">Speak with Experts</h3>
-            <p class="text-gray-500 text-xs mb-6">We reply within 2 hours.</p>
-
-            @if(session('callback_success'))
-                <div class="mb-4 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-xl font-medium">
-                    ✓ {{ session('callback_success') }}
-                </div>
-            @endif
-
-            <form action="{{ route('callback.store') }}" method="POST" class="space-y-4">
-                @csrf
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Full Name</label>
-                    <input type="text" name="name" value="{{ old('name') }}" required placeholder="e.g. Rahul Sharma" class="w-full bg-gray-50 border @error('name') border-red-500 @else border-gray-200 @enderror rounded-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#D4A843] focus:ring-1 focus:ring-[#D4A843] transition-colors">
-                    @error('name') <span class="text-red-500 text-[10px]">{{ $message }}</span> @enderror
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Mobile Number</label>
-                    <div class="flex">
-                        <span class="bg-gray-100 border border-gray-200 border-r-0 rounded-l-xl px-3.5 py-3 text-[13px] text-gray-500 font-bold flex items-center">+91</span>
-                        <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="9876543210" maxlength="10" class="w-full bg-gray-50 border @error('phone') border-red-500 @else border-gray-200 @enderror rounded-r-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#D4A843] transition-colors">
+            
+            <!-- RIGHT COLUMN: Image & Badges -->
+            <div class="hero-custom-col-right w-full flex flex-col items-center mt-6 md:mt-0 relative pb-4">
+                
+                <!-- Top Journey Graphic -->
+                <div class="flex items-center justify-center gap-4 mb-4 w-full" style="max-width: 380px; opacity: 0.95;">
+                    <div class="flex flex-col items-center text-center">
+                        <i class="far fa-lightbulb text-3xl" style="color: #F5A623; filter: drop-shadow(0 0 10px rgba(245,166,35,0.8));"></i>
+                        <span class="font-bold tracking-widest mt-1 text-gray-800" style="font-size: 11px;">IDEA</span>
                     </div>
-                    @error('phone') <span class="text-red-500 text-[10px]">{{ $message }}</span> @enderror
+                    <div class="flex-grow border-t-2 border-dashed mx-2 -mt-4" style="border-color: rgba(45, 122, 79, 0.4);"></div>
+                    <div class="flex flex-col items-center text-center">
+                        <i class="far fa-file-alt text-2xl" style="color: #2D7A4F;"></i>
+                        <span class="font-bold tracking-widest mt-1.5 text-gray-700" style="font-size: 11px;">SETUP</span>
+                    </div>
+                    <div class="flex-grow border-t-2 border-dashed mx-2 -mt-4" style="border-color: rgba(45, 122, 79, 0.4);"></div>
+                    <div class="flex flex-col items-center text-center">
+                        <i class="fas fa-chart-line text-2xl" style="color: #2D7A4F;"></i>
+                        <span class="font-bold tracking-widest mt-1.5 text-gray-700" style="font-size: 11px;">GROW</span>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Service Needed</label>
-                    <select name="service" required class="w-full bg-gray-50 border @error('service') border-red-500 @else border-gray-200 @enderror rounded-xl px-4 py-3 text-[13px] text-gray-900 focus:outline-none focus:border-[#D4A843] transition-colors appearance-none" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230B1F3A' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 14px center; background-size: 14px;">
-                        <option value="">Select a service...</option>
-                        <option value="company-reg" {{ old('service') == 'company-reg' ? 'selected' : '' }}>Company Registration</option>
-                        <option value="gst" {{ old('service') == 'gst' ? 'selected' : '' }}>GST</option>
-                        <option value="trademark" {{ old('service') == 'trademark' ? 'selected' : '' }}>Trademark</option>
-                        <option value="website-dev" {{ old('service') == 'website-dev' ? 'selected' : '' }}>Website Development</option>
-                        <option value="app-dev" {{ old('service') == 'app-dev' ? 'selected' : '' }}>App Development</option>
-                        <option value="other" {{ old('service') == 'other' ? 'selected' : '' }}>Other</option>
-                    </select>
-                    @error('service') <span class="text-red-500 text-[10px]">{{ $message }}</span> @enderror
+
+                <!-- Main Wrapper for Image + Floating Badges -->
+                <div class="relative w-full flex items-center justify-center hero-svg-wrapper mb-10 md:mb-0" style="max-width: 580px;">
+                    
+                    <!-- Futuristic Background Glow (from reference image style) -->
+                    <div class="tech-glow"></div>
+
+                    <!-- Center Animated Graphic (SVG from User) -->
+                    <div class="relative flex flex-col items-center justify-center z-10 mt-4" style="width: 100%; max-width: 480px; height: 100%;">
+                        
+                        <div class="hero-visual w-full drop-shadow-2xl" role="img" aria-label="Rocket launching over a network of cities across India">
+                          <svg viewBox="0 0 480 570" xmlns="http://www.w3.org/2000/svg" style="background: transparent;">
+                            <defs>
+                              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#eaf5ee" stop-opacity="0"/>
+                                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+                              </linearGradient>
+                              <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0" stop-color="#ffffff"/>
+                                <stop offset="1" stop-color="#dfe8f2"/>
+                              </linearGradient>
+                              <linearGradient id="fire" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#f5a623"/>
+                                <stop offset="1" stop-color="#ffd98a"/>
+                              </linearGradient>
+                            </defs>
+
+                            <!-- soft backdrop (Made transparent to blend with site bg) -->
+                            <rect width="480" height="570" rx="60" fill="url(#sky)"/>
+
+                            <!-- orbit rings -->
+                            <g fill="none" stroke="#2f7d4f" stroke-opacity=".28" stroke-dasharray="3 9" stroke-linecap="round">
+                              <circle cx="240" cy="290" r="120"/>
+                              <circle cx="240" cy="290" r="190"/>
+                            </g>
+
+                            <!-- city network (connections) -->
+                            <g stroke="#0f2447" stroke-opacity=".22" stroke-width="1.5" fill="none">
+                              <path d="M110 200 L170 260 L240 290 L320 250 L380 190"/>
+                              <path d="M170 260 L140 350 L210 420"/>
+                              <path d="M320 250 L350 340 L290 430"/>
+                              <path d="M240 290 L210 420 M240 290 L290 430"/>
+                            </g>
+
+                            <!-- city nodes (pulsing) -->
+                            <g fill="#2f7d4f">
+                              <circle class="svg-pulse" cx="110" cy="200" r="5" opacity=".5"/>
+                              <circle class="svg-pulse" cx="380" cy="190" r="5" opacity=".5"/>
+                              <circle class="svg-pulse" cx="140" cy="350" r="5" opacity=".5"/>
+                              <circle class="svg-pulse" cx="350" cy="340" r="5" opacity=".5"/>
+                              <circle class="svg-pulse" cx="210" cy="420" r="5" opacity=".5"/>
+                              <circle class="svg-pulse" cx="290" cy="430" r="5" opacity=".5"/>
+                              <circle cx="110" cy="200" r="6"/><circle cx="170" cy="260" r="6"/>
+                              <circle cx="320" cy="250" r="6"/><circle cx="380" cy="190" r="6"/>
+                              <circle cx="140" cy="350" r="6"/><circle cx="350" cy="340" r="6"/>
+                              <circle cx="210" cy="420" r="6"/><circle cx="290" cy="430" r="6"/>
+                            </g>
+                            <circle cx="240" cy="290" r="8" fill="#f5a623"/>
+
+                            <!-- rocket -->
+                            <g class="svg-rocket">
+                              <!-- flame -->
+                              <g class="svg-flame">
+                                <path d="M222 335 Q240 430 258 335 Z" fill="url(#fire)"/>
+                                <path d="M232 335 Q240 385 248 335 Z" fill="#fff" opacity=".7"/>
+                              </g>
+                              <!-- fins -->
+                              <path d="M212 285 L166 352 L214 334 Z" fill="#f5a623"/>
+                              <path d="M268 285 L314 352 L266 334 Z" fill="#f5a623"/>
+                              <!-- body -->
+                              <path d="M240 96 C292 150 298 250 272 336 L208 336 C182 250 188 150 240 96 Z"
+                                    fill="url(#body)" stroke="#0f2447" stroke-width="4" stroke-linejoin="round"/>
+                              <!-- nose band -->
+                              <path d="M240 96 C258 114 270 134 277 154 L203 154 C210 134 222 114 240 96 Z" fill="#2f7d4f"/>
+                              <!-- window -->
+                              <circle cx="240" cy="212" r="27" fill="#0f2447"/>
+                              <circle cx="240" cy="212" r="19" fill="#cfe9d8"/>
+                              <path d="M232 213 l6 6 l12 -13" fill="none" stroke="#2f7d4f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <!-- nozzle -->
+                              <rect x="216" y="330" width="48" height="14" rx="5" fill="#0f2447"/>
+                            </g>
+
+                            <!-- document card: GST / registration -->
+                            <g transform="translate(58 396)">
+                              <rect width="132" height="100" rx="14" fill="#fff" stroke="#0f2447" stroke-opacity=".12"/>
+                              <rect x="16" y="18" width="46" height="8" rx="4" fill="#0f2447"/>
+                              <rect x="16" y="38" width="98" height="6" rx="3" fill="#0f2447" opacity=".15"/>
+                              <rect x="16" y="52" width="80" height="6" rx="3" fill="#0f2447" opacity=".15"/>
+                              <circle cx="100" cy="76" r="14" fill="#2f7d4f"/>
+                              <path d="M93 76 l5 5 l9 -10" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <text x="16" y="82" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="700" fill="#0f2447">GST ✔</text>
+                            </g>
+
+                            <!-- rupee coin -->
+                            <g transform="translate(372 452)">
+                              <circle r="40" fill="#f5a623"/>
+                              <circle r="32" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2.5" stroke-dasharray="4 5"/>
+                              <text y="13" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="38" font-weight="800" fill="#0f2447">₹</text>
+                            </g>
+
+                            <!-- small trademark badge -->
+                            <g transform="translate(96 132)">
+                              <circle r="24" fill="#0f2447"/>
+                              <text y="6" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="800" fill="#fff">TM</text>
+                            </g>
+
+                          </svg>
+                        </div>
+                    </div>
+
+                    <!-- Left Floating Badges -->
+                    <div class="absolute animate-float-1 hidden sm:flex flex-col gap-4 z-20" style="left: -25px; top: 10%;">
+                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-building text-sm"></i></div>
+                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">Company<br>Registration</span>
+                        </div>
+                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-file-invoice-dollar text-sm"></i></div>
+                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">GST Filing</span>
+                        </div>
+                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><span class="font-black text-[12px]">TM</span></div>
+                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">Trademark<br>& IPR</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Floating Badges -->
+                    <div class="absolute animate-float-2 hidden sm:flex flex-col gap-4 z-20" style="right: -25px; bottom: 10%;">
+                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-bullhorn text-sm"></i></div>
+                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">Digital<br>Marketing</span>
+                        </div>
+                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-clipboard-check text-sm"></i></div>
+                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">Compliance<br>Services</span>
+                        </div>
+                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
+                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-th-large text-sm"></i></div>
+                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">80+ More<br>Services</span>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="w-full bg-[#D4A843] text-[#0B1F3A] text-[14px] md:text-[15px] font-extrabold py-3.5 rounded-xl hover:bg-[#E8B96A] transition-all shadow-md mt-2">
-                    Request Callback 📞
-                </button>
-            </form>
-            <div class="text-center text-[10px] text-gray-400 mt-4 flex items-center justify-center gap-1.5">
-                <span>🔒</span>
-                <span>Your data is 100% secure.</span>
+
             </div>
         </div>
     </div>
 </section>
 
+<!-- BOTTOM STATS BAR (COMPACT) -->
+<div class="w-full flex flex-col lg:flex-row border-b relative z-20" style="background-color: #F0F7F2; border-color: #CDE5D4;">
+    <!-- Left light area -->
+    <div class="w-full lg:w-[60%] grid grid-cols-2 md:grid-cols-4 gap-3 px-4 py-4 md:px-6 border-r border-gray-200">
+        <div class="flex items-center gap-2 justify-center md:justify-start">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm shrink-0" style="background-color: #D4E9DA; color: #2D7A4F;"><i class="fas fa-users"></i></div>
+            <div>
+                <div class="font-bold leading-none" style="color: #0B1F3A; font-size: 15px;">100+</div>
+                <div class="text-gray-500 font-bold uppercase tracking-wider mt-0.5" style="font-size: 9px;">Clients</div>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 justify-center md:justify-start">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm shrink-0" style="background-color: #F5A623; color: #0B1F3A;"><i class="fas fa-star"></i></div>
+            <div>
+                <div class="font-bold leading-none" style="color: #0B1F3A; font-size: 15px;">80+</div>
+                <div class="text-gray-500 font-bold uppercase tracking-wider mt-0.5" style="font-size: 9px;">Services</div>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 justify-center md:justify-start">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm shrink-0" style="background-color: #D4E9DA; color: #2D7A4F;"><i class="fas fa-headset"></i></div>
+            <div>
+                <div class="font-bold leading-none" style="color: #0B1F3A; font-size: 15px;">48Hr</div>
+                <div class="text-gray-500 font-bold uppercase tracking-wider mt-0.5" style="font-size: 9px;">Response</div>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 justify-center md:justify-start">
+            <div class="w-8 h-8 rounded-full border border-red-200 bg-white text-red-500 flex items-center justify-center text-sm shadow-sm shrink-0"><i class="fas fa-heart"></i></div>
+            <div>
+                <div class="font-bold leading-none" style="color: #0B1F3A; font-size: 15px;">Dedicated</div>
+                <div class="text-gray-500 font-bold uppercase tracking-wider mt-0.5" style="font-size: 9px;">Support</div>
+            </div>
+        </div>
+    </div>
+    <!-- Right slanted dark area -->
+    <div class="w-full lg:w-[40%] flex items-center justify-center lg:justify-end px-6 py-4 lg:-ml-[5%]" style="background-color: #0B1F3A; clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);">
+        <div class="flex items-center gap-4 lg:pr-8">
+            <div class="text-white text-center lg:text-right">
+                <div class="font-bold font-serif leading-snug" style="font-size: 15px;">Let's Build the Next</div>
+                <div class="font-bold font-serif leading-snug text-gray-300" style="font-size: 15px;">Success Story — Yours!</div>
+            </div>
+            <button onclick="document.getElementById('consultationModal').style.display='flex'" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-lg hover:scale-110 transition-transform shadow-lg shrink-0" style="color: #0B1F3A;">
+                <i class="fas fa-arrow-right -rotate-45"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- CONSULTATION MODAL (POPUP) -->
+<div id="consultationModal" style="display: none;" class="fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-sm p-4 bg-black/70">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-[500px] overflow-hidden animate-modal relative">
+        
+        <!-- Close Button -->
+        <button onclick="document.getElementById('consultationModal').style.display='none'" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-red-500 transition-colors z-10">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Modal Header -->
+        <div class="p-6 md:p-8 border-b border-gray-100" style="background: linear-gradient(to right, #F0F7F2, white);">
+            <h3 class="text-2xl font-bold font-serif mb-2" style="color: #0B1F3A;">Speak with Experts</h3>
+            <p class="text-gray-500 text-sm">We reply within 2 hours. Your data is 100% secure.</p>
+            <div class="w-12 h-1 rounded-full mt-4" style="background-color: #F5A623;"></div>
+        </div>
+        
+        <!-- Modal Body (Form) -->
+        <div class="p-6 md:p-8">
+            @if(session('callback_success'))
+                <div class="mb-4 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-xl font-medium">
+                    ✓ {{ session('callback_success') }}
+                </div>
+            @endif
+            
+            <form action="{{ route('callback.store') }}" method="POST" class="space-y-4">
+                @csrf
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-wider">Your Name</label>
+                    <input type="text" name="name" value="{{ old('name') }}" required placeholder="e.g. Rahul Kumar" class="w-full bg-gray-50 border @error('name') border-red-500 @else border-gray-200 @enderror rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none transition-colors" style="outline-color: #2D7A4F;">
+                </div>
+                
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-wider">Mobile Number</label>
+                    <div class="flex">
+                        <span class="bg-gray-100 border border-gray-200 border-r-0 rounded-l-xl px-3 py-3 text-sm text-gray-500 font-bold flex items-center">+91</span>
+                        <input type="tel" name="phone" value="{{ old('phone') }}" required placeholder="9876543210" maxlength="10" class="w-full bg-gray-50 border @error('phone') border-red-500 @else border-gray-200 @enderror rounded-r-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none transition-colors" style="outline-color: #2D7A4F;">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-wider">Service Needed</label>
+                    <select name="service" required class="w-full bg-gray-50 border @error('service') border-red-500 @else border-gray-200 @enderror rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none transition-colors appearance-none" style="outline-color: #2D7A4F; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232D7A4F' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 14px center; background-size: 14px;">
+                        <option value="">Select Service...</option>
+                        <option value="company-reg">Company Registration</option>
+                        <option value="gst">GST</option>
+                        <option value="trademark">Trademark</option>
+                        <option value="website-dev">Website Development</option>
+                        <option value="app-dev">App Development</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="w-full text-white text-[15px] font-extrabold py-3.5 rounded-xl transition-all shadow-md mt-2" style="background-color: #2D7A4F;">
+                    Request Callback 📞
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- SCRIPTS FOR MODAL -->
+<script>
+    // If the form was submitted and there's an error, we should show the modal again on page load
+    @if($errors->any() || session('callback_success'))
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('consultationModal').style.display='flex';
+        });
+    @endif
+    
+    // Close modal if clicking outside the white box
+    document.getElementById('consultationModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.style.display='none';
+        }
+    });
+</script>
+
 <!-- 2. STARTUP JOURNEY ROADMAP -->
-<section class="py-8 md:py-[56px] bg-[#F8F9FA] relative z-20 overflow-hidden">
-    <!-- Subtle tech background elements -->
-    <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#D4A843 1.5px, transparent 1.5px); background-size: 32px 32px;"></div>
+<section class="py-16 md:py-24 bg-[#FAF9F5] relative z-20 overflow-hidden border-b border-[#E8E6DF]">
+    <!-- Architectural subtle grid & ambient luxury glow -->
+    <div class="absolute inset-0 pointer-events-none opacity-60" style="background-image: linear-gradient(to right, rgba(11,31,58,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(11,31,58,0.03) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-72 bg-gradient-to-b from-[#D4A843]/10 to-transparent blur-3xl pointer-events-none"></div>
     
     <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <!-- Section Header -->
-        <div class="text-center mb-6 md:mb-[36px] flex flex-col items-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-gold text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] mb-3 md:mb-4 animate-pulse">
-                <span>✦</span> Startup Launch Roadmap <span>✦</span>
+        <div class="text-center mb-12 md:mb-16 flex flex-col items-center">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#D4A843]/40 text-[#9C7524] text-[11px] font-extrabold uppercase tracking-[0.25em] mb-4 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-[#D4A843] animate-pulse"></span>
+                <span>HOW IT WORKS &bull; 5-STEP PROCESS</span>
             </div>
-            <h2 class="text-[26px] md:text-[48px] font-extrabold text-navy mb-2 md:mb-[12px] font-serif leading-tight">
-                Launch Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A843] to-[#A67828]">Business</span> in 5 Steps
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B1F3A] font-serif tracking-tight leading-[1.15] mb-4">
+                From Business Idea to <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0B1F3A] via-[#9C7524] to-[#D4A843]">Official Launch</span>
             </h2>
-            <p class="text-[13px] md:text-[16px] text-gray-600 max-w-[620px] mx-auto leading-relaxed">
-                See how we take your vision from a simple idea to a fully launched, legally compliant, and tech-ready digital business.
+            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Starting a business in India doesn't have to be complicated. We guide you step-by-step through company registration, government approvals, tax setup, and your digital presence — completely online with dedicated expert support.
             </p>
+            <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50/90 border border-emerald-200 text-emerald-800 text-xs font-semibold shadow-xs">
+                <i class="fas fa-shield-check text-emerald-600"></i>
+                <span>You retain 100% equity & ownership of your company &bull; We handle the legal paperwork and filings.</span>
+            </div>
         </div>
 
         @php
         $roadmapSteps = [
             [
-                'num' => 1,
-                'emoji' => '💡',
-                'title_en' => 'Business Idea',
-                'sub' => 'Plan Model',
-                'desc_en' => 'You bring the vision and the passion.',
-                'badge' => 'Your Part',
-                'is_gold' => false
+                'step' => '01',
+                'phase' => 'PHASE 01 &bull; STRATEGY',
+                'title' => 'Vision & Structuring',
+                'status' => 'Advisory',
+                'icon' => 'fas fa-lightbulb',
+                'desc' => 'Select the optimal legal entity (Pvt Ltd, LLP, or OPC), check name availability with MCA, and plan founder equity.',
+                'deliverables' => [
+                    'Entity Advisory & Structuring',
+                    'MCA Name Availability Check',
+                    'Founders Equity Split Plan'
+                ],
+                'is_we_handle' => false,
             ],
             [
-                'num' => 2,
-                'emoji' => '🏢',
-                'title_en' => 'Company Registration',
-                'sub' => 'Pvt Ltd / LLP',
-                'desc_en' => 'We register your entity in 3-7 days.',
-                'badge' => 'We Handle ✓',
-                'is_gold' => true
+                'step' => '02',
+                'phase' => 'PHASE 02 &bull; REGISTRATION',
+                'title' => 'Govt Incorporation',
+                'status' => 'MCA Filing',
+                'icon' => 'fas fa-building-columns',
+                'desc' => 'Thorough SPICe+ MCA filing, director KYC verification, Digital Signatures (DSC), and official COI Certificate.',
+                'deliverables' => [
+                    'Govt COI (Certificate of Inc.)',
+                    'MOA & AOA Charter Documents',
+                    'Official PAN & TAN Allotment'
+                ],
+                'is_we_handle' => true,
             ],
             [
-                'num' => 3,
-                'emoji' => '✅',
-                'title_en' => 'Legal Setup',
-                'sub' => 'GST & TM',
-                'desc_en' => 'Complete tax and IP protection.',
-                'badge' => 'We Handle ✓',
-                'is_gold' => true
+                'step' => '03',
+                'phase' => 'PHASE 03 &bull; COMPLIANCE',
+                'title' => 'Tax & Brand Armor',
+                'status' => 'Tax & IP',
+                'icon' => 'fas fa-shield-halved',
+                'desc' => 'Activate your GSTIN registration, protect your brand name and logo with Trademark (TM) filing, and execute agreements.',
+                'deliverables' => [
+                    'GSTIN Registration Certificate',
+                    'Trademark (TM) Application Filing',
+                    'Founders & IP Assignment Deal'
+                ],
+                'is_we_handle' => true,
             ],
             [
-                'num' => 4,
-                'emoji' => '💻',
-                'title_en' => 'Tech Setup',
-                'sub' => 'Web & App',
-                'desc_en' => 'Domain, hosting, and platform dev.',
-                'badge' => 'We Handle ✓',
-                'is_gold' => true
+                'step' => '04',
+                'phase' => 'PHASE 04 &bull; TECH & BANK',
+                'title' => 'Tech & Banking Setup',
+                'status' => 'Platform',
+                'icon' => 'fas fa-laptop-code',
+                'desc' => 'Launch your custom business website or app, open a zero-balance corporate bank account, and integrate payment gateway.',
+                'deliverables' => [
+                    'Custom Business Website / App',
+                    'Corporate Current Account Live',
+                    'Online Payment Gateway Setup'
+                ],
+                'is_we_handle' => true,
             ],
             [
-                'num' => 5,
-                'emoji' => '🚀',
-                'title_en' => 'Launch & Scale',
-                'sub' => 'Go Live',
-                'desc_en' => 'Start scaling and acquiring users.',
-                'badge' => 'We Handle ✓',
-                'is_gold' => true
+                'step' => '05',
+                'phase' => 'PHASE 05 &bull; SCALE',
+                'title' => 'Launch & Operations',
+                'status' => 'Go-To-Market',
+                'icon' => 'fas fa-rocket',
+                'desc' => 'Officially launch operations, secure Startup India (DPIIT) recognition, and prepare your deck for future investor funding.',
+                'deliverables' => [
+                    'Public Go-To-Market Launch',
+                    'Startup India (DPIIT) Recognition',
+                    'Investor Deck Prep (Future Plan)'
+                ],
+                'is_we_handle' => true,
             ]
         ];
         @endphp
 
-        <!-- MOBILE: Drag/Touch Slider -->
-        <div class="md:hidden">
-            <div class="overflow-hidden" id="roadmap-slider-wrap">
-                <div class="flex gap-4 transition-transform duration-300 ease-out py-2" id="roadmap-track" style="will-change:transform;">
-                    @foreach($roadmapSteps as $idx => $s)
-                    <div class="roadmap-slide flex-shrink-0 bg-white border {{ $s['is_gold'] ? 'border-gold/30 shadow-[0_8px_25px_-5px_rgba(212,168,67,0.08)]' : 'border-gray-200/60 shadow-[0_8px_25px_-5px_rgba(0,0,0,0.02)]' }} rounded-3xl p-6 flex flex-col items-center text-center relative select-none" style="width:calc(100vw - 48px); max-width:290px;">
-                        
-                        <!-- Top Corner Step Number -->
-                        <div class="absolute top-0 right-0 {{ $s['is_gold'] ? 'bg-gold text-navy' : 'bg-gray-200 text-gray-600' }} rounded-bl-2xl w-10 h-10 flex items-center justify-center text-[12px] font-black shadow-xs font-sans">
-                            0{{ $s['num'] }}
+        <!-- DESKTOP PIPELINE: Connected Stage Track (lg:block) -->
+        <div class="hidden lg:block mb-8">
+            <!-- Connecting Pipeline Rail with Milestone Markers -->
+            <div class="relative mb-8 px-4">
+                <div class="absolute top-[16px] left-[7%] right-[7%] h-[3px] bg-gradient-to-r from-[#D4A843]/40 via-[#D4A843] to-[#2D7A4F] -z-0 rounded-full"></div>
+                
+                <div class="grid grid-cols-5 relative z-10 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                            1
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Strategy</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                            2
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Incorporation</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                            3
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Compliance</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                            4
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Tech & Bank</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full bg-[#2D7A4F] text-white border-2 border-white ring-4 ring-[#2D7A4F]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                            5
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Go Live</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 5 Premium Milestone Cards -->
+            <div class="grid grid-cols-5 gap-4 xl:gap-5">
+                @foreach($roadmapSteps as $s)
+                <div class="bg-white rounded-2xl border border-[#E2DFD7] p-5 xl:p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_-10px_rgba(11,31,58,0.12)] hover:border-[#D4A843] hover:-translate-y-2 group relative">
+                    <!-- Top subtle accent bar on hover -->
+                    <div class="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <div>
+                        <!-- Header Row: Step Pill + Status Badge -->
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-[#0B1F3A] text-[#D4A843] text-[11px] font-black tracking-wider shadow-sm font-sans">
+                                STEP {{ $s['step'] }}
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-600 bg-[#FAF9F5] px-2.5 py-1 rounded-full border border-[#E8E6DF]">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#D4A843]"></span> {{ $s['status'] }}
+                            </span>
                         </div>
 
-                        <!-- Icon Container -->
-                        <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br {{ $s['is_gold'] ? 'from-gold/15 to-gold/5 border-gold/30' : 'from-gray-100 to-gray-50 border-gray-200' }} flex items-center justify-center text-[26px] mt-2 mb-4 border shadow-sm">
-                            <span class="relative z-10">{{ $s['emoji'] }}</span>
+                        <!-- Luxury Icon -->
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FAF6EE] to-[#F2EDE2] border border-[#E5DEC9] flex items-center justify-center text-[#B8892E] text-xl shadow-sm mb-3 group-hover:bg-[#0B1F3A] group-hover:text-[#D4A843] group-hover:border-[#0B1F3A] transition-all duration-300">
+                            <i class="{{ $s['icon'] }}"></i>
                         </div>
 
                         <!-- Titles -->
-                        <h4 class="text-[16px] font-extrabold text-navy font-serif leading-tight mb-0.5">{{ $s['title_en'] }}</h4>
-                        <p class="text-[9px] text-gold uppercase tracking-widest font-black mb-3">{{ $s['sub'] }}</p>
-
-                        <!-- Descriptions -->
-                        <div class="flex flex-col flex-grow justify-center mb-4 text-center">
-                            <p class="text-[12px] text-gray-500 leading-relaxed">{{ $s['desc_en'] }}</p>
+                        <div class="text-[9px] font-black uppercase tracking-[0.16em] text-[#B8892E] mb-1">
+                            {!! $s['phase'] !!}
                         </div>
+                        <h3 class="text-[16px] font-bold text-[#0B1F3A] font-serif leading-snug mb-2 group-hover:text-[#B8892E] transition-colors">
+                            {{ $s['title'] }}
+                        </h3>
+                        <p class="text-[11px] text-slate-500 leading-relaxed min-h-[44px]">
+                            {{ $s['desc'] }}
+                        </p>
 
-                        <!-- Badge -->
-                        @if($s['is_gold'])
-                        <div class="inline-flex items-center gap-1 bg-[#2D7A4F]/10 text-[#2D7A4F] text-[9px] font-bold px-3 py-1.5 rounded-full border border-[#2D7A4F]/20 shadow-xs">
-                            <span class="text-[11px]">✓</span> We Handle
+                        <!-- Deliverables Structured Box -->
+                        <div class="mt-4 pt-3 border-t border-slate-100 bg-[#FAF9F5]/80 rounded-xl p-3 border border-[#EAE7DF]">
+                            <div class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 mb-2 flex items-center justify-between">
+                                <span>DELIVERABLES</span>
+                                <i class="fas fa-layer-group text-[9px] text-[#D4A843]"></i>
+                            </div>
+                            <ul class="space-y-1.5">
+                                @foreach($s['deliverables'] as $item)
+                                <li class="flex items-center gap-2 text-[11px] font-semibold text-slate-700">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[8px] shrink-0 font-bold">✓</span>
+                                    <span class="truncate">{{ $item }}</span>
+                                </li>
+                                @endforeach
+                            </ul>
                         </div>
-                        @else
-                        <div class="inline-flex items-center gap-1 bg-gray-100 text-gray-500 text-[9px] font-bold px-3 py-1.5 rounded-full border border-gray-200 shadow-xs">
-                            🤝 Your Action
-                        </div>
-                        @endif
-
                     </div>
-                    @endforeach
+
+                    <!-- Execution Row -->
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                        <span class="text-slate-400 font-medium">Execution</span>
+                        @if($s['is_we_handle'])
+                        <span class="inline-flex items-center gap-1.5 font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full text-[10px]">
+                            <i class="fas fa-check-circle text-emerald-600"></i> Done By Foundida
+                        </span>
+                        @else
+                        <span class="inline-flex items-center gap-1.5 font-bold text-slate-800 bg-[#FAF9F5] border border-slate-200 px-2.5 py-0.5 rounded-full text-[10px]">
+                            <i class="fas fa-handshake text-[#D4A843]"></i> Joint Advisory
+                        </span>
+                        @endif
+                    </div>
                 </div>
-            </div>
-            <!-- Dot indicators -->
-            <div class="flex justify-center gap-1.5 mt-6" id="roadmap-dots">
-                @foreach($roadmapSteps as $i => $s)
-                <button onclick="roadmapGoTo({{ $i }})" class="roadmap-dot w-2 h-2 rounded-full transition-all duration-300 {{ $i === 0 ? 'bg-[#0B1F3A] !w-5' : 'bg-gray-300' }}" aria-label="Go to step {{ $i + 1 }}"></button>
                 @endforeach
             </div>
         </div>
 
-        <!-- DESKTOP: Connected Vertical Process Stack -->
-        <div class="relative max-w-5xl mx-auto hidden md:block">
-            <!-- Vertical connecting line behind the step numbers -->
-            <div class="absolute left-[48px] top-8 bottom-8 w-[2px] bg-gradient-to-b from-[#0B1F3A] via-[#D4A843] to-[#D4A843] opacity-35 z-0"></div>
+        <!-- TABLET & MOBILE TIMELINE STEPPER (lg:hidden) -->
+        <div class="lg:hidden space-y-4 mb-10">
+            @foreach($roadmapSteps as $index => $s)
+            <div class="flex gap-3 sm:gap-4 items-stretch">
+                <!-- Left timeline track: Step Badge + Continuous Line -->
+                <div class="flex flex-col items-center shrink-0 w-8 sm:w-10">
+                    <!-- Step badge -->
+                    <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl {{ $s['is_we_handle'] ? 'bg-[#0B1F3A] text-[#D4A843] ring-2 ring-[#0B1F3A]/20' : 'bg-[#D4A843] text-[#0B1F3A] ring-2 ring-[#D4A843]/40' }} font-black text-xs flex items-center justify-center shadow-md font-sans shrink-0">
+                        {{ $s['step'] }}
+                    </div>
+                    <!-- Connecting line between steps -->
+                    @if(!$loop->last)
+                    <div class="w-[2px] flex-grow bg-gradient-to-b from-[#D4A843] via-[#0B1F3A]/30 to-[#E2DFD7] my-1.5 rounded-full"></div>
+                    @endif
+                </div>
 
-            <div class="space-y-6 relative z-10">
-                @foreach($roadmapSteps as $s)
-                <div class="bg-white border border-[#E2E0D8]/65 rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.012)] hover:shadow-[0_20px_50px_rgba(212,168,67,0.1)] hover:border-gold/40 hover:-translate-y-1 transition-all duration-300 flex items-center justify-between gap-6 group">
-                    
-                    <!-- Left Side: Step Number + Icon + Title -->
-                    <div class="flex items-center gap-6">
-                        <!-- Large Step Number acting as timeline node -->
-                        <div class="w-12 h-12 rounded-full {{ $s['is_gold'] ? 'bg-gold text-navy' : 'bg-[#0B1F3A] text-white' }} flex items-center justify-center text-[18px] font-black font-sans shadow-md border-4 border-white z-10 shrink-0">
-                            {{ $s['num'] }}
-                        </div>
-                        
-                        <!-- Icon container -->
-                        <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br {{ $s['is_gold'] ? 'from-gold/15 to-gold/5 border-gold/30' : 'from-gray-100 to-gray-50 border-gray-200' }} flex items-center justify-center text-[28px] border shadow-sm shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                            <span class="relative z-10">{{ $s['emoji'] }}</span>
-                            <div class="absolute inset-0 bg-gold/10 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </div>
-                        
-                        <!-- Title block -->
-                        <div class="w-44 lg:w-52 shrink-0">
-                            <h4 class="text-[17px] font-extrabold text-navy font-serif leading-tight mb-0.5 group-hover:text-gold transition-colors duration-300">{{ $s['title_en'] }}</h4>
-                            <p class="text-[9px] text-gold uppercase tracking-widest font-black mt-1">{{ $s['sub'] }}</p>
-                        </div>
+                <!-- Right Card: Zero chance of overlap -->
+                <div class="flex-1 bg-white border border-[#E2DFD7] rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-shadow">
+                    <!-- Top header: Phase tag + Status pill -->
+                    <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+                        <span class="text-[9px] font-black uppercase tracking-wider text-[#B8892E] bg-[#FAF6EE] border border-[#E5DEC9] px-2 py-0.5 rounded">
+                            {!! $s['phase'] !!}
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-slate-600 bg-[#FAF9F5] px-2 py-0.5 rounded-full shrink-0 border border-[#E8E6DF]">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#D4A843]"></span> {{ $s['status'] }}
+                        </span>
                     </div>
 
-                    <!-- Middle: Detailed Descriptions -->
-                    <div class="flex-1 px-6 border-l border-gray-100/80">
-                        <p class="text-[13px] text-gray-500 leading-relaxed">{{ $s['desc_en'] }}</p>
+                    <!-- Title with Icon -->
+                    <div class="flex items-center gap-2.5 mb-2">
+                        <div class="w-8 h-8 rounded-lg bg-[#FAF6EE] border border-[#E5DEC9] flex items-center justify-center text-[#B8892E] text-sm shrink-0">
+                            <i class="{{ $s['icon'] }}"></i>
+                        </div>
+                        <h3 class="text-[15px] sm:text-[16px] font-bold text-[#0B1F3A] font-serif leading-snug">
+                            {{ $s['title'] }}
+                        </h3>
                     </div>
 
-                    <!-- Right Side: Action tag -->
-                    <div class="shrink-0 w-32 text-right">
-                        @if($s['is_gold'])
-                        <div class="inline-flex items-center gap-1 bg-[#2D7A4F]/10 text-[#2D7A4F] text-[10px] font-bold px-4 py-1.5 rounded-full border border-[#2D7A4F]/20 shadow-xs">
-                            <span class="text-[11px]">✓</span> We Handle
+                    <!-- Description -->
+                    <p class="text-[12px] text-slate-600 leading-relaxed mb-3">
+                        {{ $s['desc'] }}
+                    </p>
+
+                    <!-- Deliverables Box -->
+                    <div class="bg-[#FAF9F5] rounded-xl p-3 border border-[#EAE7DF] mb-3">
+                        <div class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 mb-2 flex items-center justify-between">
+                            <span>DELIVERABLES</span>
+                            <i class="fas fa-check-double text-[9px] text-[#D4A843]"></i>
                         </div>
+                        <ul class="space-y-1.5">
+                            @foreach($s['deliverables'] as $item)
+                            <li class="flex items-start gap-2 text-[11px] font-semibold text-slate-700 leading-tight">
+                                <span class="w-3.5 h-3.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[8px] shrink-0 font-bold mt-0.5">✓</span>
+                                <span>{{ $item }}</span>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                    <!-- Bottom Execution Row -->
+                    <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                        <span class="text-slate-400 font-medium">Execution</span>
+                        @if($s['is_we_handle'])
+                        <span class="inline-flex items-center gap-1 text-[#2D7A4F] font-bold bg-[#2D7A4F]/10 px-2.5 py-0.5 rounded-full border border-[#2D7A4F]/20 text-[10px]">
+                            <i class="fas fa-check-circle text-[9px]"></i> Done By Foundida
+                        </span>
                         @else
-                        <div class="inline-flex items-center gap-1 bg-gray-100 text-gray-500 text-[10px] font-bold px-4 py-1.5 rounded-full border border-gray-200 shadow-xs">
-                            🤝 Your Action
-                        </div>
+                        <span class="inline-flex items-center gap-1 text-[#0B1F3A] font-bold bg-[#FAF9F5] px-2.5 py-0.5 rounded-full border border-slate-200 text-[10px]">
+                            <i class="fas fa-handshake text-[9px] text-[#D4A843]"></i> Joint Advisory
+                        </span>
                         @endif
                     </div>
-
                 </div>
-                @endforeach
+            </div>
+            @endforeach
+        </div>
+
+        <!-- ACTION CALLOUT DOCK -->
+        <div class="bg-[#0B1F3A] rounded-2xl md:rounded-3xl p-5 sm:p-7 md:p-10 text-white shadow-2xl border border-[#D4A843]/40 relative overflow-hidden">
+            <!-- Ambient gold background glow -->
+            <div class="absolute -right-16 -top-16 w-64 h-64 bg-[#D4A843]/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-[#2D7A4F]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+                <!-- Left: Branding & Message -->
+                <div class="flex items-center gap-4 sm:gap-5 text-center sm:text-left flex-col sm:flex-row w-full lg:w-auto">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#D4A843] to-[#A67828] text-[#0B1F3A] flex items-center justify-center text-2xl sm:text-3xl shadow-xl shrink-0">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div>
+                        <div class="inline-flex items-center justify-center sm:justify-start gap-2 text-[10px] sm:text-xs font-bold text-[#D4A843] uppercase tracking-widest mb-1">
+                            <span class="w-2 h-2 rounded-full bg-[#D4A843] animate-ping"></span>
+                            <span>SEAMLESS LEGAL INCORPORATION</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold font-serif text-white leading-tight">
+                            Ready to launch your company?
+                        </h3>
+                        <p class="text-xs md:text-sm text-slate-300 mt-1 max-w-xl leading-relaxed">
+                            Start Step 01 today. We handle your complete entity incorporation with MCA, deliver digital signatures, and manage GST registration with dedicated legal expert guidance.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Actions -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto shrink-0 justify-center">
+                    <a href="/packages" class="bg-gradient-to-r from-[#D4A843] via-[#E2BC5D] to-[#D4A843] hover:brightness-105 text-[#0B1F3A] font-extrabold text-sm px-7 py-3.5 sm:py-4 rounded-xl shadow-xl hover:shadow-[#D4A843]/25 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 w-full sm:w-auto font-sans">
+                        <span>Start Registration</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="tel:{{ $cleanPhone }}" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-sm px-5 py-3.5 sm:py-4 rounded-xl transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
+                        <i class="fas fa-phone-alt text-[#D4A843]"></i>
+                        <span>Free Advisory</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -377,27 +823,27 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-12">
         <div class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
             <div class="inline-flex items-center gap-2 bg-[#D4A843]/10 border border-[#D4A843]/30 rounded-full px-3.5 py-1.5 mb-5 select-none">
-                <span class="text-[10px] font-bold text-[#D4A843] uppercase tracking-widest"><i class="fas fa-hand-holding-usd mr-1"></i> FUNDING MARKETPLACE</span>
+                <span class="text-[10px] font-bold text-[#D4A843] uppercase tracking-widest"><i class="fas fa-compass mr-1"></i> FUTURE ECOSYSTEM &bull; ROADMAP</span>
             </div>
             <h2 class="text-3xl md:text-5xl font-extrabold font-serif text-white leading-tight mb-4">
-                Startup Funding <span class="text-[#D4A843]">Opportunities</span>
+                Startup Funding <span class="text-[#D4A843]">Ecosystem</span>
             </h2>
             <p class="text-gray-300 mb-6 max-w-lg text-sm md:text-base leading-relaxed">
-                Discover grants, investors, incubators, accelerators, and government funding programs from one platform.
+                In our upcoming roadmap, we plan to connect verified startups with angel investors, grants, incubators, and government funding schemes.
             </p>
             
             <div class="flex flex-wrap gap-3 mb-8 justify-center md:justify-start">
                 <a href="{{ route('funding.index') }}" class="bg-[#D4A843] text-[#0B1F3A] px-7 py-3.5 rounded-xl font-extrabold hover:bg-[#E8B96A] transition-all shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2 text-sm">
-                    <i class="fas fa-search"></i> Explore Funding
+                    <i class="fas fa-search"></i> View Funding Programs
                 </a>
-                <a href="{{ route('funding.index') }}" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-7 py-3.5 rounded-xl font-bold transition-all inline-flex items-center gap-2 text-sm">
-                    ✨ Apply Through Foundida
+                <a href="/contact" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-7 py-3.5 rounded-xl font-bold transition-all inline-flex items-center gap-2 text-sm">
+                    ✨ Join Waiting List
                 </a>
             </div>
 
             <!-- Disclaimer notice -->
-            <div class="text-[10px] text-gray-400 bg-white/5 border border-white/10 p-3 rounded-xl max-w-lg text-left">
-                <span class="text-gold font-bold">Note:</span> Foundida does not provide funding. We assist startup founders with professional application preparation, pitch review, and submission.
+            <div class="text-[10px] text-gray-400 bg-white/5 border border-white/10 p-3.5 rounded-xl max-w-lg text-left">
+                <span class="text-gold font-bold">Important Notice:</span> Foundida does not provide direct loans or funds today. This is an upcoming ecosystem initiative. Currently, we assist founders with entity registration, legal compliance, trademark protection, and pitch deck readiness.
             </div>
         </div>
 
