@@ -67,11 +67,11 @@
             justify-content: space-between;
         }
         .hero-custom-col-left {
-            width: 48%; /* Increased from 42% to close gap */
+            width: 58%;
             padding-right: 20px;
         }
         .hero-custom-col-right {
-            width: 52%; /* Decreased from 58% */
+            width: 42%;
         }
     }
 
@@ -169,30 +169,30 @@
                 </p>
 
                 <!-- Strict 2-Column Rectangular Service Tags Grid (All Devices) -->
-                <div class="grid grid-cols-2 gap-2 sm:gap-2.5 mb-6 w-full max-w-[580px]">
-                    <a href="/services/business-registration" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
-                        <i class="fas fa-building text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">Company Registration</span>
+                <div class="grid grid-cols-2 gap-1.5 sm:gap-2.5 mb-6 w-full max-w-[580px]">
+                    <a href="/services/business-registration" class="flex items-center gap-1.5 px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[9.5px] xs:text-[10.5px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-building text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span>Company Registration</span>
                     </a>
-                    <a href="/services/gst-services" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
-                        <i class="fas fa-file-invoice text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">GST Registration</span>
+                    <a href="/services/gst-services" class="flex items-center gap-1.5 px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[9.5px] xs:text-[10.5px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-file-invoice text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span>GST Registration</span>
                     </a>
-                    <a href="/services/trademark-ip" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
-                        <span class="font-black text-[9px] sm:text-[10px] text-[#f5a623] shrink-0 w-4 text-center">TM</span><span class="truncate">Trademark & IP</span>
+                    <a href="/services/trademark-ip" class="flex items-center gap-1.5 px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[9.5px] xs:text-[10.5px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-trademark text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span>Trademark & IP</span>
                     </a>
-                    <a href="/services/licenses-registrations" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
-                        <i class="fas fa-certificate text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">FSSAI & Licenses</span>
+                    <a href="/services/licenses-registrations" class="flex items-center gap-1.5 px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[9.5px] xs:text-[10.5px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-certificate text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span>FSSAI & Licenses</span>
                     </a>
-                    <a href="/services/tax-compliance" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
-                        <i class="fas fa-chart-line text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">Tax Compliance</span>
+                    <a href="/services/tax-compliance" class="flex items-center gap-1.5 px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[9.5px] xs:text-[10.5px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-chart-line text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span>Tax Compliance</span>
                     </a>
-                    <a href="/services/vakil-lawyer-services" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
-                        <i class="fas fa-gavel text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">Lawyer Advice</span>
+                    <a href="/services/vakil-lawyer-services" class="flex items-center gap-1.5 px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[9.5px] xs:text-[10.5px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-gavel text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span>Lawyer Advice</span>
                     </a>
-                    <a href="/services/tech-services" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
-                        <i class="fas fa-laptop-code text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">Web & App Dev</span>
+                    <a href="/services/tech-services" class="flex items-center gap-1.5 px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[9.5px] xs:text-[10.5px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-laptop-code text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span>Web & App Dev</span>
                     </a>
-                    <a href="/services" class="flex items-center justify-between gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-extrabold text-[#f5a623] bg-[#f5a623]/15 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-[#f5a623]/30 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
-                        <span class="flex items-center gap-2 shrink-0"><i class="fas fa-rocket text-[#f5a623] text-xs w-4 text-center"></i><span>80+ Services</span></span>
+                    <a href="/services" class="flex items-center justify-between gap-1.5 px-2 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[9.5px] xs:text-[10.5px] sm:text-xs font-extrabold text-[#f5a623] bg-[#f5a623]/15 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-[#f5a623]/30 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <span class="flex items-center gap-1.5 shrink-0"><i class="fas fa-rocket text-[#f5a623] text-xs w-4 text-center"></i><span>80+ Services</span></span>
                         <span class="text-xs">→</span>
                     </a>
                 </div>
@@ -211,7 +211,7 @@
             <!-- RIGHT COLUMN: Modern Glassmorphic Consultation Form Card -->
             <div class="hero-custom-col-right w-full flex flex-col items-center justify-center mt-6 md:mt-0 relative">
                 
-                <div id="heroConsultationForm" class="w-full max-w-[380px] rounded-2xl p-6 md:p-7 relative z-20 transition-all duration-300" style="background: rgba(255, 255, 255, 0.97); border: 1px solid rgba(255, 255, 255, 0.95); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);">
+                <div id="heroConsultationForm" class="w-full max-w-[330px] rounded-2xl p-5 md:p-6 relative z-20 transition-all duration-300" style="background: rgba(255, 255, 255, 0.97); border: 1px solid rgba(255, 255, 255, 0.95); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);">
                     
                     <!-- Form Header -->
                     <div class="mb-4 text-left">
@@ -465,71 +465,71 @@
         $roadmapSteps = [
             [
                 'step' => '01',
-                'phase' => 'PHASE 01 &bull; STRATEGY',
-                'title' => 'Vision & Structuring',
-                'status' => 'Advisory',
+                'phase' => 'STEP 01 &bull; PLANNING',
+                'title' => 'Plan & Structure',
+                'status' => 'Free Advice',
                 'icon' => 'fas fa-lightbulb',
-                'desc' => 'Select the optimal legal entity (Pvt Ltd, LLP, or OPC), check name availability with MCA, and plan founder equity.',
+                'desc' => 'Choose the right company type (Pvt Ltd, LLP, or OPC), check name availability with MCA, and get expert legal guidance.',
                 'deliverables' => [
-                    'Entity Advisory & Structuring',
-                    'MCA Name Availability Check',
-                    'Founders Equity Split Plan'
+                    'Free Startup Advice',
+                    'MCA Name Search',
+                    'Company Structure Plan'
                 ],
                 'is_we_handle' => false,
             ],
             [
                 'step' => '02',
-                'phase' => 'PHASE 02 &bull; REGISTRATION',
-                'title' => 'Govt Incorporation',
+                'phase' => 'STEP 02 &bull; COMPANY SETUP',
+                'title' => 'Govt Company Setup',
                 'status' => 'MCA Filing',
                 'icon' => 'fas fa-building-columns',
-                'desc' => 'Thorough SPICe+ MCA filing, director KYC verification, Digital Signatures (DSC), and official COI Certificate.',
+                'desc' => 'Complete government MCA filing, director KYC, Digital Signatures (DSC), and receive your official Incorporation Certificate.',
                 'deliverables' => [
-                    'Govt COI (Certificate of Inc.)',
-                    'MOA & AOA Charter Documents',
-                    'Official PAN & TAN Allotment'
+                    'Official COI Certificate',
+                    'Company PAN & TAN Card',
+                    'Digital Signatures (DSC)'
                 ],
                 'is_we_handle' => true,
             ],
             [
                 'step' => '03',
-                'phase' => 'PHASE 03 &bull; COMPLIANCE',
-                'title' => 'Tax & Brand Armor',
-                'status' => 'Tax & IP',
+                'phase' => 'STEP 03 &bull; TAX & TRADEMARK',
+                'title' => 'Tax & Brand Protection',
+                'status' => 'GST & IP',
                 'icon' => 'fas fa-shield-halved',
-                'desc' => 'Activate your GSTIN registration, protect your brand name and logo with Trademark (TM) filing, and execute agreements.',
+                'desc' => 'Get GST registration done, register your brand name and logo with Trademark (TM) filing, and keep your business 100% legal.',
                 'deliverables' => [
-                    'GSTIN Registration Certificate',
-                    'Trademark (TM) Application Filing',
-                    'Founders & IP Assignment Deal'
+                    'GST Registration Certificate',
+                    'Trademark (TM) Brand Filing',
+                    'Founder Agreements'
                 ],
                 'is_we_handle' => true,
             ],
             [
                 'step' => '04',
-                'phase' => 'PHASE 04 &bull; TECH & BANK',
-                'title' => 'Tech & Banking Setup',
-                'status' => 'Platform',
+                'phase' => 'STEP 04 &bull; WEBSITE & TECH',
+                'title' => 'Website & App Dev',
+                'status' => 'Tech Setup',
                 'icon' => 'fas fa-laptop-code',
-                'desc' => 'Launch your custom business website or app, open a zero-balance corporate bank account, and integrate payment gateway.',
+                'desc' => 'Build a modern custom website or mobile app for your startup, set up domain & business emails, and get digital ready.',
                 'deliverables' => [
-                    'Custom Business Website / App',
-                    'Corporate Current Account Live',
-                    'Online Payment Gateway Setup'
+                    'Custom Business Website',
+                    'Mobile App Development',
+                    'Domain & Business Emails'
                 ],
                 'is_we_handle' => true,
             ],
             [
                 'step' => '05',
-                'phase' => 'PHASE 05 &bull; SCALE',
-                'title' => 'Launch & Operations',
-                'status' => 'Go-To-Market',
+                'phase' => 'STEP 05 &bull; BUSINESS LAUNCH',
+                'title' => 'Launch & Scale',
+                'status' => 'Go Live',
                 'icon' => 'fas fa-rocket',
-                'desc' => 'Officially launch operations, secure Startup India (DPIIT) recognition, and prepare your deck for future investor funding.',
+                'desc' => 'Start serving customers, get your Startup India (DPIIT) registration, and get ongoing expert legal support as you grow.',
                 'deliverables' => [
-                    'Public Go-To-Market Launch',
-                    'Startup India (DPIIT) Recognition',
-                    'Investor Deck Prep (Future Plan)'
+                    'Official Business Launch',
+                    'Startup India (DPIIT) Govt Setup',
+                    'Investor Deck & Growth Support'
                 ],
                 'is_we_handle' => true,
             ]
@@ -547,31 +547,31 @@
                         <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
                             1
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Strategy</span>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Plan & Idea</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
                             2
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Incorporation</span>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Company Setup</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
                             3
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Compliance</span>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Tax & License</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
                             4
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Tech & Bank</span>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Website & Tech</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="w-8 h-8 rounded-full bg-[#2D7A4F] text-white border-2 border-white ring-4 ring-[#2D7A4F]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
                             5
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Go Live</span>
+                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Business Launch</span>
                     </div>
                 </div>
             </div>
