@@ -464,74 +464,79 @@
         @php
         $roadmapSteps = [
             [
-                'step' => '01',
-                'phase' => 'STEP 01 &bull; PLANNING',
-                'title' => 'Plan & Structure',
-                'status' => 'Free Advice',
-                'icon' => 'fas fa-lightbulb',
-                'desc' => 'Choose the right company type (Pvt Ltd, LLP, or OPC), check name availability with MCA, and get expert legal guidance.',
+                'num' => 1,
+                'emoji' => '💡',
+                'top_tag' => 'Your Part',
+                'sub' => 'STEP 01 • PLANNING',
+                'title' => 'Business Idea',
+                'desc' => 'You bring the vision & passion. We help refine your model and select the right business entity.',
+                'badge' => 'Your Part 💡',
+                'is_gold' => false,
                 'deliverables' => [
-                    'Free Startup Advice',
-                    'MCA Name Search',
-                    'Company Structure Plan'
-                ],
-                'is_we_handle' => false,
+                    'Free Startup Advisory',
+                    'Entity Selection Guide',
+                    'MCA Name Search'
+                ]
             ],
             [
-                'step' => '02',
-                'phase' => 'STEP 02 &bull; COMPANY SETUP',
-                'title' => 'Govt Company Setup',
-                'status' => 'MCA Filing',
-                'icon' => 'fas fa-building-columns',
-                'desc' => 'Complete government MCA filing, director KYC, Digital Signatures (DSC), and receive your official Incorporation Certificate.',
+                'num' => 2,
+                'emoji' => '🏢',
+                'top_tag' => 'MCA Filing',
+                'sub' => 'STEP 02 • PVT LTD / LLP',
+                'title' => 'Company Registration',
+                'desc' => 'We register your company (Pvt Ltd, LLP, or OPC) with MCA in 3-7 business days.',
+                'badge' => 'We Handle ✓',
+                'is_gold' => true,
                 'deliverables' => [
-                    'Official COI Certificate',
-                    'Company PAN & TAN Card',
-                    'Digital Signatures (DSC)'
-                ],
-                'is_we_handle' => true,
+                    'Certificate of Inc. (COI)',
+                    'PAN & TAN Allotment',
+                    'DSC & Director DIN'
+                ]
             ],
             [
-                'step' => '03',
-                'phase' => 'STEP 03 &bull; TAX & TRADEMARK',
-                'title' => 'Tax & Brand Protection',
-                'status' => 'GST & IP',
-                'icon' => 'fas fa-shield-halved',
-                'desc' => 'Get GST registration done, register your brand name and logo with Trademark (TM) filing, and keep your business 100% legal.',
+                'num' => 3,
+                'emoji' => '⚖️',
+                'top_tag' => 'GST & TM',
+                'sub' => 'STEP 03 • LEGAL SETUP',
+                'title' => 'Legal Setup',
+                'desc' => 'Complete tax registration (GST) and brand trademark (TM) protection for your business.',
+                'badge' => 'We Handle ✓',
+                'is_gold' => true,
                 'deliverables' => [
-                    'GST Registration Certificate',
-                    'Trademark (TM) Brand Filing',
+                    'GSTIN Registration',
+                    'Trademark (TM) Filing',
                     'Founder Agreements'
-                ],
-                'is_we_handle' => true,
+                ]
             ],
             [
-                'step' => '04',
-                'phase' => 'STEP 04 &bull; WEBSITE & TECH',
-                'title' => 'Website & App Dev',
-                'status' => 'Tech Setup',
-                'icon' => 'fas fa-laptop-code',
-                'desc' => 'Build a modern custom website or mobile app for your startup, set up domain & business emails, and get digital ready.',
+                'num' => 4,
+                'emoji' => '💻',
+                'top_tag' => 'Web & App',
+                'sub' => 'STEP 04 • TECH SETUP',
+                'title' => 'Tech Setup',
+                'desc' => 'Domain, hosting, custom website, mobile app development, and payment gateway setup.',
+                'badge' => 'We Handle ✓',
+                'is_gold' => true,
                 'deliverables' => [
                     'Custom Business Website',
                     'Mobile App Development',
-                    'Domain & Business Emails'
-                ],
-                'is_we_handle' => true,
+                    'Payment Gateway Setup'
+                ]
             ],
             [
-                'step' => '05',
-                'phase' => 'STEP 05 &bull; BUSINESS LAUNCH',
+                'num' => 5,
+                'emoji' => '🚀',
+                'top_tag' => 'Go Live',
+                'sub' => 'STEP 05 • LAUNCH & SCALE',
                 'title' => 'Launch & Scale',
-                'status' => 'Go Live',
-                'icon' => 'fas fa-rocket',
-                'desc' => 'Start serving customers, get your Startup India (DPIIT) registration, and get ongoing expert legal support as you grow.',
+                'desc' => 'Start serving customers, get Startup India (DPIIT) recognition, and 24/7 legal support.',
+                'badge' => 'We Handle ✓',
+                'is_gold' => true,
                 'deliverables' => [
-                    'Official Business Launch',
-                    'Startup India (DPIIT) Govt Setup',
-                    'Investor Deck & Growth Support'
-                ],
-                'is_we_handle' => true,
+                    'Official Market Launch',
+                    'Startup India (DPIIT)',
+                    '24/7 Expert Legal Support'
+                ]
             ]
         ];
         @endphp
@@ -539,87 +544,88 @@
         <!-- DESKTOP PIPELINE: Connected Stage Track (lg:block) -->
         <div class="hidden lg:block mb-8">
             <!-- Connecting Pipeline Rail with Milestone Markers -->
-            <div class="relative mb-8 px-4">
-                <div class="absolute top-[16px] left-[7%] right-[7%] h-[3px] bg-gradient-to-r from-[#D4A843]/40 via-[#D4A843] to-[#2D7A4F] -z-0 rounded-full"></div>
+            <div class="relative mb-8 px-2">
+                <div class="absolute top-[14px] left-[7%] right-[7%] h-[2.5px] bg-gradient-to-r from-[#D4A843]/40 via-[#D4A843] to-[#2D7A4F] -z-0 rounded-full"></div>
                 
                 <div class="grid grid-cols-5 relative z-10 text-center">
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                        <div class="w-7 h-7 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-2 ring-[#D4A843]/20 flex items-center justify-center text-[11px] font-black shadow-sm font-sans">
                             1
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Plan & Idea</span>
+                        <span class="text-[9.5px] xl:text-[10px] font-extrabold text-slate-700 mt-1.5 uppercase tracking-wider">BUSINESS IDEA</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                        <div class="w-7 h-7 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-2 ring-[#D4A843]/20 flex items-center justify-center text-[11px] font-black shadow-sm font-sans">
                             2
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Company Setup</span>
+                        <span class="text-[9.5px] xl:text-[10px] font-extrabold text-slate-700 mt-1.5 uppercase tracking-wider">COMPANY REGISTRATION</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                        <div class="w-7 h-7 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-2 ring-[#D4A843]/20 flex items-center justify-center text-[11px] font-black shadow-sm font-sans">
                             3
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Tax & License</span>
+                        <span class="text-[9.5px] xl:text-[10px] font-extrabold text-slate-700 mt-1.5 uppercase tracking-wider">LEGAL SETUP</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-4 ring-[#D4A843]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                        <div class="w-7 h-7 rounded-full bg-[#0B1F3A] text-[#D4A843] border-2 border-white ring-2 ring-[#D4A843]/20 flex items-center justify-center text-[11px] font-black shadow-sm font-sans">
                             4
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Website & Tech</span>
+                        <span class="text-[9.5px] xl:text-[10px] font-extrabold text-slate-700 mt-1.5 uppercase tracking-wider">TECH SETUP</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <div class="w-8 h-8 rounded-full bg-[#2D7A4F] text-white border-2 border-white ring-4 ring-[#2D7A4F]/20 flex items-center justify-center text-xs font-black shadow-md font-sans">
+                        <div class="w-7 h-7 rounded-full bg-[#2D7A4F] text-white border-2 border-white ring-2 ring-[#2D7A4F]/20 flex items-center justify-center text-[11px] font-black shadow-sm font-sans">
                             5
                         </div>
-                        <span class="text-[11px] font-bold text-slate-700 mt-2 uppercase tracking-wider">Business Launch</span>
+                        <span class="text-[9.5px] xl:text-[10px] font-extrabold text-slate-700 mt-1.5 uppercase tracking-wider">LAUNCH & SCALE</span>
                     </div>
                 </div>
             </div>
             
             <!-- 5 Premium Milestone Cards -->
-            <div class="grid grid-cols-5 gap-4 xl:gap-5">
+            <div class="grid grid-cols-5 gap-3 xl:gap-4">
                 @foreach($roadmapSteps as $s)
-                <div class="bg-white rounded-2xl border border-[#E2DFD7] p-5 xl:p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_-10px_rgba(11,31,58,0.12)] hover:border-[#D4A843] hover:-translate-y-2 group relative">
+                <div class="bg-white rounded-2xl border border-[#E2DFD7] p-3.5 xl:p-4 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_20px_40px_-10px_rgba(11,31,58,0.12)] hover:border-[#D4A843] hover:-translate-y-1 group relative">
                     <!-- Top subtle accent bar on hover -->
-                    <div class="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="absolute top-0 left-4 right-4 h-[2px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     
                     <div>
-                        <!-- Header Row: Step Pill + Status Badge -->
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-[#0B1F3A] text-[#D4A843] text-[11px] font-black tracking-wider shadow-sm font-sans">
-                                STEP {{ $s['step'] }}
+                        <!-- Header Row: Step Pill + Top Tag Badge -->
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full bg-[#0B1F3A] text-white text-[9.5px] font-black tracking-wider shadow-2xs font-sans">
+                                STEP 0{{ $s['num'] }}
                             </span>
-                            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-600 bg-[#FAF9F5] px-2.5 py-1 rounded-full border border-[#E8E6DF]">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#D4A843]"></span> {{ $s['status'] }}
+                            <span class="inline-flex items-center gap-1 text-[9px] font-bold text-slate-700 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-full">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                {{ $s['top_tag'] }}
                             </span>
                         </div>
 
-                        <!-- Luxury Icon -->
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FAF6EE] to-[#F2EDE2] border border-[#E5DEC9] flex items-center justify-center text-[#B8892E] text-xl shadow-sm mb-3 group-hover:bg-[#0B1F3A] group-hover:text-[#D4A843] group-hover:border-[#0B1F3A] transition-all duration-300">
-                            <i class="{{ $s['icon'] }}"></i>
+                        <!-- Emoji Icon -->
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FAF6EE] to-[#F2EDE2] border border-[#E5DEC9] flex items-center justify-center text-xl shadow-2xs mb-3 group-hover:scale-105 transition-transform">
+                            {{ $s['emoji'] }}
                         </div>
 
-                        <!-- Titles -->
-                        <div class="text-[9px] font-black uppercase tracking-[0.16em] text-[#B8892E] mb-1">
-                            {!! $s['phase'] !!}
+                        <!-- Sub-heading & Title -->
+                        <div class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 mb-0.5 block leading-tight">
+                            {{ $s['sub'] }}
                         </div>
-                        <h3 class="text-[16px] font-bold text-[#0B1F3A] font-serif leading-snug mb-2 group-hover:text-[#B8892E] transition-colors">
+                        <h3 class="text-[14px] xl:text-[15px] font-bold text-[#0B1F3A] font-serif leading-snug mb-1.5 group-hover:text-[#B8892E] transition-colors">
                             {{ $s['title'] }}
                         </h3>
-                        <p class="text-[11px] text-slate-500 leading-relaxed min-h-[44px]">
+                        <p class="text-[10px] xl:text-[10.5px] text-slate-500 leading-normal mb-3 min-h-[48px]">
                             {{ $s['desc'] }}
                         </p>
 
-                        <!-- Deliverables Structured Box -->
-                        <div class="mt-4 pt-3 border-t border-slate-100 bg-[#FAF9F5]/80 rounded-xl p-3 border border-[#EAE7DF]">
-                            <div class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 mb-2 flex items-center justify-between">
-                                <span>DELIVERABLES</span>
-                                <i class="fas fa-layer-group text-[9px] text-[#D4A843]"></i>
+                        <!-- Deliverables Box -->
+                        <div class="pt-2 bg-[#FAF9F5] rounded-xl p-2.5 border border-[#EAE7DF] mb-2">
+                            <div class="flex items-center justify-between mb-1.5 pb-1 border-b border-[#EAE7DF]">
+                                <span class="text-[8.5px] font-extrabold uppercase tracking-wider text-slate-400">DELIVERABLES</span>
+                                <span class="text-amber-600 text-[10px]">🪙</span>
                             </div>
-                            <ul class="space-y-1.5">
+                            <ul class="space-y-1">
                                 @foreach($s['deliverables'] as $item)
-                                <li class="flex items-center gap-2 text-[11px] font-semibold text-slate-700">
-                                    <span class="w-3.5 h-3.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[8px] shrink-0 font-bold">✓</span>
+                                <li class="flex items-center gap-1.5 text-[9px] xl:text-[9.5px] font-semibold text-slate-700 leading-tight">
+                                    <span class="w-3 h-3 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[7px] shrink-0 font-bold">✓</span>
                                     <span class="truncate">{{ $item }}</span>
                                 </li>
                                 @endforeach
@@ -627,16 +633,16 @@
                         </div>
                     </div>
 
-                    <!-- Execution Row -->
-                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                        <span class="text-slate-400 font-medium">Execution</span>
-                        @if($s['is_we_handle'])
-                        <span class="inline-flex items-center gap-1.5 font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full text-[10px]">
-                            <i class="fas fa-check-circle text-emerald-600"></i> Done By Foundida
+                    <!-- Card Footer Bar -->
+                    <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-[9.5px]">
+                        <span class="text-slate-400 font-medium text-[9.5px]">Execution</span>
+                        @if($s['is_gold'])
+                        <span class="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+                            <i class="fas fa-check-circle text-emerald-600 text-[8.5px]"></i> {{ $s['badge'] }}
                         </span>
                         @else
-                        <span class="inline-flex items-center gap-1.5 font-bold text-slate-800 bg-[#FAF9F5] border border-slate-200 px-2.5 py-0.5 rounded-full text-[10px]">
-                            <i class="fas fa-handshake text-[#D4A843]"></i> Joint Advisory
+                        <span class="inline-flex items-center gap-1 text-[9px] font-bold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">
+                            <i class="fas fa-gift text-amber-600 text-[8.5px]"></i> {{ $s['badge'] }}
                         </span>
                         @endif
                     </div>
@@ -649,73 +655,60 @@
         <div class="lg:hidden space-y-4 mb-10">
             @foreach($roadmapSteps as $index => $s)
             <div class="flex gap-3 sm:gap-4 items-stretch">
-                <!-- Left timeline track: Step Badge + Continuous Line -->
+                <!-- Left timeline track -->
                 <div class="flex flex-col items-center shrink-0 w-8 sm:w-10">
-                    <!-- Step badge -->
-                    <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl {{ $s['is_we_handle'] ? 'bg-[#0B1F3A] text-[#D4A843] ring-2 ring-[#0B1F3A]/20' : 'bg-[#D4A843] text-[#0B1F3A] ring-2 ring-[#D4A843]/40' }} font-black text-xs flex items-center justify-center shadow-md font-sans shrink-0">
-                        {{ $s['step'] }}
+                    <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl {{ $s['is_gold'] ? 'bg-[#0B1F3A] text-[#D4A843] ring-2 ring-[#0B1F3A]/20' : 'bg-[#D4A843] text-[#0B1F3A] ring-2 ring-[#D4A843]/40' }} font-black text-xs flex items-center justify-center shadow-md font-sans shrink-0">
+                        0{{ $s['num'] }}
                     </div>
-                    <!-- Connecting line between steps -->
                     @if(!$loop->last)
                     <div class="w-[2px] flex-grow bg-gradient-to-b from-[#D4A843] via-[#0B1F3A]/30 to-[#E2DFD7] my-1.5 rounded-full"></div>
                     @endif
                 </div>
 
-                <!-- Right Card: Zero chance of overlap -->
+                <!-- Right Card -->
                 <div class="flex-1 bg-white border border-[#E2DFD7] rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-shadow">
-                    <!-- Top header: Phase tag + Status pill -->
                     <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
-                        <span class="text-[9px] font-black uppercase tracking-wider text-[#B8892E] bg-[#FAF6EE] border border-[#E5DEC9] px-2 py-0.5 rounded">
-                            {!! $s['phase'] !!}
+                        <span class="text-[9px] font-black uppercase tracking-wider text-slate-500 bg-[#FAF6EE] border border-[#E5DEC9] px-2 py-0.5 rounded">
+                            {{ $s['sub'] }}
                         </span>
-                        <span class="inline-flex items-center gap-1.5 text-[10px] font-bold text-slate-600 bg-[#FAF9F5] px-2 py-0.5 rounded-full shrink-0 border border-[#E8E6DF]">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#D4A843]"></span> {{ $s['status'] }}
+                        @if($s['is_gold'])
+                        <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                            <i class="fas fa-check-circle text-emerald-600 text-[9px]"></i> {{ $s['badge'] }}
                         </span>
+                        @else
+                        <span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-800 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
+                            <i class="fas fa-gift text-amber-600 text-[9px]"></i> {{ $s['badge'] }}
+                        </span>
+                        @endif
                     </div>
 
-                    <!-- Title with Icon -->
-                    <div class="flex items-center gap-2.5 mb-2">
-                        <div class="w-8 h-8 rounded-lg bg-[#FAF6EE] border border-[#E5DEC9] flex items-center justify-center text-[#B8892E] text-sm shrink-0">
-                            <i class="{{ $s['icon'] }}"></i>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="text-2xl shrink-0">
+                            {{ $s['emoji'] }}
                         </div>
                         <h3 class="text-[15px] sm:text-[16px] font-bold text-[#0B1F3A] font-serif leading-snug">
                             {{ $s['title'] }}
                         </h3>
                     </div>
 
-                    <!-- Description -->
                     <p class="text-[12px] text-slate-600 leading-relaxed mb-3">
                         {{ $s['desc'] }}
                     </p>
 
-                    <!-- Deliverables Box -->
-                    <div class="bg-[#FAF9F5] rounded-xl p-3 border border-[#EAE7DF] mb-3">
-                        <div class="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 mb-2 flex items-center justify-between">
-                            <span>DELIVERABLES</span>
-                            <i class="fas fa-check-double text-[9px] text-[#D4A843]"></i>
+                    <!-- Key Deliverables Box -->
+                    <div class="pt-2.5 bg-[#FAF9F5] rounded-xl p-3 border border-[#EAE7DF]">
+                        <div class="flex items-center justify-between mb-2 pb-1 border-b border-[#EAE7DF]">
+                            <span class="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">DELIVERABLES</span>
+                            <span class="text-amber-600 text-xs">🪙</span>
                         </div>
-                        <ul class="space-y-1.5">
+                        <ul class="space-y-1">
                             @foreach($s['deliverables'] as $item)
-                            <li class="flex items-start gap-2 text-[11px] font-semibold text-slate-700 leading-tight">
-                                <span class="w-3.5 h-3.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[8px] shrink-0 font-bold mt-0.5">✓</span>
+                            <li class="flex items-center gap-1.5 text-[11px] font-semibold text-slate-700">
+                                <span class="w-3.5 h-3.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[8px] shrink-0 font-bold">✓</span>
                                 <span>{{ $item }}</span>
                             </li>
                             @endforeach
                         </ul>
-                    </div>
-
-                    <!-- Bottom Execution Row -->
-                    <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                        <span class="text-slate-400 font-medium">Execution</span>
-                        @if($s['is_we_handle'])
-                        <span class="inline-flex items-center gap-1 text-[#2D7A4F] font-bold bg-[#2D7A4F]/10 px-2.5 py-0.5 rounded-full border border-[#2D7A4F]/20 text-[10px]">
-                            <i class="fas fa-check-circle text-[9px]"></i> Done By Foundida
-                        </span>
-                        @else
-                        <span class="inline-flex items-center gap-1 text-[#0B1F3A] font-bold bg-[#FAF9F5] px-2.5 py-0.5 rounded-full border border-slate-200 text-[10px]">
-                            <i class="fas fa-handshake text-[9px] text-[#D4A843]"></i> Joint Advisory
-                        </span>
-                        @endif
                     </div>
                 </div>
             </div>
