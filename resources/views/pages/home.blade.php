@@ -50,8 +50,8 @@
     .animate-modal { animation: fade-in-up 0.3s ease-out forwards; }
     
     .hero-bg-pattern {
-        background-color: #f8faf9;
-        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232d7a4f' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-color: #f3f8f4;
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='1.2' fill='%232D7A4F' fill-opacity='0.16'/%3E%3C/svg%3E");
     }
 
     /* HARDCODED GRID TO BYPASS TAILWIND COMPILER */
@@ -198,167 +198,93 @@
                 </div>
             </div>
             
-            <!-- RIGHT COLUMN: Image & Badges -->
-            <div class="hero-custom-col-right w-full flex flex-col items-center mt-6 md:mt-0 relative pb-4">
+            <!-- RIGHT COLUMN: Minimalist Consultation Form Card -->
+            <div class="hero-custom-col-right w-full flex flex-col items-center justify-center mt-6 md:mt-0 relative">
                 
-                <!-- Top Journey Graphic -->
-                <div class="flex items-center justify-center gap-4 mb-4 w-full" style="max-width: 380px; opacity: 0.95;">
-                    <div class="flex flex-col items-center text-center">
-                        <i class="far fa-lightbulb text-3xl" style="color: #F5A623; filter: drop-shadow(0 0 10px rgba(245,166,35,0.8));"></i>
-                        <span class="font-bold tracking-widest mt-1 text-gray-800" style="font-size: 11px;">IDEA</span>
-                    </div>
-                    <div class="flex-grow border-t-2 border-dashed mx-2 -mt-4" style="border-color: rgba(45, 122, 79, 0.4);"></div>
-                    <div class="flex flex-col items-center text-center">
-                        <i class="far fa-file-alt text-2xl" style="color: #2D7A4F;"></i>
-                        <span class="font-bold tracking-widest mt-1.5 text-gray-700" style="font-size: 11px;">SETUP</span>
-                    </div>
-                    <div class="flex-grow border-t-2 border-dashed mx-2 -mt-4" style="border-color: rgba(45, 122, 79, 0.4);"></div>
-                    <div class="flex flex-col items-center text-center">
-                        <i class="fas fa-chart-line text-2xl" style="color: #2D7A4F;"></i>
-                        <span class="font-bold tracking-widest mt-1.5 text-gray-700" style="font-size: 11px;">GROW</span>
-                    </div>
-                </div>
-
-                <!-- Main Wrapper for Image + Floating Badges -->
-                <div class="relative w-full flex items-center justify-center hero-svg-wrapper mb-10 md:mb-0" style="max-width: 580px;">
+                <div id="heroConsultationForm" class="w-full max-w-[420px] rounded-2xl p-6 md:p-8 relative z-20 transition-all duration-300" style="background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.95); box-shadow: 0 15px 35px rgba(11, 31, 58, 0.08);">
                     
-                    <!-- Futuristic Background Glow (from reference image style) -->
-                    <div class="tech-glow"></div>
-
-                    <!-- Center Animated Graphic (SVG from User) -->
-                    <div class="relative flex flex-col items-center justify-center z-10 mt-4" style="width: 100%; max-width: 480px; height: 100%;">
-                        
-                        <div class="hero-visual w-full drop-shadow-2xl" role="img" aria-label="Rocket launching over a network of cities across India">
-                          <svg viewBox="0 0 480 570" xmlns="http://www.w3.org/2000/svg" style="background: transparent;">
-                            <defs>
-                              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0" stop-color="#eaf5ee" stop-opacity="0"/>
-                                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-                              </linearGradient>
-                              <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
-                                <stop offset="0" stop-color="#ffffff"/>
-                                <stop offset="1" stop-color="#dfe8f2"/>
-                              </linearGradient>
-                              <linearGradient id="fire" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0" stop-color="#f5a623"/>
-                                <stop offset="1" stop-color="#ffd98a"/>
-                              </linearGradient>
-                            </defs>
-
-                            <!-- soft backdrop (Made transparent to blend with site bg) -->
-                            <rect width="480" height="570" rx="60" fill="url(#sky)"/>
-
-                            <!-- orbit rings -->
-                            <g fill="none" stroke="#2f7d4f" stroke-opacity=".28" stroke-dasharray="3 9" stroke-linecap="round">
-                              <circle cx="240" cy="290" r="120"/>
-                              <circle cx="240" cy="290" r="190"/>
-                            </g>
-
-                            <!-- city network (connections) -->
-                            <g stroke="#0f2447" stroke-opacity=".22" stroke-width="1.5" fill="none">
-                              <path d="M110 200 L170 260 L240 290 L320 250 L380 190"/>
-                              <path d="M170 260 L140 350 L210 420"/>
-                              <path d="M320 250 L350 340 L290 430"/>
-                              <path d="M240 290 L210 420 M240 290 L290 430"/>
-                            </g>
-
-                            <!-- city nodes (pulsing) -->
-                            <g fill="#2f7d4f">
-                              <circle class="svg-pulse" cx="110" cy="200" r="5" opacity=".5"/>
-                              <circle class="svg-pulse" cx="380" cy="190" r="5" opacity=".5"/>
-                              <circle class="svg-pulse" cx="140" cy="350" r="5" opacity=".5"/>
-                              <circle class="svg-pulse" cx="350" cy="340" r="5" opacity=".5"/>
-                              <circle class="svg-pulse" cx="210" cy="420" r="5" opacity=".5"/>
-                              <circle class="svg-pulse" cx="290" cy="430" r="5" opacity=".5"/>
-                              <circle cx="110" cy="200" r="6"/><circle cx="170" cy="260" r="6"/>
-                              <circle cx="320" cy="250" r="6"/><circle cx="380" cy="190" r="6"/>
-                              <circle cx="140" cy="350" r="6"/><circle cx="350" cy="340" r="6"/>
-                              <circle cx="210" cy="420" r="6"/><circle cx="290" cy="430" r="6"/>
-                            </g>
-                            <circle cx="240" cy="290" r="8" fill="#f5a623"/>
-
-                            <!-- rocket -->
-                            <g class="svg-rocket">
-                              <!-- flame -->
-                              <g class="svg-flame">
-                                <path d="M222 335 Q240 430 258 335 Z" fill="url(#fire)"/>
-                                <path d="M232 335 Q240 385 248 335 Z" fill="#fff" opacity=".7"/>
-                              </g>
-                              <!-- fins -->
-                              <path d="M212 285 L166 352 L214 334 Z" fill="#f5a623"/>
-                              <path d="M268 285 L314 352 L266 334 Z" fill="#f5a623"/>
-                              <!-- body -->
-                              <path d="M240 96 C292 150 298 250 272 336 L208 336 C182 250 188 150 240 96 Z"
-                                    fill="url(#body)" stroke="#0f2447" stroke-width="4" stroke-linejoin="round"/>
-                              <!-- nose band -->
-                              <path d="M240 96 C258 114 270 134 277 154 L203 154 C210 134 222 114 240 96 Z" fill="#2f7d4f"/>
-                              <!-- window -->
-                              <circle cx="240" cy="212" r="27" fill="#0f2447"/>
-                              <circle cx="240" cy="212" r="19" fill="#cfe9d8"/>
-                              <path d="M232 213 l6 6 l12 -13" fill="none" stroke="#2f7d4f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                              <!-- nozzle -->
-                              <rect x="216" y="330" width="48" height="14" rx="5" fill="#0f2447"/>
-                            </g>
-
-                            <!-- document card: GST / registration -->
-                            <g transform="translate(58 396)">
-                              <rect width="132" height="100" rx="14" fill="#fff" stroke="#0f2447" stroke-opacity=".12"/>
-                              <rect x="16" y="18" width="46" height="8" rx="4" fill="#0f2447"/>
-                              <rect x="16" y="38" width="98" height="6" rx="3" fill="#0f2447" opacity=".15"/>
-                              <rect x="16" y="52" width="80" height="6" rx="3" fill="#0f2447" opacity=".15"/>
-                              <circle cx="100" cy="76" r="14" fill="#2f7d4f"/>
-                              <path d="M93 76 l5 5 l9 -10" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              <text x="16" y="82" font-family="Inter,system-ui,sans-serif" font-size="14" font-weight="700" fill="#0f2447">GST ✔</text>
-                            </g>
-
-                            <!-- rupee coin -->
-                            <g transform="translate(372 452)">
-                              <circle r="40" fill="#f5a623"/>
-                              <circle r="32" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2.5" stroke-dasharray="4 5"/>
-                              <text y="13" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="38" font-weight="800" fill="#0f2447">₹</text>
-                            </g>
-
-                            <!-- small trademark badge -->
-                            <g transform="translate(96 132)">
-                              <circle r="24" fill="#0f2447"/>
-                              <text y="6" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="800" fill="#fff">TM</text>
-                            </g>
-
-                          </svg>
+                    <!-- Form Header -->
+                    <div class="mb-5 text-left">
+                        <div class="inline-flex items-center gap-1.5 bg-[#E8F3EB]/90 border border-[#CDE5D4] rounded-full px-3 py-1 mb-2.5">
+                            <span class="w-2 h-2 rounded-full bg-[#2D7A4F] animate-pulse"></span>
+                            <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#1a4a2f]">Speak With Legal Experts</span>
                         </div>
+                        <h3 class="text-2xl font-extrabold font-serif text-[#0B1F3A] leading-tight">Get Free Consultation</h3>
+                        <p class="text-xs text-gray-500 font-medium mt-1">Get immediate callback & expert advice for your startup.</p>
                     </div>
 
-                    <!-- Left Floating Badges -->
-                    <div class="absolute animate-float-1 hidden sm:flex flex-col gap-4 z-20" style="left: -25px; top: 10%;">
-                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
-                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-building text-sm"></i></div>
-                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">Company<br>Registration</span>
+                    @if(session('callback_success'))
+                        <div class="bg-emerald-50/90 border border-emerald-200 rounded-xl p-5 text-center my-4 animate-fadeIn">
+                            <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 font-bold text-base">
+                                ✓
+                            </div>
+                            <h4 class="text-emerald-950 font-bold text-sm mb-1 font-serif">Request Received!</h4>
+                            <p class="text-emerald-800 text-xs leading-relaxed">{{ session('callback_success') }}</p>
                         </div>
-                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
-                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-file-invoice-dollar text-sm"></i></div>
-                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">GST Filing</span>
-                        </div>
-                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
-                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><span class="font-black text-[12px]">TM</span></div>
-                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">Trademark<br>& IPR</span>
-                        </div>
+                    @else
+                        <form action="{{ route('callback.store') }}" method="POST" class="space-y-4">
+                            @csrf
+                            
+                            <!-- Full Name -->
+                            <div>
+                                <label class="block text-[10px] font-extrabold text-gray-600 uppercase tracking-wider mb-1">Full Name <span class="text-red-500">*</span></label>
+                                <div class="flex items-center">
+                                    <span class="px-3.5 py-3 border border-r-0 border-gray-200 rounded-l-xl text-gray-400 flex items-center justify-center shrink-0" style="background: rgba(240, 247, 242, 0.7); min-width: 42px;">
+                                        <i class="far fa-user text-xs"></i>
+                                    </span>
+                                    <input type="text" name="name" value="{{ old('name') }}" placeholder="e.g. Rahul Sharma" required class="w-full px-3.5 py-3 border border-gray-200 rounded-r-xl text-xs font-semibold text-gray-900 focus:outline-none focus:border-[#2D7A4F] transition-all" style="background: rgba(255, 255, 255, 0.9);">
+                                </div>
+                            </div>
+
+                            <!-- Mobile Number -->
+                            <div>
+                                <label class="block text-[10px] font-extrabold text-gray-600 uppercase tracking-wider mb-1">Mobile Number <span class="text-red-500">*</span></label>
+                                <div class="flex items-center">
+                                    <span class="px-3 py-3 border border-r-0 border-gray-200 rounded-l-xl text-xs text-gray-600 font-bold flex items-center justify-center shrink-0" style="background: rgba(240, 247, 242, 0.7); min-width: 48px;">
+                                        +91
+                                    </span>
+                                    <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="98765 43210" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3.5 py-3 border border-gray-200 rounded-r-xl text-xs font-semibold text-gray-900 focus:outline-none focus:border-[#2D7A4F] transition-all" style="background: rgba(255, 255, 255, 0.9);">
+                                </div>
+                            </div>
+
+                            <!-- Service Select -->
+                            <div>
+                                <label class="block text-[10px] font-extrabold text-gray-600 uppercase tracking-wider mb-1">Select Service <span class="text-red-500">*</span></label>
+                                <div class="flex items-center">
+                                    <span class="px-3.5 py-3 border border-r-0 border-gray-200 rounded-l-xl text-gray-400 flex items-center justify-center shrink-0" style="background: rgba(240, 247, 242, 0.7); min-width: 42px;">
+                                        <i class="fas fa-briefcase text-xs"></i>
+                                    </span>
+                                    <select name="service" required class="w-full px-3.5 py-3 border border-gray-200 rounded-r-xl text-xs font-semibold text-gray-900 focus:outline-none focus:border-[#2D7A4F] transition-all appearance-none cursor-pointer" style="background-color: rgba(255, 255, 255, 0.9); background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232D7A4F' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 12px center; background-size: 12px;">
+                                        <option value="" disabled selected>Choose a service...</option>
+                                        <option value="Company Registration">Company Registration (Pvt Ltd)</option>
+                                        <option value="GST Registration & Filing">GST Registration & Filing</option>
+                                        <option value="Trademark & Copyright">Trademark & Copyright</option>
+                                        <option value="LLP / OPC Registration">LLP / One Person Company</option>
+                                        <option value="Legal & Compliance">Legal & Compliance Services</option>
+                                        <option value="Website & App Development">Website & App Development</option>
+                                        <option value="Other Services">Other Business Services</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl font-extrabold text-xs tracking-wider uppercase shadow-md transition-all duration-200 flex items-center justify-center gap-2 hover:-translate-y-0.5 active:translate-y-0" style="background-color: #F5A623; color: #0B1F3A;">
+                                <i class="fas fa-headset text-sm"></i>
+                                <span>Get Instant Callback</span>
+                            </button>
+                        </form>
+                    @endif
+
+                    <!-- Trust indicators -->
+                    <div class="mt-4 pt-3.5 border-t border-gray-200/60 flex items-center justify-between text-[10px] font-bold text-gray-500">
+                        <span class="flex items-center gap-1.5">
+                            <i class="fas fa-shield-alt text-[#2D7A4F]"></i> 100% Confidential
+                        </span>
+                        <span class="flex items-center gap-1.5">
+                            <i class="fas fa-clock text-[#F5A623]"></i> 24-48Hrs Setup
+                        </span>
                     </div>
 
-                    <!-- Right Floating Badges -->
-                    <div class="absolute animate-float-2 hidden sm:flex flex-col gap-4 z-20" style="right: -25px; bottom: 10%;">
-                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
-                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-bullhorn text-sm"></i></div>
-                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">Digital<br>Marketing</span>
-                        </div>
-                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
-                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-clipboard-check text-sm"></i></div>
-                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">Compliance<br>Services</span>
-                        </div>
-                        <div class="glass-card p-2.5 flex items-center gap-3" style="width: 195px;">
-                            <div class="glass-icon w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="color: #2D7A4F;"><i class="fas fa-th-large text-sm"></i></div>
-                            <span class="font-extrabold leading-tight" style="color: #0B1F3A; font-size: 11px;">80+ More<br>Services</span>
-                        </div>
-                    </div>
                 </div>
 
             </div>
