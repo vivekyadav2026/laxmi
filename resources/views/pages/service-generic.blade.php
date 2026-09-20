@@ -10,27 +10,27 @@
 @section('content')
 
 <!-- BREADCRUMB -->
-<div class="py-3 border-b border-[#CDE5D4] relative z-20" style="background-color: #E8F3EB;">
+<div class="bg-[#0d1b3e] py-3.5 border-b border-white/10 relative z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="flex text-xs font-semibold" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2">
                 <li class="inline-flex items-center">
-                    <a href="/" class="text-gray-600 hover:text-[#2D7A4F] transition uppercase tracking-wider">
+                    <a href="/" class="text-gray-300 hover:text-[#f5a623] transition uppercase tracking-wider">
                         Home
                     </a>
                 </li>
                 <li>
                     <div class="flex items-center">
-                        <svg class="w-3.5 h-3.5 text-gray-400 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <a href="/services" class="text-gray-600 hover:text-[#2D7A4F] transition uppercase tracking-wider">
+                        <svg class="w-3.5 h-3.5 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <a href="/services" class="text-gray-300 hover:text-[#f5a623] transition uppercase tracking-wider">
                             Services
                         </a>
                     </div>
                 </li>
                 <li>
                     <div class="flex items-center">
-                        <svg class="w-3.5 h-3.5 text-gray-400 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        <a href="/services/{{ $category['slug'] }}" class="text-[#2D7A4F] font-bold uppercase tracking-wider">
+                        <svg class="w-3.5 h-3.5 text-gray-500 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <a href="/services/{{ $category['slug'] }}" class="text-gray-300 hover:text-[#f5a623] transition uppercase tracking-wider">
                             {{ $category['name'] }}
                         </a>
                     </div>
@@ -44,51 +44,43 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-[48px] items-center">
         <!-- Hero Content -->
         <div class="flex flex-col z-20 text-left">
-            <div class="inline-flex items-center gap-2 bg-[#E8F3EB] border border-[#CDE5D4] rounded-full px-3 py-1.5 mb-5 w-fit select-none">
-                <span class="w-2 h-2 rounded-full bg-[#2D7A4F] animate-pulse"></span>
-                <span class="text-[10px] font-extrabold text-[#1a4a2f] uppercase tracking-widest flex items-center gap-1">
+            <div class="inline-flex items-center gap-2 bg-[#f5a623]/10 border border-[#f5a623]/30 rounded-full px-3 py-1.5 mb-5 w-fit select-none">
+                <span class="text-[10px] font-bold text-[#f5a623] uppercase tracking-widest flex items-center gap-1">
                     {{ strtoupper($category['name']) }}
                 </span>
             </div>
 
-            <h1 class="text-[36px] md:text-[50px] font-bold text-[#0B1F3A] leading-[1.15] mb-5 font-serif">
+            <h1 class="text-[36px] md:text-[52px] font-bold text-white leading-[1.15] mb-6 font-serif">
                 {{ $service['name_en'] }}
             </h1>
             
-            <div class="text-[15px] md:text-[16px] text-gray-600 mb-8 font-medium leading-relaxed max-w-[520px]">
+            <div class="text-[15px] md:text-[16px] text-gray-300 mb-8 font-medium leading-relaxed max-w-[520px]">
                 {!! $content['description'] !!}
             </div>
             
-            <!-- Glassmorphism Price & Timeframe Badges -->
             <div class="flex flex-wrap items-center gap-4 mb-4">
-                <div class="rounded-xl px-5 py-3 transition-all" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.95); box-shadow: 0 8px 25px rgba(11, 31, 58, 0.05);">
-                    <div class="text-gray-500 text-[10px] uppercase font-bold tracking-wider mb-1">Package Starts at</div>
-                    <div class="text-[#2D7A4F] text-[24px] font-extrabold leading-none">{{ $service['price'] }}</div>
+                <div class="bg-white/10 border border-white/20 rounded-xl px-5 py-3">
+                    <div class="text-gray-400 text-[10px] uppercase font-bold tracking-wider mb-1">Package Starts at</div>
+                    <div class="text-[#f5a623] text-[24px] font-extrabold leading-none">{{ $service['price'] }}</div>
                 </div>
-                <div class="rounded-xl px-5 py-3 transition-all" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.95); box-shadow: 0 8px 25px rgba(11, 31, 58, 0.05);">
-                    <div class="text-gray-500 text-[10px] uppercase font-bold tracking-wider mb-1">Timeframe</div>
-                    <div class="text-[#0B1F3A] text-[24px] font-extrabold leading-none">{{ $service['time'] ?? '5-7 Days' }}</div>
+                <div class="bg-white/10 border border-white/20 rounded-xl px-5 py-3">
+                    <div class="text-gray-400 text-[10px] uppercase font-bold tracking-wider mb-1">Timeframe</div>
+                    <div class="text-white text-[24px] font-extrabold leading-none">{{ $service['time'] ?? '5-7 Days' }}</div>
                 </div>
             </div>
         </div>
         
-        <!-- Glassmorphism Consultation Form Card -->
-        <div class="mt-8 lg:mt-0 rounded-2xl p-6 md:p-8 relative z-10 w-full max-w-[440px] mx-auto lg:ml-auto transition-all" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.95); box-shadow: 0 15px 35px rgba(11, 31, 58, 0.08);">
-            <div class="mb-5 text-left">
-                <div class="inline-flex items-center gap-1.5 bg-[#E8F3EB] border border-[#CDE5D4] rounded-full px-3 py-1 mb-2.5">
-                    <span class="w-2 h-2 rounded-full bg-[#2D7A4F] animate-pulse"></span>
-                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#1a4a2f]">Free Expert Call Back</span>
-                </div>
-                <h3 class="text-[20px] md:text-[24px] font-bold text-[#0B1F3A] mb-1 font-serif leading-tight">Get Free Consultation</h3>
-                <p class="text-gray-500 text-xs">Speak with our Incorporation Specialists today.</p>
-            </div>
+        <!-- Hero Callback Form -->
+        <div class="mt-8 lg:mt-0 bg-white rounded-2xl shadow-2xl p-6 md:p-8 border-t-4 border-[#f5a623] relative z-10 w-full max-w-[440px] mx-auto lg:ml-auto">
+            <h3 class="text-[20px] md:text-[24px] font-bold text-[#0d1b3e] mb-1 font-serif leading-tight">Get Free Consultation</h3>
+            <p class="text-gray-500 text-xs mb-6">Talk with our Incorporation Specialists today.</p>
 
             @if(session('callback_success'))
-                <div class="bg-emerald-50/90 border border-emerald-200 rounded-xl p-5 text-center my-4 animate-fadeIn">
-                    <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 font-bold text-base">
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 text-center my-4 animate-fadeIn">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
                         ✓
                     </div>
-                    <h4 class="text-emerald-950 font-bold text-sm mb-1 font-serif">Request Received!</h4>
+                    <h4 class="text-emerald-950 font-bold text-base mb-1 font-serif">Request Received!</h4>
                     <p class="text-emerald-800 text-xs leading-relaxed mb-4">{{ session('callback_success') }}</p>
                 </div>
             @else
@@ -96,22 +88,17 @@
                     @csrf
                     <input type="hidden" name="service" value="{{ $service['slug'] }}">
                     <div>
-                        <label class="block text-[10px] font-extrabold text-gray-600 mb-1 uppercase tracking-wider">Full Name <span class="text-red-500">*</span></label>
-                        <div class="flex items-center">
-                            <span class="px-3.5 py-3 border border-r-0 border-gray-200 rounded-l-xl text-gray-400 flex items-center justify-center shrink-0" style="background: rgba(240, 247, 242, 0.7); min-width: 42px;">
-                                <i class="far fa-user text-xs"></i>
-                            </span>
-                            <input type="text" name="name" value="{{ old('name') }}" placeholder="e.g. Rahul Sharma" class="w-full px-3.5 py-3 border border-gray-200 rounded-r-xl text-xs font-semibold text-gray-900 focus:outline-none focus:border-[#2D7A4F] transition-colors" style="background: rgba(255, 255, 255, 0.9);" required>
-                        </div>
+                        <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Full Name</label>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="e.g. Rahul Sharma" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-colors" required>
                     </div>
                     <div>
-                        <label class="block text-[10px] font-extrabold text-gray-600 mb-1 uppercase tracking-wider">Mobile Number <span class="text-red-500">*</span></label>
-                        <div class="flex items-center">
-                            <span class="px-3 py-3 border border-r-0 border-gray-200 rounded-l-xl text-xs text-gray-600 font-bold flex items-center justify-center shrink-0" style="background: rgba(240, 247, 242, 0.7); min-width: 48px;">+91</span>
-                            <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="98765 43210" pattern="[0-9]{10}" maxlength="10" class="w-full px-3.5 py-3 border border-gray-200 rounded-r-xl text-xs font-semibold text-gray-900 focus:outline-none focus:border-[#2D7A4F] transition-colors" style="background: rgba(255, 255, 255, 0.9);" required>
+                        <label class="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">Mobile Number</label>
+                        <div class="flex">
+                            <span class="bg-gray-100 border border-gray-200 border-r-0 rounded-l-xl px-3.5 py-3 text-[13px] text-gray-500 font-bold flex items-center">+91</span>
+                            <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="98765 43210" class="w-full bg-gray-50 border border-gray-200 rounded-r-xl px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#f5a623] transition-colors" required>
                         </div>
                     </div>
-                    <button type="submit" class="w-full text-[#0B1F3A] text-[14px] md:text-[15px] font-extrabold py-3.5 rounded-xl hover:bg-[#e0951b] transition-all shadow-md mt-2" style="background-color: #F5A623;">
+                    <button type="submit" class="w-full bg-[#f5a623] text-[#0d1b3e] text-[14px] md:text-[15px] font-extrabold py-3.5 rounded-xl hover:bg-[#e0951b] transition-all shadow-md mt-2">
                         Get Instant Call Back 📞
                     </button>
                 </form>

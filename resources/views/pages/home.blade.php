@@ -50,8 +50,8 @@
     .animate-modal { animation: fade-in-up 0.3s ease-out forwards; }
     
     .hero-bg-pattern {
-        background-color: #f3f8f4;
-        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='1.2' fill='%232D7A4F' fill-opacity='0.16'/%3E%3C/svg%3E");
+        background-color: #0d1b3e;
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='1.2' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
     }
 
     /* HARDCODED GRID TO BYPASS TAILWIND COMPILER */
@@ -118,7 +118,7 @@
         position: absolute;
         width: 350px;
         height: 350px;
-        background: radial-gradient(circle, rgba(45,122,79,0.12) 0%, rgba(11,31,58,0.03) 50%, transparent 100%);
+        background: radial-gradient(circle, rgba(245,166,35,0.15) 0%, rgba(13,27,62,0.03) 50%, transparent 100%);
         filter: blur(40px);
         z-index: 0;
         top: 50%;
@@ -128,17 +128,21 @@
     }
 
     /* MOBILE RESPONSIVE TWEAKS */
-    .hero-heading { font-size: 38px; line-height: 1.1; margin-top: 10px; }
-    .hero-subheading { font-size: 15px; }
+    .hero-heading { font-size: 28px; line-height: 1.2; margin-top: 5px; }
+    .hero-subheading { font-size: 14px; }
     .hero-svg-wrapper { height: 280px; }
-    @media (min-width: 768px) {
-        .hero-heading { font-size: 52px; margin-top: 0; }
-        .hero-subheading { font-size: 17px; }
+    @media (min-width: 640px) {
+        .hero-heading { font-size: 38px; }
+        .hero-subheading { font-size: 15px; }
+    }
+    @media (min-width: 1024px) {
+        .hero-heading { font-size: 48px; margin-top: 0; }
+        .hero-subheading { font-size: 16px; }
         .hero-svg-wrapper { height: 380px; }
     }
 </style>
 
-<section class="hero-bg-pattern relative pt-4 md:pt-6 pb-2 overflow-hidden">
+<section class="hero-bg-pattern relative py-8 md:py-[60px] overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <!-- HARDCODED FLEXBOX GRID -->
         <div class="hero-custom-grid">
@@ -146,75 +150,81 @@
             <!-- LEFT COLUMN: Content -->
             <div class="hero-custom-col-left w-full flex flex-col items-start text-left z-20">
                 <!-- Pill Badge -->
-                <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-3 shadow-sm border" style="background-color: #E8F3EB; border-color: #CDE5D4;">
-                    <span class="text-sm">🚀</span>
-                    <span class="font-extrabold uppercase tracking-wider" style="color: #1a4a2f; font-size: 11px;">
+                <div class="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-3 select-none border border-[#f5a623]/30 bg-[#f5a623]/10 max-w-full">
+                    <span class="text-xs shrink-0">🚀</span>
+                    <span class="font-extrabold uppercase tracking-wide text-[#f5a623] text-[10px] sm:text-xs">
                         NEW STARTUP? YOU'RE IN THE RIGHT PLACE
                     </span>
                 </div>
                 
                 <!-- Headline -->
-                <h1 class="hero-heading font-extrabold mb-4 tracking-tight font-serif" style="color: #0B1F3A;">
-                    <span class="block mb-1">Turn Your Idea</span>
-                    <span class="block" style="color: #2D7A4F;">Into a Real Business</span>
+                <h1 class="hero-heading font-extrabold mb-3 tracking-tight font-serif text-white">
+                    <span class="block mb-1">Everything Your Business Needs,</span>
+                    <span class="block text-[#f5a623]">All in One Place.</span>
                 </h1>
                 
-                <!-- Subheadline -->
-                <p class="hero-subheading mb-6 leading-relaxed font-medium" style="color: #4b5563; max-width: 580px;">
-                    Company Registration, GST, Trademark, Compliance, Website, App, Digital Marketing and 80+ business services — all in one place. Simple. Affordable. Startup Friendly.
+                <!-- Subheadline & Main Service Tags -->
+                <p class="hero-subheading mb-4 leading-relaxed font-medium text-gray-300 max-w-[580px]">
+                    Select a service below or speak with our incorporation & legal specialists:
                 </p>
-                
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-8 mt-2 w-full sm:max-w-none mx-auto sm:mx-0">
-                    <button onclick="document.getElementById('consultationModal').style.display='flex'" class="inline-flex items-center justify-center gap-2 font-bold px-6 py-3 rounded-md transition-all hover:-translate-y-0.5 whitespace-nowrap w-full sm:w-auto shadow-sm" style="background-color: #F5A623; color: #0B1F3A; font-size: 14px;">
-                        <i class="fas fa-phone-alt"></i>
-                        <span>Get Free Consultation</span>
-                    </button>
-                    <a href="/services" class="inline-flex items-center justify-center gap-2 bg-white border border-gray-300 font-bold px-6 py-3 rounded-md transition-all shadow-sm hover:bg-gray-50 whitespace-nowrap w-full sm:w-auto" style="color: #0B1F3A; font-size: 14px;">
-                        <i class="fas fa-box-open"></i>
-                        <span>View All Services</span>
-                        <i class="fas fa-arrow-right text-xs ml-1 opacity-70"></i>
+
+                <!-- Strict 2-Column Rectangular Service Tags Grid (All Devices) -->
+                <div class="grid grid-cols-2 gap-2 sm:gap-2.5 mb-6 w-full max-w-[580px]">
+                    <a href="/services/business-registration" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-building text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">Company Registration</span>
+                    </a>
+                    <a href="/services/gst-services" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-file-invoice text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">GST Registration</span>
+                    </a>
+                    <a href="/services/trademark-ip" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <span class="font-black text-[9px] sm:text-[10px] text-[#f5a623] shrink-0 w-4 text-center">TM</span><span class="truncate">Trademark & IP</span>
+                    </a>
+                    <a href="/services/licenses-registrations" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-certificate text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">FSSAI & Licenses</span>
+                    </a>
+                    <a href="/services/tax-compliance" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-chart-line text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">Tax Compliance</span>
+                    </a>
+                    <a href="/services/vakil-lawyer-services" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-gavel text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">Lawyer Advice</span>
+                    </a>
+                    <a href="/services/tech-services" class="flex items-center gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-white/10 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-white/15 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <i class="fas fa-laptop-code text-[#f5a623] shrink-0 text-xs w-4 text-center"></i><span class="truncate">Web & App Dev</span>
+                    </a>
+                    <a href="/services" class="flex items-center justify-between gap-2 px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-extrabold text-[#f5a623] bg-[#f5a623]/15 hover:bg-[#f5a623] hover:text-[#0d1b3e] border border-[#f5a623]/30 transition-all shadow-sm whitespace-nowrap overflow-hidden h-[36px] sm:h-[40px]">
+                        <span class="flex items-center gap-2 shrink-0"><i class="fas fa-rocket text-[#f5a623] text-xs w-4 text-center"></i><span>80+ Services</span></span>
+                        <span class="text-xs">→</span>
                     </a>
                 </div>
                 
-                <!-- Mini Badges Row -->
-                <div class="grid grid-cols-2 w-full" style="max-width: 500px; gap: 16px 20px;">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-full text-white flex items-center justify-center text-xs shadow-sm" style="background-color: #2D7A4F;"><i class="fas fa-bolt"></i></div>
-                        <span class="font-bold text-gray-800" style="font-size: 13px;">Startup Friendly</span>
-                    </div>
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-sm" style="background-color: #0B1F3A; color: #F5A623;"><i class="fas fa-rupee-sign"></i></div>
-                        <span class="font-bold text-gray-800" style="font-size: 13px;">Affordable Pricing</span>
-                    </div>
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-full text-white flex items-center justify-center text-xs shadow-sm" style="background-color: #1da154;"><i class="fas fa-users"></i></div>
-                        <span class="font-bold text-gray-800" style="font-size: 13px;">Expert Support</span>
-                    </div>
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-full text-white flex items-center justify-center text-xs shadow-sm" style="background-color: #0B1F3A;"><i class="fas fa-shield-alt"></i></div>
-                        <span class="font-bold text-gray-800" style="font-size: 13px;">End-to-End Guidance</span>
-                    </div>
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-2.5 mb-0 w-full sm:max-w-none mx-auto sm:mx-0">
+                    <button onclick="document.getElementById('consultationModal').style.display='flex'" class="inline-flex items-center justify-center gap-2 font-bold px-5 py-2.5 rounded-md transition-all hover:-translate-y-0.5 whitespace-nowrap w-full sm:w-auto shadow-md" style="background-color: #F5A623; color: #0d1b3e; font-size: 13px;">
+                        <i class="fas fa-phone-alt"></i><span>Get Free Consultation</span>
+                    </button>
+                    <a href="/services" class="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 font-bold px-5 py-2.5 rounded-md transition-all shadow-sm hover:bg-white/20 whitespace-nowrap w-full sm:w-auto text-white" style="font-size: 13px;">
+                        <i class="fas fa-box-open text-[#f5a623]"></i><span>View All Services</span><i class="fas fa-arrow-right text-xs ml-0.5 opacity-70"></i>
+                    </a>
                 </div>
             </div>
             
-            <!-- RIGHT COLUMN: Minimalist Consultation Form Card -->
+            <!-- RIGHT COLUMN: Modern Glassmorphic Consultation Form Card -->
             <div class="hero-custom-col-right w-full flex flex-col items-center justify-center mt-6 md:mt-0 relative">
                 
-                <div id="heroConsultationForm" class="w-full max-w-[420px] rounded-2xl p-6 md:p-8 relative z-20 transition-all duration-300" style="background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.95); box-shadow: 0 15px 35px rgba(11, 31, 58, 0.08);">
+                <div id="heroConsultationForm" class="w-full max-w-[380px] rounded-2xl p-6 md:p-7 relative z-20 transition-all duration-300" style="background: rgba(255, 255, 255, 0.97); border: 1px solid rgba(255, 255, 255, 0.95); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);">
                     
                     <!-- Form Header -->
-                    <div class="mb-5 text-left">
-                        <div class="inline-flex items-center gap-1.5 bg-[#E8F3EB]/90 border border-[#CDE5D4] rounded-full px-3 py-1 mb-2.5">
+                    <div class="mb-4 text-left">
+                        <div class="inline-flex items-center gap-1.5 bg-[#E8F3EB] border border-[#CDE5D4] rounded-full px-3 py-1 mb-2">
                             <span class="w-2 h-2 rounded-full bg-[#2D7A4F] animate-pulse"></span>
                             <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#1a4a2f]">Speak With Legal Experts</span>
                         </div>
                         <h3 class="text-2xl font-extrabold font-serif text-[#0B1F3A] leading-tight">Get Free Consultation</h3>
-                        <p class="text-xs text-gray-500 font-medium mt-1">Get immediate callback & expert advice for your startup.</p>
+                        <p class="text-xs text-gray-500 font-medium mt-1">Get immediate callback & expert startup advice.</p>
                     </div>
 
                     @if(session('callback_success'))
-                        <div class="bg-emerald-50/90 border border-emerald-200 rounded-xl p-5 text-center my-4 animate-fadeIn">
+                        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 text-center my-4 animate-fadeIn">
                             <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 font-bold text-base">
                                 ✓
                             </div>
@@ -222,39 +232,39 @@
                             <p class="text-emerald-800 text-xs leading-relaxed">{{ session('callback_success') }}</p>
                         </div>
                     @else
-                        <form action="{{ route('callback.store') }}" method="POST" class="space-y-4">
+                        <form action="{{ route('callback.store') }}" method="POST" class="space-y-3.5">
                             @csrf
                             
                             <!-- Full Name -->
                             <div>
                                 <label class="block text-[10px] font-extrabold text-gray-600 uppercase tracking-wider mb-1">Full Name <span class="text-red-500">*</span></label>
-                                <div class="flex items-center">
-                                    <span class="px-3.5 py-3 border border-r-0 border-gray-200 rounded-l-xl text-gray-400 flex items-center justify-center shrink-0" style="background: rgba(240, 247, 242, 0.7); min-width: 42px;">
+                                <div class="relative flex items-center rounded-xl border border-gray-200 bg-white/95 focus-within:border-[#2D7A4F] focus-within:ring-2 focus-within:ring-[#2D7A4F]/20 overflow-hidden transition-all">
+                                    <div class="w-10 h-11 flex items-center justify-center shrink-0 bg-[#F0F7F2] text-gray-500 border-r border-gray-200">
                                         <i class="far fa-user text-xs"></i>
-                                    </span>
-                                    <input type="text" name="name" value="{{ old('name') }}" placeholder="e.g. Rahul Sharma" required class="w-full px-3.5 py-3 border border-gray-200 rounded-r-xl text-xs font-semibold text-gray-900 focus:outline-none focus:border-[#2D7A4F] transition-all" style="background: rgba(255, 255, 255, 0.9);">
+                                    </div>
+                                    <input type="text" name="name" value="{{ old('name') }}" placeholder="e.g. Rahul Sharma" required class="w-full px-3 py-2.5 text-xs font-semibold text-gray-900 bg-transparent focus:outline-none">
                                 </div>
                             </div>
 
                             <!-- Mobile Number -->
                             <div>
                                 <label class="block text-[10px] font-extrabold text-gray-600 uppercase tracking-wider mb-1">Mobile Number <span class="text-red-500">*</span></label>
-                                <div class="flex items-center">
-                                    <span class="px-3 py-3 border border-r-0 border-gray-200 rounded-l-xl text-xs text-gray-600 font-bold flex items-center justify-center shrink-0" style="background: rgba(240, 247, 242, 0.7); min-width: 48px;">
+                                <div class="relative flex items-center rounded-xl border border-gray-200 bg-white/95 focus-within:border-[#2D7A4F] focus-within:ring-2 focus-within:ring-[#2D7A4F]/20 overflow-hidden transition-all">
+                                    <div class="w-11 h-11 flex items-center justify-center shrink-0 bg-[#F0F7F2] text-xs font-bold text-gray-700 border-r border-gray-200">
                                         +91
-                                    </span>
-                                    <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="98765 43210" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3.5 py-3 border border-gray-200 rounded-r-xl text-xs font-semibold text-gray-900 focus:outline-none focus:border-[#2D7A4F] transition-all" style="background: rgba(255, 255, 255, 0.9);">
+                                    </div>
+                                    <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="98765 43210" required pattern="[0-9]{10}" maxlength="10" class="w-full px-3 py-2.5 text-xs font-semibold text-gray-900 bg-transparent focus:outline-none">
                                 </div>
                             </div>
 
                             <!-- Service Select -->
                             <div>
                                 <label class="block text-[10px] font-extrabold text-gray-600 uppercase tracking-wider mb-1">Select Service <span class="text-red-500">*</span></label>
-                                <div class="flex items-center">
-                                    <span class="px-3.5 py-3 border border-r-0 border-gray-200 rounded-l-xl text-gray-400 flex items-center justify-center shrink-0" style="background: rgba(240, 247, 242, 0.7); min-width: 42px;">
+                                <div class="relative flex items-center rounded-xl border border-gray-200 bg-white/95 focus-within:border-[#2D7A4F] focus-within:ring-2 focus-within:ring-[#2D7A4F]/20 overflow-hidden transition-all">
+                                    <div class="w-10 h-11 flex items-center justify-center shrink-0 bg-[#F0F7F2] text-gray-500 border-r border-gray-200">
                                         <i class="fas fa-briefcase text-xs"></i>
-                                    </span>
-                                    <select name="service" required class="w-full px-3.5 py-3 border border-gray-200 rounded-r-xl text-xs font-semibold text-gray-900 focus:outline-none focus:border-[#2D7A4F] transition-all appearance-none cursor-pointer" style="background-color: rgba(255, 255, 255, 0.9); background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232D7A4F' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 12px center; background-size: 12px;">
+                                    </div>
+                                    <select name="service" required class="w-full px-3 py-2.5 text-xs font-semibold text-gray-900 bg-transparent focus:outline-none appearance-none cursor-pointer" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232D7A4F' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 12px center; background-size: 12px;">
                                         <option value="" disabled selected>Choose a service...</option>
                                         <option value="Company Registration">Company Registration (Pvt Ltd)</option>
                                         <option value="GST Registration & Filing">GST Registration & Filing</option>
@@ -267,8 +277,19 @@
                                 </div>
                             </div>
 
+                            <!-- City / Location -->
+                            <div>
+                                <label class="block text-[10px] font-extrabold text-gray-600 uppercase tracking-wider mb-1">City / State</label>
+                                <div class="relative flex items-center rounded-xl border border-gray-200 bg-white/95 focus-within:border-[#2D7A4F] focus-within:ring-2 focus-within:ring-[#2D7A4F]/20 overflow-hidden transition-all">
+                                    <div class="w-10 h-11 flex items-center justify-center shrink-0 bg-[#F0F7F2] text-gray-500 border-r border-gray-200">
+                                        <i class="fas fa-map-marker-alt text-xs"></i>
+                                    </div>
+                                    <input type="text" name="city" value="{{ old('city') }}" placeholder="e.g. Mumbai, Delhi, Varanasi" class="w-full px-3 py-2.5 text-xs font-semibold text-gray-900 bg-transparent focus:outline-none">
+                                </div>
+                            </div>
+
                             <!-- Submit Button -->
-                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl font-extrabold text-xs tracking-wider uppercase shadow-md transition-all duration-200 flex items-center justify-center gap-2 hover:-translate-y-0.5 active:translate-y-0" style="background-color: #F5A623; color: #0B1F3A;">
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl font-extrabold text-xs tracking-wider uppercase shadow-lg transition-all duration-200 flex items-center justify-center gap-2 hover:-translate-y-0.5 active:translate-y-0 mt-2" style="background-color: #F5A623; color: #0B1F3A;">
                                 <i class="fas fa-headset text-sm"></i>
                                 <span>Get Instant Callback</span>
                             </button>
@@ -276,7 +297,7 @@
                     @endif
 
                     <!-- Trust indicators -->
-                    <div class="mt-4 pt-3.5 border-t border-gray-200/60 flex items-center justify-between text-[10px] font-bold text-gray-500">
+                    <div class="mt-4 pt-3.5 border-t border-gray-200/80 flex items-center justify-between text-[10px] font-bold text-gray-500">
                         <span class="flex items-center gap-1.5">
                             <i class="fas fa-shield-alt text-[#2D7A4F]"></i> 100% Confidential
                         </span>

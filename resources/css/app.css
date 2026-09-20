@@ -138,7 +138,7 @@
         border-radius: 12px !important; /* Premium modern rounded corners instead of sharp 4px or extreme pill */
         display: inline-flex !important;
         align-items: center !important;
-        justify-content: center !important;
+        /* justify-content: center !important; */
         line-height: 1 !important;
         box-shadow: 0 4px 12px rgba(11, 31, 58, 0.05) !important;
         border-width: 1px !important;
